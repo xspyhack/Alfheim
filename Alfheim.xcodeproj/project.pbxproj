@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FC61D0D23D06D9200DDE1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D0C23D06D9200DDE1BA /* AppDelegate.swift */; };
+		1FC61D0F23D06D9200DDE1BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D0E23D06D9200DDE1BA /* SceneDelegate.swift */; };
+		1FC61D1223D06D9200DDE1BA /* Alfheim.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D1023D06D9200DDE1BA /* Alfheim.xcdatamodeld */; };
+		1FC61D1423D06D9200DDE1BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D1323D06D9200DDE1BA /* ContentView.swift */; };
+		1FC61D1623D06D9300DDE1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC61D1523D06D9300DDE1BA /* Assets.xcassets */; };
+		1FC61D1923D06D9300DDE1BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC61D1823D06D9300DDE1BA /* Preview Assets.xcassets */; };
+		1FC61D1C23D06D9300DDE1BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC61D1A23D06D9300DDE1BA /* LaunchScreen.storyboard */; };
+		1FC61D2723D06D9300DDE1BA /* AlfheimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D2623D06D9300DDE1BA /* AlfheimTests.swift */; };
+		1FC61D3223D06D9300DDE1BA /* AlfheimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D3123D06D9300DDE1BA /* AlfheimUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1FC61D2323D06D9300DDE1BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FC61D0123D06D9200DDE1BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FC61D0823D06D9200DDE1BA;
+			remoteInfo = Alfheim;
+		};
+		1FC61D2E23D06D9300DDE1BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FC61D0123D06D9200DDE1BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FC61D0823D06D9200DDE1BA;
+			remoteInfo = Alfheim;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1FC61D0923D06D9200DDE1BA /* Alfheim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alfheim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FC61D0C23D06D9200DDE1BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1FC61D0E23D06D9200DDE1BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1FC61D1123D06D9200DDE1BA /* Alfheim.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alfheim.xcdatamodel; sourceTree = "<group>"; };
+		1FC61D1323D06D9200DDE1BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1FC61D1523D06D9300DDE1BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1FC61D1823D06D9300DDE1BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1FC61D1B23D06D9300DDE1BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1FC61D1D23D06D9300DDE1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FC61D2223D06D9300DDE1BA /* AlfheimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlfheimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FC61D2623D06D9300DDE1BA /* AlfheimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlfheimTests.swift; sourceTree = "<group>"; };
+		1FC61D2823D06D9300DDE1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FC61D2D23D06D9300DDE1BA /* AlfheimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlfheimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FC61D3123D06D9300DDE1BA /* AlfheimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlfheimUITests.swift; sourceTree = "<group>"; };
+		1FC61D3323D06D9300DDE1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1FC61D0623D06D9200DDE1BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FC61D1F23D06D9300DDE1BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FC61D2A23D06D9300DDE1BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FC61D0023D06D9200DDE1BA = {
+			isa = PBXGroup;
+			children = (
+				1FC61D0B23D06D9200DDE1BA /* Alfheim */,
+				1FC61D2523D06D9300DDE1BA /* AlfheimTests */,
+				1FC61D3023D06D9300DDE1BA /* AlfheimUITests */,
+				1FC61D0A23D06D9200DDE1BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1FC61D0A23D06D9200DDE1BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1FC61D0923D06D9200DDE1BA /* Alfheim.app */,
+				1FC61D2223D06D9300DDE1BA /* AlfheimTests.xctest */,
+				1FC61D2D23D06D9300DDE1BA /* AlfheimUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1FC61D0B23D06D9200DDE1BA /* Alfheim */ = {
+			isa = PBXGroup;
+			children = (
+				1FC61D0C23D06D9200DDE1BA /* AppDelegate.swift */,
+				1FC61D0E23D06D9200DDE1BA /* SceneDelegate.swift */,
+				1FC61D1323D06D9200DDE1BA /* ContentView.swift */,
+				1FC61D1523D06D9300DDE1BA /* Assets.xcassets */,
+				1FC61D1A23D06D9300DDE1BA /* LaunchScreen.storyboard */,
+				1FC61D1D23D06D9300DDE1BA /* Info.plist */,
+				1FC61D1023D06D9200DDE1BA /* Alfheim.xcdatamodeld */,
+				1FC61D1723D06D9300DDE1BA /* Preview Content */,
+			);
+			path = Alfheim;
+			sourceTree = "<group>";
+		};
+		1FC61D1723D06D9300DDE1BA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1FC61D1823D06D9300DDE1BA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1FC61D2523D06D9300DDE1BA /* AlfheimTests */ = {
+			isa = PBXGroup;
+			children = (
+				1FC61D2623D06D9300DDE1BA /* AlfheimTests.swift */,
+				1FC61D2823D06D9300DDE1BA /* Info.plist */,
+			);
+			path = AlfheimTests;
+			sourceTree = "<group>";
+		};
+		1FC61D3023D06D9300DDE1BA /* AlfheimUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1FC61D3123D06D9300DDE1BA /* AlfheimUITests.swift */,
+				1FC61D3323D06D9300DDE1BA /* Info.plist */,
+			);
+			path = AlfheimUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1FC61D0823D06D9200DDE1BA /* Alfheim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FC61D3623D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "Alfheim" */;
+			buildPhases = (
+				1FC61D0523D06D9200DDE1BA /* Sources */,
+				1FC61D0623D06D9200DDE1BA /* Frameworks */,
+				1FC61D0723D06D9200DDE1BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alfheim;
+			productName = Alfheim;
+			productReference = 1FC61D0923D06D9200DDE1BA /* Alfheim.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1FC61D2123D06D9300DDE1BA /* AlfheimTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FC61D3923D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "AlfheimTests" */;
+			buildPhases = (
+				1FC61D1E23D06D9300DDE1BA /* Sources */,
+				1FC61D1F23D06D9300DDE1BA /* Frameworks */,
+				1FC61D2023D06D9300DDE1BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FC61D2423D06D9300DDE1BA /* PBXTargetDependency */,
+			);
+			name = AlfheimTests;
+			productName = AlfheimTests;
+			productReference = 1FC61D2223D06D9300DDE1BA /* AlfheimTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1FC61D2C23D06D9300DDE1BA /* AlfheimUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FC61D3C23D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "AlfheimUITests" */;
+			buildPhases = (
+				1FC61D2923D06D9300DDE1BA /* Sources */,
+				1FC61D2A23D06D9300DDE1BA /* Frameworks */,
+				1FC61D2B23D06D9300DDE1BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FC61D2F23D06D9300DDE1BA /* PBXTargetDependency */,
+			);
+			name = AlfheimUITests;
+			productName = AlfheimUITests;
+			productReference = 1FC61D2D23D06D9300DDE1BA /* AlfheimUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1FC61D0123D06D9200DDE1BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = blessingsoft;
+				TargetAttributes = {
+					1FC61D0823D06D9200DDE1BA = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					1FC61D2123D06D9300DDE1BA = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 1FC61D0823D06D9200DDE1BA;
+					};
+					1FC61D2C23D06D9300DDE1BA = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 1FC61D0823D06D9200DDE1BA;
+					};
+				};
+			};
+			buildConfigurationList = 1FC61D0423D06D9200DDE1BA /* Build configuration list for PBXProject "Alfheim" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1FC61D0023D06D9200DDE1BA;
+			productRefGroup = 1FC61D0A23D06D9200DDE1BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1FC61D0823D06D9200DDE1BA /* Alfheim */,
+				1FC61D2123D06D9300DDE1BA /* AlfheimTests */,
+				1FC61D2C23D06D9300DDE1BA /* AlfheimUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1FC61D0723D06D9200DDE1BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FC61D1C23D06D9300DDE1BA /* LaunchScreen.storyboard in Resources */,
+				1FC61D1923D06D9300DDE1BA /* Preview Assets.xcassets in Resources */,
+				1FC61D1623D06D9300DDE1BA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FC61D2023D06D9300DDE1BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FC61D2B23D06D9300DDE1BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1FC61D0523D06D9200DDE1BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FC61D0D23D06D9200DDE1BA /* AppDelegate.swift in Sources */,
+				1FC61D0F23D06D9200DDE1BA /* SceneDelegate.swift in Sources */,
+				1FC61D1423D06D9200DDE1BA /* ContentView.swift in Sources */,
+				1FC61D1223D06D9200DDE1BA /* Alfheim.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FC61D1E23D06D9300DDE1BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FC61D2723D06D9300DDE1BA /* AlfheimTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FC61D2923D06D9300DDE1BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FC61D3223D06D9300DDE1BA /* AlfheimUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1FC61D2423D06D9300DDE1BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FC61D0823D06D9200DDE1BA /* Alfheim */;
+			targetProxy = 1FC61D2323D06D9300DDE1BA /* PBXContainerItemProxy */;
+		};
+		1FC61D2F23D06D9300DDE1BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FC61D0823D06D9200DDE1BA /* Alfheim */;
+			targetProxy = 1FC61D2E23D06D9300DDE1BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1FC61D1A23D06D9300DDE1BA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FC61D1B23D06D9300DDE1BA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1FC61D3423D06D9300DDE1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1FC61D3523D06D9300DDE1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1FC61D3723D06D9300DDE1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Alfheim/Preview Content\"";
+				DEVELOPMENT_TEAM = DJ5N6T769K;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Alfheim/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Alfheim;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1FC61D3823D06D9300DDE1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Alfheim/Preview Content\"";
+				DEVELOPMENT_TEAM = DJ5N6T769K;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Alfheim/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Alfheim;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1FC61D3A23D06D9300DDE1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJ5N6T769K;
+				INFOPLIST_FILE = AlfheimTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.AlfheimTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alfheim.app/Alfheim";
+			};
+			name = Debug;
+		};
+		1FC61D3B23D06D9300DDE1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJ5N6T769K;
+				INFOPLIST_FILE = AlfheimTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.AlfheimTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alfheim.app/Alfheim";
+			};
+			name = Release;
+		};
+		1FC61D3D23D06D9300DDE1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJ5N6T769K;
+				INFOPLIST_FILE = AlfheimUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.AlfheimUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Alfheim;
+			};
+			name = Debug;
+		};
+		1FC61D3E23D06D9300DDE1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJ5N6T769K;
+				INFOPLIST_FILE = AlfheimUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.AlfheimUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Alfheim;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1FC61D0423D06D9200DDE1BA /* Build configuration list for PBXProject "Alfheim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FC61D3423D06D9300DDE1BA /* Debug */,
+				1FC61D3523D06D9300DDE1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FC61D3623D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "Alfheim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FC61D3723D06D9300DDE1BA /* Debug */,
+				1FC61D3823D06D9300DDE1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FC61D3923D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "AlfheimTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FC61D3A23D06D9300DDE1BA /* Debug */,
+				1FC61D3B23D06D9300DDE1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FC61D3C23D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "AlfheimUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FC61D3D23D06D9300DDE1BA /* Debug */,
+				1FC61D3E23D06D9300DDE1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1FC61D1023D06D9200DDE1BA /* Alfheim.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1FC61D1123D06D9200DDE1BA /* Alfheim.xcdatamodel */,
+			);
+			currentVersion = 1FC61D1123D06D9200DDE1BA /* Alfheim.xcdatamodel */;
+			path = Alfheim.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1FC61D0123D06D9200DDE1BA /* Project object */;
+}
