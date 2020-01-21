@@ -7,68 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FC61D0D23D06D9200DDE1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D0C23D06D9200DDE1BA /* AppDelegate.swift */; };
-		1FC61D0F23D06D9200DDE1BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D0E23D06D9200DDE1BA /* SceneDelegate.swift */; };
-		1FC61D1223D06D9200DDE1BA /* Alfheim.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D1023D06D9200DDE1BA /* Alfheim.xcdatamodeld */; };
-		1FC61D1423D06D9200DDE1BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D1323D06D9200DDE1BA /* ContentView.swift */; };
-		1FC61D1623D06D9300DDE1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC61D1523D06D9300DDE1BA /* Assets.xcassets */; };
-		1FC61D1923D06D9300DDE1BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC61D1823D06D9300DDE1BA /* Preview Assets.xcassets */; };
-		1FC61D1C23D06D9300DDE1BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC61D1A23D06D9300DDE1BA /* LaunchScreen.storyboard */; };
-		1FC61D2723D06D9300DDE1BA /* AlfheimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D2623D06D9300DDE1BA /* AlfheimTests.swift */; };
-		1FC61D3223D06D9300DDE1BA /* AlfheimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC61D3123D06D9300DDE1BA /* AlfheimUITests.swift */; };
+		1F3998FB23D6958700E6BBD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3998FA23D6958700E6BBD9 /* AppDelegate.swift */; };
+		1F3998FD23D6958700E6BBD9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3998FC23D6958700E6BBD9 /* SceneDelegate.swift */; };
+		1F39990023D6958700E6BBD9 /* Alfheim.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3998FE23D6958700E6BBD9 /* Alfheim.xcdatamodeld */; };
+		1F39990423D6958800E6BBD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F39990323D6958800E6BBD9 /* Assets.xcassets */; };
+		1F39990723D6958800E6BBD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F39990623D6958800E6BBD9 /* Preview Assets.xcassets */; };
+		1F39990A23D6958800E6BBD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F39990823D6958800E6BBD9 /* LaunchScreen.storyboard */; };
+		1F39991523D6958800E6BBD9 /* AlfheimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39991423D6958800E6BBD9 /* AlfheimTests.swift */; };
+		1F39992423D695EE00E6BBD9 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39992023D695EE00E6BBD9 /* Line.swift */; };
+		1F39992623D695EE00E6BBD9 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39992223D695EE00E6BBD9 /* LineChart.swift */; };
+		1F39992723D695EE00E6BBD9 /* Path+QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39992323D695EE00E6BBD9 /* Path+QuadCurve.swift */; };
+		1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39992823D6963600E6BBD9 /* Indicator.swift */; };
+		1F39992B23D697F700E6BBD9 /* UnitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39992A23D697F700E6BBD9 /* UnitData.swift */; };
+		1F39992D23D69C0700E6BBD9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F39992C23D69C0700E6BBD9 /* Colors.xcassets */; };
+		1F39993123D6A0A400E6BBD9 /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39993023D6A0A400E6BBD9 /* OverviewView.swift */; };
+		1F39993323D6D53200E6BBD9 /* QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39993223D6D53200E6BBD9 /* QuadCurve.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1FC61D2323D06D9300DDE1BA /* PBXContainerItemProxy */ = {
+		1F39991123D6958800E6BBD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1FC61D0123D06D9200DDE1BA /* Project object */;
+			containerPortal = 1F3998EF23D6958700E6BBD9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1FC61D0823D06D9200DDE1BA;
-			remoteInfo = Alfheim;
-		};
-		1FC61D2E23D06D9300DDE1BA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1FC61D0123D06D9200DDE1BA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1FC61D0823D06D9200DDE1BA;
+			remoteGlobalIDString = 1F3998F623D6958700E6BBD9;
 			remoteInfo = Alfheim;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1FC61D0923D06D9200DDE1BA /* Alfheim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alfheim.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FC61D0C23D06D9200DDE1BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FC61D0E23D06D9200DDE1BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1FC61D1123D06D9200DDE1BA /* Alfheim.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alfheim.xcdatamodel; sourceTree = "<group>"; };
-		1FC61D1323D06D9200DDE1BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1FC61D1523D06D9300DDE1BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1FC61D1823D06D9300DDE1BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1FC61D1B23D06D9300DDE1BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1FC61D1D23D06D9300DDE1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1FC61D2223D06D9300DDE1BA /* AlfheimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlfheimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FC61D2623D06D9300DDE1BA /* AlfheimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlfheimTests.swift; sourceTree = "<group>"; };
-		1FC61D2823D06D9300DDE1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1FC61D2D23D06D9300DDE1BA /* AlfheimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlfheimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FC61D3123D06D9300DDE1BA /* AlfheimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlfheimUITests.swift; sourceTree = "<group>"; };
-		1FC61D3323D06D9300DDE1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F3998F723D6958700E6BBD9 /* Alfheim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alfheim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F3998FA23D6958700E6BBD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
+		1F3998FC23D6958700E6BBD9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = ../SceneDelegate.swift; sourceTree = "<group>"; };
+		1F3998FF23D6958700E6BBD9 /* Alfheim.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alfheim.xcdatamodel; sourceTree = "<group>"; };
+		1F39990323D6958800E6BBD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F39990623D6958800E6BBD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1F39990923D6958800E6BBD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1F39990B23D6958800E6BBD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F39991023D6958800E6BBD9 /* AlfheimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlfheimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F39991423D6958800E6BBD9 /* AlfheimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlfheimTests.swift; sourceTree = "<group>"; };
+		1F39991623D6958800E6BBD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F39992023D695EE00E6BBD9 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		1F39992223D695EE00E6BBD9 /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
+		1F39992323D695EE00E6BBD9 /* Path+QuadCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Path+QuadCurve.swift"; sourceTree = "<group>"; };
+		1F39992823D6963600E6BBD9 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		1F39992A23D697F700E6BBD9 /* UnitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitData.swift; sourceTree = "<group>"; };
+		1F39992C23D69C0700E6BBD9 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		1F39993023D6A0A400E6BBD9 /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
+		1F39993223D6D53200E6BBD9 /* QuadCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadCurve.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1FC61D0623D06D9200DDE1BA /* Frameworks */ = {
+		1F3998F423D6958700E6BBD9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1FC61D1F23D06D9300DDE1BA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1FC61D2A23D06D9300DDE1BA /* Frameworks */ = {
+		1F39990D23D6958800E6BBD9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -78,77 +74,97 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1FC61D0023D06D9200DDE1BA = {
+		1F3998EE23D6958700E6BBD9 = {
 			isa = PBXGroup;
 			children = (
-				1FC61D0B23D06D9200DDE1BA /* Alfheim */,
-				1FC61D2523D06D9300DDE1BA /* AlfheimTests */,
-				1FC61D3023D06D9300DDE1BA /* AlfheimUITests */,
-				1FC61D0A23D06D9200DDE1BA /* Products */,
+				1F3998F923D6958700E6BBD9 /* Alfheim */,
+				1F39991323D6958800E6BBD9 /* AlfheimTests */,
+				1F3998F823D6958700E6BBD9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		1FC61D0A23D06D9200DDE1BA /* Products */ = {
+		1F3998F823D6958700E6BBD9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1FC61D0923D06D9200DDE1BA /* Alfheim.app */,
-				1FC61D2223D06D9300DDE1BA /* AlfheimTests.xctest */,
-				1FC61D2D23D06D9300DDE1BA /* AlfheimUITests.xctest */,
+				1F3998F723D6958700E6BBD9 /* Alfheim.app */,
+				1F39991023D6958800E6BBD9 /* AlfheimTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1FC61D0B23D06D9200DDE1BA /* Alfheim */ = {
+		1F3998F923D6958700E6BBD9 /* Alfheim */ = {
 			isa = PBXGroup;
 			children = (
-				1FC61D0C23D06D9200DDE1BA /* AppDelegate.swift */,
-				1FC61D0E23D06D9200DDE1BA /* SceneDelegate.swift */,
-				1FC61D1323D06D9200DDE1BA /* ContentView.swift */,
-				1FC61D1523D06D9300DDE1BA /* Assets.xcassets */,
-				1FC61D1A23D06D9300DDE1BA /* LaunchScreen.storyboard */,
-				1FC61D1D23D06D9300DDE1BA /* Info.plist */,
-				1FC61D1023D06D9200DDE1BA /* Alfheim.xcdatamodeld */,
-				1FC61D1723D06D9300DDE1BA /* Preview Content */,
+				1F39992E23D6A05800E6BBD9 /* App */,
+				1F39992F23D6A06100E6BBD9 /* Views */,
+				1F39991F23D695BC00E6BBD9 /* Charts */,
+				1F39990323D6958800E6BBD9 /* Assets.xcassets */,
+				1F39992C23D69C0700E6BBD9 /* Colors.xcassets */,
+				1F39990823D6958800E6BBD9 /* LaunchScreen.storyboard */,
+				1F39990B23D6958800E6BBD9 /* Info.plist */,
+				1F3998FE23D6958700E6BBD9 /* Alfheim.xcdatamodeld */,
+				1F39990523D6958800E6BBD9 /* Preview Content */,
 			);
 			path = Alfheim;
 			sourceTree = "<group>";
 		};
-		1FC61D1723D06D9300DDE1BA /* Preview Content */ = {
+		1F39990523D6958800E6BBD9 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				1FC61D1823D06D9300DDE1BA /* Preview Assets.xcassets */,
+				1F39990623D6958800E6BBD9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1FC61D2523D06D9300DDE1BA /* AlfheimTests */ = {
+		1F39991323D6958800E6BBD9 /* AlfheimTests */ = {
 			isa = PBXGroup;
 			children = (
-				1FC61D2623D06D9300DDE1BA /* AlfheimTests.swift */,
-				1FC61D2823D06D9300DDE1BA /* Info.plist */,
+				1F39991423D6958800E6BBD9 /* AlfheimTests.swift */,
+				1F39991623D6958800E6BBD9 /* Info.plist */,
 			);
 			path = AlfheimTests;
 			sourceTree = "<group>";
 		};
-		1FC61D3023D06D9300DDE1BA /* AlfheimUITests */ = {
+		1F39991F23D695BC00E6BBD9 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
-				1FC61D3123D06D9300DDE1BA /* AlfheimUITests.swift */,
-				1FC61D3323D06D9300DDE1BA /* Info.plist */,
+				1F39992023D695EE00E6BBD9 /* Line.swift */,
+				1F39992223D695EE00E6BBD9 /* LineChart.swift */,
+				1F39992323D695EE00E6BBD9 /* Path+QuadCurve.swift */,
+				1F39993223D6D53200E6BBD9 /* QuadCurve.swift */,
+				1F39992823D6963600E6BBD9 /* Indicator.swift */,
+				1F39992A23D697F700E6BBD9 /* UnitData.swift */,
 			);
-			path = AlfheimUITests;
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		1F39992E23D6A05800E6BBD9 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1F3998FA23D6958700E6BBD9 /* AppDelegate.swift */,
+				1F3998FC23D6958700E6BBD9 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1F39992F23D6A06100E6BBD9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1F39993023D6A0A400E6BBD9 /* OverviewView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1FC61D0823D06D9200DDE1BA /* Alfheim */ = {
+		1F3998F623D6958700E6BBD9 /* Alfheim */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1FC61D3623D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "Alfheim" */;
+			buildConfigurationList = 1F39991923D6958900E6BBD9 /* Build configuration list for PBXNativeTarget "Alfheim" */;
 			buildPhases = (
-				1FC61D0523D06D9200DDE1BA /* Sources */,
-				1FC61D0623D06D9200DDE1BA /* Frameworks */,
-				1FC61D0723D06D9200DDE1BA /* Resources */,
+				1F3998F323D6958700E6BBD9 /* Sources */,
+				1F3998F423D6958700E6BBD9 /* Frameworks */,
+				1F3998F523D6958700E6BBD9 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -156,69 +172,47 @@
 			);
 			name = Alfheim;
 			productName = Alfheim;
-			productReference = 1FC61D0923D06D9200DDE1BA /* Alfheim.app */;
+			productReference = 1F3998F723D6958700E6BBD9 /* Alfheim.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1FC61D2123D06D9300DDE1BA /* AlfheimTests */ = {
+		1F39990F23D6958800E6BBD9 /* AlfheimTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1FC61D3923D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "AlfheimTests" */;
+			buildConfigurationList = 1F39991C23D6958900E6BBD9 /* Build configuration list for PBXNativeTarget "AlfheimTests" */;
 			buildPhases = (
-				1FC61D1E23D06D9300DDE1BA /* Sources */,
-				1FC61D1F23D06D9300DDE1BA /* Frameworks */,
-				1FC61D2023D06D9300DDE1BA /* Resources */,
+				1F39990C23D6958800E6BBD9 /* Sources */,
+				1F39990D23D6958800E6BBD9 /* Frameworks */,
+				1F39990E23D6958800E6BBD9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1FC61D2423D06D9300DDE1BA /* PBXTargetDependency */,
+				1F39991223D6958800E6BBD9 /* PBXTargetDependency */,
 			);
 			name = AlfheimTests;
 			productName = AlfheimTests;
-			productReference = 1FC61D2223D06D9300DDE1BA /* AlfheimTests.xctest */;
+			productReference = 1F39991023D6958800E6BBD9 /* AlfheimTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		1FC61D2C23D06D9300DDE1BA /* AlfheimUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1FC61D3C23D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "AlfheimUITests" */;
-			buildPhases = (
-				1FC61D2923D06D9300DDE1BA /* Sources */,
-				1FC61D2A23D06D9300DDE1BA /* Frameworks */,
-				1FC61D2B23D06D9300DDE1BA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1FC61D2F23D06D9300DDE1BA /* PBXTargetDependency */,
-			);
-			name = AlfheimUITests;
-			productName = AlfheimUITests;
-			productReference = 1FC61D2D23D06D9300DDE1BA /* AlfheimUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1FC61D0123D06D9200DDE1BA /* Project object */ = {
+		1F3998EF23D6958700E6BBD9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = blessingsoft;
 				TargetAttributes = {
-					1FC61D0823D06D9200DDE1BA = {
+					1F3998F623D6958700E6BBD9 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
-					1FC61D2123D06D9300DDE1BA = {
+					1F39990F23D6958800E6BBD9 = {
 						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = 1FC61D0823D06D9200DDE1BA;
-					};
-					1FC61D2C23D06D9300DDE1BA = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = 1FC61D0823D06D9200DDE1BA;
+						TestTargetID = 1F3998F623D6958700E6BBD9;
 					};
 				};
 			};
-			buildConfigurationList = 1FC61D0423D06D9200DDE1BA /* Build configuration list for PBXProject "Alfheim" */;
+			buildConfigurationList = 1F3998F223D6958700E6BBD9 /* Build configuration list for PBXProject "Alfheim" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -226,37 +220,30 @@
 				en,
 				Base,
 			);
-			mainGroup = 1FC61D0023D06D9200DDE1BA;
-			productRefGroup = 1FC61D0A23D06D9200DDE1BA /* Products */;
+			mainGroup = 1F3998EE23D6958700E6BBD9;
+			productRefGroup = 1F3998F823D6958700E6BBD9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1FC61D0823D06D9200DDE1BA /* Alfheim */,
-				1FC61D2123D06D9300DDE1BA /* AlfheimTests */,
-				1FC61D2C23D06D9300DDE1BA /* AlfheimUITests */,
+				1F3998F623D6958700E6BBD9 /* Alfheim */,
+				1F39990F23D6958800E6BBD9 /* AlfheimTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1FC61D0723D06D9200DDE1BA /* Resources */ = {
+		1F3998F523D6958700E6BBD9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC61D1C23D06D9300DDE1BA /* LaunchScreen.storyboard in Resources */,
-				1FC61D1923D06D9300DDE1BA /* Preview Assets.xcassets in Resources */,
-				1FC61D1623D06D9300DDE1BA /* Assets.xcassets in Resources */,
+				1F39990A23D6958800E6BBD9 /* LaunchScreen.storyboard in Resources */,
+				1F39992D23D69C0700E6BBD9 /* Colors.xcassets in Resources */,
+				1F39990723D6958800E6BBD9 /* Preview Assets.xcassets in Resources */,
+				1F39990423D6958800E6BBD9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1FC61D2023D06D9300DDE1BA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1FC61D2B23D06D9300DDE1BA /* Resources */ = {
+		1F39990E23D6958800E6BBD9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -266,53 +253,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1FC61D0523D06D9200DDE1BA /* Sources */ = {
+		1F3998F323D6958700E6BBD9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC61D0D23D06D9200DDE1BA /* AppDelegate.swift in Sources */,
-				1FC61D0F23D06D9200DDE1BA /* SceneDelegate.swift in Sources */,
-				1FC61D1423D06D9200DDE1BA /* ContentView.swift in Sources */,
-				1FC61D1223D06D9200DDE1BA /* Alfheim.xcdatamodeld in Sources */,
+				1F39993123D6A0A400E6BBD9 /* OverviewView.swift in Sources */,
+				1F3998FB23D6958700E6BBD9 /* AppDelegate.swift in Sources */,
+				1F3998FD23D6958700E6BBD9 /* SceneDelegate.swift in Sources */,
+				1F39992B23D697F700E6BBD9 /* UnitData.swift in Sources */,
+				1F39993323D6D53200E6BBD9 /* QuadCurve.swift in Sources */,
+				1F39992623D695EE00E6BBD9 /* LineChart.swift in Sources */,
+				1F39990023D6958700E6BBD9 /* Alfheim.xcdatamodeld in Sources */,
+				1F39992423D695EE00E6BBD9 /* Line.swift in Sources */,
+				1F39992723D695EE00E6BBD9 /* Path+QuadCurve.swift in Sources */,
+				1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1FC61D1E23D06D9300DDE1BA /* Sources */ = {
+		1F39990C23D6958800E6BBD9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC61D2723D06D9300DDE1BA /* AlfheimTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1FC61D2923D06D9300DDE1BA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1FC61D3223D06D9300DDE1BA /* AlfheimUITests.swift in Sources */,
+				1F39991523D6958800E6BBD9 /* AlfheimTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1FC61D2423D06D9300DDE1BA /* PBXTargetDependency */ = {
+		1F39991223D6958800E6BBD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1FC61D0823D06D9200DDE1BA /* Alfheim */;
-			targetProxy = 1FC61D2323D06D9300DDE1BA /* PBXContainerItemProxy */;
-		};
-		1FC61D2F23D06D9300DDE1BA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1FC61D0823D06D9200DDE1BA /* Alfheim */;
-			targetProxy = 1FC61D2E23D06D9300DDE1BA /* PBXContainerItemProxy */;
+			target = 1F3998F623D6958700E6BBD9 /* Alfheim */;
+			targetProxy = 1F39991123D6958800E6BBD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1FC61D1A23D06D9300DDE1BA /* LaunchScreen.storyboard */ = {
+		1F39990823D6958800E6BBD9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1FC61D1B23D06D9300DDE1BA /* Base */,
+				1F39990923D6958800E6BBD9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -320,7 +300,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1FC61D3423D06D9300DDE1BA /* Debug */ = {
+		1F39991723D6958900E6BBD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -380,7 +360,7 @@
 			};
 			name = Debug;
 		};
-		1FC61D3523D06D9300DDE1BA /* Release */ = {
+		1F39991823D6958900E6BBD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -434,7 +414,7 @@
 			};
 			name = Release;
 		};
-		1FC61D3723D06D9300DDE1BA /* Debug */ = {
+		1F39991A23D6958900E6BBD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -454,7 +434,7 @@
 			};
 			name = Debug;
 		};
-		1FC61D3823D06D9300DDE1BA /* Release */ = {
+		1F39991B23D6958900E6BBD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -474,7 +454,7 @@
 			};
 			name = Release;
 		};
-		1FC61D3A23D06D9300DDE1BA /* Debug */ = {
+		1F39991D23D6958900E6BBD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -496,7 +476,7 @@
 			};
 			name = Debug;
 		};
-		1FC61D3B23D06D9300DDE1BA /* Release */ = {
+		1F39991E23D6958900E6BBD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -515,84 +495,35 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alfheim.app/Alfheim";
-			};
-			name = Release;
-		};
-		1FC61D3D23D06D9300DDE1BA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DJ5N6T769K;
-				INFOPLIST_FILE = AlfheimUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.AlfheimUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Alfheim;
-			};
-			name = Debug;
-		};
-		1FC61D3E23D06D9300DDE1BA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DJ5N6T769K;
-				INFOPLIST_FILE = AlfheimUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.AlfheimUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Alfheim;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1FC61D0423D06D9200DDE1BA /* Build configuration list for PBXProject "Alfheim" */ = {
+		1F3998F223D6958700E6BBD9 /* Build configuration list for PBXProject "Alfheim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1FC61D3423D06D9300DDE1BA /* Debug */,
-				1FC61D3523D06D9300DDE1BA /* Release */,
+				1F39991723D6958900E6BBD9 /* Debug */,
+				1F39991823D6958900E6BBD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1FC61D3623D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "Alfheim" */ = {
+		1F39991923D6958900E6BBD9 /* Build configuration list for PBXNativeTarget "Alfheim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1FC61D3723D06D9300DDE1BA /* Debug */,
-				1FC61D3823D06D9300DDE1BA /* Release */,
+				1F39991A23D6958900E6BBD9 /* Debug */,
+				1F39991B23D6958900E6BBD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1FC61D3923D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "AlfheimTests" */ = {
+		1F39991C23D6958900E6BBD9 /* Build configuration list for PBXNativeTarget "AlfheimTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1FC61D3A23D06D9300DDE1BA /* Debug */,
-				1FC61D3B23D06D9300DDE1BA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1FC61D3C23D06D9300DDE1BA /* Build configuration list for PBXNativeTarget "AlfheimUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1FC61D3D23D06D9300DDE1BA /* Debug */,
-				1FC61D3E23D06D9300DDE1BA /* Release */,
+				1F39991D23D6958900E6BBD9 /* Debug */,
+				1F39991E23D6958900E6BBD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -600,17 +531,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1FC61D1023D06D9200DDE1BA /* Alfheim.xcdatamodeld */ = {
+		1F3998FE23D6958700E6BBD9 /* Alfheim.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1FC61D1123D06D9200DDE1BA /* Alfheim.xcdatamodel */,
+				1F3998FF23D6958700E6BBD9 /* Alfheim.xcdatamodel */,
 			);
-			currentVersion = 1FC61D1123D06D9200DDE1BA /* Alfheim.xcdatamodel */;
+			currentVersion = 1F3998FF23D6958700E6BBD9 /* Alfheim.xcdatamodel */;
 			path = Alfheim.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 1FC61D0123D06D9200DDE1BA /* Project object */;
+	rootObject = 1F3998EF23D6958700E6BBD9 /* Project object */;
 }
