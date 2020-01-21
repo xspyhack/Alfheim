@@ -74,7 +74,7 @@ struct Line: View {
         .drawingGroup()
       if showsIndicator {
         Indicator()
-          .position(closestPointOnPath(point: touchLocation))
+          .position(closestPoint(point: touchLocation))
           .rotationEffect(.degrees(180), anchor: .center)
           .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
       }
@@ -83,9 +83,7 @@ struct Line: View {
 }
 
 extension Line {
-  func closestPointOnPath(point: CGPoint) -> CGPoint {
-//    let percentage: CGFloat = min(max(point.x, 0) / frame.width, 1)
-    print("\(point.x) \(frame)")
+  func closestPoint(point: CGPoint) -> CGPoint {
     return path.point(to: point.x)
   }
 }

@@ -76,38 +76,6 @@ extension Path {
     return CGPoint(x: path.boundingRect.midX, y: path.boundingRect.midY)
   }
 
-  func length(elements: Int) -> CGFloat {
-    var ret: CGFloat = 0.0
-    var start: CGPoint?
-    var point = CGPoint.zero
-
-    forEach { ele in
-      switch ele {
-      case .move(let to):
-        if start == nil {
-          start = to
-        }
-        point = to
-      case .line(let to):
-        ret += point.line(to: to)
-        point = to
-      case .quadCurve(let to, let control):
-        ret += point.quadCurve(to: to, control: control)
-        point = to
-      case .curve(let to, let control1, let control2):
-        ret += point.curve(to: to, control1: control1, control2: control2)
-        point = to
-      case .closeSubpath:
-        if let to = start {
-          ret += point.line(to: to)
-          point = to
-        }
-        start = nil
-      }
-    }
-    return 0
-  }
-
   var length: CGFloat {
     var ret: CGFloat = 0.0
     var start: CGPoint?
