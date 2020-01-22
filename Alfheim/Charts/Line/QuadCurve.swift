@@ -43,8 +43,8 @@ struct QuadCurved: View {
   }
 }
 
-struct Path_Previews: PreviewProvider {
-
+#if DEBUG
+struct QuadCurved_Previews: PreviewProvider {
   static var previews: some View {
     GeometryReader { geometry in
       QuadCurved()
@@ -52,3 +52,4 @@ struct Path_Previews: PreviewProvider {
     .frame(width: 360, height: 400)
   }
 }
+#endif

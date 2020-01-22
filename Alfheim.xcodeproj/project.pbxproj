@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2379B323D83BD900B4E79E /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2379B223D83BD900B4E79E /* Bar.swift */; };
+		1F2379B523D83C2400B4E79E /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2379B423D83C2400B4E79E /* BarChart.swift */; };
+		1F2379B723D84C0E00B4E79E /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2379B623D84C0E00B4E79E /* Piece.swift */; };
 		1F3998FB23D6958700E6BBD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3998FA23D6958700E6BBD9 /* AppDelegate.swift */; };
 		1F3998FD23D6958700E6BBD9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3998FC23D6958700E6BBD9 /* SceneDelegate.swift */; };
 		1F39990023D6958700E6BBD9 /* Alfheim.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F3998FE23D6958700E6BBD9 /* Alfheim.xcdatamodeld */; };
@@ -22,6 +25,10 @@
 		1F39992D23D69C0700E6BBD9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F39992C23D69C0700E6BBD9 /* Colors.xcassets */; };
 		1F39993123D6A0A400E6BBD9 /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39993023D6A0A400E6BBD9 /* OverviewView.swift */; };
 		1F39993323D6D53200E6BBD9 /* QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39993223D6D53200E6BBD9 /* QuadCurve.swift */; };
+		1F39995723D7F34E00E6BBD9 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995623D7F34E00E6BBD9 /* Pie.swift */; };
+		1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995923D7F75500E6BBD9 /* Slice.swift */; };
+		1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995B23D7FCF500E6BBD9 /* Sector.swift */; };
+		1F39995E23D805C600E6BBD9 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995D23D805C600E6BBD9 /* PieChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F2379B223D83BD900B4E79E /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
+		1F2379B423D83C2400B4E79E /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
+		1F2379B623D84C0E00B4E79E /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		1F3998F723D6958700E6BBD9 /* Alfheim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alfheim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F3998FA23D6958700E6BBD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		1F3998FC23D6958700E6BBD9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = ../SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +64,10 @@
 		1F39992C23D69C0700E6BBD9 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		1F39993023D6A0A400E6BBD9 /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
 		1F39993223D6D53200E6BBD9 /* QuadCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadCurve.swift; sourceTree = "<group>"; };
+		1F39995623D7F34E00E6BBD9 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
+		1F39995923D7F75500E6BBD9 /* Slice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slice.swift; sourceTree = "<group>"; };
+		1F39995B23D7FCF500E6BBD9 /* Sector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sector.swift; sourceTree = "<group>"; };
+		1F39995D23D805C600E6BBD9 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F2379B123D83B8500B4E79E /* Bar */ = {
+			isa = PBXGroup;
+			children = (
+				1F2379B423D83C2400B4E79E /* BarChart.swift */,
+				1F2379B223D83BD900B4E79E /* Bar.swift */,
+				1F2379B623D84C0E00B4E79E /* Piece.swift */,
+			);
+			path = Bar;
+			sourceTree = "<group>";
+		};
 		1F3998EE23D6958700E6BBD9 = {
 			isa = PBXGroup;
 			children = (
@@ -128,12 +152,10 @@
 		1F39991F23D695BC00E6BBD9 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
-				1F39992023D695EE00E6BBD9 /* Line.swift */,
-				1F39992223D695EE00E6BBD9 /* LineChart.swift */,
-				1F39992323D695EE00E6BBD9 /* Path+QuadCurve.swift */,
-				1F39993223D6D53200E6BBD9 /* QuadCurve.swift */,
-				1F39992823D6963600E6BBD9 /* Indicator.swift */,
 				1F39992A23D697F700E6BBD9 /* UnitData.swift */,
+				1F2379B123D83B8500B4E79E /* Bar */,
+				1F39995523D7F32600E6BBD9 /* Line */,
+				1F39995823D7F35300E6BBD9 /* Pie */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -153,6 +175,29 @@
 				1F39993023D6A0A400E6BBD9 /* OverviewView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1F39995523D7F32600E6BBD9 /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				1F39992223D695EE00E6BBD9 /* LineChart.swift */,
+				1F39992023D695EE00E6BBD9 /* Line.swift */,
+				1F39993223D6D53200E6BBD9 /* QuadCurve.swift */,
+				1F39992323D695EE00E6BBD9 /* Path+QuadCurve.swift */,
+				1F39992823D6963600E6BBD9 /* Indicator.swift */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
+		1F39995823D7F35300E6BBD9 /* Pie */ = {
+			isa = PBXGroup;
+			children = (
+				1F39995D23D805C600E6BBD9 /* PieChart.swift */,
+				1F39995623D7F34E00E6BBD9 /* Pie.swift */,
+				1F39995923D7F75500E6BBD9 /* Slice.swift */,
+				1F39995B23D7FCF500E6BBD9 /* Sector.swift */,
+			);
+			path = Pie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,15 +302,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2379B523D83C2400B4E79E /* BarChart.swift in Sources */,
 				1F39993123D6A0A400E6BBD9 /* OverviewView.swift in Sources */,
 				1F3998FB23D6958700E6BBD9 /* AppDelegate.swift in Sources */,
+				1F2379B723D84C0E00B4E79E /* Piece.swift in Sources */,
 				1F3998FD23D6958700E6BBD9 /* SceneDelegate.swift in Sources */,
+				1F39995E23D805C600E6BBD9 /* PieChart.swift in Sources */,
 				1F39992B23D697F700E6BBD9 /* UnitData.swift in Sources */,
 				1F39993323D6D53200E6BBD9 /* QuadCurve.swift in Sources */,
 				1F39992623D695EE00E6BBD9 /* LineChart.swift in Sources */,
+				1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */,
 				1F39990023D6958700E6BBD9 /* Alfheim.xcdatamodeld in Sources */,
 				1F39992423D695EE00E6BBD9 /* Line.swift in Sources */,
+				1F2379B323D83BD900B4E79E /* Bar.swift in Sources */,
+				1F39995723D7F34E00E6BBD9 /* Pie.swift in Sources */,
 				1F39992723D695EE00E6BBD9 /* Path+QuadCurve.swift in Sources */,
+				1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */,
 				1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,8 +21,10 @@ struct Indicator: View {
   }
 }
 
+#if DEBUG
 struct Indicator_Previews: PreviewProvider {
   static var previews: some View {
     Indicator()
   }
 }
+#endif

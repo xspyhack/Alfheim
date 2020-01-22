@@ -9,7 +9,9 @@
 import Foundation
 
 class UnitData: ObservableObject {
-  @Published var units: [(String, Double)] = [(String, Double)]()
+  typealias Unit = (name: String, value: Double)
+  @Published var units: [Unit] = [Unit]()
+
   var valuesGiven: Bool = false
 
   init<N: BinaryFloatingPoint>(points: [N]) {
@@ -37,6 +39,10 @@ class UnitData: ObservableObject {
   }
 
   func points() -> [Double] {
+    units.map { $0.1 }
+  }
+
+  func values() -> [Double] {
     units.map { $0.1 }
   }
 }

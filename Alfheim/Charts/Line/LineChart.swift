@@ -36,7 +36,7 @@ struct LineChart: View {
         VStack(alignment: .leading) {
           if !self.showsIndicator {
             VStack(alignment: .leading, spacing: 8) {
-              Text(self.title).font(.title).bold().foregroundColor(.black)
+              Text(self.title).font(.system(size: 24, weight: .semibold)).foregroundColor(.black)
               if self.legend != nil {
                 Text(self.legend!).font(.callout).foregroundColor(.gray)
               }
@@ -70,18 +70,18 @@ struct LineChart: View {
           }
           .clipShape(RoundedRectangle(cornerRadius: 20))
           .offset(x: 0, y: 0)
+          .gesture(DragGesture()
+            .onChanged { value in
+              self.touchLocation = value.location
+              self.showsIndicator = true
+              self.handleTouch(to: value.location, in: geometry.frame(in: .local).size)
+            }
+            .onEnded { value in
+              self.showsIndicator = false
+            }
+          )
         }
       }
-      .gesture(DragGesture()
-        .onChanged { value in
-          self.touchLocation = value.location
-          self.showsIndicator = true
-          self.handleTouch(to: value.location, in: geometry.frame(in: .local).size)
-        }
-        .onEnded { value in
-          self.showsIndicator = false
-        }
-      )
     }
   }
 }
@@ -104,6 +104,7 @@ extension LineChart {
   }
 }
 
+#if DEBUG
 struct LineChart_Previews: PreviewProvider {
   static var previews: some View {
     Group {
@@ -112,3 +113,4 @@ struct LineChart_Previews: PreviewProvider {
     }
   }
 }
+#endif

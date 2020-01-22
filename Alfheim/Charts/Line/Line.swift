@@ -88,6 +88,14 @@ extension Line {
   }
 }
 
+extension Color {
+  static let ah01 = Color("AH01")
+  static let ah02 = Color("AH02")
+  static let ah03 = Color("AH03")
+}
+
+
+#if DEBUG
 struct Line_Previews: PreviewProvider {
   static var previews: some View {
     GeometryReader { geometry in
@@ -96,9 +104,4 @@ struct Line_Previews: PreviewProvider {
     .frame(width: 320, height: 460)
   }
 }
-
-extension Color {
-  static let ah01 = Color("AH01")
-  static let ah02 = Color("AH02")
-  static let ah03 = Color("AH03")
-}
+#endif
