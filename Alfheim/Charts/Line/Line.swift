@@ -89,6 +89,7 @@ extension Line {
 }
 
 extension Color {
+  static let ah00 = Color("AH00")
   static let ah01 = Color("AH01")
   static let ah02 = Color("AH02")
   static let ah03 = Color("AH03")
@@ -102,6 +103,7 @@ struct Line_Previews: PreviewProvider {
       Line(data: UnitData(points: [20, 6, 4, 2, 4, 6, 0]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 10, y: 12)), showsIndicator: .constant(true))
     }
     .frame(width: 320, height: 460)
+    .environment(\.colorScheme, .dark)
   }
 }
 #endif

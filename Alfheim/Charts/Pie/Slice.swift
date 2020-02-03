@@ -45,9 +45,14 @@ struct Slice: View {
 #if DEBUG
 struct Slice_Previews : PreviewProvider {
   static var previews: some View {
-    GeometryReader { geometry in
+    ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       Slice(startDegrees: 0.0, endDegrees: 120.0, index: 0, color: .pink)
-    }.frame(width: 200, height: 200)
+        .environment(\.colorScheme, colorScheme)
+        .previewDisplayName("\(colorScheme)")
+    }
+    .previewLayout(.sizeThatFits)
+    .background(Color(.systemBackground))
+    .padding(10)
   }
 }
 #endif

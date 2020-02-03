@@ -20,9 +20,8 @@ struct Piece: View {
   
   var body: some View {
     Capsule()
-//    .trim(from: 0, to: self.fill ? 1 : 0)
     .fill(LinearGradient(gradient: Gradient(colors: [.ah02, .ah03]), startPoint: .bottom, endPoint: .top))
-    .scaleEffect(self.fill ? 1 : 0)
+        .scaleEffect(x: 1, y: self.fill ? 1 : 0, anchor: .bottom)
     .animation(Animation.spring().delay(Double(self.index) * 0.05))
     .onAppear() {
       self.fill = true

@@ -23,12 +23,12 @@ struct PieChart: View {
     GeometryReader { geometry in
       ZStack(alignment: .center) {
         RoundedRectangle(cornerRadius: 20)
-          .fill(Color.white)
+          .fill(Color.ah00)
           .shadow(radius: 8)
         VStack(alignment: .leading) {
           HStack {
             VStack(alignment: .leading, spacing: 8) {
-              Text(self.title).font(.system(size: 24, weight: .semibold)).foregroundColor(.black)
+              Text(self.title).font(.system(size: 24, weight: .semibold))
               if (self.legend != nil) {
                 Text(self.legend!).font(.callout).foregroundColor(.gray).padding(.leading, 2)
               }
@@ -56,8 +56,14 @@ struct PieChart: View {
 #if DEBUG
 struct PieChart_Previews : PreviewProvider {
   static var previews: some View {
-    PieChart(data: [8,23,54,32,12,7,43], title: "Pie", legend: "accounts")
-      .environment(\.colorScheme, .light)
+    ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
+      PieChart(data: [8,23,54,32,12,7,43], title: "Pie", legend: "accounts")
+        .environment(\.colorScheme, colorScheme)
+        .previewDisplayName("\(colorScheme)")
+    }
+    .previewLayout(.sizeThatFits)
+    .background(Color(.systemBackground))
+    .padding(10)
   }
 }
 #endif

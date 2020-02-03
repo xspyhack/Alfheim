@@ -31,12 +31,12 @@ struct LineChart: View {
     GeometryReader { geometry in
       ZStack(alignment: .center) {
         RoundedRectangle(cornerRadius: 20)
-          .fill(Color.white)
+          .fill(Color.ah00)
           .shadow(radius: 8)
         VStack(alignment: .leading) {
           if !self.showsIndicator {
             VStack(alignment: .leading, spacing: 8) {
-              Text(self.title).font(.system(size: 24, weight: .semibold)).foregroundColor(.black)
+              Text(self.title).font(.system(size: 24, weight: .semibold))
               if self.legend != nil {
                 Text(self.legend!).font(.callout).foregroundColor(.gray)
               }
@@ -109,7 +109,7 @@ struct LineChart_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       LineChart(data: [11, 3, 2, 5, 29, 9], title: "Line chart", legend: "Basic", value: (14, "%.1f"))
-        .environment(\.colorScheme, .light)
+        .environment(\.colorScheme, .dark)
     }
   }
 }
