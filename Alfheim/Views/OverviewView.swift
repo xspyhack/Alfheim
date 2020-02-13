@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct OverviewView: View {
+  @State private var showModel: Bool = false
+
   #if targetEnvironment(macCatalyst)
   var body: some View {
       SplitView()
@@ -19,22 +21,40 @@ struct OverviewView: View {
       GeometryReader { geometry in
         ScrollView(.vertical, showsIndicators: false) {
           VStack(spacing: 24) {
-            BarChart(data: UnitData(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "this week")
-              .frame(width: nil, height: geometry.size.width*16/15, alignment: .center)
+            ZStack(alignment: .center) {
+              RoundedRectangle(cornerRadius: 20)
+                .fill(Color.yellow)
+                .shadow(radius: 8)
 
-            LineChart(data: [11, 3, 2, 5, 29, 9], title: "Weekly", legend: "this week", value: (10, "%.1f"))
-              .frame(width: nil, height: geometry.size.width*16/15, alignment: .center)
+              ZStack {
+                VStack {
+                  HStack {
+                    VStack(alignment: .leading, spacing: 6) {
+                      Text("Expences").font(.system(size: 20, weight: .medium))
+                      Text("weekly").font(.callout).foregroundColor(.gray)
+                    }
+                    Spacer()
+                  }
+                  Spacer()
+                }
+                .padding([.leading, .top])
 
-            PieChart(data: [8,23,54,32,12,37,43], title: "Categories", legend: "7 total")
-              .frame(width: nil, height: geometry.size.width*16/15, alignment: .center)
+                Text("$2333.33").font(.system(size: 36, weight: .semibold))
+              }
+            }
+            .frame(width: nil, height: geometry.size.width*9/16, alignment: .center)
           }
           .padding(20)
         }
       }
       .navigationBarTitle("Journals")
       .navigationBarItems(trailing:
-        Button("New") {
-
+        Button(action: {
+          self.showModel.toggle()
+        }) {
+          Text("New Transaction").bold()
+        }.sheet(isPresented: $showModel) {
+          EditorView()
         }
       )
     }
@@ -48,8 +68,10 @@ struct SplitView: View {
   }
 }
 
+#if DEBUG
 struct OverviewView_Previews: PreviewProvider {
   static var previews: some View {
     OverviewView().environment(\.colorScheme, .dark)
   }
 }
+#endif
