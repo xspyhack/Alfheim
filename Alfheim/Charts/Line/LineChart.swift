@@ -109,8 +109,7 @@ struct LineChart_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       LineChart(data: [11, 3, 2, 5, 29, 9], title: "Line chart", legend: "Basic", value: (14, "%.1f"))
-        .environment(\.colorScheme, .dark)
-    }
+    }.environment(\.colorScheme, .dark)
   }
 }
 #endif
