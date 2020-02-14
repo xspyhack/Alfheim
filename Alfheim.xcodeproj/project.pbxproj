@@ -33,6 +33,8 @@
 		782403EE23F2E55100478338 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403ED23F2E55100478338 /* AppError.swift */; };
 		782403F023F2E5FF00478338 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403EF23F2E5FF00478338 /* Redux.swift */; };
 		782403F223F5A3F300478338 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403F123F5A3F300478338 /* StatisticView.swift */; };
+		782403F423F6D79F00478338 /* TransactionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403F323F6D79F00478338 /* TransactionRow.swift */; };
+		782403F623F6DBAF00478338 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403F523F6DBAF00478338 /* TransactionsView.swift */; };
 		788863EF23F2A3D00037210B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788863EE23F2A3D00037210B /* AppState.swift */; };
 		788863F223F2A3F70037210B /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788863F123F2A3F70037210B /* AppStore.swift */; };
 		788863F423F2A6320037210B /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788863F323F2A6320037210B /* AppReducer.swift */; };
@@ -41,7 +43,7 @@
 		789E8E6923E80FFC006D180B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6823E80FFC006D180B /* Transaction.swift */; };
 		789E8E6C23E810A6006D180B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6B23E810A6006D180B /* Account.swift */; };
 		789E8E6E23EA96D5006D180B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6D23EA96D5006D180B /* AccountView.swift */; };
-		789E8E7023EA96FC006D180B /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionsView.swift */; };
+		789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		782403ED23F2E55100478338 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		782403EF23F2E5FF00478338 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		782403F123F5A3F300478338 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		782403F323F6D79F00478338 /* TransactionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRow.swift; sourceTree = "<group>"; };
+		782403F523F6DBAF00478338 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
 		788863EE23F2A3D00037210B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		788863F123F2A3F70037210B /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		788863F323F2A6320037210B /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
@@ -93,7 +97,7 @@
 		789E8E6823E80FFC006D180B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		789E8E6B23E810A6006D180B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		789E8E6D23EA96D5006D180B /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
-		789E8E6F23EA96FC006D180B /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+		789E8E6F23EA96FC006D180B /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +207,9 @@
 				1F39993023D6A0A400E6BBD9 /* OverviewView.swift */,
 				789E8E6623E807CA006D180B /* EditorView.swift */,
 				789E8E6D23EA96D5006D180B /* AccountView.swift */,
-				789E8E6F23EA96FC006D180B /* TransactionsView.swift */,
+				782403F523F6DBAF00478338 /* TransactionsView.swift */,
+				789E8E6F23EA96FC006D180B /* TransactionList.swift */,
+				782403F323F6D79F00478338 /* TransactionRow.swift */,
 				782403F123F5A3F300478338 /* StatisticView.swift */,
 			);
 			path = Views;
@@ -362,14 +368,16 @@
 				1F39993123D6A0A400E6BBD9 /* OverviewView.swift in Sources */,
 				1F3998FB23D6958700E6BBD9 /* AppDelegate.swift in Sources */,
 				788863F223F2A3F70037210B /* AppStore.swift in Sources */,
+				782403F623F6DBAF00478338 /* TransactionsView.swift in Sources */,
 				782403EC23F2E48000478338 /* AppAction.swift in Sources */,
 				1F2379B723D84C0E00B4E79E /* Piece.swift in Sources */,
 				789E8E6723E807CA006D180B /* EditorView.swift in Sources */,
-				789E8E7023EA96FC006D180B /* TransactionsView.swift in Sources */,
+				789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */,
 				789E8E6C23E810A6006D180B /* Account.swift in Sources */,
 				1F3998FD23D6958700E6BBD9 /* SceneDelegate.swift in Sources */,
 				1F39995E23D805C600E6BBD9 /* PieChart.swift in Sources */,
 				1F39992B23D697F700E6BBD9 /* UnitData.swift in Sources */,
+				782403F423F6D79F00478338 /* TransactionRow.swift in Sources */,
 				782403F023F2E5FF00478338 /* Redux.swift in Sources */,
 				1F39993323D6D53200E6BBD9 /* QuadCurve.swift in Sources */,
 				1F39992623D695EE00E6BBD9 /* LineChart.swift in Sources */,
