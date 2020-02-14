@@ -21,28 +21,18 @@ struct OverviewView: View {
       GeometryReader { geometry in
         ScrollView(.vertical, showsIndicators: false) {
           VStack(spacing: 24) {
-            ZStack(alignment: .center) {
-              RoundedRectangle(cornerRadius: 20)
-                .fill(Color.yellow)
-                .shadow(radius: 8)
+            ExpencesView()
+              .frame(width: nil, height: geometry.size.width*9/16, alignment: .center)
+            Spacer()
+              .frame(height: 8)
 
-              ZStack {
-                VStack {
-                  HStack {
-                    VStack(alignment: .leading, spacing: 6) {
-                      Text("Expences").font(.system(size: 20, weight: .medium))
-                      Text("weekly").font(.callout).foregroundColor(.gray)
-                    }
-                    Spacer()
-                  }
-                  Spacer()
-                }
-                .padding([.leading, .top])
-
-                Text("$2333.33").font(.system(size: 36, weight: .semibold))
-              }
+            Section(header: HStack {
+              Text("Transactions")
+              Spacer()
+              Text("See All")
+            }) {
+              TransactionList()
             }
-            .frame(width: nil, height: geometry.size.width*9/16, alignment: .center)
           }
           .padding(20)
         }
@@ -65,6 +55,32 @@ struct OverviewView: View {
 struct SplitView: View {
   var body: some View {
     Text("Hello split view")
+  }
+}
+
+struct ExpencesView: View {
+  var body: some View {
+    ZStack(alignment: .center) {
+      RoundedRectangle(cornerRadius: 20)
+        .fill(Color.yellow)
+        .shadow(radius: 8)
+
+      ZStack {
+        VStack {
+          HStack {
+            VStack(alignment: .leading, spacing: 6) {
+              Text("Expences").font(.system(size: 20, weight: .medium))
+              Text("this week").font(.callout).foregroundColor(.gray)
+            }
+            Spacer()
+          }
+          Spacer()
+        }
+        .padding([.leading, .top])
+
+        Text("$2333.33").font(.system(size: 36, weight: .semibold))
+      }
+    }
   }
 }
 

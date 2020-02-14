@@ -1,5 +1,5 @@
 //
-//  TransactionsView.swift
+//  TransactionRow.swift
 //  Alfheim
 //
 //  Created by bl4ckra1sond3tre on 2020/2/14.
@@ -8,16 +8,18 @@
 
 import SwiftUI
 
-struct TransactionsView: View {
+struct TransactionRow: View {
   var body: some View {
-    List {
-      TransactionList()
+    HStack {
+      Text("Transaction")
+      Spacer()
     }
+    .frame(height: 40)
   }
 }
 
-struct TransactionsView_Previews: PreviewProvider {
+struct TransactionRow_Previews: PreviewProvider {
   static var previews: some View {
-    TransactionsView()
+    TransactionRow()
   }
 }
