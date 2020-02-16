@@ -57,7 +57,7 @@ struct LineChart: View {
             HStack {
               Spacer()
               Text("\(self.currentValue, specifier: self.value.specifier)")
-                .font(.system(size: 41, weight: .bold, design: .default))
+                .font(.system(size: 41, weight: .bold))
                 .offset(x: 0, y: 30)
               Spacer()
             }
