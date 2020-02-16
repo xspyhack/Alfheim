@@ -10,8 +10,8 @@ import SwiftUI
 
 struct TransactionList: View {
   var body: some View {
-    ForEach(0..<10) { i in
-      TransactionRow()
+    ForEach(Transaction.samples()) { transaction in
+      TransactionRow(transaction: transaction)
     }
   }
 }

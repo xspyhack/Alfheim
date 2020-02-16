@@ -10,6 +10,8 @@ import SwiftUI
 
 struct OverviewView: View {
   @State private var showModel: Bool = false
+  @State private var showAccountDetail: Bool = false
+  @State private var showTransactions: Bool = false
 
   #if targetEnvironment(macCatalyst)
   var body: some View {
@@ -20,18 +22,26 @@ struct OverviewView: View {
     NavigationView {
       GeometryReader { geometry in
         ScrollView(.vertical, showsIndicators: false) {
-          VStack(spacing: 24) {
-            ExpencesView()
+          VStack(spacing: 28) {
+            AccountCard()
               .frame(width: nil, height: geometry.size.width*9/16, alignment: .center)
-            Spacer()
-              .frame(height: 8)
+              .onTapGesture {
+                self.showAccountDetail.toggle()
+            }
+            .sheet(isPresented: self.$showAccountDetail) {
+              AccountDetail(account: Accounts.expenses)
+            }
 
             Section(header: HStack {
-              Text("Transactions")
+              Text("Transactions").font(.system(size: 24, weight: .bold))
               Spacer()
-              Text("See All")
+              Image(systemName: "chevron.right")
+            }.onTapGesture {
+              self.showTransactions.toggle()
             }) {
               TransactionList()
+            }.sheet(isPresented: self.$showTransactions) {
+              TransactionsView()
             }
           }
           .padding(20)
@@ -58,31 +68,47 @@ struct SplitView: View {
   }
 }
 
-struct ExpencesView: View {
+struct AccountCard: View {
   var body: some View {
-    ZStack(alignment: .center) {
-      RoundedRectangle(cornerRadius: 20)
-        .fill(Color.yellow)
-        .shadow(radius: 8)
+    ZStack {
+      VStack {
+        HStack {
+          VStack(alignment: .leading, spacing: 6) {
+            Text("Expences")
+              .font(.system(size: 22, weight: .semibold))
+            Button(action: {
 
-      ZStack {
-        VStack {
-          HStack {
-            VStack(alignment: .leading, spacing: 6) {
-              Text("Expences").font(.system(size: 20, weight: .medium))
-              Text("this week").font(.callout).foregroundColor(.gray)
+            }) {
+              Text("this week").font(.callout)
+                .foregroundColor(.gray)
+              //Image(systemName: "chevron.down")
             }
-            Spacer()
           }
           Spacer()
         }
-        .padding([.leading, .top])
-
-        Text("$2333.33").font(.system(size: 36, weight: .semibold))
+        Spacer()
       }
+      .padding([.leading, .top])
+
+      Text("$2333.33")
+        .font(.system(size: 36, weight: .semibold))
+        .padding(.top, 2)
     }
+    .background(
+      RoundedRectangle(cornerRadius: 20)
+      .fill(Color.yellow)
+      .shadow(radius: 8)
+    )
   }
 }
+
+#if DEBUG
+struct AccountCard_Previews: PreviewProvider {
+  static var previews: some View {
+    AccountCard().environment(\.colorScheme, .dark)
+  }
+}
+#endif
 
 #if DEBUG
 struct OverviewView_Previews: PreviewProvider {

@@ -10,8 +10,12 @@ import SwiftUI
 
 struct TransactionsView: View {
   var body: some View {
-    List {
-      TransactionList()
+    NavigationView {
+      List {
+        TransactionList()
+      }
+      .navigationBarTitle("Transactions")
+      .navigationBarItems(leading: Text("Done"))
     }
   }
 }

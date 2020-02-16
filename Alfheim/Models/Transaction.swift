@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Transaction {
+struct Transaction: Identifiable {
+  var id: String { UUID().uuidString }
   var date: Date
   var amount: Double
   var emoji: String
@@ -41,6 +42,14 @@ enum Currency: Int {
     case .hkd: return "$"
     case .jpy: return "¥"
     case .usd: return "$"
+    }
+  }
+}
+
+extension Transaction {
+  static func samples() -> [Transaction] {
+    ["Transportation", "Personal", "Food", "Clothes", "Household", "Transportation", "Personal", "Food", "Clothes", "Household"].map { expense in
+      Transaction(date: Date(), amount: Double.random(in: 10..<100), emoji: ["🍎", "🍟", "🍻", "✈️", "🚖"].randomElement() ?? "🍎", notes: expense)
     }
   }
 }
