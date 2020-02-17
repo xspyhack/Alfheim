@@ -20,8 +20,10 @@ struct TransactionsView: View {
   }
 }
 
+#if DEBUG
 struct TransactionsView_Previews: PreviewProvider {
   static var previews: some View {
     TransactionsView()
   }
 }
+#endif

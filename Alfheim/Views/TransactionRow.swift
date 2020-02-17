@@ -34,8 +34,10 @@ extension Date {
   }
 }
 
+#if DEBUG
 struct TransactionRow_Previews: PreviewProvider {
   static var previews: some View {
     TransactionRow(transaction: Transaction.samples().first!)
   }
 }
+#endif

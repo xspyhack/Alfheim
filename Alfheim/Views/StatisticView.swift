@@ -50,8 +50,10 @@ struct StatisticView: View {
   }
 }
 
+#if DEBUG
 struct StatisticView_Previews: PreviewProvider {
     static var previews: some View {
         StatisticView()
     }
 }
+#endif
