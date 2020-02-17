@@ -10,7 +10,7 @@ import SwiftUI
 
 struct OverviewView: View {
   @State private var showModel: Bool = false
-  @State private var showAccountDetail: Bool = false
+  @State private var showStatistics: Bool = false
   @State private var showTransactions: Bool = false
 
   #if targetEnvironment(macCatalyst)
@@ -24,13 +24,16 @@ struct OverviewView: View {
         ScrollView(.vertical, showsIndicators: false) {
           VStack(spacing: 28) {
             AccountCard()
-              .frame(width: nil, height: geometry.size.width*9/16, alignment: .center)
+              .frame(width: nil, height: geometry.size.width*9/16)
               .onTapGesture {
-                self.showAccountDetail.toggle()
-            }
-            .sheet(isPresented: self.$showAccountDetail) {
-              AccountDetail(account: Accounts.expenses)
-            }
+                self.showStatistics.toggle()
+              }
+            .background(
+              Spacer()
+                .sheet(isPresented: self.$showStatistics) {
+                  StatisticsView()
+              }
+            )
 
             Section(header: HStack {
               Text("Transactions").font(.system(size: 24, weight: .bold))
@@ -69,13 +72,22 @@ struct SplitView: View {
 }
 
 struct AccountCard: View {
+  @State private var showAccountDetail: Bool = false
+
   var body: some View {
     ZStack {
       VStack {
         HStack {
           VStack(alignment: .leading, spacing: 6) {
-            Text("Expences")
-              .font(.system(size: 22, weight: .semibold))
+            Button(action: {
+              self.showAccountDetail.toggle()
+            }) {
+              Text("Expences")
+                .font(.system(size: 22, weight: .semibold))
+            }
+            .sheet(isPresented: self.$showAccountDetail) {
+              AccountDetail(account: Accounts.expenses)
+            }
             Button(action: {
 
             }) {
