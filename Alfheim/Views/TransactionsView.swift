@@ -10,20 +10,19 @@ import SwiftUI
 
 struct TransactionsView: View {
   var body: some View {
-    NavigationView {
-      List {
-        TransactionList()
-      }
-      .navigationBarTitle("Transactions")
-      .navigationBarItems(leading: Text("Done"))
+    List {
+      TransactionList()
     }
+    .navigationBarTitle("Transactions")
   }
 }
 
 #if DEBUG
 struct TransactionsView_Previews: PreviewProvider {
   static var previews: some View {
-    TransactionsView()
+    NavigationView {
+      TransactionsView()
+    }
   }
 }
 #endif

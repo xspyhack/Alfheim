@@ -35,16 +35,15 @@ struct OverviewView: View {
               }
             )
 
-            Section(header: HStack {
-              Text("Transactions").font(.system(size: 24, weight: .bold))
-              Spacer()
-              Image(systemName: "chevron.right")
-            }.onTapGesture {
-              self.showTransactions.toggle()
+            Section(header: NavigationLink(destination: TransactionsView()) {
+              HStack {
+                Text("Transactions").font(.system(size: 24, weight: .bold))
+                Spacer()
+                Image(systemName: "chevron.right")
+              }
+              .foregroundColor(.black)
             }) {
               TransactionList()
-            }.sheet(isPresented: self.$showTransactions) {
-              TransactionsView()
             }
           }
           .padding(20)

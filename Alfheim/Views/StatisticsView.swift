@@ -26,7 +26,8 @@ struct StatisticsView: View {
           .padding(20)
         }
       }
-      .navigationBarTitle("Statistic")
+      .navigationBarTitle("Statistics")
+      .navigationBarItems(leading: Text("Cancel"))
     }
   }
 
@@ -52,8 +53,8 @@ struct StatisticsView: View {
 
 #if DEBUG
 struct StatisticView_Previews: PreviewProvider {
-    static var previews: some View {
-        StatisticsView()
-    }
+  static var previews: some View {
+    StatisticsView()
+  }
 }
 #endif
