@@ -9,11 +9,8 @@
 import SwiftUI
 
 struct OverviewView: View {
-  @State private var showEditor: Bool = false
-  @State private var showStatistics: Bool = false
-  @State private var showTransactions: Bool = false
-  @State private var showTransaction: Bool = false
-  @State private var transaction: Transaction?
+
+  @EnvironmentObject var store: AppStore
 
   #if targetEnvironment(macCatalyst)
   var body: some View {
@@ -29,12 +26,12 @@ struct OverviewView: View {
               .frame(width: nil, height: geometry.size.width*9/16)
               .background(
                 Spacer()
-                  .sheet(isPresented: self.$showStatistics) {
+                  .sheet(isPresented: self.$store.state.overview.isStatisticsPresented) {
                     StatisticsView()
                 }
               )
               .onTapGesture {
-                self.showStatistics.toggle()
+                self.store.state.overview.isStatisticsPresented.toggle()
             }
 
             Spacer().frame(height: 36)
@@ -50,14 +47,13 @@ struct OverviewView: View {
               ForEach(Transaction.samples()) { transaction in
                 TransactionRow(transaction: transaction)
                   .onTapGesture {
-                    self.transaction = transaction
-                    self.showTransaction.toggle()
-                    print("tap")
+                    self.store.state.overview.selectedTransaction = transaction
+                    self.store.state.overview.isTransactionPresented.toggle()
                 }
               }
             }
-            .sheet(isPresented: self.$showTransaction) {
-              EditorView(transaction: self.transaction)
+            .sheet(isPresented: self.$store.state.overview.isTransactionPresented) {
+              EditorView(transaction: self.store.state.overview.selectedTransaction)
             }
           }
           .padding(20)
@@ -66,11 +62,11 @@ struct OverviewView: View {
       .navigationBarTitle("Journals")
       .navigationBarItems(trailing:
         Button(action: {
-          self.showEditor.toggle()
+          self.store.state.overview.isEditorPresented.toggle()
         }) {
           Text("New Transaction").bold()
         }
-        .sheet(isPresented: $showEditor) {
+        .sheet(isPresented: $store.state.overview.isEditorPresented) {
           EditorView(transaction: nil)
         }
       )

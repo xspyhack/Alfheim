@@ -9,16 +9,16 @@
 import Foundation
 
 class AppStore: ObservableObject {
-  @Published var appState: AppState
+  @Published var state: AppState
 
   init(state: AppState = AppState()) {
-    self.appState = state
+    self.state = state
   }
 
   func dispatch(_ action: AppAction) {
     print("[ACTION]: \(action)")
-    let result = AppStore.reduce(state: appState, action: action)
-    appState = result.0
+    let result = AppStore.reduce(state: state, action: action)
+    state = result.0
     if let command = result.1 {
         print("[COMMAND]: \(command)")
         command.execute(in: self)

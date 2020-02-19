@@ -206,9 +206,9 @@
 			children = (
 				1F39993023D6A0A400E6BBD9 /* OverviewView.swift */,
 				FA80C79C23FD79B500E0331C /* Transaction */,
-				789E8E6623E807CA006D180B /* EditorView.swift */,
-				782403F723F83A6600478338 /* AccountDetail.swift */,
-				782403F123F5A3F300478338 /* StatisticsView.swift */,
+				FABE82A923FD7E05008A2A94 /* Editor */,
+				FABE82A823FD7DFC008A2A94 /* Account */,
+				FABE82AA23FD7E0D008A2A94 /* Statistic */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,6 +267,30 @@
 				782403F523F6DBAF00478338 /* TransactionsView.swift */,
 			);
 			path = Transaction;
+			sourceTree = "<group>";
+		};
+		FABE82A823FD7DFC008A2A94 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				782403F723F83A6600478338 /* AccountDetail.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		FABE82A923FD7E05008A2A94 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				789E8E6623E807CA006D180B /* EditorView.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		FABE82AA23FD7E0D008A2A94 /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				782403F123F5A3F300478338 /* StatisticsView.swift */,
+			);
+			path = Statistic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
