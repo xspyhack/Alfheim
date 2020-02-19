@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct OverviewView: View {
-  @State private var showModel: Bool = false
+  @State private var showEditor: Bool = false
   @State private var showStatistics: Bool = false
   @State private var showTransactions: Bool = false
+  @State private var showTransaction: Bool = false
+  @State private var transaction: Transaction?
 
   #if targetEnvironment(macCatalyst)
   var body: some View {
@@ -25,19 +27,19 @@ struct OverviewView: View {
           VStack {
             AccountCard()
               .frame(width: nil, height: geometry.size.width*9/16)
+              .background(
+                Spacer()
+                  .sheet(isPresented: self.$showStatistics) {
+                    StatisticsView()
+                }
+              )
               .onTapGesture {
                 self.showStatistics.toggle()
-              }
-            .background(
-              Spacer()
-                .sheet(isPresented: self.$showStatistics) {
-                  StatisticsView()
-              }
-            )
+            }
 
             Spacer().frame(height: 36)
 
-            Section(header: NavigationLink(destination: TransactionsView()) {
+            Section(header: NavigationLink(destination: TransactionList()) {
               HStack {
                 Text("Transactions").font(.system(size: 24, weight: .bold))
                 Spacer()
@@ -45,7 +47,17 @@ struct OverviewView: View {
               }
               .foregroundColor(.black)
             }) {
-              TransactionList()
+              ForEach(Transaction.samples()) { transaction in
+                TransactionRow(transaction: transaction)
+                  .onTapGesture {
+                    self.transaction = transaction
+                    self.showTransaction.toggle()
+                    print("tap")
+                }
+              }
+            }
+            .sheet(isPresented: self.$showTransaction) {
+              EditorView(transaction: self.transaction)
             }
           }
           .padding(20)
@@ -54,10 +66,11 @@ struct OverviewView: View {
       .navigationBarTitle("Journals")
       .navigationBarItems(trailing:
         Button(action: {
-          self.showModel.toggle()
+          self.showEditor.toggle()
         }) {
           Text("New Transaction").bold()
-        }.sheet(isPresented: $showModel) {
+        }
+        .sheet(isPresented: $showEditor) {
           EditorView(transaction: nil)
         }
       )
@@ -89,6 +102,7 @@ struct AccountCard: View {
             .sheet(isPresented: self.$showAccountDetail) {
               AccountDetail(account: Accounts.expenses)
             }
+
             Button(action: {
 
             }) {
@@ -109,8 +123,8 @@ struct AccountCard: View {
     }
     .background(
       RoundedRectangle(cornerRadius: 20)
-      .fill(Color.yellow)
-      .shadow(radius: 8)
+        .fill(Color.yellow)
+        .shadow(radius: 8)
     )
   }
 }
