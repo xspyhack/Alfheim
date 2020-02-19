@@ -37,13 +37,8 @@ struct StatisticsView: View {
       HStack {
         Spacer()
         VStack {
-          NavigationLink(
-            destination: EditorView(),
-            isActive: .constant(false),
-            label: {
-              Image(systemName: "arrow.right.circle")
-            }
-          ).padding([.top, .trailing], 20)
+          Image(systemName: "arrow.right.circle")
+            .padding([.top, .trailing], 20)
           Spacer()
         }
       }

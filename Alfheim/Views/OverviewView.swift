@@ -22,7 +22,7 @@ struct OverviewView: View {
     NavigationView {
       GeometryReader { geometry in
         ScrollView(.vertical, showsIndicators: false) {
-          VStack(spacing: 28) {
+          VStack {
             AccountCard()
               .frame(width: nil, height: geometry.size.width*9/16)
               .onTapGesture {
@@ -34,6 +34,8 @@ struct OverviewView: View {
                   StatisticsView()
               }
             )
+
+            Spacer().frame(height: 36)
 
             Section(header: NavigationLink(destination: TransactionsView()) {
               HStack {
@@ -56,7 +58,7 @@ struct OverviewView: View {
         }) {
           Text("New Transaction").bold()
         }.sheet(isPresented: $showModel) {
-          EditorView()
+          EditorView(transaction: nil)
         }
       )
     }

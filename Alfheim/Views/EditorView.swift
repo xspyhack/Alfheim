@@ -10,10 +10,11 @@ import SwiftUI
 
 struct EditorView: View {
   @Environment(\.presentationMode) var presentationMode
+  var transaction: Transaction?
 
   var body: some View {
     NavigationView {
-      Text("Editor")
+      Text(transaction?.notes ?? "")
         .navigationBarTitle("New Transaction")
         .navigationBarItems(leading:
           Button("Cancel") {
@@ -26,8 +27,8 @@ struct EditorView: View {
 
 #if DEBUG
 struct EditorView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditorView()
-    }
+  static var previews: some View {
+    EditorView(transaction: Transaction.samples().first!)
+  }
 }
 #endif

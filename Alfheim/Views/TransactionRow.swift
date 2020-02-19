@@ -22,14 +22,14 @@ struct TransactionRow: View {
       Text("-\(transaction.currency.symbol)\(String(format: "%.1f", transaction.amount))").font(.system(size: 28, weight: .semibold))
         .foregroundColor(.red)
     }
-    .frame(height: 40)
+    .frame(height: 64)
   }
 }
 
 extension Date {
   var string: String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "MM-dd, yyyy"
+    formatter.dateFormat = "MMM dd, yyyy 'at' HH:mm"
     return formatter.string(from: self)
   }
 }

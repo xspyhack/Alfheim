@@ -9,11 +9,16 @@
 import SwiftUI
 
 struct TransactionsView: View {
+  @State private var transaction: Transaction?
+
   var body: some View {
     List {
       TransactionList()
     }
     .navigationBarTitle("Transactions")
+    .sheet(item: $transaction) { transaction in
+      EditorView(transaction: transaction)
+    }
   }
 }
 
