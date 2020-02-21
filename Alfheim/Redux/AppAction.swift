@@ -9,18 +9,33 @@
 import Foundation
 
 enum AppAction {
-  enum Overview {
-
-  }
   case overview(Overview)
 
-  enum Settings {
-    
-  }
+
   case settings(Settings)
 
+
+  case account(Account)
+}
+
+extension AppAction {
+  enum Overview {
+    case toggleNewTransaction(presenting: Bool)
+    case editTransaction(Transaction)
+    case editTransactionDone
+    case toggleStatistics(presenting: Bool)
+    case toggleAccountDetail(presenting: Bool)
+  }
+}
+
+extension AppAction {
+  enum Settings {
+
+  }
+}
+
+extension AppAction {
   enum Account {
 
   }
-  case account(Account)
 }

@@ -15,7 +15,7 @@ struct Account {
   var tag: String
   var group: Group
   var emoji: String?
-  // var currency: Currency = .cny
+  var currency: Currency = .cny
 
   enum Group: String {
     case assets

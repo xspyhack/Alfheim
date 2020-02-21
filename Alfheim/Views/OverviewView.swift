@@ -12,6 +12,14 @@ struct OverviewView: View {
 
   @EnvironmentObject var store: AppStore
 
+  private var state: AppState.Overview {
+    store.state.overview
+  }
+
+  private var binding: Binding<AppState.Overview> {
+    $store.state.overview
+  }
+
   #if targetEnvironment(macCatalyst)
   var body: some View {
       SplitView()
@@ -23,15 +31,17 @@ struct OverviewView: View {
         ScrollView(.vertical, showsIndicators: false) {
           VStack {
             AccountCard()
-              .frame(width: nil, height: geometry.size.width*9/16)
+              .frame(height: geometry.size.width*9/16)
               .background(
                 Spacer()
-                  .sheet(isPresented: self.$store.state.overview.isStatisticsPresented) {
-                    StatisticsView()
+                  .sheet(isPresented: self.binding.isStatisticsPresented) {
+                    StatisticsView() {
+                      self.store.dispatch(.overview(.toggleStatistics(presenting: false)))
+                    }
                 }
               )
               .onTapGesture {
-                self.store.state.overview.isStatisticsPresented.toggle()
+                self.store.dispatch(.overview(.toggleStatistics(presenting: true)))
             }
 
             Spacer().frame(height: 36)
@@ -47,13 +57,14 @@ struct OverviewView: View {
               ForEach(Transaction.samples()) { transaction in
                 TransactionRow(transaction: transaction)
                   .onTapGesture {
-                    self.store.state.overview.selectedTransaction = transaction
-                    self.store.state.overview.isTransactionPresented.toggle()
+                    self.store.dispatch(.overview(.editTransaction(transaction)))
                 }
               }
             }
-            .sheet(isPresented: self.$store.state.overview.isTransactionPresented) {
-              EditorView(transaction: self.store.state.overview.selectedTransaction)
+            .sheet(isPresented: self.binding.isEditingTransaction) {
+              ComposerView(transaction: self.state.selectedTransaction) {
+                self.store.dispatch(.overview(.editTransactionDone))
+              }
             }
           }
           .padding(20)
@@ -62,12 +73,14 @@ struct OverviewView: View {
       .navigationBarTitle("Journals")
       .navigationBarItems(trailing:
         Button(action: {
-          self.store.state.overview.isEditorPresented.toggle()
+          self.store.dispatch(.overview(.toggleNewTransaction(presenting: true)))
         }) {
           Text("New Transaction").bold()
         }
-        .sheet(isPresented: $store.state.overview.isEditorPresented) {
-          EditorView(transaction: nil)
+        .sheet(isPresented: binding.isEditorPresented) {
+          ComposerView(transaction: nil) {
+            self.store.dispatch(.overview(.toggleNewTransaction(presenting: false)))
+          }
         }
       )
     }
@@ -81,54 +94,66 @@ struct SplitView: View {
   }
 }
 
-struct AccountCard: View {
-  @State private var showAccountDetail: Bool = false
+extension OverviewView {
+  struct AccountCard: View {
 
-  var body: some View {
-    ZStack {
-      VStack {
-        HStack {
-          VStack(alignment: .leading, spacing: 6) {
-            Button(action: {
-              self.showAccountDetail.toggle()
-            }) {
-              Text("Expences")
-                .font(.system(size: 22, weight: .semibold))
-            }
-            .sheet(isPresented: self.$showAccountDetail) {
-              AccountDetail(account: Accounts.expenses)
-            }
+    @EnvironmentObject var store: AppStore
+    private var state: AppState.Overview {
+      store.state.overview
+    }
 
-            Button(action: {
+    private var binding: Binding<AppState.Overview> {
+      $store.state.overview
+    }
 
-            }) {
-              Text("this week").font(.callout)
-                .foregroundColor(.gray)
-              //Image(systemName: "chevron.down")
+    var body: some View {
+      ZStack {
+        VStack {
+          HStack {
+            VStack(alignment: .leading, spacing: 6) {
+              Button(action: {
+                self.store.dispatch(.overview(.toggleAccountDetail(presenting: true)))
+              }) {
+                Text(self.state.account.name)
+                  .font(.system(size: 22, weight: .semibold))
+              }
+              .sheet(isPresented: self.binding.isAccountDetailPresented) {
+                AccountDetail(account: self.state.account) {
+                  self.store.dispatch(.overview(.toggleAccountDetail(presenting: false)))
+                }
+              }
+
+              Button(action: {
+
+              }) {
+                Text(self.state.period.display).font(.callout)
+                  .foregroundColor(.gray)
+                //Image(systemName: "chevron.down")
+              }
             }
+            Spacer()
           }
           Spacer()
         }
-        Spacer()
-      }
-      .padding([.leading, .top])
+        .padding([.leading, .top])
 
-      Text("$2333.33")
-        .font(.system(size: 36, weight: .semibold))
-        .padding(.top, 2)
+        Text(state.amountText)
+          .font(.system(size: 36, weight: .semibold))
+          .padding(.top, 2)
+      }
+      .background(
+        RoundedRectangle(cornerRadius: 20)
+          .fill(Color.yellow)
+          .shadow(radius: 8)
+      )
     }
-    .background(
-      RoundedRectangle(cornerRadius: 20)
-        .fill(Color.yellow)
-        .shadow(radius: 8)
-    )
   }
 }
 
 #if DEBUG
 struct AccountCard_Previews: PreviewProvider {
   static var previews: some View {
-    AccountCard().environment(\.colorScheme, .dark)
+    OverviewView.AccountCard().environment(\.colorScheme, .dark)
   }
 }
 #endif

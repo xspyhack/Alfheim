@@ -22,7 +22,7 @@ struct TransactionList: View {
     }
     .navigationBarTitle("Transactions")
     .sheet(item: $transaction) { transaction in
-      EditorView(transaction: transaction)
+      ComposerView(transaction: transaction) {}
     }
   }
 }

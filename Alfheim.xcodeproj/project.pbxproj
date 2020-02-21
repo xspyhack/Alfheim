@@ -44,6 +44,9 @@
 		789E8E6923E80FFC006D180B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6823E80FFC006D180B /* Transaction.swift */; };
 		789E8E6C23E810A6006D180B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6B23E810A6006D180B /* Account.swift */; };
 		789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionList.swift */; };
+		FACF2A7623FFCFA2003BB675 /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7523FFCFA2003BB675 /* ComposerView.swift */; };
+		FACF2A7823FFD179003BB675 /* StatisticList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7723FFD179003BB675 /* StatisticList.swift */; };
+		FACF2A7A23FFD2B7003BB675 /* AccountDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7923FFD2B7003BB675 /* AccountDetailList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,9 @@
 		789E8E6823E80FFC006D180B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		789E8E6B23E810A6006D180B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		789E8E6F23EA96FC006D180B /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
+		FACF2A7523FFCFA2003BB675 /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
+		FACF2A7723FFD179003BB675 /* StatisticList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticList.swift; sourceTree = "<group>"; };
+		FACF2A7923FFD2B7003BB675 /* AccountDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,10 +247,10 @@
 			children = (
 				782403EF23F2E5FF00478338 /* Redux.swift */,
 				788863F123F2A3F70037210B /* AppStore.swift */,
-				788863F323F2A6320037210B /* AppReducer.swift */,
 				788863EE23F2A3D00037210B /* AppState.swift */,
 				782403EB23F2E48000478338 /* AppAction.swift */,
 				788863F523F2A85D0037210B /* AppCommand.swift */,
+				788863F323F2A6320037210B /* AppReducer.swift */,
 				782403ED23F2E55100478338 /* AppError.swift */,
 			);
 			path = Redux;
@@ -273,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				782403F723F83A6600478338 /* AccountDetail.swift */,
+				FACF2A7923FFD2B7003BB675 /* AccountDetailList.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -280,6 +287,7 @@
 		FABE82A923FD7E05008A2A94 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				FACF2A7523FFCFA2003BB675 /* ComposerView.swift */,
 				789E8E6623E807CA006D180B /* EditorView.swift */,
 			);
 			path = Editor;
@@ -289,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				782403F123F5A3F300478338 /* StatisticsView.swift */,
+				FACF2A7723FFD179003BB675 /* StatisticList.swift */,
 			);
 			path = Statistic;
 			sourceTree = "<group>";
@@ -400,6 +409,7 @@
 				1F39993123D6A0A400E6BBD9 /* OverviewView.swift in Sources */,
 				1F3998FB23D6958700E6BBD9 /* AppDelegate.swift in Sources */,
 				788863F223F2A3F70037210B /* AppStore.swift in Sources */,
+				FACF2A7623FFCFA2003BB675 /* ComposerView.swift in Sources */,
 				782403F623F6DBAF00478338 /* TransactionsView.swift in Sources */,
 				782403EC23F2E48000478338 /* AppAction.swift in Sources */,
 				1F2379B723D84C0E00B4E79E /* Piece.swift in Sources */,
@@ -418,6 +428,7 @@
 				1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */,
 				789E8E6923E80FFC006D180B /* Transaction.swift in Sources */,
 				1F39990023D6958700E6BBD9 /* Alfheim.xcdatamodeld in Sources */,
+				FACF2A7823FFD179003BB675 /* StatisticList.swift in Sources */,
 				788863F623F2A85D0037210B /* AppCommand.swift in Sources */,
 				1F39992423D695EE00E6BBD9 /* Line.swift in Sources */,
 				782403EE23F2E55100478338 /* AppError.swift in Sources */,
@@ -425,6 +436,7 @@
 				788863EF23F2A3D00037210B /* AppState.swift in Sources */,
 				1F39995723D7F34E00E6BBD9 /* Pie.swift in Sources */,
 				1F39992723D695EE00E6BBD9 /* Path+QuadCurve.swift in Sources */,
+				FACF2A7A23FFD2B7003BB675 /* AccountDetailList.swift in Sources */,
 				1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */,
 				1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */,
 			);

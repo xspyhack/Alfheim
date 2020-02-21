@@ -10,8 +10,9 @@ import SwiftUI
 
 struct TransactionsView: View {
   var body: some View {
-    ForEach(Transaction.samples()) { transaction in
-      TransactionRow(transaction: transaction)
+    NavigationView {
+      TransactionList()
+        .navigationBarTitle("Transactions")
     }
   }
 }

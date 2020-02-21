@@ -9,19 +9,11 @@
 import SwiftUI
 
 struct EditorView: View {
-  @Environment(\.presentationMode) var presentationMode
+  // @Environment(\.presentationMode) var presentationMode
   var transaction: Transaction?
 
   var body: some View {
-    NavigationView {
-      Text(transaction?.notes ?? "")
-        .navigationBarTitle("New Transaction")
-        .navigationBarItems(leading:
-          Button("Cancel") {
-
-          }
-        )
-    }
+    Text(transaction?.notes ?? "")
   }
 }
 
