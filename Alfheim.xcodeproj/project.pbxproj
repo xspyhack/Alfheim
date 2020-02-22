@@ -248,9 +248,9 @@
 				782403EF23F2E5FF00478338 /* Redux.swift */,
 				788863F123F2A3F70037210B /* AppStore.swift */,
 				788863EE23F2A3D00037210B /* AppState.swift */,
+				788863F323F2A6320037210B /* AppReducer.swift */,
 				782403EB23F2E48000478338 /* AppAction.swift */,
 				788863F523F2A85D0037210B /* AppCommand.swift */,
-				788863F323F2A6320037210B /* AppReducer.swift */,
 				782403ED23F2E55100478338 /* AppError.swift */,
 			);
 			path = Redux;

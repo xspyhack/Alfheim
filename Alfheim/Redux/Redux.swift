@@ -17,3 +17,16 @@ protocol Store {
 protocol Command {
   func execute(in store: Store)
 }
+
+protocol Reducer {
+  associatedtype State
+  func reduce(state: State, action: Action) -> (State, Command?)
+}
+
+/*
+struct Reducer<State, Action, Command> {
+  func reduce(state: State, action: Action) -> (State, Command?) {
+
+  }
+}
+*/

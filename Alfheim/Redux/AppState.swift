@@ -17,11 +17,15 @@ struct AppState {
 
 extension AppState {
   struct Overview {
-    var isEditorPresented: Bool = false
-    var isStatisticsPresented: Bool = false
-    var isEditingTransaction: Bool = false
-    var selectedTransaction: Transaction?
-    var isAccountDetailPresented: Bool = false
+
+    struct ViewState {
+      var isEditorPresented: Bool = false
+      var isStatisticsPresented: Bool = false
+      var selectedTransaction: Transaction?
+      var isAccountDetailPresented: Bool = false
+    }
+
+    var viewState = ViewState()
 
     var account: Account = Accounts.expenses
 

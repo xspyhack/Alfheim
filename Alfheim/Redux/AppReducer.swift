@@ -8,10 +8,33 @@
 
 import Foundation
 
-/*
-struct AppReducer<State, Action, Command> {
-  func reduce(state: State, action: Action) -> (State, Command?) {
-    
+struct AppReducer {
+  func reduce(state: AppState, action: AppAction) -> (AppState, AppCommand?) {
+    var appState = state
+    var appCommand: AppCommand? = nil
+
+    switch action {
+    case .overview(let subaction):
+      switch subaction {
+      case .toggleNewTransaction(let presenting):
+        appState.overview.viewState.isEditorPresented = presenting
+      case .editTransaction(let transaction):
+        appState.overview.viewState.selectedTransaction = transaction
+      case .editTransactionDone:
+        appState.overview.viewState.selectedTransaction = nil
+      case .toggleStatistics(let presenting):
+        appState.overview.viewState.isStatisticsPresented = presenting
+      case .toggleAccountDetail(let presenting):
+        appState.overview.viewState.isAccountDetailPresented = presenting
+      }
+    case .settings:
+      ()
+    case .account:
+      ()
+    @unknown default:
+      fatalError("unknown")
+    }
+
+    return (appState, appCommand)
   }
 }
-*/

@@ -16,8 +16,8 @@ struct OverviewView: View {
     store.state.overview
   }
 
-  private var binding: Binding<AppState.Overview> {
-    $store.state.overview
+  private var binding: Binding<AppState.Overview.ViewState> {
+    $store.state.overview.viewState
   }
 
   #if targetEnvironment(macCatalyst)
@@ -61,11 +61,18 @@ struct OverviewView: View {
                 }
               }
             }
+            .sheet(item: self.binding.selectedTransaction) {
+              ComposerView(transaction: $0) {
+                self.store.dispatch(.overview(.editTransactionDone))
+              }
+            }
+            /*
             .sheet(isPresented: self.binding.isEditingTransaction) {
               ComposerView(transaction: self.state.selectedTransaction) {
                 self.store.dispatch(.overview(.editTransactionDone))
               }
             }
+            */
           }
           .padding(20)
         }
@@ -102,8 +109,8 @@ extension OverviewView {
       store.state.overview
     }
 
-    private var binding: Binding<AppState.Overview> {
-      $store.state.overview
+    private var binding: Binding<AppState.Overview.ViewState> {
+      $store.state.overview.viewState
     }
 
     var body: some View {
