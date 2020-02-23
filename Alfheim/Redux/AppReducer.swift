@@ -26,6 +26,15 @@ struct AppReducer {
         appState.overview.viewState.isStatisticsPresented = presenting
       case .toggleAccountDetail(let presenting):
         appState.overview.viewState.isAccountDetailPresented = presenting
+      case .switchPeriod:
+        switch state.overview.period {
+        case .weekly:
+          appState.overview.period = .montly
+        case .montly:
+          appState.overview.period = .yearly
+        case .yearly:
+          appState.overview.period = .weekly
+        }
       }
     case .settings:
       ()

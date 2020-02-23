@@ -27,27 +27,36 @@ extension AppState {
 
     var viewState = ViewState()
 
-    var account: Account = Accounts.expenses
-
     enum Period {
       case weekly
-      case month(String)
-      case year(String)
+      case montly
+      case yearly
 
       var display: String {
         switch self {
         case .weekly:
           return "this week"
-        case .month(let text):
-          return text
-        case .year(let text):
-          return text
+        case .montly:
+          return "this month"
+        case .yearly:
+          return "this year"
         }
       }
     }
 
-    var period: Period = .weekly
-    var amount: Double = 233.0
+    var period: Period = .montly
+
+    var account: Account = Accounts.expenses
+    var amount: Double {
+      switch period {
+      case .weekly:
+        return 233.0
+      case .montly:
+        return 2333.0
+      case .yearly:
+        return 23333.0
+      }
+    }
 
     var amountText: String {
       "\(account.currency.symbol)\(amount)"

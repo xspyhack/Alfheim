@@ -131,7 +131,7 @@ extension OverviewView {
               }
 
               Button(action: {
-
+                self.store.dispatch(.overview(.switchPeriod))
               }) {
                 Text(self.state.period.display).font(.callout)
                   .foregroundColor(.gray)

@@ -25,6 +25,7 @@ extension AppAction {
     case editTransactionDone
     case toggleStatistics(presenting: Bool)
     case toggleAccountDetail(presenting: Bool)
+    case switchPeriod
   }
 }
 
