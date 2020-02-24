@@ -21,7 +21,7 @@ struct Transaction: Identifiable {
   var to: Account? = Accounts.expenses
 }
 
-enum Currency: Int {
+enum Currency: Int, CaseIterable {
   case cny
   case hkd
   case jpy

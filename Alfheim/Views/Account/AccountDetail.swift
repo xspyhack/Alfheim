@@ -26,7 +26,8 @@ struct AccountDetail: View {
             // self.onDismiss()
           }) {
             Text("Save")
-        })
+          }
+      )
     }
   }
 }

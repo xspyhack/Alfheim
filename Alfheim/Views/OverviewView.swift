@@ -123,6 +123,7 @@ extension OverviewView {
               }) {
                 Text(self.state.account.name)
                   .font(.system(size: 22, weight: .semibold))
+                  .foregroundColor(.black)
               }
               .sheet(isPresented: self.binding.isAccountDetailPresented) {
                 AccountDetail(account: self.state.account) {

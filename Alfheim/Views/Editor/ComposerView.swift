@@ -15,12 +15,18 @@ struct ComposerView: View {
   var body: some View {
     NavigationView {
       EditorView(transaction: transaction)
+        .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("New Transaction")
-        .navigationBarItems(leading:
-          Button("Cancel") {
-            self.onDismiss()
+        .navigationBarItems(
+          leading: Button(action: onDismiss) {
+            Text("Cancel")
+          },
+          trailing: Button(action: {
+            // self.onDismiss()
+          }) {
+            Text("Save").bold()
           }
-        )
+      )
     }
   }
 }
