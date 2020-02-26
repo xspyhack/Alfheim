@@ -13,6 +13,27 @@ struct AppState {
   var overview = Overview()
   var transactions = TransactionList()
   var editor = Editor()
+
+  var period: Period = .montly
+}
+
+extension AppState {
+  enum Period {
+    case weekly
+    case montly
+    case yearly
+
+    var display: String {
+      switch self {
+      case .weekly:
+        return "this week"
+      case .montly:
+        return "this month"
+      case .yearly:
+        return "this year"
+      }
+    }
+  }
 }
 
 extension AppState {
@@ -27,35 +48,25 @@ extension AppState {
 
     var viewState = ViewState()
 
-    enum Period {
-      case weekly
-      case montly
-      case yearly
-
-      var display: String {
-        switch self {
-        case .weekly:
-          return "this week"
-        case .montly:
-          return "this month"
-        case .yearly:
-          return "this year"
-        }
-      }
-    }
 
     var period: Period = .montly
 
     var account: Account = Accounts.expenses
     var amount: Double {
+      let startDate: Date
       switch period {
       case .weekly:
-        return 233.0
+        startDate = Date.startOfWeek()
       case .montly:
-        return 2333.0
+        startDate = Date.startOfMonth()
       case .yearly:
-        return 23333.0
+        startDate = Date.startOfYear()
       }
+
+      return Transaction.samples()
+        .filter { $0.date >= startDate }
+        .map { $0.amount }
+        .reduce(0.0, +)
     }
 
     var amountText: String {
@@ -66,11 +77,33 @@ extension AppState {
 
 extension AppState {
   struct TransactionList {
-
   }
 }
 
 extension AppState {
   struct Editor {
+  }
+}
+
+extension Date {
+  static func startOfWeek(date: Date = Date()) -> Date {
+    let calendar = NSCalendar.current
+    let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+    let startOfWeek = calendar.date(from: components)!
+    return startOfWeek
+  }
+
+  static func startOfMonth(date: Date = Date()) -> Date {
+    let calendar = NSCalendar.current
+    let components = calendar.dateComponents([.year, .month], from: date)
+    let startOfWeek = calendar.date(from: components)!
+    return startOfWeek
+  }
+
+  static func startOfYear(date: Date = Date()) -> Date {
+    let calendar = NSCalendar.current
+    let components = calendar.dateComponents([.year], from: date)
+    let startOfWeek = calendar.date(from: components)!
+    return startOfWeek
   }
 }
