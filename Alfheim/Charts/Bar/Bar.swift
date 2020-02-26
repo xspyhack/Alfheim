@@ -13,10 +13,11 @@ struct Bar: View {
 
   var pieces: [Piece.Data] {
     let max = data.points().max() ?? 0
+    let min = data.points().min() ?? 0
     var pieces: [Piece.Data] = []
     for unit in data.units {
-      let normalized: Double = Double(unit.value)/Double(max)
-      let data = Piece.Data(unit: unit, normalizedValue: normalized)
+      let amount: Double = Double(unit.value - (min - 2))/Double(max - (min - 2))
+      let data = Piece.Data(unit: unit, amount: amount)
       pieces.append(data)
     }
     return pieces
@@ -35,7 +36,7 @@ struct Bar: View {
   func piece(at index: Int, height: CGFloat) -> some View {
     let piece = pieces[index]
     return Piece(index: index)
-      .frame(height: CGFloat(piece.normalizedValue) * height)
+      .frame(height: CGFloat(piece.amount) * height)
   }
 }
 
@@ -43,7 +44,9 @@ struct Bar: View {
 struct Bar_Previews : PreviewProvider {
   static var previews: some View {
     GeometryReader { geometry in
-      Bar(data: UnitData(points: [20, 6, 4, 2, 4, 6, 10]))
+//      Bar(data: UnitData(points: [20, 6, 4, 0, 4, 6, 10]))
+//      Bar(data: UnitData(points: [-2, 0, 2, 4, 6, 8, 10]))
+      Bar(data: UnitData(points: [-2, 0, 1, 3, 6, 8, 10]))
     }.frame(width: 200, height: 200)
   }
 }
