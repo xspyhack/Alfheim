@@ -146,6 +146,11 @@ extension OverviewView {
         .padding([.leading, .top])
 
         Text(state.amountText)
+          .gradient(LinearGradient(
+            gradient: Gradient(colors: [.pink, .purple]),
+            startPoint: .leading,
+            endPoint: .trailing
+          ))
           .font(.system(size: 36, weight: .semibold))
           .padding(.top, 2)
       }
@@ -155,6 +160,12 @@ extension OverviewView {
           .shadow(radius: 8)
       )
     }
+  }
+}
+
+extension Text {
+  func gradient(_ overlay: LinearGradient) -> some View {
+    self.overlay(overlay).mask(self)
   }
 }
 
