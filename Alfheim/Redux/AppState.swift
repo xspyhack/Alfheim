@@ -53,14 +53,15 @@ extension AppState {
 
     var account: Account = Accounts.expenses
     var amount: Double {
+      let current = Date()
       let startDate: Date
       switch period {
       case .weekly:
-        startDate = Date.startOfWeek()
+        startDate = current.start(of: .week)
       case .montly:
-        startDate = Date.startOfMonth()
+        startDate = current.start(of: .month)
       case .yearly:
-        startDate = Date.startOfYear()
+        startDate = current.start(of: .year)
       }
 
       return Transaction.samples()
@@ -82,28 +83,5 @@ extension AppState {
 
 extension AppState {
   struct Editor {
-  }
-}
-
-extension Date {
-  static func startOfWeek(date: Date = Date()) -> Date {
-    let calendar = NSCalendar.current
-    let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
-    let startOfWeek = calendar.date(from: components)!
-    return startOfWeek
-  }
-
-  static func startOfMonth(date: Date = Date()) -> Date {
-    let calendar = NSCalendar.current
-    let components = calendar.dateComponents([.year, .month], from: date)
-    let startOfWeek = calendar.date(from: components)!
-    return startOfWeek
-  }
-
-  static func startOfYear(date: Date = Date()) -> Date {
-    let calendar = NSCalendar.current
-    let components = calendar.dateComponents([.year], from: date)
-    let startOfWeek = calendar.date(from: components)!
-    return startOfWeek
   }
 }
