@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct ComposerView: View {
-  var transaction: Transaction?
-  var onDismiss: (() -> Void)
-
   // alternative dismiss
   @Environment(\.presentationMode) var presentationMode
+
+  var transaction: Transaction?
+  var onDismiss: (() -> Void)
 
   var body: some View {
     NavigationView {
