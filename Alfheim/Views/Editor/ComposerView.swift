@@ -12,6 +12,9 @@ struct ComposerView: View {
   var transaction: Transaction?
   var onDismiss: (() -> Void)
 
+  // alternative dismiss
+  @Environment(\.presentationMode) var presentationMode
+
   var body: some View {
     NavigationView {
       EditorView(transaction: transaction)
@@ -22,7 +25,7 @@ struct ComposerView: View {
             Text("Cancel")
           },
           trailing: Button(action: {
-            // self.onDismiss()
+            self.presentationMode.wrappedValue.dismiss()
           }) {
             Text("Save").bold()
           }
