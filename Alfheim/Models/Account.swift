@@ -30,7 +30,7 @@ enum Accounts {
   static var expenses: Account {
     Account(id: "_expenses",
             name: "Expenses",
-            description: "Expenses accounts are where you spend money for (e.g. food).",
+            description: "Expenses account are where you spend money for (e.g. food).",
             tag: "",
             group: .expenses)
   }
@@ -38,7 +38,7 @@ enum Accounts {
   static var income: Account {
     Account(id: "_income",
             name: "Income",
-            description: "Income accounts are where you get money from (e.g. salary).",
+            description: "Income account are where you get money from (e.g. salary).",
             tag: "",
             group: .income)
   }

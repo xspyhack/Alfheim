@@ -189,8 +189,16 @@ extension OverviewView {
             .onTapGesture {
               self.flip(false)
           }
-          Text(state.account.description)
-            .padding()
+          VStack {
+            Spacer()
+            Text(state.account.description)
+            Spacer()
+            HStack {
+              Spacer()
+              Text("made with ❤️").font(.footnote)
+            }
+          }
+          .padding()
         }
 
         Image(systemName: "dollarsign.circle.fill")
