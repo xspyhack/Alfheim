@@ -119,17 +119,17 @@ extension OverviewView {
 
     var body: some View {
       ZStack {
-        self.foregroundCard().opacity(flipped ? 0 : 1)
-        self.backgroundCard().opacity(flipped ? 1 : 0)
+        frontSide().opacity(flipped ? 0 : 1)
+        backSide().opacity(flipped ? 1 : 0)
       }
       .background(
-        RoundedRectangle(cornerRadius: self.cornerRadius)
+        RoundedRectangle(cornerRadius: cornerRadius)
           .fill(Color.yellow)
           .shadow(radius: 8)
       ).rotation3DEffect(.degrees(flipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
     }
 
-    private func foregroundCard() -> some View {
+    private func frontSide() -> some View {
       ZStack {
         VStack {
           HStack(alignment: .top) {
@@ -137,11 +137,11 @@ extension OverviewView {
               Button(action: {
                 self.store.dispatch(.overview(.toggleAccountDetail(presenting: true)))
               }) {
-                Text(self.state.account.name)
+                Text(state.account.name)
                   .font(.system(size: 22, weight: .semibold))
                   .foregroundColor(.primary)
               }
-              .sheet(isPresented: self.binding.isAccountDetailPresented) {
+              .sheet(isPresented: binding.isAccountDetailPresented) {
                 AccountDetail(account: self.state.account) {
                   self.store.dispatch(.overview(.toggleAccountDetail(presenting: false)))
                 }
@@ -154,7 +154,7 @@ extension OverviewView {
                   .resizable()
                   .frame(width: 8, height: 8)
                   .foregroundColor(.secondary).padding(.bottom, -1)
-                Text(self.state.period.display).font(.callout)
+                Text(state.period.display).font(.callout)
                   .foregroundColor(.secondary).padding(.leading, -4)
               }
             }
@@ -182,7 +182,7 @@ extension OverviewView {
       }
     }
 
-    private func backgroundCard() -> some View {
+    private func backSide() -> some View {
       ZStack(alignment: .topTrailing) {
         ZStack {
           Color.yellow.cornerRadius(cornerRadius)
@@ -193,7 +193,7 @@ extension OverviewView {
             .padding()
         }
 
-        Image(systemName: "dollarsign.circle")
+        Image(systemName: "dollarsign.circle.fill")
           .foregroundColor(.primary)
           .padding(.top, 5)
           .padding()
