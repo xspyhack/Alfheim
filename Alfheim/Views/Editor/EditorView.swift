@@ -9,14 +9,24 @@
 import SwiftUI
 
 struct EditorView: View {
-  // @Environment(\.presentationMode) var presentationMode
+  enum Mode {
+    case new
+    case edit(Transaction?)
+  }
   var transaction: Transaction?
 
-  @State var amount: String = ""
-  @State var selectedEmoji = 0
-  @State var selectedCurrency = 0
-  @State var selectedDate = Date()
-  @State var notes: String = ""
+  @State var amount: String
+  @State var selectedEmoji: Int = 0
+  @State var selectedCurrency: Int = 0
+  @State var selectedDate: Date
+  @State var notes: String
+
+  init(transaction: Transaction?) {
+    self.transaction = transaction
+    self._notes = .init(initialValue: transaction?.notes ?? "")
+    self._amount = State(initialValue: transaction != nil ? "\(transaction!.amount)" : "")
+    self._selectedDate = State(initialValue: transaction?.date ?? Date())
+  }
 
   var currencies = Currency.allCases
   var emojis = ["🍟", "🍇", "🍎"]
