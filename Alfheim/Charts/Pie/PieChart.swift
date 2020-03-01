@@ -44,8 +44,6 @@ struct PieChart: View {
           GeometryReader { geometry in
             Pie(data: self.data)
           }
-          .clipShape(RoundedRectangle(cornerRadius: 20))
-          .offset(x: 0, y: 0)
           .padding(.bottom, 30)
         }
       }
@@ -57,11 +55,13 @@ struct PieChart: View {
 struct PieChart_Previews : PreviewProvider {
   static var previews: some View {
     ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
-      PieChart(data: [8,23,54,32,12,7,43], title: "Pie", legend: "accounts")
-        .environment(\.colorScheme, colorScheme)
-        .previewDisplayName("\(colorScheme)")
+      GeometryReader { geometry in
+        PieChart(data: [8,23,54,32,12,7,43], title: "Pie", legend: "accounts")
+          .frame(height: geometry.size.width*16/15)
+       }
+      .environment(\.colorScheme, colorScheme)
+      .previewDisplayName("\(colorScheme)")
     }
-    .previewLayout(.sizeThatFits)
     .background(Color(.systemBackground))
     .padding(10)
   }
