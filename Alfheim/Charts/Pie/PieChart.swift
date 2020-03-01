@@ -29,21 +29,19 @@ struct PieChart: View {
           HStack {
             VStack(alignment: .leading, spacing: 8) {
               Text(self.title).font(.system(size: 24, weight: .semibold))
-              if (self.legend != nil) {
+              if self.legend != nil {
                 Text(self.legend!).font(.callout).foregroundColor(.gray).padding(.leading, 2)
               }
             }
             Spacer()
             Image(systemName: "chart.pie.fill")
           }
-          .frame(width: nil, height: 80, alignment: .center)
+          .frame(height: 80, alignment: .center)
           .padding()
 
           Spacer()
 
-          GeometryReader { geometry in
-            Pie(data: self.data)
-          }
+          Pie(data: self.data)
           .padding(.bottom, 30)
         }
       }
