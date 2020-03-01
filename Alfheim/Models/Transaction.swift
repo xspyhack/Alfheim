@@ -49,7 +49,7 @@ enum Currency: Int, CaseIterable {
 extension Transaction {
   static func samples() -> [Transaction] {
     return [
-      Transaction(date: Date(timeIntervalSince1970: 1582726132.0), amount: 23.0, catemoji: .fruit(.apple), notes: "Apple"),
+      Transaction(date: Date(timeIntervalSince1970: 1582726132.0), amount: 23.0, catemoji: .fruit(.apple), notes: "Apple", currency: .usd),
       Transaction(date: Date(timeIntervalSince1970: 1582720132.0), amount: 123.0, catemoji: .drink(.beer), notes: "Food"),
       Transaction(date: Date(timeIntervalSince1970: 1582624196.0), amount: 13.5, catemoji: .food(.snacks), notes: "Mc"),
       Transaction(date: Date(timeIntervalSince1970: 1582616139.0), amount: 2333.0, catemoji: .transportation(.airplane), notes: "Transportation"),

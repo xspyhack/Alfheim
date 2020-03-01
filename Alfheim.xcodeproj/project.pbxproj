@@ -46,6 +46,7 @@
 		789E8E6C23E810A6006D180B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6B23E810A6006D180B /* Account.swift */; };
 		789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionList.swift */; };
 		FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014085240B8F7100F6FE92 /* AccountViewModel.swift */; };
+		FA014088240C01B800F6FE92 /* CatemojiPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014087240C01B800F6FE92 /* CatemojiPickerView.swift */; };
 		FA527AC924095C9800CEC549 /* Date+Alfheim.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA527AC824095C9800CEC549 /* Date+Alfheim.swift */; };
 		FAC065A22409843B00A73F14 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC065A12409843B00A73F14 /* Text+Gradient.swift */; };
 		FACF2A7623FFCFA2003BB675 /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7523FFCFA2003BB675 /* ComposerView.swift */; };
@@ -110,6 +111,7 @@
 		789E8E6B23E810A6006D180B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		789E8E6F23EA96FC006D180B /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		FA014085240B8F7100F6FE92 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		FA014087240C01B800F6FE92 /* CatemojiPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatemojiPickerView.swift; sourceTree = "<group>"; };
 		FA527AC824095C9800CEC549 /* Date+Alfheim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Alfheim.swift"; sourceTree = "<group>"; };
 		FAC065A12409843B00A73F14 /* Text+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Gradient.swift"; sourceTree = "<group>"; };
 		FACF2A7523FFCFA2003BB675 /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				FACF2A7523FFCFA2003BB675 /* ComposerView.swift */,
 				789E8E6623E807CA006D180B /* EditorView.swift */,
+				FA014087240C01B800F6FE92 /* CatemojiPickerView.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				FA527AC924095C9800CEC549 /* Date+Alfheim.swift in Sources */,
 				1F39992723D695EE00E6BBD9 /* Path+QuadCurve.swift in Sources */,
 				FAEC0379240AB126003BFE2C /* Tagit.swift in Sources */,
+				FA014088240C01B800F6FE92 /* CatemojiPickerView.swift in Sources */,
 				FACF2A7A23FFD2B7003BB675 /* AccountDetailList.swift in Sources */,
 				1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */,
 				1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */,

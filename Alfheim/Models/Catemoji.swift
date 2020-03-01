@@ -55,55 +55,102 @@ enum Catemoji {
       return "Personal"
     }
   }
+
+  var allCases: [Catemoji] {
+    switch self {
+    case .food:
+      return Food.allCases.map { .food($0) }
+    case .fruit:
+      return Fruit.allCases.map { .fruit($0) }
+    case .drink:
+      return Drink.allCases.map { .drink($0) }
+    case .clothes:
+      return Clothes.allCases.map { .clothes($0) }
+    case .household:
+      return Household.allCases.map { .household($0) }
+    case .transportation:
+      return Transportation.allCases.map { .transportation($0) }
+    case .personal:
+      return Personal.allCases.map { .personal($0) }
+    }
+  }
+
+  static var allCases: [Catemoji] {
+    return [.food(.others), .fruit(.others), .drink(.others), .clothes(.others), .household(.others), .transportation(.others), .personal(.others)]
+  }
 }
 
 
 extension Catemoji {
-  enum Food: String {
+  enum Food: String, CaseIterable {
     case groceries = "🛒"
     case eating = "🍽"
     case snacks = "🍟"
     case others = "🍔"
+
+    var catemoji: Catemoji {
+      .food(self)
+    }
   }
 
-  enum Fruit: String {
+  enum Fruit: String, CaseIterable {
     case apple = "🍎"
     case banana = "🍌"
     case grapes = "🍇"
     case cherries = "🍒"
     case others = "🍓"
+
+    var catemoji: Catemoji {
+      .fruit(self)
+    }
   }
 
-  enum Drink: String {
+  enum Drink: String, CaseIterable {
     case beer = "🍻"
     case milk = "🥛"
     case tea = "🥤"
     case wine = "🍷"
     case others = "🍹"
+
+    var catemoji: Catemoji {
+      .drink(self)
+    }
   }
 
-  enum Clothes: String {
+  enum Clothes: String, CaseIterable {
     case thirt = "👕"
     case pants = "👖"
     case sock = "🧦"
     case coat = "🧥"
     case skirt = "👗"
     case others = "👔"
+
+    var catemoji: Catemoji {
+      .clothes(self)
+    }
   }
 
-  enum Household: String {
+  enum Household: String, CaseIterable {
     case goods = "🧺"
     case travel = "🏖"
     case others = "🏠"
+
+    var catemoji: Catemoji {
+      .household(self)
+    }
   }
 
-  enum Personal: String {
+  enum Personal: String, CaseIterable {
     case health = "💊"
     case privacy = "🔏"
     case others = "🤷‍♂️"
+
+    var catemoji: Catemoji {
+      .personal(self)
+    }
   }
 
-  enum Transportation: String {
+  enum Transportation: String, CaseIterable {
     case taxi = "🚕"
     case car = "🚘"
     case airplane = "✈️"
@@ -112,5 +159,9 @@ extension Catemoji {
     case train = "🚄"
     case boat = "🛳"
     case others = "🚲"
+
+    var catemoji: Catemoji {
+      .transportation(self)
+    }
   }
 }
