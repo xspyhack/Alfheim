@@ -15,6 +15,8 @@ struct AppState {
   var editor = Editor()
 
   var period: Period = .montly
+
+  var account: Account = Accounts.expenses
 }
 
 extension AppState {

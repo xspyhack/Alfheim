@@ -52,3 +52,11 @@ extension Date {
     case year
   }
 }
+
+extension Date {
+  var string: String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM dd, yyyy 'at' HH:mm"
+    return formatter.string(from: self)
+  }
+}

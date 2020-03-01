@@ -38,8 +38,12 @@ struct AppReducer {
       }
     case .settings:
       ()
-    case .account:
-      ()
+    case .account(let subaction):
+      switch subaction {
+      case .toggleTagitSelection(let tag):
+        appState.account.tag = tag
+        appState.overview.account.tag = tag
+      }
     @unknown default:
       fatalError("unknown")
     }

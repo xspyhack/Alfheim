@@ -37,6 +37,6 @@ extension AppAction {
 
 extension AppAction {
   enum Account {
-
+    case toggleTagitSelection(Tagit)
   }
 }

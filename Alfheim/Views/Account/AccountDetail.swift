@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct AccountDetail: View {
-  var account: Account
+  @EnvironmentObject var store: AppStore
 
   var onDismiss: () -> Void
   
   var body: some View {
     NavigationView {
-      AccountDetailList(account: account)
+      AccountDetailList()
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Account")
         .navigationBarItems(
@@ -35,7 +35,7 @@ struct AccountDetail: View {
 #if DEBUG
 struct AccountDetail_Previews: PreviewProvider {
   static var previews: some View {
-    AccountDetail(account: Accounts.expenses, onDismiss: {})
+    AccountDetail(onDismiss: {})
   }
 }
 #endif

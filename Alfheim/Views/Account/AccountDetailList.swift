@@ -9,22 +9,32 @@
 import SwiftUI
 
 struct AccountDetailList: View {
-  var account: Account
+  @EnvironmentObject var store: AppStore
+  private var state: AppState {
+    store.state
+  }
 
   var body: some View {
     List {
       Section(header: Spacer()) {
-        Text(account.name)
-        Text(account.description)
-//        Text(account.emoji ?? "")
+        Text(self.state.account.name)
+        Text(self.state.account.description)
       }
 
       Section {
-        ForEach(0..<7) { i in
+        ForEach(Tagit.allCases) { tag in
           HStack {
-            Circle().fill(Color.red).frame(width: 20, height: 20)
-            Text("Red")
+            Circle().fill(Color(tagit: tag)).frame(width: 20, height: 20)
+            Text(tag.name)
             Spacer()
+            if tag == self.state.account.tag {
+              Image(systemName: "checkmark")
+                .foregroundColor(.blue)
+            }
+          }
+          .contentShape(Rectangle())
+          .onTapGesture {
+            self.store.dispatch(.account(.toggleTagitSelection(tag)))
           }
         }
       }
@@ -36,7 +46,7 @@ struct AccountDetailList: View {
 #if DEBUG
 struct AccountDetailList_Previews: PreviewProvider {
   static var previews: some View {
-    AccountDetailList(account: Accounts.expenses)
+    AccountDetailList().environmentObject(AppStore())
   }
 }
 #endif

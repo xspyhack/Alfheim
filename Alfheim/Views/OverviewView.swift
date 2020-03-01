@@ -124,7 +124,7 @@ extension OverviewView {
       }
       .background(
         RoundedRectangle(cornerRadius: cornerRadius)
-          .fill(Color.yellow)
+          .fill(Color(tagit: state.account.tag))
           .shadow(radius: 8)
       ).rotation3DEffect(.degrees(flipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
     }
@@ -142,9 +142,10 @@ extension OverviewView {
                   .foregroundColor(.primary)
               }
               .sheet(isPresented: binding.isAccountDetailPresented) {
-                AccountDetail(account: self.state.account) {
+                AccountDetail() {
                   self.store.dispatch(.overview(.toggleAccountDetail(presenting: false)))
                 }
+                .environmentObject(self.store)
               }
 
               Button(action: {
@@ -185,7 +186,7 @@ extension OverviewView {
     private func backSide() -> some View {
       ZStack(alignment: .topTrailing) {
         ZStack {
-          Color.yellow.cornerRadius(cornerRadius)
+          Color(tagit: state.account.tag).cornerRadius(cornerRadius)
             .onTapGesture {
               self.flip(false)
           }
