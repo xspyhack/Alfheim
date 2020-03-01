@@ -10,21 +10,23 @@ import Foundation
 import Combine
 
 struct AppState {
+  var shared: Shared
   var overview = Overview()
   var transactions = TransactionList()
   var editor = Editor()
+  // shared global state
 
-  var period: Period = .montly
-
-  var account: Account = Accounts.expenses
   var accountDetail: AccountDetail
 
   init() {
+    let account = Accounts.expenses
+    shared = Shared(account: account)
     accountDetail = AccountDetail(account: account)
   }
 }
 
 extension AppState {
+  /// Transaction period
   enum Period {
     case weekly
     case montly
@@ -44,21 +46,12 @@ extension AppState {
 }
 
 extension AppState {
-  struct Overview {
-
-    struct ViewState {
-      var isEditorPresented: Bool = false
-      var isStatisticsPresented: Bool = false
-      var selectedTransaction: Transaction?
-      var isAccountDetailPresented: Bool = false
-    }
-
-    var viewState = ViewState()
-
-
+  /// Shared global state
+  struct Shared {
+    var account: Account
+    /// this should be latest selected period
     var period: Period = .montly
 
-    var account: Account = Accounts.expenses
     var amount: Double {
       let current = Date()
       let startDate: Date
@@ -84,17 +77,31 @@ extension AppState {
 }
 
 extension AppState {
+  /// Overview view state
+  struct Overview {
+    var isEditorPresented: Bool = false
+    var isStatisticsPresented: Bool = false
+    var selectedTransaction: Transaction?
+    var isAccountDetailPresented: Bool = false
+  }
+}
+
+extension AppState {
+  /// Transaction list view state
   struct TransactionList {
   }
 }
 
 extension AppState {
+  /// Composer, editor state
   struct Editor {
   }
 }
 
 extension AppState {
+  /// Account detail view state
   struct AccountDetail {
+    /// editing account
     var account: Account
   }
 }

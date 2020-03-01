@@ -17,24 +17,24 @@ struct AppReducer {
     case .overviews(let subaction):
       switch subaction {
       case .toggleNewTransaction(let presenting):
-        appState.overview.viewState.isEditorPresented = presenting
+        appState.overview.isEditorPresented = presenting
       case .editTransaction(let transaction):
-        appState.overview.viewState.selectedTransaction = transaction
+        appState.overview.selectedTransaction = transaction
       case .editTransactionDone:
-        appState.overview.viewState.selectedTransaction = nil
+        appState.overview.selectedTransaction = nil
       case .toggleStatistics(let presenting):
-        appState.overview.viewState.isStatisticsPresented = presenting
+        appState.overview.isStatisticsPresented = presenting
       case .toggleAccountDetail(let presenting):
-        appState.accountDetail.account = appState.account
-        appState.overview.viewState.isAccountDetailPresented = presenting
+        appState.accountDetail.account = appState.shared.account
+        appState.overview.isAccountDetailPresented = presenting
       case .switchPeriod:
-        switch state.overview.period {
+        switch state.shared.period {
         case .weekly:
-          appState.overview.period = .montly
+          appState.shared.period = .montly
         case .montly:
-          appState.overview.period = .yearly
+          appState.shared.period = .yearly
         case .yearly:
-          appState.overview.period = .weekly
+          appState.shared.period = .weekly
         }
       }
     case .settings:
@@ -42,9 +42,8 @@ struct AppReducer {
     case .accounts(let subaction):
       switch subaction {
       case .save(let account):
-        appState.account = account
-        appState.overview.account = account
-        appState.overview.viewState.isAccountDetailPresented = false
+        appState.shared.account = account
+        appState.overview.isAccountDetailPresented = false
       }
     @unknown default:
       fatalError("unknown")

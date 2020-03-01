@@ -16,8 +16,8 @@ struct OverviewView: View {
     store.state.overview
   }
 
-  private var binding: Binding<AppState.Overview.ViewState> {
-    $store.state.overview.viewState
+  private var binding: Binding<AppState.Overview> {
+    $store.state.overview
   }
 
   #if targetEnvironment(macCatalyst)
@@ -105,12 +105,12 @@ extension OverviewView {
   struct AccountCard: View {
 
     @EnvironmentObject var store: AppStore
-    private var state: AppState.Overview {
-      store.state.overview
+    private var state: AppState.Shared {
+      store.state.shared
     }
 
-    private var binding: Binding<AppState.Overview.ViewState> {
-      $store.state.overview.viewState
+    private var binding: Binding<AppState.Overview> {
+      $store.state.overview
     }
 
     @State private var flipped: Bool = false
