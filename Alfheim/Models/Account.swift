@@ -12,7 +12,7 @@ struct Account {
   let id: String
   let name: String
   var description: String
-  var tag: String
+  var tag: Tagit
   var group: Group
   var emoji: String?
   var currency: Currency = .cny
@@ -31,7 +31,7 @@ enum Accounts {
     Account(id: "_expenses",
             name: "Expenses",
             description: "Expenses account are where you spend money for (e.g. food).",
-            tag: "",
+            tag: "#FF2600",
             group: .expenses)
   }
 
