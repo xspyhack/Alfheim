@@ -9,17 +9,13 @@
 import Foundation
 
 enum AppAction {
-  case overview(Overview)
-
-
+  case overviews(Overviews)
   case settings(Settings)
-
-
-  case account(Account)
+  case accounts(Accounts)
 }
 
 extension AppAction {
-  enum Overview {
+  enum Overviews {
     case toggleNewTransaction(presenting: Bool)
     case editTransaction(Transaction)
     case editTransactionDone
@@ -36,7 +32,7 @@ extension AppAction {
 }
 
 extension AppAction {
-  enum Account {
-    case toggleTagitSelection(Tagit)
+  enum Accounts {
+    case save(Account)
   }
 }

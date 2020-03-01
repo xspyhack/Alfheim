@@ -9,16 +9,13 @@
 import SwiftUI
 
 struct AccountDetailList: View {
-  @EnvironmentObject var store: AppStore
-  private var state: AppState {
-    store.state
-  }
+  @Binding var account: Account
 
   var body: some View {
     List {
       Section(header: Spacer()) {
-        Text(self.state.account.name)
-        Text(self.state.account.description)
+        Text(account.name)
+        Text(account.description)
       }
 
       Section {
@@ -27,14 +24,14 @@ struct AccountDetailList: View {
             Circle().fill(Color(tagit: tag)).frame(width: 20, height: 20)
             Text(tag.name)
             Spacer()
-            if tag == self.state.account.tag {
+            if tag == self.account.tag {
               Image(systemName: "checkmark")
                 .foregroundColor(.blue)
             }
           }
           .contentShape(Rectangle())
           .onTapGesture {
-            self.store.dispatch(.account(.toggleTagitSelection(tag)))
+            self.account.tag = tag
           }
         }
       }
@@ -45,8 +42,9 @@ struct AccountDetailList: View {
 
 #if DEBUG
 struct AccountDetailList_Previews: PreviewProvider {
+  @State static var account = Accounts.expenses
   static var previews: some View {
-    AccountDetailList().environmentObject(AppStore())
+    AccountDetailList(account: $account)
   }
 }
 #endif

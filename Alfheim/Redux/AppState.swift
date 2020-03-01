@@ -17,6 +17,11 @@ struct AppState {
   var period: Period = .montly
 
   var account: Account = Accounts.expenses
+  var accountDetail: AccountDetail
+
+  init() {
+    accountDetail = AccountDetail(account: account)
+  }
 }
 
 extension AppState {
@@ -85,5 +90,11 @@ extension AppState {
 
 extension AppState {
   struct Editor {
+  }
+}
+
+extension AppState {
+  struct AccountDetail {
+    var account: Account
   }
 }

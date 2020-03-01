@@ -45,6 +45,7 @@
 		789E8E6923E80FFC006D180B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6823E80FFC006D180B /* Transaction.swift */; };
 		789E8E6C23E810A6006D180B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6B23E810A6006D180B /* Account.swift */; };
 		789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionList.swift */; };
+		FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014085240B8F7100F6FE92 /* AccountViewModel.swift */; };
 		FA527AC924095C9800CEC549 /* Date+Alfheim.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA527AC824095C9800CEC549 /* Date+Alfheim.swift */; };
 		FAC065A22409843B00A73F14 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC065A12409843B00A73F14 /* Text+Gradient.swift */; };
 		FACF2A7623FFCFA2003BB675 /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7523FFCFA2003BB675 /* ComposerView.swift */; };
@@ -108,6 +109,7 @@
 		789E8E6823E80FFC006D180B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		789E8E6B23E810A6006D180B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		789E8E6F23EA96FC006D180B /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
+		FA014085240B8F7100F6FE92 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		FA527AC824095C9800CEC549 /* Date+Alfheim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Alfheim.swift"; sourceTree = "<group>"; };
 		FAC065A12409843B00A73F14 /* Text+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Gradient.swift"; sourceTree = "<group>"; };
 		FACF2A7523FFCFA2003BB675 /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
@@ -277,8 +279,17 @@
 				789E8E6B23E810A6006D180B /* Account.swift */,
 				FAEC0378240AB126003BFE2C /* Tagit.swift */,
 				FAEC037C240ADA34003BFE2C /* Catemoji.swift */,
+				FA014084240B8F5F00F6FE92 /* ViewModel */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		FA014084240B8F5F00F6FE92 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA014085240B8F7100F6FE92 /* AccountViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FA527AC724095C5200CEC549 /* Kit */ = {
@@ -452,6 +463,7 @@
 				FAEC037D240ADA34003BFE2C /* Catemoji.swift in Sources */,
 				1F39992623D695EE00E6BBD9 /* LineChart.swift in Sources */,
 				788863F423F2A6320037210B /* AppReducer.swift in Sources */,
+				FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */,
 				782403F823F83A6600478338 /* AccountDetail.swift in Sources */,
 				1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */,
 				789E8E6923E80FFC006D180B /* Transaction.swift in Sources */,

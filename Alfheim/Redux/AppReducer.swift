@@ -14,7 +14,7 @@ struct AppReducer {
     var appCommand: AppCommand? = nil
 
     switch action {
-    case .overview(let subaction):
+    case .overviews(let subaction):
       switch subaction {
       case .toggleNewTransaction(let presenting):
         appState.overview.viewState.isEditorPresented = presenting
@@ -25,6 +25,7 @@ struct AppReducer {
       case .toggleStatistics(let presenting):
         appState.overview.viewState.isStatisticsPresented = presenting
       case .toggleAccountDetail(let presenting):
+        appState.accountDetail.account = appState.account
         appState.overview.viewState.isAccountDetailPresented = presenting
       case .switchPeriod:
         switch state.overview.period {
@@ -38,11 +39,12 @@ struct AppReducer {
       }
     case .settings:
       ()
-    case .account(let subaction):
+    case .accounts(let subaction):
       switch subaction {
-      case .toggleTagitSelection(let tag):
-        appState.account.tag = tag
-        appState.overview.account.tag = tag
+      case .save(let account):
+        appState.account = account
+        appState.overview.account = account
+        appState.overview.viewState.isAccountDetailPresented = false
       }
     @unknown default:
       fatalError("unknown")

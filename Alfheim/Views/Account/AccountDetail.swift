@@ -12,10 +12,14 @@ struct AccountDetail: View {
   @EnvironmentObject var store: AppStore
 
   var onDismiss: () -> Void
-  
+
+  private var state: AppState {
+    store.state
+  }
+
   var body: some View {
     NavigationView {
-      AccountDetailList()
+      AccountDetailList(account: $store.state.accountDetail.account)
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Account")
         .navigationBarItems(
@@ -23,9 +27,9 @@ struct AccountDetail: View {
             Text("Cancel")
           },
           trailing: Button(action: {
-            // self.onDismiss()
+            self.store.dispatch(.accounts(.save(self.store.state.accountDetail.account)))
           }) {
-            Text("Save")
+            Text("Save").bold()
           }
       )
     }
