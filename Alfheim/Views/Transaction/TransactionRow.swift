@@ -13,7 +13,7 @@ struct TransactionRow: View {
 
   var body: some View {
     HStack {
-      Text(transaction.emoji).font(Font.system(size: 40, weight: .medium))
+      Text(transaction.catemoji.emoji).font(Font.system(size: 40, weight: .medium))
       VStack(alignment: .leading) {
         Text(transaction.notes).font(.system(size: 20, weight: .medium))
         Text(transaction.date.string).font(.system(size: 14)).foregroundColor(.gray)
@@ -23,14 +23,6 @@ struct TransactionRow: View {
         .foregroundColor(.red)
     }
     .frame(height: 64)
-  }
-}
-
-extension Date {
-  var string: String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "MMM dd, yyyy 'at' HH:mm"
-    return formatter.string(from: self)
   }
 }
 

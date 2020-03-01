@@ -14,13 +14,13 @@ struct StatisticList: View {
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
           LineChart(data: [11, 3, 2, 5, 29, 9], title: "Weekly", legend: "this week", value: (10, "%.1f"))
-            .frame(width: nil, height: geometry.size.width*16/15)
+            .frame(height: geometry.size.width*16/15)
 
           PieChart(data: [8,23,54,32,12,37,43], title: "Categories", legend: "7 total")
-            .frame(width: nil, height: geometry.size.width*16/15)
+            .frame(height: geometry.size.width*16/15)
 
           BarChart(data: UnitData(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "this week")
-            .frame(width: nil, height: geometry.size.width*16/15)
+            .frame(height: geometry.size.width*16/15)
         }
         .padding(20)
       }

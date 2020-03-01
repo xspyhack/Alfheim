@@ -50,6 +50,9 @@
 		FACF2A7623FFCFA2003BB675 /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7523FFCFA2003BB675 /* ComposerView.swift */; };
 		FACF2A7823FFD179003BB675 /* StatisticList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7723FFD179003BB675 /* StatisticList.swift */; };
 		FACF2A7A23FFD2B7003BB675 /* AccountDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7923FFD2B7003BB675 /* AccountDetailList.swift */; };
+		FAEC0379240AB126003BFE2C /* Tagit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC0378240AB126003BFE2C /* Tagit.swift */; };
+		FAEC037B240AB840003BFE2C /* Color+Tagit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC037A240AB840003BFE2C /* Color+Tagit.swift */; };
+		FAEC037D240ADA34003BFE2C /* Catemoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC037C240ADA34003BFE2C /* Catemoji.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +113,9 @@
 		FACF2A7523FFCFA2003BB675 /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
 		FACF2A7723FFD179003BB675 /* StatisticList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticList.swift; sourceTree = "<group>"; };
 		FACF2A7923FFD2B7003BB675 /* AccountDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailList.swift; sourceTree = "<group>"; };
+		FAEC0378240AB126003BFE2C /* Tagit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagit.swift; sourceTree = "<group>"; };
+		FAEC037A240AB840003BFE2C /* Color+Tagit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Tagit.swift"; sourceTree = "<group>"; };
+		FAEC037C240ADA34003BFE2C /* Catemoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catemoji.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +275,8 @@
 			children = (
 				789E8E6823E80FFC006D180B /* Transaction.swift */,
 				789E8E6B23E810A6006D180B /* Account.swift */,
+				FAEC0378240AB126003BFE2C /* Tagit.swift */,
+				FAEC037C240ADA34003BFE2C /* Catemoji.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 			children = (
 				FA527AC824095C9800CEC549 /* Date+Alfheim.swift */,
 				FAC065A12409843B00A73F14 /* Text+Gradient.swift */,
+				FAEC037A240AB840003BFE2C /* Color+Tagit.swift */,
 			);
 			path = Kit;
 			sourceTree = "<group>";
@@ -440,6 +449,7 @@
 				782403F423F6D79F00478338 /* TransactionRow.swift in Sources */,
 				782403F023F2E5FF00478338 /* Redux.swift in Sources */,
 				1F39993323D6D53200E6BBD9 /* QuadCurve.swift in Sources */,
+				FAEC037D240ADA34003BFE2C /* Catemoji.swift in Sources */,
 				1F39992623D695EE00E6BBD9 /* LineChart.swift in Sources */,
 				788863F423F2A6320037210B /* AppReducer.swift in Sources */,
 				782403F823F83A6600478338 /* AccountDetail.swift in Sources */,
@@ -455,10 +465,12 @@
 				1F39995723D7F34E00E6BBD9 /* Pie.swift in Sources */,
 				FA527AC924095C9800CEC549 /* Date+Alfheim.swift in Sources */,
 				1F39992723D695EE00E6BBD9 /* Path+QuadCurve.swift in Sources */,
+				FAEC0379240AB126003BFE2C /* Tagit.swift in Sources */,
 				FACF2A7A23FFD2B7003BB675 /* AccountDetailList.swift in Sources */,
 				1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */,
 				1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */,
 				1F1CF967240622A500828426 /* Shape+Divided.swift in Sources */,
+				FAEC037B240AB840003BFE2C /* Color+Tagit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
