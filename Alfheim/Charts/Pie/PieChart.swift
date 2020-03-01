@@ -42,7 +42,7 @@ struct PieChart: View {
           Spacer()
 
           Pie(data: self.data)
-          .padding(.bottom, 30)
+            .padding(.bottom, 30)
         }
       }
     }
