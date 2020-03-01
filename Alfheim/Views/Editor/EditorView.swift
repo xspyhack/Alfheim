@@ -26,6 +26,7 @@ struct EditorView: View {
     self._notes = .init(initialValue: transaction?.notes ?? "")
     self._amount = State(initialValue: transaction != nil ? "\(transaction!.amount)" : "")
     self._selectedDate = State(initialValue: transaction?.date ?? Date())
+    self._selectedCurrency = .init(initialValue: transaction?.currency.rawValue ?? 0)
   }
 
   var currencies = Currency.allCases
