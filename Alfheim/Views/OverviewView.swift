@@ -65,12 +65,14 @@ struct OverviewView: View {
               ComposerView(transaction: $0) {
                 self.store.dispatch(.overviews(.editTransactionDone))
               }
+              .environmentObject(self.store)
             }
             /*
             .sheet(isPresented: self.binding.isEditingTransaction) {
               ComposerView(transaction: self.state.selectedTransaction) {
                 self.store.dispatch(.overview(.editTransactionDone))
               }
+              .environmentObject(self.store)
             }
             */
           }
@@ -88,6 +90,7 @@ struct OverviewView: View {
           ComposerView(transaction: nil) {
             self.store.dispatch(.overviews(.toggleNewTransaction(presenting: false)))
           }
+          .environmentObject(self.store)
         }
       )
     }
