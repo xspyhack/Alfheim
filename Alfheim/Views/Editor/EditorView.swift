@@ -16,8 +16,8 @@ struct EditorView: View {
   var transaction: Transaction?
 
   @State var amount: String
-  @State var selectedEmoji: Int = 0
-  @State var selectedCurrency: Int = 0
+  @State var selectedEmoji: String
+  @State var selectedCurrency: Currency
   @State var selectedDate: Date
   @State var notes: String
 
@@ -26,11 +26,9 @@ struct EditorView: View {
     self._notes = .init(initialValue: transaction?.notes ?? "")
     self._amount = State(initialValue: transaction != nil ? "\(transaction!.amount)" : "")
     self._selectedDate = State(initialValue: transaction?.date ?? Date())
-    self._selectedCurrency = .init(initialValue: transaction?.currency.rawValue ?? 0)
+    self._selectedCurrency = .init(initialValue: transaction?.currency ?? .cny)
+    self._selectedEmoji = .init(initialValue: "🍟")
   }
-
-  var currencies = Currency.allCases
-  var emojis = ["🍟", "🍇", "🍎"]
 
   var body: some View {
     List {
@@ -39,13 +37,13 @@ struct EditorView: View {
           Text("Amount")
           TextField("0.00", text: $amount)
             .multilineTextAlignment(.trailing).padding(.trailing, -2.0)
-          Text("\(self.currencies[selectedCurrency].symbol)")
+          Text("\(self.selectedCurrency.symbol)")
             .foregroundColor(.gray).opacity(0.8).padding(.trailing, -2.0)
         }
         HStack {
           Picker(selection: $selectedCurrency, label: Text("Currency")) {
-            ForEach(0..<currencies.count) {
-              Text(self.currencies[$0].text)
+            ForEach(Currency.allCases, id: \.self) {
+              Text($0.text).tag($0)
             }
           }
         }
@@ -57,8 +55,8 @@ struct EditorView: View {
         }
         HStack {
           Picker(selection: $selectedEmoji, label: Text("Emoji")) {
-            ForEach(0..<emojis.count) {
-              Text(self.emojis[$0])
+            ForEach(["🍟", "🍇", "🍎"], id: \.self) {
+              Text($0).tag($0)
             }
           }
         }
