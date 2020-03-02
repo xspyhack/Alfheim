@@ -12,7 +12,7 @@ struct ComposerView: View {
   // alternative dismiss
   @Environment(\.presentationMode) var presentationMode
 
-  var transaction: Transaction?
+  var transaction: Alne.Transaction?
   var onDismiss: (() -> Void)
 
   var body: some View {
@@ -37,7 +37,7 @@ struct ComposerView: View {
 #if DEBUG
 struct ComposerView_Previews: PreviewProvider {
   static var previews: some View {
-    ComposerView(transaction: Transaction.samples().first!, onDismiss: {})
+    ComposerView(transaction: Alne.Transactions.samples().first!, onDismiss: {})
   }
 }
 #endif

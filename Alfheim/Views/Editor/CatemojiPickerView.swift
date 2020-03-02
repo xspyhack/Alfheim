@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension Catemoji: Identifiable {
+extension Alne.Catemoji: Identifiable {
   var id: String { emoji }
 }
 
@@ -16,7 +16,7 @@ struct CatemojiPickerView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 8) {
-        ForEach(Catemoji.allCases) { catemoji in
+        ForEach(Alne.Catemoji.allCases) { catemoji in
           HStack(spacing: 8) {
             ForEach(catemoji.allCases) { cate in
               Text(cate.emoji).frame(width: 40, height: 40)

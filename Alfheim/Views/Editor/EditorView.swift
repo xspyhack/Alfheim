@@ -11,17 +11,17 @@ import SwiftUI
 struct EditorView: View {
   enum Mode {
     case new
-    case edit(Transaction?)
+    case edit(Alne.Transaction?)
   }
-  var transaction: Transaction?
+  var transaction: Alne.Transaction?
 
   @State var amount: String
   @State var selectedEmoji: String
-  @State var selectedCurrency: Currency
+  @State var selectedCurrency: Alne.Currency
   @State var selectedDate: Date
   @State var notes: String
 
-  init(transaction: Transaction?) {
+  init(transaction: Alne.Transaction?) {
     self.transaction = transaction
     self._notes = .init(initialValue: transaction?.notes ?? "")
     self._amount = State(initialValue: transaction != nil ? "\(transaction!.amount)" : "")
@@ -42,7 +42,7 @@ struct EditorView: View {
         }
         HStack {
           Picker(selection: $selectedCurrency, label: Text("Currency")) {
-            ForEach(Currency.allCases, id: \.self) {
+            ForEach(Alne.Currency.allCases, id: \.self) {
               Text($0.text).tag($0)
             }
           }
@@ -76,7 +76,7 @@ struct EditorView: View {
 struct EditorView_Previews: PreviewProvider {
   @State static var notes = ""
   static var previews: some View {
-    EditorView(transaction: Transaction.samples().first!)
+    EditorView(transaction: Alne.Transactions.samples().first!)
   }
 }
 #endif

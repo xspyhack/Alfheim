@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TransactionRow: View {
-  var transaction: Transaction
+  var transaction: Alne.Transaction
 
   var body: some View {
     HStack {
@@ -29,7 +29,7 @@ struct TransactionRow: View {
 #if DEBUG
 struct TransactionRow_Previews: PreviewProvider {
   static var previews: some View {
-    TransactionRow(transaction: Transaction.samples().first!)
+    TransactionRow(transaction: Alne.Transactions.samples().first!)
   }
 }
 #endif

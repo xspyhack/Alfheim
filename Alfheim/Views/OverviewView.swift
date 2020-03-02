@@ -54,7 +54,7 @@ struct OverviewView: View {
               }
               .foregroundColor(.primary)
             }) {
-              ForEach(Transaction.samples()) { transaction in
+              ForEach(Alne.Transactions.samples()) { transaction in
                 TransactionRow(transaction: transaction)
                   .onTapGesture {
                     self.store.dispatch(.overviews(.editTransaction(transaction)))

@@ -9,9 +9,9 @@
 import Foundation
 
 struct AccountViewModel {
-  var account: Account
+  var account: Alne.Account
 
   var name: String { account.name }
   var description: String { account.description }
-  var tag: Tagit { account.tag }
+  var tag: Alne.Tagit { account.tag }
 }

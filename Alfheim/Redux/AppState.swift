@@ -19,7 +19,7 @@ struct AppState {
   var accountDetail: AccountDetail
 
   init() {
-    let account = Accounts.expenses
+    let account = Alne.Accounts.expenses
     shared = Shared(account: account)
     accountDetail = AccountDetail(account: account)
   }
@@ -48,7 +48,7 @@ extension AppState {
 extension AppState {
   /// Shared global state
   struct Shared {
-    var account: Account
+    var account: Alne.Account
     /// this should be latest selected period
     var period: Period = .montly
 
@@ -64,7 +64,7 @@ extension AppState {
         startDate = current.start(of: .year)
       }
 
-      return Transaction.samples()
+      return Alne.Transactions.samples()
         .filter { $0.date >= startDate }
         .map { $0.amount }
         .reduce(0.0, +)
@@ -81,7 +81,7 @@ extension AppState {
   struct Overview {
     var isEditorPresented: Bool = false
     var isStatisticsPresented: Bool = false
-    var selectedTransaction: Transaction?
+    var selectedTransaction: Alne.Transaction?
     var isAccountDetailPresented: Bool = false
   }
 }
@@ -102,6 +102,6 @@ extension AppState {
   /// Account detail view state
   struct AccountDetail {
     /// editing account
-    var account: Account
+    var account: Alne.Account
   }
 }

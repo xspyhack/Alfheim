@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct TransactionList: View {
-  @State private var transaction: Transaction?
+  @State private var transaction: Alne.Transaction?
 
   var body: some View {
     List {
-      ForEach(Transaction.samples()) { transaction in
+      ForEach(Alne.Transactions.samples()) { transaction in
         TransactionRow(transaction: transaction)
           .onTapGesture {
             self.transaction = transaction

@@ -17,7 +17,7 @@ enum AppAction {
 extension AppAction {
   enum Overviews {
     case toggleNewTransaction(presenting: Bool)
-    case editTransaction(Transaction)
+    case editTransaction(Alne.Transaction)
     case editTransactionDone
     case toggleStatistics(presenting: Bool)
     case toggleAccountDetail(presenting: Bool)
@@ -33,6 +33,6 @@ extension AppAction {
 
 extension AppAction {
   enum Accounts {
-    case save(Account)
+    case save(Alne.Account)
   }
 }

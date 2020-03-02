@@ -18,11 +18,11 @@ extension Color {
 }
 
 extension Color {
-  init(tagit: Tagit) {
+  init(tagit: Alne.Tagit) {
     self.init(hex: tagit.hexValue)
   }
 
-  init(_ tag: Tagit) {
+  init(_ tag: Alne.Tagit) {
     self.init(hex: tag.hexValue)
   }
 }

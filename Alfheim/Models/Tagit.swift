@@ -8,27 +8,29 @@
 
 import Foundation
 
-enum Tagit: String, CaseIterable {
-  case red
-  case orange
-  case yellow
-  case green
-  case blue
-  case purple
-  case alfheim = "tint"
+extension Alne {
+  enum Tagit: String, CaseIterable {
+    case red
+    case orange
+    case yellow
+    case green
+    case blue
+    case purple
+    case alfheim = "tint"
 
-  var name: String {
-    return rawValue.capitalized
+    var name: String {
+      return rawValue.capitalized
+    }
   }
 }
 
-extension Tagit: Identifiable {
+extension Alne.Tagit: Identifiable {
   var id: String {
     return rawValue
   }
 }
 
-extension Tagit {
+extension Alne.Tagit {
   init(hex: Int) {
     self.init(stringLiteral: String(format:"#%06X", hex))
   }
@@ -38,7 +40,7 @@ extension Tagit {
   }
 }
 
-extension Tagit {
+extension Alne.Tagit {
   var hex: String {
     switch self {
     case .red:
@@ -59,7 +61,7 @@ extension Tagit {
   }
 }
 
-extension Tagit: ExpressibleByIntegerLiteral {
+extension Alne.Tagit: ExpressibleByIntegerLiteral {
   init(integerLiteral value: Int) {
     switch value {
     case 0:
@@ -80,7 +82,7 @@ extension Tagit: ExpressibleByIntegerLiteral {
   }
 }
 
-extension Tagit: ExpressibleByStringLiteral {
+extension Alne.Tagit: ExpressibleByStringLiteral {
   init(stringLiteral value: String) {
     switch value {
     case "#FF2600":
