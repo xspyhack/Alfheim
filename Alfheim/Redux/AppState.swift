@@ -52,7 +52,11 @@ extension AppState {
     /// this should be latest selected period
     var period: Period = .montly
 
-    var amount: Double {
+    var allTransactions: [Alne.Transaction] {
+      Alne.Transactions.samples()
+    }
+
+    var periodTransactions: [Alne.Transaction] {
       let current = Date()
       let startDate: Date
       switch period {
@@ -64,8 +68,12 @@ extension AppState {
         startDate = current.start(of: .year)
       }
 
-      return Alne.Transactions.samples()
+      return allTransactions
         .filter { $0.date >= startDate }
+    }
+
+    var amount: Double {
+      periodTransactions
         .map { $0.amount }
         .reduce(0.0, +)
     }
@@ -83,6 +91,10 @@ extension AppState {
     var isStatisticsPresented: Bool = false
     var selectedTransaction: Alne.Transaction?
     var isAccountDetailPresented: Bool = false
+
+    var transactions: [Alne.Transaction] {
+      Alne.Transactions.samples()
+    }
   }
 }
 
