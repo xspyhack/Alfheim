@@ -16,8 +16,8 @@ struct EditorView: View {
   var transaction: Alne.Transaction?
 
   @State var amount: String
-  @State var selectedEmoji: String
   @State var selectedCurrency: Alne.Currency
+  @State var selectedEmoji: Alne.Catemoji
   @State var selectedDate: Date
   @State var notes: String
 
@@ -27,7 +27,7 @@ struct EditorView: View {
     self._amount = State(initialValue: transaction != nil ? "\(transaction!.amount)" : "")
     self._selectedDate = State(initialValue: transaction?.date ?? Date())
     self._selectedCurrency = .init(initialValue: transaction?.currency ?? .cny)
-    self._selectedEmoji = .init(initialValue: "🍟")
+    self._selectedEmoji = .init(initialValue: transaction?.catemoji ?? Alne.Catemoji.fruit(.apple))
   }
 
   var body: some View {
@@ -54,11 +54,7 @@ struct EditorView: View {
           Text("Date")
         }
         HStack {
-          Picker(selection: $selectedEmoji, label: Text("Emoji")) {
-            ForEach(["🍟", "🍇", "🍎"], id: \.self) {
-              Text($0).tag($0)
-            }
-          }
+          CatemojiPicker(selection: $selectedEmoji, label: Text("Emoji"))
         }
         HStack {
           Text("Notes")

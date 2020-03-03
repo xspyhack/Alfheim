@@ -76,8 +76,13 @@ extension Alne {
       }
     }
 
+    /// All categories
+    static var allCates: [Catemoji] {
+      [.food(.others), .fruit(.others), .drink(.others), .clothes(.others), .household(.others), .transportation(.others), .personal(.others)]
+    }
+
     static var allCases: [Catemoji] {
-      return [.food(.others), .fruit(.others), .drink(.others), .clothes(.others), .household(.others), .transportation(.others), .personal(.others)]
+      allCates.flatMap { $0.allCases }
     }
   }
 }
