@@ -16,6 +16,8 @@ extension Alne {
     var catemoji: Catemoji
     var notes: String
     var currency: Currency = .cny
+    /// payment method
+    var payment: String? = nil
     var payee: String? = nil
     var number: Int = 0
     var from: Account? = Accounts.income
@@ -66,6 +68,45 @@ extension Alne {
         Transaction(date: Date(timeIntervalSince1970: 1582306192.0), amount: 2233.0, catemoji: .household(.travel), notes: "Travel"),
         Transaction(date: Date(timeIntervalSince1970: 1582201232.0), amount: 21.0, catemoji: .fruit(.apple), notes: "Apple"),
       ]
+    }
+  }
+}
+
+extension Alne {
+  enum Payment {
+    case cash
+    case debitCard
+    case creditCard(Credit)
+
+    var name: String {
+      switch self {
+      case .cash:
+        return "Cash"
+      case .debitCard:
+        return "Debit Card"
+      case .creditCard(let from):
+        return "Credit Card - \(from.name)"
+      }
+    }
+
+    enum Credit {
+      case apple
+      case wechat
+      case alipay
+      case unionpay
+
+      var name: String {
+        switch self {
+        case .apple:
+          return "ApplePay"
+        case .wechat:
+          return "Wechat"
+        case .alipay:
+          return "Alipay"
+        case .unionpay:
+          return "UnionPay"
+        }
+      }
     }
   }
 }

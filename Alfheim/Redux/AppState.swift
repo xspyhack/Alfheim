@@ -117,3 +117,9 @@ extension AppState {
     var account: Alne.Account
   }
 }
+
+extension AppState {
+  struct Settings {
+    var isPaymentEnabled = true
+  }
+}
