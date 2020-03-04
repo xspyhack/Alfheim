@@ -41,7 +41,7 @@ struct AppReducer {
       ()
     case .accounts(let subaction):
       switch subaction {
-      case .save(let account):
+      case .update(let account):
         appState.shared.account = account
         appState.overview.isAccountDetailPresented = false
       }

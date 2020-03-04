@@ -33,6 +33,6 @@ extension AppAction {
 
 extension AppAction {
   enum Accounts {
-    case save(Alne.Account)
+    case update(Alne.Account)
   }
 }
