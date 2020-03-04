@@ -11,10 +11,10 @@ import SwiftUI
 struct EditorView: View {
   enum Mode {
     case new
-    case edit(Alne.Transaction?)
+    case edit(Alne.Transaction)
   }
-  var transaction: Alne.Transaction?
 
+  var mode: Mode
   @State var amount: String
   @State var selectedCurrency: Alne.Currency
   @State var selectedEmoji: Alne.Catemoji
@@ -22,14 +22,24 @@ struct EditorView: View {
   @State var notes: String
   @State var payment: String
 
-  init(transaction: Alne.Transaction?) {
-    self.transaction = transaction
-    self._notes = State(initialValue: transaction?.notes ?? "")
-    self._amount = State(initialValue: transaction != nil ? "\(transaction!.amount)" : "")
-    self._selectedDate = State(initialValue: transaction?.date ?? Date())
-    self._selectedCurrency = State(initialValue: transaction?.currency ?? .cny)
-    self._selectedEmoji = State(initialValue: transaction?.catemoji ?? Alne.Catemoji.fruit(.apple))
-    self._payment = State(initialValue: transaction?.payment ?? "Pay")
+  init(mode: Mode) {
+    switch mode {
+    case .new:
+      self._notes = State(initialValue: "")
+      self._amount = State(initialValue: "")
+      self._selectedDate = State(initialValue: Date())
+      self._selectedCurrency = State(initialValue: .cny)
+      self._selectedEmoji = State(initialValue: Alne.Catemoji.fruit(.apple))
+      self._payment = State(initialValue: "Pay")
+    case .edit(let transaction):
+      self._notes = State(initialValue: transaction.notes)
+      self._amount = State(initialValue: "\(transaction.amount)")
+      self._selectedDate = State(initialValue: transaction.date)
+      self._selectedCurrency = State(initialValue: transaction.currency)
+      self._selectedEmoji = State(initialValue: transaction.catemoji)
+      self._payment = State(initialValue: transaction.payment ?? "Pay")
+    }
+    self.mode = mode
   }
 
   var body: some View {
@@ -67,7 +77,7 @@ struct EditorView: View {
         }
         HStack {
           Text("Notes")
-          TextField(transaction?.notes ?? "", text: $notes)
+          TextField("", text: $notes)
             .lineLimit(nil)
             .multilineTextAlignment(.trailing)
         }
@@ -81,7 +91,7 @@ struct EditorView: View {
 struct EditorView_Previews: PreviewProvider {
   @State static var notes = ""
   static var previews: some View {
-    EditorView(transaction: Alne.Transactions.samples().first!)
+    EditorView(mode: .new)
   }
 }
 #endif

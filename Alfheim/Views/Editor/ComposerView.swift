@@ -17,7 +17,7 @@ struct ComposerView: View {
 
   var body: some View {
     NavigationView {
-      EditorView(transaction: transaction)
+      EditorView(mode: transaction.map { .edit($0) } ?? .new)
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("New Transaction")
         .navigationBarItems(
