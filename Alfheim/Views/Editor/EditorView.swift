@@ -20,14 +20,16 @@ struct EditorView: View {
   @State var selectedEmoji: Alne.Catemoji
   @State var selectedDate: Date
   @State var notes: String
+  @State var payment: String
 
   init(transaction: Alne.Transaction?) {
     self.transaction = transaction
-    self._notes = .init(initialValue: transaction?.notes ?? "")
+    self._notes = State(initialValue: transaction?.notes ?? "")
     self._amount = State(initialValue: transaction != nil ? "\(transaction!.amount)" : "")
     self._selectedDate = State(initialValue: transaction?.date ?? Date())
-    self._selectedCurrency = .init(initialValue: transaction?.currency ?? .cny)
-    self._selectedEmoji = .init(initialValue: transaction?.catemoji ?? Alne.Catemoji.fruit(.apple))
+    self._selectedCurrency = State(initialValue: transaction?.currency ?? .cny)
+    self._selectedEmoji = State(initialValue: transaction?.catemoji ?? Alne.Catemoji.fruit(.apple))
+    self._payment = State(initialValue: transaction?.payment ?? "Pay")
   }
 
   var body: some View {
@@ -55,6 +57,12 @@ struct EditorView: View {
         }
         HStack {
           CatemojiPicker(selection: $selectedEmoji, label: Text("Emoji"))
+        }
+        HStack {
+          Text("Payment")
+          TextField("", text: $payment)
+            .foregroundColor(.gray).opacity(0.8)
+            .multilineTextAlignment(.trailing)
         }
         HStack {
           Text("Notes")
