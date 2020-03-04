@@ -50,7 +50,7 @@ struct EditorView: View {
       }
 
       Section {
-        DatePicker(selection: $selectedDate, in: ...Date(), displayedComponents: .date) {
+        DatePicker(selection: $selectedDate, in: ...Date(), displayedComponents: [.date, .hourAndMinute]) {
           Text("Date")
         }
         HStack {
