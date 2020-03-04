@@ -38,6 +38,7 @@ struct EditorView: View {
         HStack {
           Text("Amount")
           TextField("0.00", text: $amount)
+            .keyboardType(.decimalPad)
             .multilineTextAlignment(.trailing).padding(.trailing, -2.0)
           Text("\(self.selectedCurrency.symbol)")
             .foregroundColor(.gray).opacity(0.8).padding(.trailing, -2.0)
