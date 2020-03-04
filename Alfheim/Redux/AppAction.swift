@@ -27,7 +27,7 @@ extension AppAction {
 
 extension AppAction {
   enum Settings {
-
+    case selectPayment(Alne.Payment)
   }
 }
 
