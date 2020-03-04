@@ -14,6 +14,7 @@ struct AppState {
   var overview = Overview()
   var transactions = TransactionList()
   var editor = Editor()
+  var settings = Settings()
   // shared global state
 
   var accountDetail: AccountDetail

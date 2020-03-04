@@ -37,8 +37,12 @@ struct AppReducer {
           appState.shared.period = .weekly
         }
       }
-    case .settings:
-      ()
+    case .settings(let subaction):
+      switch subaction {
+      case .togglePayment:
+        appState.settings.isPaymentEnabled.toggle()
+        
+      }
     case .accounts(let subaction):
       switch subaction {
       case .update(let account):
