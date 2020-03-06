@@ -10,6 +10,7 @@ import SwiftUI
 
 struct EditorView: View {
   @EnvironmentObject var store: AppStore
+
   private var state: AppState.Editor {
     store.state.editor
   }
@@ -19,35 +20,7 @@ struct EditorView: View {
 
   enum Mode {
     case new
-    case edit(Alne.Transaction)
-  }
-
-  var mode: Mode
-  @State var amount: String
-  @State var selectedCurrency: Alne.Currency
-  @State var selectedEmoji: Alne.Catemoji
-  @State var selectedDate: Date
-  @State var notes: String
-  @State var payment: String
-
-  init(mode: Mode) {
-    switch mode {
-    case .new:
-      self._notes = State(initialValue: "")
-      self._amount = State(initialValue: "")
-      self._selectedDate = State(initialValue: Date())
-      self._selectedCurrency = State(initialValue: .cny)
-      self._selectedEmoji = State(initialValue: Alne.Catemoji.fruit(.apple))
-      self._payment = State(initialValue: "Pay")
-    case .edit(let transaction):
-      self._notes = State(initialValue: transaction.notes)
-      self._amount = State(initialValue: "\(transaction.amount)")
-      self._selectedDate = State(initialValue: transaction.date)
-      self._selectedCurrency = State(initialValue: transaction.currency)
-      self._selectedEmoji = State(initialValue: transaction.catemoji)
-      self._payment = State(initialValue: transaction.payment ?? "Pay")
-    }
-    self.mode = mode
+    case edit
   }
 
   var body: some View {
@@ -100,7 +73,7 @@ struct EditorView: View {
 struct EditorView_Previews: PreviewProvider {
   @State static var notes = ""
   static var previews: some View {
-    EditorView(mode: .new)
+    EditorView().environmentObject(AppStore())
   }
 }
 #endif

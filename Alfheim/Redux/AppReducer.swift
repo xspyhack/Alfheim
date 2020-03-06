@@ -20,8 +20,14 @@ struct AppReducer {
         appState.overview.isEditorPresented = presenting
       case .editTransaction(let transaction):
         appState.overview.selectedTransaction = transaction
+        appState.overview.editingTransaction = true
+        appState.editor.isValid = true // Important! need set here
+        appState.editor.validator.reset(.edit(transaction))
       case .editTransactionDone:
         appState.overview.selectedTransaction = nil
+        appState.overview.editingTransaction = false
+        appState.editor.isValid = false // Important! need set here
+        appState.editor.validator.reset(.new)
       case .toggleStatistics(let presenting):
         appState.overview.isStatisticsPresented = presenting
       case .toggleAccountDetail(let presenting):
@@ -39,8 +45,13 @@ struct AppReducer {
       }
     case .editors(let subaction):
       switch subaction {
+      case .new:
+        appState.editor.validator.reset(.new)
+      case .edit(let transaction):
+        appState.editor.validator.reset(.edit(transaction))
       case .save(let transaction):
         appState.shared.allTransactions.append(transaction)
+        appState.editor.validator.reset(.new)
       case .validate(let valid):
         appState.editor.isValid = valid
       }

@@ -90,6 +90,7 @@ extension AppState {
     var isEditorPresented: Bool = false
     var isStatisticsPresented: Bool = false
     var selectedTransaction: Alne.Transaction?
+    var editingTransaction: Bool = false
     var isAccountDetailPresented: Bool = false
 
     var transactions: [Alne.Transaction] {
@@ -107,6 +108,11 @@ extension AppState {
 extension AppState {
   /// Composer, editor state
   struct Editor {
+    enum Mode {
+      case new
+      case edit(Alne.Transaction)
+    }
+
     class Validator {
       @Published var amount: String = ""
       @Published var currency: Alne.Currency = .cny
@@ -115,16 +121,23 @@ extension AppState {
       @Published var notes: String = ""
       @Published var payment: String = "Pay"
 
-      init(_ transaction: Alne.Transaction) {
-        amount = "\(transaction.amount)"
-        currency = transaction.currency
-        emoji = transaction.catemoji
-        date = transaction.date
-        notes = transaction.notes
-        payment = transaction.payment ?? "Pay"
-      }
-
-      init() {
+      func reset(_ mode: Mode) {
+        switch mode {
+        case .new:
+          amount = ""
+          currency = .cny
+          emoji = Alne.Catemoji.fruit(.apple)
+          date = Date()
+          notes = ""
+          payment = "Pay"
+        case .edit(let transaction):
+          amount = "\(transaction.amount)"
+          currency = transaction.currency
+          emoji = transaction.catemoji
+          date = transaction.date
+          notes = transaction.notes
+          payment = transaction.payment ?? "Pay"
+        }
       }
 
       var isAmountValid: AnyPublisher<Bool, Never> {

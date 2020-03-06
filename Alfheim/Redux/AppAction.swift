@@ -30,6 +30,8 @@ extension AppAction {
   enum Editors {
     case save(Alne.Transaction)
     case validate(valid: Bool)
+    case edit(Alne.Transaction)
+    case new
   }
 }
 

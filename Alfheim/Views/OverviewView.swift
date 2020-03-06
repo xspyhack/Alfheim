@@ -65,20 +65,19 @@ struct OverviewView: View {
                 }
               }
             }
-            .sheet(item: self.binding.selectedTransaction) {
-              ComposerView(transaction: $0) {
+            .sheet(isPresented: self.binding.editingTransaction) {
+              ComposerView(mode: .edit) {
                 self.store.dispatch(.overviews(.editTransactionDone))
               }
               .environmentObject(self.store)
             }
-            /*
-            .sheet(isPresented: self.binding.isEditingTransaction) {
-              ComposerView(transaction: self.state.selectedTransaction) {
-                self.store.dispatch(.overview(.editTransactionDone))
+            /* don't use this
+            .sheet(item: self.binding.selectedTransaction) { transaction in
+              ComposerView(mode: .edit) {
+                self.store.dispatch(.overviews(.editTransactionDone))
               }
               .environmentObject(self.store)
-            }
-            */
+            }*/
           }
           .padding(20)
         }
@@ -91,7 +90,7 @@ struct OverviewView: View {
           Text("New Transaction").bold()
         }
         .sheet(isPresented: binding.isEditorPresented) {
-          ComposerView(transaction: nil) {
+          ComposerView(mode: .new) {
             self.store.dispatch(.overviews(.toggleNewTransaction(presenting: false)))
           }
           .environmentObject(self.store)

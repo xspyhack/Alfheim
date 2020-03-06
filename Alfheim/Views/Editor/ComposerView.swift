@@ -17,13 +17,17 @@ struct ComposerView: View {
     store.state.editor
   }
 
-  var transaction: Alne.Transaction?
-  var onDismiss: (() -> Void)
+  private var onDismiss: (() -> Void)
+
+  init(mode: EditorView.Mode, onDismiss: @escaping (() -> Void)) {
+    self.onDismiss = onDismiss
+  }
 
   var body: some View {
     NavigationView {
-      EditorView(mode: transaction.map { .edit($0) } ?? .new)
+      EditorView()
         .environment(\.horizontalSizeClass, .regular)
+        .navigationBarTitle("New Transaction")
         .navigationBarItems(
           leading: Button(action: onDismiss) {
             Text("Cancel")
@@ -43,7 +47,7 @@ struct ComposerView: View {
 #if DEBUG
 struct ComposerView_Previews: PreviewProvider {
   static var previews: some View {
-    ComposerView(transaction: Alne.Transactions.samples().first!, onDismiss: {})
+    ComposerView(mode: .new, onDismiss: {})
   }
 }
 #endif
