@@ -37,6 +37,13 @@ struct AppReducer {
           appState.shared.period = .weekly
         }
       }
+    case .editors(let subaction):
+      switch subaction {
+      case .save(let transaction):
+        appState.shared.allTransactions.append(transaction)
+      case .validate(let valid):
+        appState.editor.isValid = valid
+      }
     case .settings(let subaction):
       switch subaction {
       case .togglePayment:

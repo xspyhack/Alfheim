@@ -11,6 +11,11 @@ import SwiftUI
 struct ComposerView: View {
   // alternative dismiss
   @Environment(\.presentationMode) var presentationMode
+  @EnvironmentObject var store: AppStore
+
+  private var state: AppState.Editor {
+    store.state.editor
+  }
 
   var transaction: Alne.Transaction?
   var onDismiss: (() -> Void)
@@ -19,17 +24,18 @@ struct ComposerView: View {
     NavigationView {
       EditorView(mode: transaction.map { .edit($0) } ?? .new)
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("New Transaction")
         .navigationBarItems(
           leading: Button(action: onDismiss) {
             Text("Cancel")
           },
           trailing: Button(action: {
+            self.store.dispatch(.editors(.save(self.state.validator.transaction)))
             self.presentationMode.wrappedValue.dismiss()
           }) {
             Text("Save").bold()
           }
-      )
+          .disabled(!state.isValid)
+        )
     }
   }
 }

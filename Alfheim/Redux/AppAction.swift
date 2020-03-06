@@ -10,6 +10,7 @@ import Foundation
 
 enum AppAction {
   case overviews(Overviews)
+  case editors(Editors)
   case settings(Settings)
   case accounts(Accounts)
 }
@@ -22,6 +23,13 @@ extension AppAction {
     case toggleStatistics(presenting: Bool)
     case toggleAccountDetail(presenting: Bool)
     case switchPeriod
+  }
+}
+
+extension AppAction {
+  enum Editors {
+    case save(Alne.Transaction)
+    case validate(valid: Bool)
   }
 }
 

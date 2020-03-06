@@ -9,6 +9,14 @@
 import SwiftUI
 
 struct EditorView: View {
+  @EnvironmentObject var store: AppStore
+  private var state: AppState.Editor {
+    store.state.editor
+  }
+  private var binding: Binding<AppState.Editor> {
+    $store.state.editor
+  }
+
   enum Mode {
     case new
     case edit(Alne.Transaction)
@@ -47,14 +55,14 @@ struct EditorView: View {
       Section(header: Spacer()) {
         HStack {
           Text("Amount")
-          TextField("0.00", text: $amount)
+          TextField("0.00", text: binding.validator.amount)
             .keyboardType(.decimalPad)
             .multilineTextAlignment(.trailing).padding(.trailing, -2.0)
-          Text("\(self.selectedCurrency.symbol)")
+          Text("\(self.state.validator.currency.symbol)")
             .foregroundColor(.gray).opacity(0.8).padding(.trailing, -2.0)
         }
         HStack {
-          Picker(selection: $selectedCurrency, label: Text("Currency")) {
+          Picker(selection: binding.validator.currency, label: Text("Currency")) {
             ForEach(Alne.Currency.allCases, id: \.self) {
               Text($0.text).tag($0)
             }
@@ -63,21 +71,21 @@ struct EditorView: View {
       }
 
       Section {
-        DatePicker(selection: $selectedDate, in: ...Date(), displayedComponents: [.date, .hourAndMinute]) {
+        DatePicker(selection: binding.validator.date, in: ...Date(), displayedComponents: [.date, .hourAndMinute]) {
           Text("Date")
         }
         HStack {
-          CatemojiPicker(selection: $selectedEmoji, label: Text("Emoji"))
+          CatemojiPicker(selection: binding.validator.emoji, label: Text("Emoji"))
         }
         HStack {
           Text("Payment")
-          TextField("", text: $payment)
+          TextField("", text: binding.validator.payment)
             .foregroundColor(.gray).opacity(0.8)
             .multilineTextAlignment(.trailing)
         }
         HStack {
           Text("Notes")
-          TextField("", text: $notes)
+          TextField("", text: binding.validator.notes)
             .lineLimit(nil)
             .multilineTextAlignment(.trailing)
         }
@@ -86,6 +94,7 @@ struct EditorView: View {
     .listStyle(GroupedListStyle())
   }
 }
+
 
 #if DEBUG
 struct EditorView_Previews: PreviewProvider {

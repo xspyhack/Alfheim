@@ -31,6 +31,8 @@
 		1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995B23D7FCF500E6BBD9 /* Sector.swift */; };
 		1F39995E23D805C600E6BBD9 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995D23D805C600E6BBD9 /* PieChart.swift */; };
 		1F5A47B3240D0D9300DEA96B /* Alne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A47B2240D0D9300DEA96B /* Alne.swift */; };
+		1F8AC495241210AF006D9551 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC494241210AE006D9551 /* EditorViewModel.swift */; };
+		1F8AC49924122619006D9551 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC49824122619006D9551 /* CurrencyFormatter.swift */; };
 		782403EC23F2E48000478338 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403EB23F2E48000478338 /* AppAction.swift */; };
 		782403EE23F2E55100478338 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403ED23F2E55100478338 /* AppError.swift */; };
 		782403F023F2E5FF00478338 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403EF23F2E5FF00478338 /* Redux.swift */; };
@@ -97,6 +99,8 @@
 		1F39995B23D7FCF500E6BBD9 /* Sector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sector.swift; sourceTree = "<group>"; };
 		1F39995D23D805C600E6BBD9 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		1F5A47B2240D0D9300DEA96B /* Alne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alne.swift; sourceTree = "<group>"; };
+		1F8AC494241210AE006D9551 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
+		1F8AC49824122619006D9551 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
 		782403EB23F2E48000478338 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		782403ED23F2E55100478338 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		782403EF23F2E5FF00478338 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				FA014085240B8F7100F6FE92 /* AccountViewModel.swift */,
+				1F8AC494241210AE006D9551 /* EditorViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				FA527AC824095C9800CEC549 /* Date+Alfheim.swift */,
 				FAC065A12409843B00A73F14 /* Text+Gradient.swift */,
 				FAEC037A240AB840003BFE2C /* Color+Tagit.swift */,
+				1F8AC49824122619006D9551 /* CurrencyFormatter.swift */,
 			);
 			path = Kit;
 			sourceTree = "<group>";
@@ -459,6 +465,8 @@
 				1F2379B723D84C0E00B4E79E /* Piece.swift in Sources */,
 				789E8E6723E807CA006D180B /* EditorView.swift in Sources */,
 				789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */,
+				1F8AC495241210AF006D9551 /* EditorViewModel.swift in Sources */,
+				1F8AC49924122619006D9551 /* CurrencyFormatter.swift in Sources */,
 				789E8E6C23E810A6006D180B /* Account.swift in Sources */,
 				1F3998FD23D6958700E6BBD9 /* SceneDelegate.swift in Sources */,
 				1F39995E23D805C600E6BBD9 /* PieChart.swift in Sources */,

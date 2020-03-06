@@ -16,6 +16,10 @@ struct OverviewView: View {
     store.state.overview
   }
 
+  private var shared: AppState.Shared {
+    store.state.shared
+  }
+
   private var binding: Binding<AppState.Overview> {
     $store.state.overview
   }
@@ -54,7 +58,7 @@ struct OverviewView: View {
               }
               .foregroundColor(.primary)
             }) {
-              ForEach(self.state.transactions) { transaction in
+              ForEach(self.shared.periodTransactions) { transaction in
                 TransactionRow(transaction: transaction)
                   .onTapGesture {
                     self.store.dispatch(.overviews(.editTransaction(transaction)))

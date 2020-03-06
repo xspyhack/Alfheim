@@ -21,7 +21,8 @@ struct AppState {
 
   init() {
     let account = Alne.Accounts.expenses
-    shared = Shared(account: account)
+    let transactions = Alne.Transactions.samples()
+    shared = Shared(account: account, allTransactions: transactions)
     accountDetail = AccountDetail(account: account)
   }
 }
@@ -53,9 +54,7 @@ extension AppState {
     /// this should be latest selected period
     var period: Period = .montly
 
-    var allTransactions: [Alne.Transaction] {
-      Alne.Transactions.samples()
-    }
+    var allTransactions: [Alne.Transaction]
 
     var periodTransactions: [Alne.Transaction] {
       let current = Date()
@@ -108,6 +107,57 @@ extension AppState {
 extension AppState {
   /// Composer, editor state
   struct Editor {
+    class Validator {
+      @Published var amount: String = ""
+      @Published var currency: Alne.Currency = .cny
+      @Published var emoji: Alne.Catemoji = Alne.Catemoji.fruit(.apple)
+      @Published var date: Date = Date()
+      @Published var notes: String = ""
+      @Published var payment: String = "Pay"
+
+      init(_ transaction: Alne.Transaction) {
+        amount = "\(transaction.amount)"
+        currency = transaction.currency
+        emoji = transaction.catemoji
+        date = transaction.date
+        notes = transaction.notes
+        payment = transaction.payment ?? "Pay"
+      }
+
+      init() {
+      }
+
+      var isAmountValid: AnyPublisher<Bool, Never> {
+        $amount.map { $0.isValidAmount }
+          .eraseToAnyPublisher()
+      }
+
+      var isNotesValid: AnyPublisher<Bool, Never> {
+        $notes.map { $0 != "" }
+          .eraseToAnyPublisher()
+      }
+
+      var isValid: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest(isAmountValid, isNotesValid).map { $0 && $1 }
+          .eraseToAnyPublisher()
+      }
+
+      var transaction: Alne.Transaction {
+        Alne.Transaction(date: date,
+                         amount: Double(amount)!,
+                         catemoji: emoji,
+                         notes: notes)
+      }
+    }
+
+    var validator = Validator()
+    var isValid: Bool = false
+  }
+}
+
+extension String {
+  var isValidAmount: Bool {
+    self != "" && Double(self) != nil
   }
 }
 
