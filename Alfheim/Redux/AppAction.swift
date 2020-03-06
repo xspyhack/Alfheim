@@ -18,7 +18,7 @@ enum AppAction {
 extension AppAction {
   enum Overviews {
     case toggleNewTransaction(presenting: Bool)
-    case editTransaction(Transaction)
+    case editTransaction(Alne.Transaction)
     case editTransactionDone
     case toggleStatistics(presenting: Bool)
     case toggleAccountDetail(presenting: Bool)
@@ -28,9 +28,9 @@ extension AppAction {
 
 extension AppAction {
   enum Editors {
-    case save(Transaction)
+    case save(Alne.Transaction)
     case validate(valid: Bool)
-    case edit(Transaction)
+    case edit(Alne.Transaction)
     case new
   }
 }

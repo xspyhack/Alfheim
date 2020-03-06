@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TransactionRow: View {
-  var transaction: Transaction
+  var transaction: Alne.Transaction
 
   var body: some View {
     HStack {

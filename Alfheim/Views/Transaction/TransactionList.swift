@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TransactionList: View {
   @EnvironmentObject var store: AppStore
-  @State private var transaction: Transaction?
+  @State private var transaction: Alne.Transaction?
 
   var body: some View {
     List {

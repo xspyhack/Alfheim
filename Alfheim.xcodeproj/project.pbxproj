@@ -33,6 +33,9 @@
 		1F5A47B3240D0D9300DEA96B /* Alne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A47B2240D0D9300DEA96B /* Alne.swift */; };
 		1F8AC495241210AF006D9551 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC494241210AE006D9551 /* EditorViewModel.swift */; };
 		1F8AC49924122619006D9551 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC49824122619006D9551 /* CurrencyFormatter.swift */; };
+		1F8AC4872411EF95006D9551 /* Account+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC4862411EF95006D9551 /* Account+CoreData.swift */; };
+		1F8AC48D2411FCEC006D9551 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC48C2411FCEC006D9551 /* DataModel.swift */; };
+		1F8AC4932411FE6D006D9551 /* Transaction+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC4922411FE6D006D9551 /* Transaction+CoreData.swift */; };
 		782403EC23F2E48000478338 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403EB23F2E48000478338 /* AppAction.swift */; };
 		782403EE23F2E55100478338 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403ED23F2E55100478338 /* AppError.swift */; };
 		782403F023F2E5FF00478338 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403EF23F2E5FF00478338 /* Redux.swift */; };
@@ -101,6 +104,9 @@
 		1F5A47B2240D0D9300DEA96B /* Alne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alne.swift; sourceTree = "<group>"; };
 		1F8AC494241210AE006D9551 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
 		1F8AC49824122619006D9551 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		1F8AC4862411EF95006D9551 /* Account+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+CoreData.swift"; sourceTree = "<group>"; };
+		1F8AC48C2411FCEC006D9551 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		1F8AC4922411FE6D006D9551 /* Transaction+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreData.swift"; sourceTree = "<group>"; };
 		782403EB23F2E48000478338 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		782403ED23F2E55100478338 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		782403EF23F2E5FF00478338 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
@@ -266,6 +272,16 @@
 			path = Pie;
 			sourceTree = "<group>";
 		};
+		1F8AC4852411EF77006D9551 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				1F8AC4862411EF95006D9551 /* Account+CoreData.swift */,
+				1F8AC4922411FE6D006D9551 /* Transaction+CoreData.swift */,
+				1F8AC48C2411FCEC006D9551 /* DataModel.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		788863F023F2A3EE0037210B /* Redux */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +304,7 @@
 				789E8E6B23E810A6006D180B /* Account.swift */,
 				FAEC0378240AB126003BFE2C /* Tagit.swift */,
 				FAEC037C240ADA34003BFE2C /* Catemoji.swift */,
+				1F8AC4852411EF77006D9551 /* DataModel */,
 				FA014084240B8F5F00F6FE92 /* ViewModel */,
 			);
 			path = Models;
@@ -458,10 +475,12 @@
 				782403F223F5A3F300478338 /* StatisticsView.swift in Sources */,
 				1F39993123D6A0A400E6BBD9 /* OverviewView.swift in Sources */,
 				1F3998FB23D6958700E6BBD9 /* AppDelegate.swift in Sources */,
+				1F8AC4932411FE6D006D9551 /* Transaction+CoreData.swift in Sources */,
 				788863F223F2A3F70037210B /* AppStore.swift in Sources */,
 				FACF2A7623FFCFA2003BB675 /* ComposerView.swift in Sources */,
 				782403F623F6DBAF00478338 /* TransactionsView.swift in Sources */,
 				782403EC23F2E48000478338 /* AppAction.swift in Sources */,
+				1F8AC4872411EF95006D9551 /* Account+CoreData.swift in Sources */,
 				1F2379B723D84C0E00B4E79E /* Piece.swift in Sources */,
 				789E8E6723E807CA006D180B /* EditorView.swift in Sources */,
 				789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */,
@@ -499,6 +518,7 @@
 				1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */,
 				1F1CF967240622A500828426 /* Shape+Divided.swift in Sources */,
 				FAEC037B240AB840003BFE2C /* Color+Tagit.swift in Sources */,
+				1F8AC48D2411FCEC006D9551 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

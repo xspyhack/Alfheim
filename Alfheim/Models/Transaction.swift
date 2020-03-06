@@ -25,7 +25,7 @@ extension Alne {
   }
 }
 
-extension Transaction {
+extension Alne.Transaction {
   init(id: String = UUID().uuidString,
        date: Date,
        amount: Double,

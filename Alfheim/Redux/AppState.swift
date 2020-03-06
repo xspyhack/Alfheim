@@ -61,9 +61,9 @@ extension AppState {
     /// this should be latest selected sorting
     var sorting: Sorting = .date
 
-    var allTransactions: [Transaction]
+    var allTransactions: [Alne.Transaction]
 
-    var periodTransactions: [Transaction] {
+    var periodTransactions: [Alne.Transaction] {
       let current = Date()
       let startDate: Date
       switch period {
@@ -79,8 +79,8 @@ extension AppState {
         .filter { $0.date >= startDate }
     }
 
-    var displayTransactions: [Transaction] {
-      let sortBy: (Transaction, Transaction) -> Bool
+    var displayTransactions: [Alne.Transaction] {
+      let sortBy: (Alne.Transaction, Alne.Transaction) -> Bool
       switch sorting {
       case .date:
         sortBy = { $0.date > $1.date }
@@ -109,15 +109,15 @@ extension AppState {
   struct Overview {
     var isEditorPresented: Bool = false
     var isStatisticsPresented: Bool = false
-    var selectedTransaction: Transaction?
+    var selectedTransaction: Alne.Transaction?
     var editingTransaction: Bool = false
     var isAccountDetailPresented: Bool = false
 
-    var transactions: [Transaction] {
+    var transactions: [Alne.Transaction] {
       Alne.Transactions.samples()
     }
 
-    func displayTransactions(with period: Period, sorting: Sorting) -> [Transaction] {
+    func displayTransactions(with period: Period, sorting: Sorting) -> [Alne.Transaction] {
       let current = Date()
       let startDate: Date
       switch period {
@@ -129,7 +129,7 @@ extension AppState {
         startDate = current.start(of: .year)
       }
 
-      let sortBy: (Transaction, Transaction) -> Bool
+      let sortBy: (Alne.Transaction, Alne.Transaction) -> Bool
       switch sorting {
       case .date:
         sortBy = { $0.date > $1.date }
@@ -155,7 +155,7 @@ extension AppState {
   struct Editor {
     enum Mode {
       case new
-      case edit(Transaction)
+      case edit(Alne.Transaction)
     }
 
     class Validator {
@@ -203,16 +203,16 @@ extension AppState {
           .eraseToAnyPublisher()
       }
 
-      var transaction: Transaction {
+      var transaction: Alne.Transaction {
         switch mode {
         case .new:
-          return Transaction(date: date,
+          return Alne.Transaction(date: date,
                              amount: Double(amount)!,
                              catemoji: emoji,
                              notes: notes,
                              currency: currency)
         case .edit(let transaction):
-          return Transaction(id: transaction.id,
+          return Alne.Transaction(id: transaction.id,
                              date: date,
                              amount: Double(amount)!,
                              catemoji: emoji,
