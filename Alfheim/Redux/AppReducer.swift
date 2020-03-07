@@ -50,7 +50,11 @@ struct AppReducer {
       case .edit(let transaction):
         appState.editor.validator.reset(.edit(transaction))
       case .save(let transaction):
-        appState.shared.allTransactions.append(transaction)
+        if let index = state.shared.allTransactions.firstIndex(where: { $0.id == transaction.id }) {
+          appState.shared.allTransactions[index] = transaction
+        } else {
+          appState.shared.allTransactions.append(transaction)
+        }
         appState.editor.validator.reset(.new)
       case .validate(let valid):
         appState.editor.isValid = valid

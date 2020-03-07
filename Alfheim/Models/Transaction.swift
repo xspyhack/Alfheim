@@ -10,7 +10,7 @@ import Foundation
 
 extension Alne {
   struct Transaction: Identifiable {
-    var id: String { UUID().uuidString }
+    let id: String
     var date: Date
     var amount: Double
     var catemoji: Catemoji
@@ -22,6 +22,24 @@ extension Alne {
     var number: Int = 0
     var from: Account? = Accounts.income
     var to: Account? = Accounts.expenses
+  }
+}
+
+extension Alne.Transaction {
+  init(id: String = UUID().uuidString,
+       date: Date,
+       amount: Double,
+       catemoji: Alne.Catemoji,
+       notes: String,
+       currency: Alne.Currency = .cny,
+       payment: String? = nil) {
+    self.id = id
+    self.date = date
+    self.amount = amount
+    self.catemoji = catemoji
+    self.notes = notes
+    self.currency = currency
+    self.payment = payment
   }
 }
 

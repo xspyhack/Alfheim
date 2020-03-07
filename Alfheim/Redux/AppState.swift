@@ -121,6 +121,8 @@ extension AppState {
       @Published var notes: String = ""
       @Published var payment: String = "Pay"
 
+      var mode: Mode = .new
+
       func reset(_ mode: Mode) {
         switch mode {
         case .new:
@@ -138,6 +140,7 @@ extension AppState {
           notes = transaction.notes
           payment = transaction.payment ?? "Pay"
         }
+        self.mode = mode
       }
 
       var isAmountValid: AnyPublisher<Bool, Never> {
@@ -156,10 +159,21 @@ extension AppState {
       }
 
       var transaction: Alne.Transaction {
-        Alne.Transaction(date: date,
-                         amount: Double(amount)!,
-                         catemoji: emoji,
-                         notes: notes)
+        switch mode {
+        case .new:
+          return Alne.Transaction(date: date,
+                                  amount: Double(amount)!,
+                                  catemoji: emoji,
+                                  notes: notes,
+                                  currency: currency)
+        case .edit(let transaction):
+          return Alne.Transaction(id: transaction.id,
+                                  date: date,
+                                  amount: Double(amount)!,
+                                  catemoji: emoji,
+                                  notes: notes,
+                                  currency: currency)
+        }
       }
     }
 

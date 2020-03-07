@@ -51,15 +51,15 @@ struct EditorView: View {
           CatemojiPicker(selection: binding.validator.emoji, label: Text("Emoji"))
         }
         HStack {
-          Text("Payment")
-          TextField("", text: binding.validator.payment)
-            .foregroundColor(.gray).opacity(0.8)
-            .multilineTextAlignment(.trailing)
-        }
-        HStack {
           Text("Notes")
           TextField("", text: binding.validator.notes)
             .lineLimit(nil)
+            .multilineTextAlignment(.trailing)
+        }
+        HStack {
+          Text("Payment")
+          TextField("", text: binding.validator.payment)
+            .foregroundColor(.gray).opacity(0.8)
             .multilineTextAlignment(.trailing)
         }
       }
