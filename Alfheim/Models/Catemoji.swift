@@ -88,14 +88,14 @@ extension Alne {
 }
 
 
-extension Alne.Catemoji {
+extension Catemoji {
   enum Food: String, CaseIterable {
     case groceries = "🛒"
     case eating = "🍽"
     case snacks = "🍟"
     case others = "🍔"
 
-    var catemoji: Alne.Catemoji {
+    var catemoji: Catemoji {
       .food(self)
     }
   }
@@ -107,7 +107,7 @@ extension Alne.Catemoji {
     case cherries = "🍒"
     case others = "🍓"
 
-    var catemoji: Alne.Catemoji {
+    var catemoji: Catemoji {
       .fruit(self)
     }
   }
@@ -119,7 +119,7 @@ extension Alne.Catemoji {
     case wine = "🍷"
     case others = "🍹"
 
-    var catemoji: Alne.Catemoji {
+    var catemoji: Catemoji {
       .drink(self)
     }
   }
@@ -132,7 +132,7 @@ extension Alne.Catemoji {
     case skirt = "👗"
     case others = "👔"
 
-    var catemoji: Alne.Catemoji {
+    var catemoji: Catemoji {
       .clothes(self)
     }
   }
@@ -142,7 +142,7 @@ extension Alne.Catemoji {
     case travel = "🏖"
     case others = "🏠"
 
-    var catemoji: Alne.Catemoji {
+    var catemoji: Catemoji {
       .household(self)
     }
   }
@@ -152,7 +152,7 @@ extension Alne.Catemoji {
     case privacy = "🔏"
     case others = "🤷‍♂️"
 
-    var catemoji: Alne.Catemoji {
+    var catemoji: Catemoji {
       .personal(self)
     }
   }
@@ -167,7 +167,7 @@ extension Alne.Catemoji {
     case boat = "🛳"
     case others = "🚲"
 
-    var catemoji: Alne.Catemoji {
+    var catemoji: Catemoji {
       .transportation(self)
     }
   }

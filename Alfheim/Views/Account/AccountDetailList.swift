@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AccountDetailList: View {
-  @Binding var account: Alne.Account
+  @Binding var account: Account
 
   var body: some View {
     List {
@@ -19,7 +19,7 @@ struct AccountDetailList: View {
       }
 
       Section {
-        ForEach(Alne.Tagit.allCases) { tag in
+        ForEach(Tagit.allCases) { tag in
           HStack {
             Circle().fill(Color(tagit: tag)).frame(width: 20, height: 20)
             Text(tag.name)

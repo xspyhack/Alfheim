@@ -24,13 +24,13 @@ extension Alne {
   }
 }
 
-extension Alne.Tagit: Identifiable {
+extension Tagit: Identifiable {
   var id: String {
     return rawValue
   }
 }
 
-extension Alne.Tagit {
+extension Tagit {
   init(hex: Int) {
     self.init(stringLiteral: String(format:"#%06X", hex))
   }
@@ -40,7 +40,7 @@ extension Alne.Tagit {
   }
 }
 
-extension Alne.Tagit {
+extension Tagit {
   var hex: String {
     switch self {
     case .red:
@@ -61,7 +61,7 @@ extension Alne.Tagit {
   }
 }
 
-extension Alne.Tagit: ExpressibleByIntegerLiteral {
+extension Tagit: ExpressibleByIntegerLiteral {
   init(integerLiteral value: Int) {
     switch value {
     case 0:
@@ -82,7 +82,7 @@ extension Alne.Tagit: ExpressibleByIntegerLiteral {
   }
 }
 
-extension Alne.Tagit: ExpressibleByStringLiteral {
+extension Tagit: ExpressibleByStringLiteral {
   init(stringLiteral value: String) {
     switch value {
     case "#FF2600":

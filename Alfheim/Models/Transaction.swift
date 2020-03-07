@@ -25,13 +25,13 @@ extension Alne {
   }
 }
 
-extension Alne.Transaction {
+extension Transaction {
   init(id: String = UUID().uuidString,
        date: Date,
        amount: Double,
-       catemoji: Alne.Catemoji,
+       catemoji: Catemoji,
        notes: String,
-       currency: Alne.Currency = .cny,
+       currency: Currency = .cny,
        payment: String? = nil) {
     self.id = id
     self.date = date

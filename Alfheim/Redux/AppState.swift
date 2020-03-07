@@ -61,9 +61,9 @@ extension AppState {
     /// this should be latest selected sorting
     var sorting: Sorting = .date
 
-    var allTransactions: [Alne.Transaction]
+    var allTransactions: [Transaction]
 
-    var periodTransactions: [Alne.Transaction] {
+    var periodTransactions: [Transaction] {
       let current = Date()
       let startDate: Date
       switch period {
@@ -79,8 +79,8 @@ extension AppState {
         .filter { $0.date >= startDate }
     }
 
-    var displayTransactions: [Alne.Transaction] {
-      let sortBy: (Alne.Transaction, Alne.Transaction) -> Bool
+    var displayTransactions: [Transaction] {
+      let sortBy: (Transaction, Transaction) -> Bool
       switch sorting {
       case .date:
         sortBy = { $0.date > $1.date }
@@ -109,15 +109,15 @@ extension AppState {
   struct Overview {
     var isEditorPresented: Bool = false
     var isStatisticsPresented: Bool = false
-    var selectedTransaction: Alne.Transaction?
+    var selectedTransaction: Transaction?
     var editingTransaction: Bool = false
     var isAccountDetailPresented: Bool = false
 
-    var transactions: [Alne.Transaction] {
+    var transactions: [Transaction] {
       Alne.Transactions.samples()
     }
 
-    func displayTransactions(with period: Period, sorting: Sorting) -> [Alne.Transaction] {
+    func displayTransactions(with period: Period, sorting: Sorting) -> [Transaction] {
       let current = Date()
       let startDate: Date
       switch period {
@@ -129,7 +129,7 @@ extension AppState {
         startDate = current.start(of: .year)
       }
 
-      let sortBy: (Alne.Transaction, Alne.Transaction) -> Bool
+      let sortBy: (Transaction, Transaction) -> Bool
       switch sorting {
       case .date:
         sortBy = { $0.date > $1.date }
@@ -155,13 +155,13 @@ extension AppState {
   struct Editor {
     enum Mode {
       case new
-      case edit(Alne.Transaction)
+      case edit(Transaction)
     }
 
     class Validator {
       @Published var amount: String = ""
-      @Published var currency: Alne.Currency = .cny
-      @Published var emoji: Alne.Catemoji = Alne.Catemoji.fruit(.apple)
+      @Published var currency: Currency = .cny
+      @Published var emoji: Catemoji = Catemoji.fruit(.apple)
       @Published var date: Date = Date()
       @Published var notes: String = ""
       @Published var payment: String = "Pay"
@@ -173,7 +173,7 @@ extension AppState {
         case .new:
           amount = ""
           currency = .cny
-          emoji = Alne.Catemoji.fruit(.apple)
+          emoji = Catemoji.fruit(.apple)
           date = Date()
           notes = ""
           payment = "Pay"
@@ -203,21 +203,21 @@ extension AppState {
           .eraseToAnyPublisher()
       }
 
-      var transaction: Alne.Transaction {
+      var transaction: Transaction {
         switch mode {
         case .new:
-          return Alne.Transaction(date: date,
-                                  amount: Double(amount)!,
-                                  catemoji: emoji,
-                                  notes: notes,
-                                  currency: currency)
+          return Transaction(date: date,
+                             amount: Double(amount)!,
+                             catemoji: emoji,
+                             notes: notes,
+                             currency: currency)
         case .edit(let transaction):
-          return Alne.Transaction(id: transaction.id,
-                                  date: date,
-                                  amount: Double(amount)!,
-                                  catemoji: emoji,
-                                  notes: notes,
-                                  currency: currency)
+          return Transaction(id: transaction.id,
+                             date: date,
+                             amount: Double(amount)!,
+                             catemoji: emoji,
+                             notes: notes,
+                             currency: currency)
         }
       }
     }
