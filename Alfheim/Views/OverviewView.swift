@@ -58,7 +58,7 @@ struct OverviewView: View {
               }
               .foregroundColor(.primary)
             }) {
-              ForEach(self.shared.periodTransactions) { transaction in
+              ForEach(self.shared.displayTransactions) { transaction in
                 TransactionRow(transaction: transaction)
                   .onTapGesture {
                     self.store.dispatch(.overviews(.editTransaction(transaction)))

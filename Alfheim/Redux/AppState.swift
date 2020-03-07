@@ -45,6 +45,11 @@ extension AppState {
       }
     }
   }
+
+  enum Sorting: CaseIterable {
+    case date
+    case currency
+  }
 }
 
 extension AppState {
@@ -53,6 +58,8 @@ extension AppState {
     var account: Alne.Account
     /// this should be latest selected period
     var period: Period = .montly
+    /// this should be latest selected sorting
+    var sorting: Sorting = .date
 
     var allTransactions: [Alne.Transaction]
 
@@ -70,6 +77,19 @@ extension AppState {
 
       return allTransactions
         .filter { $0.date >= startDate }
+    }
+
+    var displayTransactions: [Alne.Transaction] {
+      let sortBy: (Alne.Transaction, Alne.Transaction) -> Bool
+      switch sorting {
+      case .date:
+        sortBy = { $0.date > $1.date }
+      case .currency:
+        sortBy = { $0.currency.rawValue < $1.currency.rawValue }
+      }
+
+      return periodTransactions
+        .sorted(by: sortBy)
     }
 
     var amount: Double {
@@ -95,6 +115,31 @@ extension AppState {
 
     var transactions: [Alne.Transaction] {
       Alne.Transactions.samples()
+    }
+
+    func displayTransactions(with period: Period, sorting: Sorting) -> [Alne.Transaction] {
+      let current = Date()
+      let startDate: Date
+      switch period {
+      case .weekly:
+        startDate = current.start(of: .week)
+      case .montly:
+        startDate = current.start(of: .month)
+      case .yearly:
+        startDate = current.start(of: .year)
+      }
+
+      let sortBy: (Alne.Transaction, Alne.Transaction) -> Bool
+      switch sorting {
+      case .date:
+        sortBy = { $0.date > $1.date }
+      case .currency:
+        sortBy = { $0.currency.rawValue < $1.currency.rawValue }
+      }
+
+      return transactions
+        .filter { $0.date >= startDate }
+        .sorted(by: sortBy)
     }
   }
 }
