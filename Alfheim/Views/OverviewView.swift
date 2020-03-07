@@ -65,11 +65,12 @@ struct OverviewView: View {
                 }
               }
             }
-            .sheet(isPresented: self.binding.editingTransaction) {
-              ComposerView(mode: .edit) {
+            .sheet(
+              isPresented: self.binding.editingTransaction,
+              onDismiss: {
                 self.store.dispatch(.overviews(.editTransactionDone))
-              }
-              .environmentObject(self.store)
+            }) {
+              ComposerView(mode: .edit).environmentObject(self.store)
             }
             /* don't use this
             .sheet(item: self.binding.selectedTransaction) { transaction in
@@ -89,11 +90,13 @@ struct OverviewView: View {
         }) {
           Text("New Transaction").bold()
         }
-        .sheet(isPresented: binding.isEditorPresented) {
-          ComposerView(mode: .new) {
+        .sheet(
+          isPresented: binding.isEditorPresented,
+          onDismiss: {
             self.store.dispatch(.overviews(.toggleNewTransaction(presenting: false)))
-          }
-          .environmentObject(self.store)
+        }) {
+          ComposerView(mode: .new)
+            .environmentObject(self.store)
         }
       )
     }

@@ -17,11 +17,7 @@ struct ComposerView: View {
     store.state.editor
   }
 
-  private var onDismiss: (() -> Void)
-
-  init(mode: EditorView.Mode, onDismiss: @escaping (() -> Void)) {
-    self.onDismiss = onDismiss
-  }
+  let mode: EditorView.Mode
 
   var body: some View {
     NavigationView {
@@ -29,7 +25,9 @@ struct ComposerView: View {
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("New Transaction")
         .navigationBarItems(
-          leading: Button(action: onDismiss) {
+          leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+          }) {
             Text("Cancel")
           },
           trailing: Button(action: {
@@ -47,7 +45,7 @@ struct ComposerView: View {
 #if DEBUG
 struct ComposerView_Previews: PreviewProvider {
   static var previews: some View {
-    ComposerView(mode: .new, onDismiss: {})
+    ComposerView(mode: .new)
   }
 }
 #endif
