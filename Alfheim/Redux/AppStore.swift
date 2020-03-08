@@ -8,16 +8,22 @@
 
 import Foundation
 import Combine
+import CoreData
 
 class AppStore: ObservableObject {
   @Published var state: AppState
   private let reducer: AppReducer
 
+  var managedObjectContext: NSManagedObjectContext
+
   private var disposeBag = Set<AnyCancellable>()
 
-  init(state: AppState = AppState(), reducer: AppReducer = AppReducer()) {
+  init(state: AppState = AppState(),
+       reducer: AppReducer = AppReducer(),
+       moc: NSManagedObjectContext) {
     self.state = state
     self.reducer = reducer
+    self.managedObjectContext = moc
 
     binding()
   }
@@ -28,6 +34,33 @@ class AppStore: ObservableObject {
         self.dispatch(.editors(.validate(valid: isValid)))
       }
       .store(in: &disposeBag)
+
+    Persistences.Account(context: managedObjectContext)
+      .loadAll()
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print("Load account finished")
+        case .failure(let error):
+          print("Load account failed: \(error)")
+        }
+      }, receiveValue: { accounts in
+        guard let account = accounts.first else {
+          return
+        }
+        self.dispatch(.accounts(.update(Alne.Account(id: account.id.uuidString, name: account.name, description: account.introduction ?? "", tag: .alfheim, group: .expenses, emoji: nil))))
+      })
+      .store(in: &disposeBag)
+
+    let account = Account(context: managedObjectContext)
+    account.id = UUID()
+    account.introduction = "Test"
+
+    do {
+      try managedObjectContext.save()
+    } catch {
+      print("save error: \(error)")
+    }
   }
 
   func dispatch(_ action: AppAction) {

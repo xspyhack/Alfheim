@@ -73,7 +73,7 @@ struct EditorView: View {
 struct EditorView_Previews: PreviewProvider {
   @State static var notes = ""
   static var previews: some View {
-    EditorView().environmentObject(AppStore())
+    EditorView().environmentObject(AppStore(moc: viewContext))
   }
 }
 #endif

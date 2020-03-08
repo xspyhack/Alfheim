@@ -231,7 +231,7 @@ extension OverviewView {
 #if DEBUG
 struct AccountCard_Previews: PreviewProvider {
   static var previews: some View {
-    OverviewView.AccountCard().environment(\.colorScheme, .dark).environmentObject(AppStore())
+    OverviewView.AccountCard().environment(\.colorScheme, .dark).environmentObject(AppStore(moc: viewContext))
   }
 }
 #endif
@@ -239,7 +239,7 @@ struct AccountCard_Previews: PreviewProvider {
 #if DEBUG
 struct OverviewView_Previews: PreviewProvider {
   static var previews: some View {
-    OverviewView().environment(\.colorScheme, .dark).environmentObject(AppStore())
+    OverviewView().environment(\.colorScheme, .dark).environmentObject(AppStore(moc: viewContext))
   }
 }
 #endif

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Get the managed object context from the shared persistent container.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     // Create app store
-    let store = AppStore()
+    let store = AppStore(moc: context)
     // Start app story
     startAppStory(scene: scene, store: store, context: context)
   }
@@ -71,3 +71,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+#if DEBUG
+
+extension PreviewProvider {
+  static var viewContext: NSManagedObjectContext {
+    return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+  }
+}
+#endif
