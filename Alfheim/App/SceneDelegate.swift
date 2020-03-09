@@ -24,6 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
 
   private func startAppStory(scene: UIScene, store: AppStore, context: NSManagedObjectContext) {
+    // Bootstrap persistences and other environments
+    bootstrap(context: context)
+
     // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
     // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
     let overviewView = OverviewView().environment(\.managedObjectContext, context).environmentObject(store)
@@ -34,6 +37,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = UIHostingController(rootView: overviewView)
         self.window = window
         window.makeKeyAndVisible()
+    }
+  }
+
+  private func bootstrap(context: NSManagedObjectContext) {
+    Persistences.Account(context: context).empty { result in
+      switch result {
+      case .success(let empty):
+        if empty {
+           Persistences.Bootstrap(context: context).start()
+        }
+      case .failure(let error):
+        print("Execute core data fetch request failed: \(error)")
+      }
     }
   }
 

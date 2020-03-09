@@ -17,7 +17,8 @@ final class Account: NSManagedObject, Identifiable {
   @NSManaged var id: UUID
   @NSManaged var name: String
   @NSManaged var introduction: String
-  @NSManaged var tag: String?
+  @NSManaged var group: String
   @NSManaged var currency: Int16
+  @NSManaged var tag: String?
   @NSManaged var emoji: String?
 }

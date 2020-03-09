@@ -51,7 +51,7 @@ extension Alne {
               name: "Assets",
               description: "Assets represent the money you have (e.g. crash).",
               tag: "",
-              group: .income)
+              group: .assets)
     }
 
     static var liabilities: Account {

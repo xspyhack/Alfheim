@@ -16,7 +16,7 @@ protocol AppCommand {
 struct LoadTransactionCommand: AppCommand {
   func execute(in store: AppStore) {
     let token = SubscriptionToken()
-    Persistences.Transaction(context: store.managedObjectContext)
+    Persistences.Transaction(context: store.context)
       .loadAll()
       .sink(receiveCompletion: { completion in
         switch completion {

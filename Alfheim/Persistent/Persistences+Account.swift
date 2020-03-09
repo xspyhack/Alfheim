@@ -14,8 +14,36 @@ extension Persistences {
   struct Account {
     let context: NSManagedObjectContext
 
-    init(context: NSManagedObjectContext) {
-      self.context = context
+    enum Buildin: String {
+      case expenses
+
+      var name: String {
+        return rawValue.capitalized
+      }
+
+      var id: String {
+        switch self {
+        case .expenses:
+          return "_expenses"
+        }
+      }
+    }
+
+    /// Needs executed within a context  in scope
+    func empty() throws -> Bool {
+      let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
+      return try fetchRequest.execute().isEmpty
+    }
+
+    /// Without a context in scope
+    func empty(block: @escaping (Result<Bool, Error>) -> Void) {
+      context.perform {
+        do {
+          block(.success(try self.empty()))
+        } catch {
+          block(.failure(error))
+        }
+      }
     }
 
     func loadAll() -> AnyPublisher<[Alfheim.Account], NSError> {
@@ -26,19 +54,16 @@ extension Persistences {
     }
 
     func load(with predicate: NSPredicate) -> AnyPublisher<[Alfheim.Account], NSError> {
-      let fetchRequest = NSFetchRequest<Alfheim.Account>(entityName: "Account")
+      let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
       fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
       fetchRequest.predicate = predicate
       return Publishers.FetchedResults(fetchRequest: fetchRequest, context: context)
         .eraseToAnyPublisher()
     }
 
-    func load(with name: String) -> AnyPublisher<Alfheim.Account, NSError> {
-      let fetchRequest = NSFetchRequest<Alfheim.Account>(entityName: "Account")
-      fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-      fetchRequest.predicate = NSPredicate(format: "name == %@", name)
-      return Publishers.FetchedResults(fetchRequest: fetchRequest, context: context)
-        .compactMap { $0.first }
+    func load(withName name: String) -> AnyPublisher<Alfheim.Account, NSError> {
+      let predicated = NSPredicate(format: "name == %@", name)
+      return load(with: predicated).compactMap { $0.first }
         .eraseToAnyPublisher()
     }
 

@@ -14,7 +14,7 @@ class AppStore: ObservableObject {
   @Published var state: AppState
   private let reducer: AppReducer
 
-  var managedObjectContext: NSManagedObjectContext
+  var context: NSManagedObjectContext
 
   private var disposeBag = Set<AnyCancellable>()
 
@@ -23,7 +23,7 @@ class AppStore: ObservableObject {
        moc: NSManagedObjectContext) {
     self.state = state
     self.reducer = reducer
-    self.managedObjectContext = moc
+    self.context = moc
 
     binding()
   }
@@ -35,8 +35,8 @@ class AppStore: ObservableObject {
       }
       .store(in: &disposeBag)
 
-    Persistences.Account(context: managedObjectContext)
-      .loadAll()
+    Persistences.Account(context: context)
+      .load(withName: Persistences.Account.Buildin.expenses.name)
       .sink(receiveCompletion: { completion in
         switch completion {
         case .finished:
@@ -44,24 +44,12 @@ class AppStore: ObservableObject {
         case .failure(let error):
           print("Load account failed: \(error)")
         }
-      }, receiveValue: { accounts in
-        guard let account = accounts.first else {
-          return
-        }
-        self.dispatch(.accounts(.update(Alne.Account(id: account.id.uuidString, name: account.name, description: account.introduction, tag: .alfheim, group: .expenses, emoji: account.emoji))))
+      }, receiveValue: { expenses in
+        let tag = expenses.tag!
+        let tagit = Tagit(stringLiteral: tag)
+        self.dispatch(.accounts(.update(Alne.Account(id: expenses.id.uuidString, name: expenses.name, description: expenses.introduction, tag: tagit, group: .expenses, emoji: expenses.emoji))))
       })
       .store(in: &disposeBag)
-
-    let account = Account(context: managedObjectContext)
-    account.id = UUID()
-    account.name = "Expense"
-    account.introduction = "Test"
-
-    do {
-      try managedObjectContext.save()
-    } catch {
-      print("save error: \(error)")
-    }
   }
 
   func dispatch(_ action: AppAction) {
