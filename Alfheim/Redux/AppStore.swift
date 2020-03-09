@@ -48,12 +48,13 @@ class AppStore: ObservableObject {
         guard let account = accounts.first else {
           return
         }
-        self.dispatch(.accounts(.update(Alne.Account(id: account.id.uuidString, name: account.name, description: account.introduction ?? "", tag: .alfheim, group: .expenses, emoji: nil))))
+        self.dispatch(.accounts(.update(Alne.Account(id: account.id.uuidString, name: account.name, description: account.introduction, tag: .alfheim, group: .expenses, emoji: nil))))
       })
       .store(in: &disposeBag)
 
     let account = Account(context: managedObjectContext)
     account.id = UUID()
+    account.name = "Expense"
     account.introduction = "Test"
 
     do {
