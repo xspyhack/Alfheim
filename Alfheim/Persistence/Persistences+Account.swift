@@ -29,17 +29,27 @@ extension Persistences {
       }
     }
 
-    /// Needs executed within a context  in scope
-    func empty() throws -> Bool {
+    func count(with predicate: NSPredicate? = nil) throws -> Int {
       let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
-      return try fetchRequest.execute().isEmpty
+      fetchRequest.predicate = predicate
+      return try context.count(for: fetchRequest)
+    }
+
+    func empty() throws -> Bool {
+      return try count() == 0
+    }
+
+    /// Needs executed within a context  in scope
+    func all() throws -> [Alfheim.Account] {
+      let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
+      return try fetchRequest.execute()
     }
 
     /// Without a context in scope
     func empty(block: @escaping (Result<Bool, Error>) -> Void) {
       context.perform {
         do {
-          block(.success(try self.empty()))
+          block(.success(try self.all().isEmpty))
         } catch {
           block(.failure(error))
         }
