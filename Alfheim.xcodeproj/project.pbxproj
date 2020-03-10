@@ -199,7 +199,7 @@
 			children = (
 				FAF380312413FAA700C592D4 /* Alfheim.entitlements */,
 				1F39992E23D6A05800E6BBD9 /* App */,
-				FAF380352414B9C300C592D4 /* Persistent */,
+				FAF380352414B9C300C592D4 /* Persistence */,
 				788863F023F2A3EE0037210B /* Redux */,
 				789E8E6A23E81093006D180B /* Models */,
 				1F39992F23D6A06100E6BBD9 /* Views */,
@@ -391,7 +391,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FAF380352414B9C300C592D4 /* Persistent */ = {
+		FAF380352414B9C300C592D4 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
 				FAF380382414BA2400C592D4 /* Persistences.swift */,
@@ -399,7 +399,7 @@
 				FAF3803C24152EED00C592D4 /* Persistences+Transaction.swift */,
 				FAF3803A2414C5D600C592D4 /* Publishers+CoreData.swift */,
 			);
-			path = Persistent;
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
