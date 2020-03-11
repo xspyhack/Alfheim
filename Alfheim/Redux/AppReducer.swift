@@ -63,19 +63,16 @@ struct AppReducer {
       switch subaction {
       case .togglePayment:
         appState.settings.isPaymentEnabled.toggle()
-        
       }
     case .accounts(let subaction):
       switch subaction {
       case .update(let account):
         //appState.shared.account = account
         appState.overview.isAccountDetailPresented = false
-        appCommand = UpdateAccountCommond(account: account)
+        appCommand = AppCommands.UpdateAccountCommand(account: account)
       case .updateDone(let account):
         appState.shared.account = account
       }
-    @unknown default:
-      fatalError("unknown")
     }
 
     return (appState, appCommand)
