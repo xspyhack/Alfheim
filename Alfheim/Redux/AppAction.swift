@@ -44,5 +44,6 @@ extension AppAction {
 extension AppAction {
   enum Accounts {
     case update(Alne.Account)
+    case updated(Alne.Account)
   }
 }

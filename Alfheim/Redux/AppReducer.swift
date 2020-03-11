@@ -68,8 +68,11 @@ struct AppReducer {
     case .accounts(let subaction):
       switch subaction {
       case .update(let account):
-        appState.shared.account = account
+//        appState.shared.account = account
         appState.overview.isAccountDetailPresented = false
+        appCommand = UpdateAccountCommond(account: account)
+      case .updated(let account):
+        appState.shared.account = account
       }
     @unknown default:
       fatalError("unknown")

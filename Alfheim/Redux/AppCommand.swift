@@ -33,6 +33,21 @@ struct LoadTransactionCommand: AppCommand {
   }
 }
 
+struct UpdateAccountCommond: AppCommand {
+  let account: Alne.Account
+  func execute(in store: AppStore) {
+    let object = Alfheim.Account(context: store.context)
+    object.id = UUID(uuidString: account.id)!
+    object.name = account.name
+    object.introduction = account.description
+    object.currency = Int16(account.currency.rawValue)
+    object.emoji = account.emoji
+    object.tag = account.tag.hex
+    object.group = account.group.rawValue // can't update
+    Persistences.Account(context: store.context).save(object)
+  }
+}
+
 class SubscriptionToken {
   var cancellable: AnyCancellable?
   func unseal() { cancellable = nil }
