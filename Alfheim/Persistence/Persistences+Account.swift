@@ -60,7 +60,15 @@ extension Persistences {
       }
     }
 
-    /// Save if has changes
+    /// Fetch with predicate, should use in context queue
+    func fetch(with predicate: NSPredicate) throws -> [Alfheim.Account] {
+      let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
+      fetchRequest.predicate = predicate
+      return try context.fetch(fetchRequest)
+    }
+
+    /// Save if has changes, should use in context.perform(_:) block if you need to update results, if not, update notification won't be send to
+    /// subscriber, NSFetchedResultsController for example.
     func save() throws {
       guard context.hasChanges else {
         return
