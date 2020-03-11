@@ -85,17 +85,17 @@ extension Tagit: ExpressibleByIntegerLiteral {
 extension Tagit: ExpressibleByStringLiteral {
   init(stringLiteral value: String) {
     switch value {
-    case "#FF2600":
+    case "#f03e3e":
       self = .red
-    case "#FF9200":
+    case "#f76707":
       self = .orange
-    case "#FEFB00":
+    case "#f59f00":
       self = .yellow
-    case "#00F900":
+    case "#37b24d":
       self = .green
-    case "#0432FF":
+    case "#1c7ed6":
       self = .blue
-    case "#932092":
+    case "#7048e8":
       self = .purple
     default:
       self = .alfheim

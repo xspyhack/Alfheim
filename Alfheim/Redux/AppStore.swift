@@ -47,7 +47,7 @@ class AppStore: ObservableObject {
       }, receiveValue: { expenses in
         let tag = expenses.tag!
         let tagit = Tagit(stringLiteral: tag)
-        self.dispatch(.accounts(.updated(Alne.Account(id: expenses.id.uuidString, name: expenses.name, description: expenses.introduction, tag: tagit, group: .expenses, emoji: expenses.emoji))))
+        self.dispatch(.accounts(.updateDone(Alne.Account(id: expenses.id.uuidString, name: expenses.name, description: expenses.introduction, tag: tagit, group: .expenses, emoji: expenses.emoji))))
       })
       .store(in: &disposeBag)
   }

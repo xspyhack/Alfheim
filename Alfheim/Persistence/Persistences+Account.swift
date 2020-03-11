@@ -76,8 +76,8 @@ extension Persistences {
       try context.save()
     }
 
-    func account(withID id: String) -> Alfheim.Account? {
-      let predicate = NSPredicate(format: "id == %@", id)
+    func account(withID id: UUID) -> Alfheim.Account? {
+      let predicate = NSPredicate(format: "id == %@", id as CVarArg)
       guard let object = context.registeredObjects(with: predicate).first as? Alfheim.Account else {
         return nil
       }
@@ -110,8 +110,8 @@ extension Persistences {
         .eraseToAnyPublisher()
     }
 
-    func fetchPublisher(withID id: String) -> AnyPublisher<Alfheim.Account, NSError> {
-      let predicate = NSPredicate(format: "id == %@", id)
+    func fetchPublisher(withID id: UUID) -> AnyPublisher<Alfheim.Account, NSError> {
+      let predicate = NSPredicate(format: "id == %@", id as CVarArg)
       return fetchPublisher(with: predicate).compactMap { $0.first }
         .eraseToAnyPublisher()
     }
