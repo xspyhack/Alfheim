@@ -14,6 +14,8 @@ extension Persistences {
   struct Account {
     let context: NSManagedObjectContext
 
+    typealias FetchedResultsPublisher = Publishers.FetchedResults<Alfheim.Account>
+
     enum Buildin: String {
       case expenses
 
@@ -28,6 +30,8 @@ extension Persistences {
         }
       }
     }
+
+    // MARK: - Operators, CURD
 
     func count(with predicate: NSPredicate? = nil) throws -> Int {
       let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
@@ -56,30 +60,43 @@ extension Persistences {
       }
     }
 
-    func loadAll() -> AnyPublisher<[Alfheim.Account], NSError> {
-      let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
-      fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-      return Publishers.FetchedResults(fetchRequest: fetchRequest, context: context)
-        .eraseToAnyPublisher()
+    /// Save if has changes
+    func save() throws {
+      guard context.hasChanges else {
+        return
+      }
+      try context.save()
     }
 
-    func load(with predicate: NSPredicate) -> AnyPublisher<[Alfheim.Account], NSError> {
+    // MARK: - Publishes
+
+    func fetchResultsPublisher(sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(key: "name", ascending: true)],
+                               predicate: NSPredicate? = nil) -> FetchedResultsPublisher {
       let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
-      fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+      fetchRequest.sortDescriptors = sortDescriptors
       fetchRequest.predicate = predicate
       return Publishers.FetchedResults(fetchRequest: fetchRequest, context: context)
+    }
+
+    func fetchAllPublisher() -> AnyPublisher<[Alfheim.Account], NSError> {
+      let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+      return fetchResultsPublisher(sortDescriptors: sortDescriptors).eraseToAnyPublisher()
+    }
+
+    func fetchPublisher(with predicate: NSPredicate) -> AnyPublisher<[Alfheim.Account], NSError> {
+      fetchResultsPublisher(predicate: predicate)
         .eraseToAnyPublisher()
     }
 
-    func load(withName name: String) -> AnyPublisher<Alfheim.Account, NSError> {
+    func fetchPublisher(withName name: String) -> AnyPublisher<Alfheim.Account, NSError> {
       let predicated = NSPredicate(format: "name == %@", name)
-      return load(with: predicated).compactMap { $0.first }
+      return fetchPublisher(with: predicated).compactMap { $0.first }
         .eraseToAnyPublisher()
     }
 
-    func load(withID id: String) -> AnyPublisher<Alfheim.Account, NSError> {
+    func fetchPublisher(withID id: String) -> AnyPublisher<Alfheim.Account, NSError> {
       let predicated = NSPredicate(format: "id == %@", id)
-      return load(with: predicated).compactMap { $0.first }
+      return fetchPublisher(with: predicated).compactMap { $0.first }
         .eraseToAnyPublisher()
     }
   }

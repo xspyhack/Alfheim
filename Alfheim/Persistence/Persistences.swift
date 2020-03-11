@@ -66,3 +66,9 @@ extension Persistences {
     }
   }
 }
+
+extension NSManagedObjectContext {
+  func registeredObjects(with predicate: NSPredicate) -> Set<NSManagedObject> {
+    registeredObjects.filter { predicate.evaluate(with: $0) }
+  }
+}
