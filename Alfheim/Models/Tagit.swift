@@ -44,19 +44,19 @@ extension Tagit {
   var hex: String {
     switch self {
     case .red:
-      return "#FF2600"
+      return "#f03e3e"
     case .orange:
-      return "#FF9200"
+      return "#f76707"
     case .yellow:
-      return "#FEFB00"
+      return "#f59f00"
     case .green:
-      return "#00F900"
+      return "#37b24d"
     case .blue:
-      return "#0432FF"
+      return "#1c7ed6"
     case .purple:
-      return "#932092"
+      return "#7048e8"
     case .alfheim:
-      return "#60D3D4"
+      return "#d6336c"
     }
   }
 }
