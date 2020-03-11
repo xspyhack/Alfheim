@@ -16,7 +16,7 @@ extension Persistences {
   struct Bootstrap {
     let context: NSManagedObjectContext
 
-    func start() {
+    func start() throws {
       // Creating default accounts
       let expenses = Alfheim.Account(context: context)
       expenses.id = UUID()
@@ -58,11 +58,7 @@ extension Persistences {
       equity.currency = Int16(0)
       equity.tag = "#FF2600"
 
-      do {
-        try context.save()
-      } catch {
-        print("Bootstrap starting failed: \(error)")
-      }
+      try context.save()
     }
   }
 }

@@ -45,7 +45,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       switch result {
       case .success(let empty):
         if empty {
-           Persistences.Bootstrap(context: context).start()
+          do {
+            try Persistences.Bootstrap(context: context).start()
+          } catch {
+            print("Bootstrap starting failed: \(error)")
+          }
         }
       case .failure(let error):
         print("Execute core data fetch request failed: \(error)")
