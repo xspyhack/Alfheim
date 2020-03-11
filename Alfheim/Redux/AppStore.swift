@@ -36,7 +36,7 @@ class AppStore: ObservableObject {
       .store(in: &disposeBag)
 
     Persistences.Account(context: context)
-      .load(withName: Persistences.Account.Buildin.expenses.name)
+      .fetchPublisher(withName: Persistences.Account.Buildin.expenses.name)
       .sink(receiveCompletion: { completion in
         switch completion {
         case .finished:

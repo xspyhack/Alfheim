@@ -68,6 +68,14 @@ extension Persistences {
       try context.save()
     }
 
+    func account(withID id: String) -> Alfheim.Account? {
+      let predicate = NSPredicate(format: "id == %@", id)
+      guard let object = context.registeredObjects(with: predicate).first as? Alfheim.Account else {
+        return nil
+      }
+      return object
+    }
+
     // MARK: - Publishes
 
     func fetchResultsPublisher(sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(key: "name", ascending: true)],
@@ -89,14 +97,14 @@ extension Persistences {
     }
 
     func fetchPublisher(withName name: String) -> AnyPublisher<Alfheim.Account, NSError> {
-      let predicated = NSPredicate(format: "name == %@", name)
-      return fetchPublisher(with: predicated).compactMap { $0.first }
+      let predicate = NSPredicate(format: "name == %@", name)
+      return fetchPublisher(with: predicate).compactMap { $0.first }
         .eraseToAnyPublisher()
     }
 
     func fetchPublisher(withID id: String) -> AnyPublisher<Alfheim.Account, NSError> {
-      let predicated = NSPredicate(format: "id == %@", id)
-      return fetchPublisher(with: predicated).compactMap { $0.first }
+      let predicate = NSPredicate(format: "id == %@", id)
+      return fetchPublisher(with: predicate).compactMap { $0.first }
         .eraseToAnyPublisher()
     }
   }
