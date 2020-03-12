@@ -30,6 +30,7 @@ class AppStore: ObservableObject {
 
   private func binding() {
     state.editor.validator.isValid
+      .dropFirst()
       .removeDuplicates()
       .sink { isValid in
         self.dispatch(.editors(.validate(valid: isValid)))
