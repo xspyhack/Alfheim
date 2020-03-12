@@ -36,6 +36,13 @@ extension AppCommands {
         .seal(in: token)
     }
   }
+
+  struct UpdateTransactionCommand: AppCommand {
+    let transaction: Alne.Transaction
+
+    func execute(in store: AppStore) {
+    }
+  }
 }
 
 extension AppCommands {

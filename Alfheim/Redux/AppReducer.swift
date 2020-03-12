@@ -56,6 +56,7 @@ struct AppReducer {
           appState.shared.allTransactions.append(transaction)
         }
         appState.editor.validator.reset(.new)
+        appCommand = AppCommands.UpdateTransactionCommand(transaction: transaction)
       case .validate(let valid):
         appState.editor.isValid = valid
       }
@@ -72,6 +73,11 @@ struct AppReducer {
         appCommand = AppCommands.UpdateAccountCommand(account: account)
       case .updateDone(let account):
         appState.shared.account = account
+      }
+    case .transactions(let subaction):
+      switch subaction {
+      case .updated(let transactions):
+        appState.shared.allTransactions = transactions
       }
     }
 

@@ -14,7 +14,7 @@ extension Persistences {
   struct Account {
     let context: NSManagedObjectContext
 
-    typealias FetchedResultsPublisher = Publishers.FetchedResults<Alfheim.Account>
+    typealias FetchRequestPublisher = Publishers.FetchRequest<Alfheim.Account>
 
     enum Buildin: String {
       case expenses
@@ -86,21 +86,21 @@ extension Persistences {
 
     // MARK: - Publishes
 
-    func fetchResultsPublisher(sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(key: "name", ascending: true)],
-                               predicate: NSPredicate? = nil) -> FetchedResultsPublisher {
+    func fetchRequestPublisher(sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(key: "name", ascending: true)],
+                               predicate: NSPredicate? = nil) -> FetchRequestPublisher {
       let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()
       fetchRequest.sortDescriptors = sortDescriptors
       fetchRequest.predicate = predicate
-      return Publishers.FetchedResults(fetchRequest: fetchRequest, context: context)
+      return Publishers.FetchRequest(fetchRequest: fetchRequest, context: context)
     }
 
     func fetchAllPublisher() -> AnyPublisher<[Alfheim.Account], NSError> {
       let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-      return fetchResultsPublisher(sortDescriptors: sortDescriptors).eraseToAnyPublisher()
+      return fetchRequestPublisher(sortDescriptors: sortDescriptors).eraseToAnyPublisher()
     }
 
     func fetchPublisher(with predicate: NSPredicate) -> AnyPublisher<[Alfheim.Account], NSError> {
-      fetchResultsPublisher(predicate: predicate)
+      fetchRequestPublisher(predicate: predicate)
         .eraseToAnyPublisher()
     }
 

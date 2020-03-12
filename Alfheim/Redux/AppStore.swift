@@ -51,6 +51,21 @@ class AppStore: ObservableObject {
         self.dispatch(.accounts(.updateDone(Alne.Account(id: expenses.id.uuidString, name: expenses.name, description: expenses.introduction, tag: tagit, group: .expenses, emoji: expenses.emoji))))
       })
       .store(in: &disposeBag)
+
+    Persistences.Transaction(context: context)
+      .loadAll()
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print("Load account finished")
+        case .failure(let error):
+          print("Load account failed: \(error)")
+        }
+      }, receiveValue: { transactions in
+        //
+        self.dispatch(.transactions(.updated([])))
+      })
+      .store(in: &disposeBag)
   }
 
   func dispatch(_ action: AppAction) {

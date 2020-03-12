@@ -13,6 +13,7 @@ enum AppAction {
   case editors(Editors)
   case settings(Settings)
   case accounts(Accounts)
+  case transactions(Transactions)
 }
 
 extension AppAction {
@@ -45,5 +46,11 @@ extension AppAction {
   enum Accounts {
     case update(Alne.Account)
     case updateDone(Alne.Account)
+  }
+}
+
+extension AppAction {
+  enum Transactions {
+    case updated([Alne.Transaction])
   }
 }
