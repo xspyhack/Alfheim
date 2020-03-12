@@ -32,3 +32,11 @@ extension AppAction {
     case togglePayment
   }
 }
+
+extension AppAction {
+  enum EditMode {
+    case new
+    case update
+    case delete
+  }
+}

@@ -10,7 +10,7 @@ import Foundation
 
 extension AppAction {
   enum Editors {
-    case save(Alne.Transaction, update: Bool)
+    case save(Alne.Transaction, mode: EditMode)
     case validate(valid: Bool)
     case edit(Alne.Transaction)
     case new

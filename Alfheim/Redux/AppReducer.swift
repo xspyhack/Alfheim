@@ -51,14 +51,15 @@ struct AppReducer {
         appState.editor.validator.reset(.new)
       case .edit(let transaction):
         appState.editor.validator.reset(.edit(transaction))
-      case .save(let transaction, let update):
+      case .save(let transaction, let mode):
         appState.editor.validator.reset(.new)
-        if update, let index = state.shared.allTransactions.firstIndex(where: { $0.id == transaction.id }) {
-          //appState.shared.allTransactions[index] = transaction
-          appCommand = AppCommands.UpdateTransactionCommand(transaction: transaction)
-        } else {
-          //appState.shared.allTransactions.append(transaction)
+        switch mode {
+        case .new:
           appCommand = AppCommands.CreateTransactionCommand(transaction: transaction)
+        case .update:
+          appCommand = AppCommands.UpdateTransactionCommand(transaction: transaction)
+        case .delete:
+          fatalError("Editor can't delete")
         }
       case .validate(let valid):
         appState.editor.isValid = valid
