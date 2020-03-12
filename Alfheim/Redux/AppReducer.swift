@@ -18,6 +18,8 @@ struct AppReducer {
       switch subaction {
       case .toggleNewTransaction(let presenting):
         appState.overview.isEditorPresented = presenting
+        appState.editor.isValid = false // Important! need set here
+        appState.editor.validator.reset(.new)
       case .editTransaction(let transaction):
         appState.overview.selectedTransaction = transaction
         appState.overview.editingTransaction = true
