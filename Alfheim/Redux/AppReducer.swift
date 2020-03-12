@@ -76,6 +76,7 @@ struct AppReducer {
       case .updateDone(let account):
         appState.shared.account = account
       }
+      //return AppReducers.Account.reduce(state: state, action: subaction)
     case .transactions(let subaction):
       switch subaction {
       case .updated(let transactions):

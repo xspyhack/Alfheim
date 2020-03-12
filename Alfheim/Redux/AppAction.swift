@@ -28,29 +28,7 @@ extension AppAction {
 }
 
 extension AppAction {
-  enum Editors {
-    case save(Alne.Transaction)
-    case validate(valid: Bool)
-    case edit(Alne.Transaction)
-    case new
-  }
-}
-
-extension AppAction {
   enum Settings {
     case togglePayment
-  }
-}
-
-extension AppAction {
-  enum Accounts {
-    case update(Alne.Account)
-    case updateDone(Alne.Account)
-  }
-}
-
-extension AppAction {
-  enum Transactions {
-    case updated([Alne.Transaction])
   }
 }
