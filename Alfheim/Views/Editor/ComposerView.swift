@@ -31,7 +31,7 @@ struct ComposerView: View {
             Text("Cancel")
           },
           trailing: Button(action: {
-            self.store.dispatch(.editors(.save(self.state.validator.transaction)))
+            self.store.dispatch(.editors(.save(self.state.validator.transaction, update: !self.state.isNew)))
             self.presentationMode.wrappedValue.dismiss()
           }) {
             Text("Save").bold()

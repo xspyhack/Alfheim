@@ -28,6 +28,30 @@ extension AppCommands {
     }
   }
 
+  struct CreateTransactionCommand: AppCommand {
+    let transaction: Alne.Transaction
+
+    func execute(in store: AppStore) {
+      let persistence = Persistences.Transaction(context: store.context)
+      let object = Alfheim.Transaction(context: store.context)
+      object.id = UUID()
+      object.amount = transaction.amount
+      object.currency = Int16(transaction.currency.rawValue)
+      object.date = transaction.date
+      object.notes = transaction.notes
+      object.emoji = transaction.catemoji.emoji
+      object.payment = transaction.payment
+      object.payee = transaction.payee
+      object.number = Int16(transaction.number)
+
+      do {
+        try persistence.save()
+      } catch {
+        print("Update account failed: \(error)")
+      }
+    }
+  }
+
   struct UpdateTransactionCommand: AppCommand {
     let transaction: Alne.Transaction
 

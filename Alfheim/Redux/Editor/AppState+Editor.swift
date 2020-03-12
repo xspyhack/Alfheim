@@ -15,6 +15,15 @@ extension AppState {
     enum Mode {
       case new
       case edit(Alne.Transaction)
+
+      var isNew: Bool {
+        switch self {
+        case .new:
+          return true
+        default:
+          return false
+        }
+      }
     }
 
     class Validator {
@@ -83,6 +92,10 @@ extension AppState {
 
     var validator = Validator()
     var isValid: Bool = false
+    
+    var isNew: Bool {
+      return validator.mode.isNew
+    }
   }
 }
 

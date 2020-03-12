@@ -40,7 +40,7 @@ extension AppCommands {
       }
 
       do {
-        try Persistences.Account(context: store.context).save()
+        try persistence.save()
       } catch {
         print("Update account failed: \(error)")
       }
