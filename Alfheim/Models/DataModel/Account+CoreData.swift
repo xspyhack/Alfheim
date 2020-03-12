@@ -22,3 +22,19 @@ final class Account: NSManagedObject, Identifiable {
   @NSManaged var tag: String?
   @NSManaged var emoji: String?
 }
+
+extension Account {
+  // Just like Equatable `==` method
+  static func duplicated(lhs: Account, rhs: Account) -> Bool {
+    guard lhs.id == rhs.id,
+      lhs.name == rhs.name,
+      lhs.introduction == rhs.introduction,
+      lhs.group == rhs.group,
+      lhs.currency == rhs.currency,
+      lhs.tag == rhs.tag,
+      lhs.emoji == rhs.emoji else {
+      return false
+    }
+    return true
+  }
+}

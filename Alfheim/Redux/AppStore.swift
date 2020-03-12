@@ -37,6 +37,7 @@ class AppStore: ObservableObject {
 
     Persistences.Account(context: context)
       .fetchPublisher(withName: Persistences.Account.Buildin.expenses.name)
+      .removeDuplicates(by: Alfheim.Account.duplicated)
       .sink(receiveCompletion: { completion in
         switch completion {
         case .finished:
