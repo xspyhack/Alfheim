@@ -55,7 +55,7 @@ class AppStore: ObservableObject {
       .store(in: &disposeBag)
 
     Persistences.Transaction(context: context)
-      .loadAll()
+      .fetchAllPublisher()
       .sink(receiveCompletion: { completion in
         switch completion {
         case .finished:
