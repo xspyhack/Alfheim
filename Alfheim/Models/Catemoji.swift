@@ -84,6 +84,21 @@ extension Alne {
     static var allCases: [Catemoji] {
       allCates.flatMap { $0.allCases }
     }
+
+    init(_ emoji: String) {
+      switch emoji {
+      case Food.groceries.rawValue:
+        self = .food(.groceries)
+      case Food.eating.rawValue:
+        self = .food(.eating)
+      case Food.snacks.rawValue:
+        self = .food(.snacks)
+      case Food.others.rawValue:
+        self = .food(.others)
+      default:
+        self = .fruit(.apple)
+      }
+    }
   }
 }
 

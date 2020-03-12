@@ -40,6 +40,7 @@ class AppStore: ObservableObject {
     Persistences.Account(context: context)
       .fetchPublisher(withName: Persistences.Account.Buildin.expenses.name)
       .removeDuplicates(by: Alfheim.Account.duplicated)
+      .map { $0.viewModel() }
       .sink(receiveCompletion: { completion in
         switch completion {
         case .finished:
@@ -48,14 +49,13 @@ class AppStore: ObservableObject {
           print("Load account failed: \(error)")
         }
       }, receiveValue: { expenses in
-        let tag = expenses.tag!
-        let tagit = Tagit(stringLiteral: tag)
-        self.dispatch(.accounts(.updateDone(Alne.Account(id: expenses.id.uuidString, name: expenses.name, description: expenses.introduction, tag: tagit, group: .expenses, emoji: expenses.emoji))))
+        self.dispatch(.accounts(.updateDone(expenses)))
       })
       .store(in: &disposeBag)
 
     Persistences.Transaction(context: context)
-      .fetchAllPublisher()
+      .fetchAllPublisher().removeDuplicates(by: Array<Transaction>.duplicated)
+      .map { $0.compactMap { $0.viewModel() } }
       .sink(receiveCompletion: { completion in
         switch completion {
         case .finished:
@@ -64,8 +64,7 @@ class AppStore: ObservableObject {
           print("Load account failed: \(error)")
         }
       }, receiveValue: { transactions in
-        //
-        self.dispatch(.transactions(.updated([])))
+        self.dispatch(.transactions(.updated(transactions)))
       })
       .store(in: &disposeBag)
   }
@@ -78,5 +77,30 @@ class AppStore: ObservableObject {
       print("[COMMAND]: \(command)")
       command.execute(in: self)
     }
+  }
+}
+
+extension Alfheim.Account {
+  func viewModel() -> Alne.Account {
+    Alne.Account(id: id.uuidString,
+                 name: name,
+                 description: introduction,
+                 tag: Tagit(stringLiteral: tag!),
+                 group: .expenses,
+                 emoji: emoji)
+  }
+}
+
+extension Alfheim.Transaction {
+  func viewModel() -> Alne.Transaction {
+    Alne.Transaction(id: id.uuidString,
+                     date: date,
+                     amount: amount,
+                     catemoji: Catemoji(emoji!),
+                     notes: notes,
+                     currency: Currency(rawValue: Int(currency))!,
+                     payment: payment,
+                     payee: payee,
+                     number: Int(number))
   }
 }

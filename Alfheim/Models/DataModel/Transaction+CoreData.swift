@@ -42,3 +42,19 @@ extension Transaction {
     return true
   }
 }
+
+
+extension Array where Element: Alfheim.Transaction {
+  static func duplicated(lhs: Self, rhs: Self) -> Bool {
+    guard lhs.count == rhs.count else {
+      return false
+    }
+
+    for (l, r) in zip(lhs, rhs) {
+      if !Transaction.duplicated(lhs: l, rhs: r) {
+        return false
+      }
+    }
+    return true
+  }
+}

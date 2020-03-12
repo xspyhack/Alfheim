@@ -13,7 +13,7 @@ extension AppCommands {
     func execute(in store: AppStore) {
       let token = SubscriptionToken()
       Persistences.Transaction(context: store.context)
-        .loadAll()
+        .fetchAllPublisher()
         .sink(receiveCompletion: { completion in
           switch completion {
           case .failure(let error):
@@ -23,7 +23,6 @@ extension AppCommands {
           }
         }, receiveValue: { transactions in
           print("Transactions \(transactions)")
-
         })
         .seal(in: token)
     }
@@ -33,6 +32,29 @@ extension AppCommands {
     let transaction: Alne.Transaction
 
     func execute(in store: AppStore) {
+      guard let uuid = UUID(uuidString: transaction.id) else {
+        return
+      }
+
+      let persistence = Persistences.Transaction(context: store.context)
+      if let object = persistence.transaction(withID: uuid) {
+        object.amount = transaction.amount
+        object.currency = Int16(transaction.currency.rawValue)
+        object.date = transaction.date
+        object.notes = transaction.notes
+        object.emoji = transaction.catemoji.emoji
+        object.payment = transaction.payment
+        object.payee = transaction.payee
+        object.number = Int16(transaction.number)
+      } else {
+        fatalError("Should not be here!")
+      }
+
+      do {
+        try Persistences.Transaction(context: store.context).save()
+      } catch {
+        print("Update account failed: \(error)")
+      }
     }
   }
 }

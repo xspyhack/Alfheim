@@ -20,6 +20,33 @@ extension Persistences {
       self.context = context
     }
 
+    // MARK: - CURD
+
+    /// Save if has changes, should use in context.perform(_:) block if you need to update results, if not, update notification won't be send to
+    /// subscriber, NSFetchedResultsController for example.
+    func save() throws {
+      guard context.hasChanges else {
+        return
+      }
+      try context.save()
+    }
+
+    func object(withID id: UUID) -> NSManagedObject? {
+      let predicate = NSPredicate(format: "id == %@", id as CVarArg)
+      guard let object = context.registeredObjects(with: predicate).first else {
+        return nil
+      }
+      return object
+    }
+
+    func transaction(withID id: UUID) -> Alfheim.Transaction? {
+      let predicate = NSPredicate(format: "id == %@", id as CVarArg)
+      guard let object = context.registeredObjects(with: predicate).first as? Alfheim.Transaction else {
+        return nil
+      }
+      return object
+    }
+
     // MARK: - Publishes
 
     func fetchRequestPublisher(sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(key: "date", ascending: true)],
