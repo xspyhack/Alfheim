@@ -398,6 +398,7 @@
 				FAEC037A240AB840003BFE2C /* Color+Tagit.swift */,
 				1F8AC49824122619006D9551 /* CurrencyFormatter.swift */,
 				1F91C9F02419DF1F00B552E7 /* Publishers+FetchRequest.swift */,
+				FAF3803A2414C5D600C592D4 /* Publishers+CoreData.swift */,
 			);
 			path = Kit;
 			sourceTree = "<group>";
@@ -454,7 +455,6 @@
 				FAF380382414BA2400C592D4 /* Persistences.swift */,
 				FAF380362414BA1700C592D4 /* Persistences+Account.swift */,
 				FAF3803C24152EED00C592D4 /* Persistences+Transaction.swift */,
-				FAF3803A2414C5D600C592D4 /* Publishers+CoreData.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";

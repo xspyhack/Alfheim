@@ -19,6 +19,7 @@ final class Transaction: NSManagedObject, Identifiable {
   @NSManaged var amount: Double
   @NSManaged var notes: String
   @NSManaged var currency: Int16
+  @NSManaged var category: String?
   @NSManaged var emoji: String?
   @NSManaged var payment: String?
   @NSManaged var payee: String?
@@ -33,6 +34,7 @@ extension Transaction {
       lhs.amount == rhs.amount,
       lhs.notes == rhs.notes,
       lhs.currency == rhs.currency,
+      lhs.category == rhs.category,
       lhs.emoji == rhs.emoji,
       lhs.payment == rhs.payment,
       lhs.payee == rhs.payee,

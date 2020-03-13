@@ -66,6 +66,7 @@ extension AppCommands {
         object.currency = Int16(transaction.currency.rawValue)
         object.date = transaction.date
         object.notes = transaction.notes
+        object.category = transaction.catemoji.category
         object.emoji = transaction.catemoji.emoji
         object.payment = transaction.payment
         object.payee = transaction.payee
