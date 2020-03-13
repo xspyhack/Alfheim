@@ -49,7 +49,7 @@ extension Persistences {
 
     // MARK: - Publishes
 
-    func fetchRequestPublisher(sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(key: "date", ascending: true)],
+    func fetchRequestPublisher(sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(key: "date", ascending: false)],
                                predicate: NSPredicate? = nil) -> FetchRequestPublisher {
       let fetchRequest = NSFetchRequest<Alfheim.Transaction>(entityName: "Transaction")
       fetchRequest.sortDescriptors = sortDescriptors

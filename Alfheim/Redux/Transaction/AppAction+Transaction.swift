@@ -11,5 +11,7 @@ import Foundation
 extension AppAction {
   enum Transactions {
     case updated([Alne.Transaction])
+    case loadAll
+    case loadAllDone([Alne.Transaction])
   }
 }

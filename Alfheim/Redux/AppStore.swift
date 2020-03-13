@@ -54,7 +54,8 @@ class AppStore: ObservableObject {
       .store(in: &disposeBag)
 
     Persistences.Transaction(context: context)
-      .fetchAllPublisher().removeDuplicates(by: Array<Transaction>.duplicated)
+      .fetchAllPublisher()
+      .removeDuplicates(by: Array<Transaction>.duplicated)
       .map { $0.compactMap { $0.viewModel() } }
       .sink(receiveCompletion: { completion in
         switch completion {

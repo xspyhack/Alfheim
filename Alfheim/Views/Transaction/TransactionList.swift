@@ -12,9 +12,13 @@ struct TransactionList: View {
   @EnvironmentObject var store: AppStore
   @State private var transaction: Alne.Transaction?
 
+  private var state: AppState.TransactionList {
+    store.state.transactions
+  }
+
   var body: some View {
     List {
-      ForEach(Alne.Transactions.samples()) { transaction in
+      ForEach(state.transactions) { transaction in
         TransactionRow(transaction: transaction)
           .onTapGesture {
             self.transaction = transaction

@@ -22,7 +22,7 @@ extension AppCommands {
             print("Load transactoin finished")
           }
         }, receiveValue: { transactions in
-          print("Transactions \(transactions)")
+          store.dispatch(.transactions(.loadAllDone(transactions.map { $0.viewModel() })))
         })
         .seal(in: token)
     }

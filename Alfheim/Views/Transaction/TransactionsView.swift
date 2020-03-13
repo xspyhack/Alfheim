@@ -9,10 +9,24 @@
 import SwiftUI
 
 struct TransactionsView: View {
+  @EnvironmentObject var store: AppStore
+  @State private var transaction: Alne.Transaction?
+
+  private var state: AppState.TransactionList {
+    store.state.transactions
+  }
+
   var body: some View {
-    NavigationView {
-      TransactionList()
-        .navigationBarTitle("Transactions")
+    Group {
+      if !state.isLoading && state.transactions.isEmpty {
+        Spacer()
+          .onAppear() {
+            self.store.dispatch(.transactions(.loadAll))
+        }
+      } else {
+        TransactionList()
+          .navigationBarTitle("Transactions")
+      }
     }
   }
 }
