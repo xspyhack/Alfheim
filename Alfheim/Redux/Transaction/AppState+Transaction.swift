@@ -17,26 +17,10 @@ extension AppState {
 
     var isLoading = false
 
-    class Listener {
-      var token: AnyCancellable?
-
-      func start(_ context: NSManagedObjectContext) {
-        token = Persistences.Transaction(context: context)
-          .fetchAllPublisher()
-          .sink(receiveCompletion: { completion in
-            switch completion {
-            case .failure(let error):
-              print("Load transaction failured: \(error)")
-            case .finished:
-              print("Load transactoin finished")
-            }
-          }, receiveValue: { transactions in
-          })
-      }
-
-      func stop() {
-        token = nil
-      }
+    func displayTransactions(from start: Date, to end: Date) -> [Alne.Transaction] {
+      return transactions
+        .sorted(by: { $0.date > $1.date })
+        .filter { $0.date <= end && $0.date >= start }
     }
   }
 }

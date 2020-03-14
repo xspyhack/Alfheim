@@ -83,6 +83,7 @@ struct AppReducer {
       switch subaction {
       case .updated(let transactions):
         appState.shared.allTransactions = transactions
+        appState.transactions.transactions = transactions
       case .loadAll:
         appState.transactions.isLoading = true
         appCommand = AppCommands.LoadTransactionsCommand()

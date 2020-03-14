@@ -50,7 +50,7 @@ struct OverviewView: View {
 
             Spacer().frame(height: 36)
 
-            Section(header: NavigationLink(destination: TransactionsView()) {
+            Section(header: NavigationLink(destination: TransactionList()) {
               HStack {
                 Text("Transactions").font(.system(size: 24, weight: .bold))
                 Spacer()
