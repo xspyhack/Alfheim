@@ -20,6 +20,7 @@ extension Alne {
     var payment: String? = nil
     var payee: String? = nil
     var number: Int = 0
+    /// account
     var from: Account? = Accounts.income
     var to: Account? = Accounts.expenses
   }
@@ -42,6 +43,8 @@ extension Alne.Transaction {
     self.payment = payment
   }
 }
+
+extension Alne.Transaction: Hashable {}
 
 extension Alne {
   enum Currency: Int, CaseIterable {

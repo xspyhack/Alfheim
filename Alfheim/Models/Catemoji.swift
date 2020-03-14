@@ -339,3 +339,5 @@ extension Catemoji {
     }
   }
 }
+
+extension Catemoji: Hashable {}

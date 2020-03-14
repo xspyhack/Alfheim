@@ -39,8 +39,8 @@ class AppStore: ObservableObject {
 
     Persistences.Account(context: context)
       .fetchPublisher(withName: Persistences.Account.Buildin.expenses.name)
-      .removeDuplicates(by: Alfheim.Account.duplicated)
       .map { $0.viewModel() }
+      .removeDuplicates()
       .sink(receiveCompletion: { completion in
         switch completion {
         case .finished:
@@ -55,8 +55,8 @@ class AppStore: ObservableObject {
 
     Persistences.Transaction(context: context)
       .fetchAllPublisher()
-      .removeDuplicates(by: Array<Transaction>.duplicated)
       .map { $0.compactMap { $0.viewModel() } }
+      .removeDuplicates()
       .sink(receiveCompletion: { completion in
         switch completion {
         case .finished:
