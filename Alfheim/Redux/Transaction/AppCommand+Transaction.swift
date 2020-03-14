@@ -22,7 +22,7 @@ extension AppCommands {
             print("Load transactoin finished")
           }
         }, receiveValue: { transactions in
-          store.dispatch(.transactions(.loadAllDone(transactions.map { $0.viewModel() })))
+          store.dispatch(.transactions(.loadAllDone(transactions.map { Alne.Transaction($0) })))
         })
         .seal(in: token)
     }
@@ -34,15 +34,7 @@ extension AppCommands {
     func execute(in store: AppStore) {
       let persistence = Persistences.Transaction(context: store.context)
       let object = Alfheim.Transaction(context: store.context)
-      object.id = UUID()
-      object.amount = transaction.amount
-      object.currency = Int16(transaction.currency.rawValue)
-      object.date = transaction.date
-      object.notes = transaction.notes
-      object.emoji = transaction.catemoji.emoji
-      object.payment = transaction.payment
-      object.payee = transaction.payee
-      object.number = Int16(transaction.number)
+      object.fill(transaction)
 
       do {
         try persistence.save()
@@ -62,21 +54,13 @@ extension AppCommands {
 
       let persistence = Persistences.Transaction(context: store.context)
       if let object = persistence.transaction(withID: uuid) {
-        object.amount = transaction.amount
-        object.currency = Int16(transaction.currency.rawValue)
-        object.date = transaction.date
-        object.notes = transaction.notes
-        object.category = transaction.catemoji.category
-        object.emoji = transaction.catemoji.emoji
-        object.payment = transaction.payment
-        object.payee = transaction.payee
-        object.number = Int16(transaction.number)
+        object.fill(transaction)
       } else {
         fatalError("Should not be here!")
       }
 
       do {
-        try Persistences.Transaction(context: store.context).save()
+        try persistence.save()
       } catch {
         print("Update account failed: \(error)")
       }

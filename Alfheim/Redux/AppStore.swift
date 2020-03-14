@@ -39,7 +39,7 @@ class AppStore: ObservableObject {
 
     Persistences.Account(context: context)
       .fetchPublisher(withName: Persistences.Account.Buildin.expenses.name)
-      .map { $0.viewModel() }
+      .map { Alne.Account($0) }
       .removeDuplicates()
       .sink(receiveCompletion: { completion in
         switch completion {
@@ -55,7 +55,7 @@ class AppStore: ObservableObject {
 
     Persistences.Transaction(context: context)
       .fetchAllPublisher()
-      .map { $0.compactMap { $0.viewModel() } }
+      .map { $0.compactMap { Alne.Transaction($0) } }
       .removeDuplicates()
       .sink(receiveCompletion: { completion in
         switch completion {
@@ -78,30 +78,5 @@ class AppStore: ObservableObject {
       print("[COMMAND]: \(command)")
       command.execute(in: self)
     }
-  }
-}
-
-extension Alfheim.Account {
-  func viewModel() -> Alne.Account {
-    Alne.Account(id: id.uuidString,
-                 name: name,
-                 description: introduction,
-                 tag: Tagit(stringLiteral: tag!),
-                 group: .expenses,
-                 emoji: emoji)
-  }
-}
-
-extension Alfheim.Transaction {
-  func viewModel() -> Alne.Transaction {
-    Alne.Transaction(id: id.uuidString,
-                     date: date,
-                     amount: amount,
-                     catemoji: Catemoji(emoji!),
-                     notes: notes,
-                     currency: Currency(rawValue: Int(currency))!,
-                     payment: payment,
-                     payee: payee,
-                     number: Int(number))
   }
 }
