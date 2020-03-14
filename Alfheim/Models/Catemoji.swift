@@ -183,6 +183,7 @@ extension Catemoji {
 
   enum Household: String, CaseIterable, CategoryEmojiRepresentable {
     case goods = "🧺"
+    case love = "👩‍❤️‍👨"
     case travel = "🏖"
     case others = "🏠"
 
@@ -308,6 +309,8 @@ extension Catemoji {
       self = .household(.goods)
     case Household.travel.emoji:
       self = .household(.travel)
+    case Household.love.emoji:
+      self = .household(.love)
     case Household.others.emoji:
       self = .household(.others)
 
