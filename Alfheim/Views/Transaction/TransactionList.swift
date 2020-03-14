@@ -10,10 +10,13 @@ import SwiftUI
 
 struct TransactionList: View {
   @EnvironmentObject var store: AppStore
-  @State private var transaction: Alne.Transaction?
 
   private var state: AppState.TransactionList {
     store.state.transactions
+  }
+
+  private var binding: Binding<AppState.TransactionList> {
+    $store.state.transactions
   }
 
   var body: some View {
@@ -21,14 +24,21 @@ struct TransactionList: View {
       ForEach(state.transactions) { transaction in
         TransactionRow(transaction: transaction)
           .onTapGesture {
-            self.transaction = transaction
+            self.store.dispatch(.transactions(.editTransaction(transaction)))
         }
       }
     }
     .navigationBarTitle("Transactions")
+    .sheet(
+      isPresented: binding.editingTransaction,
+      onDismiss: {
+        self.store.dispatch(.transactions(.editTransactionDone))
+    }) {
+      ComposerView(mode: .edit).environmentObject(self.store)
+    }/*
     .sheet(item: $transaction) { transaction in
       ComposerView(mode: .edit).environmentObject(self.store)
-    }
+    }*/
   }
 }
 

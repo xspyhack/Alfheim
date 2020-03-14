@@ -80,7 +80,7 @@ struct OverviewView: View {
               .environmentObject(self.store)
             }*/
           }
-          .padding(20)
+          .padding(18)
         }
       }
       .navigationBarTitle("Journals")

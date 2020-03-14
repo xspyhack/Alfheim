@@ -90,6 +90,16 @@ struct AppReducer {
       case .loadAllDone(let transactions):
         appState.transactions.transactions = transactions
         appState.transactions.isLoading = false
+      case .editTransaction(let transaction):
+        appState.transactions.selectedTransaction = transaction
+        appState.transactions.editingTransaction = true
+        appState.editor.isValid = true // Important! need set here
+        appState.editor.validator.reset(.edit(transaction))
+      case .editTransactionDone:
+        appState.transactions.selectedTransaction = nil
+        appState.transactions.editingTransaction = false
+        appState.editor.isValid = false // Important! need set here
+        appState.editor.validator.reset(.new)
       }
     }
 

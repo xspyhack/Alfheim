@@ -13,5 +13,8 @@ extension AppAction {
     case updated([Alne.Transaction])
     case loadAll
     case loadAllDone([Alne.Transaction])
+
+    case editTransaction(Alne.Transaction)
+    case editTransactionDone
   }
 }

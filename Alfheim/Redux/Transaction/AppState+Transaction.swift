@@ -17,6 +17,9 @@ extension AppState {
 
     var isLoading = false
 
+    var selectedTransaction: Alne.Transaction?
+    var editingTransaction: Bool = false
+
     func displayTransactions(from start: Date, to end: Date) -> [Alne.Transaction] {
       return transactions
         .sorted(by: { $0.date > $1.date })
