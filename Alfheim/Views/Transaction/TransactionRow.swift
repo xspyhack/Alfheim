@@ -13,10 +13,15 @@ struct TransactionRow: View {
 
   var body: some View {
     HStack {
-      Text(transaction.catemoji.emoji).font(Font.system(size: 40, weight: .medium))
+      Text(transaction.catemoji.emoji)
+        .font(Font.system(size: 40, weight: .medium))
+        .frame(width: 48, height: 48)
       VStack(alignment: .leading) {
         Text(transaction.notes).font(.system(size: 20, weight: .medium))
-        Text(transaction.date.string).font(.system(size: 14)).foregroundColor(.gray)
+        Text(transaction.date.string)
+          .font(.system(size: 14))
+          .foregroundColor(.gray)
+          .lineLimit(1)
       }
       Spacer()
       Text("-\(transaction.currency.symbol)\(String(format: "%.1f", transaction.amount))").font(.system(size: 28, weight: .semibold))
@@ -29,7 +34,10 @@ struct TransactionRow: View {
 #if DEBUG
 struct TransactionRow_Previews: PreviewProvider {
   static var previews: some View {
-    TransactionRow(transaction: Alne.Transactions.samples().first!)
+    ScrollView {
+      TransactionRow(transaction: Alne.Transactions.samples()[0])
+      TransactionRow(transaction: Alne.Transactions.samples().last!)
+    }.padding()
   }
 }
 #endif
