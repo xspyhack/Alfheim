@@ -29,7 +29,7 @@ extension AppState {
     class Validator {
       @Published var amount: String = ""
       @Published var currency: Currency = .cny
-      @Published var emoji: Catemoji = Catemoji.fruit(.apple)
+      @Published var emoji: Catemoji = Catemoji.uncleared(.uncleared)
       @Published var date: Date = Date()
       @Published var notes: String = ""
       @Published var payment: String = "Pay"
