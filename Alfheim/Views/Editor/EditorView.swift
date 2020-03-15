@@ -57,10 +57,11 @@ struct EditorView: View {
             .multilineTextAlignment(.trailing)
         }
         HStack {
-          Text("Payment")
-          TextField("", text: binding.validator.payment)
-            .foregroundColor(.gray).opacity(0.8)
-            .multilineTextAlignment(.trailing)
+          Picker(selection: binding.validator.payment, label: Text("Payment")) {
+            ForEach(Payment.allCases, id: \.self) {
+              Text($0.name).tag($0.name)
+            }
+          }
         }
       }
     }

@@ -17,7 +17,7 @@ extension Alne {
     var notes: String
     var currency: Currency = .cny
     /// payment method
-    var payment: String? = nil
+    var payment: Payment = .uncleared
     var payee: String? = nil
     var number: Int = 0
     /// account
@@ -33,7 +33,7 @@ extension Alne.Transaction {
        catemoji: Catemoji,
        notes: String,
        currency: Currency = .cny,
-       payment: String? = nil) {
+       payment: Payment = .uncleared) {
     self.id = id
     self.date = date
     self.amount = amount
@@ -94,10 +94,12 @@ extension Alne {
 }
 
 extension Alne {
-  enum Payment {
+  enum Payment: Hashable {
+
     case cash
     case debitCard
     case creditCard(Credit)
+    case uncleared
 
     var name: String {
       switch self {
@@ -107,10 +109,12 @@ extension Alne {
         return "Debit Card"
       case .creditCard(let from):
         return "Credit Card - \(from.name)"
+      case .uncleared:
+        return "Uncleared"
       }
     }
 
-    enum Credit {
+    enum Credit: Hashable {
       case apple
       case wechat
       case alipay
@@ -119,7 +123,7 @@ extension Alne {
       var name: String {
         switch self {
         case .apple:
-          return "ApplePay"
+          return "Pay"
         case .wechat:
           return "Wechat"
         case .alipay:
@@ -128,6 +132,31 @@ extension Alne {
           return "UnionPay"
         }
       }
+    }
+
+    static var allCases: [Payment] {
+      [.cash, .debitCard, .creditCard(.apple), .creditCard(.wechat), .creditCard(.alipay), .creditCard(.unionpay), .uncleared]
+    }
+  }
+}
+
+extension Alne.Payment {
+  init(_ name: String) {
+    switch name {
+    case "Cash":
+      self = .cash
+    case "Debit Card":
+      self = .debitCard
+    case "Credit Card - Pay":
+      self = .creditCard(.apple)
+    case "Credit Card - Wechat":
+      self = .creditCard(.wechat)
+    case "Credit Card - Alipay":
+      self = .creditCard(.alipay)
+    case "Credit Card - UnionPay":
+      self = .creditCard(.unionpay)
+    default:
+      self = .uncleared
     }
   }
 }

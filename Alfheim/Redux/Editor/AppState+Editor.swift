@@ -32,7 +32,7 @@ extension AppState {
       @Published var emoji: Catemoji = Catemoji.uncleared(.uncleared)
       @Published var date: Date = Date()
       @Published var notes: String = ""
-      @Published var payment: String = "Pay"
+      @Published var payment: Payment = Payment.uncleared
 
       var mode: Mode = .new
 
@@ -41,17 +41,17 @@ extension AppState {
         case .new:
           amount = ""
           currency = .cny
-          emoji = Catemoji.fruit(.apple)
+          emoji = Catemoji.uncleared(.uncleared)
           date = Date()
           notes = ""
-          payment = "Pay"
+          payment = Payment.uncleared
         case .edit(let transaction):
           amount = "\(transaction.amount)"
           currency = transaction.currency
           emoji = transaction.catemoji
           date = transaction.date
           notes = transaction.notes
-          payment = transaction.payment ?? "Pay"
+          payment = transaction.payment
         }
         self.mode = mode
       }

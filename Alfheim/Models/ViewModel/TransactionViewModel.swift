@@ -14,10 +14,10 @@ extension Alne.Transaction {
     self.id = object.id.uuidString
     self.date = object.date
     self.amount = object.amount
-    self.catemoji = Catemoji(object.emoji!)
+    self.catemoji = object.emoji.map { Catemoji($0) } ?? .uncleared(.uncleared)
     self.notes = object.notes
     self.currency = Currency(rawValue: Int(object.currency))!
-    self.payment = object.payment
+    self.payment = object.payment.map { Payment($0) } ?? .uncleared
     self.payee = object.payee
     self.number = Int(object.number)
   }
@@ -38,7 +38,7 @@ extension Alfheim.Transaction {
     notes = model.notes
     category = model.catemoji.category
     emoji = model.catemoji.emoji
-    payment = model.payment
+    payment = model.payment.name
     payee = model.payee
     number = Int16(model.number)
   }
