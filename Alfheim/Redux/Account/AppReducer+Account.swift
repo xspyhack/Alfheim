@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AppReducers {
+extension AppReducers {
   enum Account {
     static func reduce(state: AppState, action: AppAction.Accounts) -> (AppState, AppCommand?) {
       var appState = state
@@ -16,7 +16,6 @@ enum AppReducers {
 
       switch action {
       case .update(let account):
-        //appState.shared.account = account
         appState.overview.isAccountDetailPresented = false
         appCommand = AppCommands.UpdateAccountCommand(account: account)
       case .updateDone(let account):

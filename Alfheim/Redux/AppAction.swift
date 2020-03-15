@@ -17,23 +17,6 @@ enum AppAction {
 }
 
 extension AppAction {
-  enum Overviews {
-    case toggleNewTransaction(presenting: Bool)
-    case editTransaction(Alne.Transaction)
-    case editTransactionDone
-    case toggleStatistics(presenting: Bool)
-    case toggleAccountDetail(presenting: Bool)
-    case switchPeriod
-  }
-}
-
-extension AppAction {
-  enum Settings {
-    case togglePayment
-  }
-}
-
-extension AppAction {
   enum EditMode {
     case new
     case update
