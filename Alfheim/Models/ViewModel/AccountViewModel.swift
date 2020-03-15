@@ -42,7 +42,7 @@ extension Alfheim.Account {
     introduction = model.description
     currency = Int16(model.currency.rawValue)
     emoji = model.emoji
-    tag = model.tag.hex
+    tag = model.tag.name
     group = model.group.rawValue // can't update
   }
 }

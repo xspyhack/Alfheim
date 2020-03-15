@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let id = "iCloud.com.example.apple-samplecode.Earthquakes"
     let options = NSPersistentCloudKitContainerOptions(containerIdentifier: id)
 
-    //container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     //container.viewContext.automaticallyMergesChangesFromParent = true
 
     return container
