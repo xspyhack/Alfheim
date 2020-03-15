@@ -16,5 +16,7 @@ extension AppAction {
 
     case editTransaction(Alne.Transaction)
     case editTransactionDone
+
+    case delete(at: IndexSet)
   }
 }

@@ -100,9 +100,21 @@ struct AppReducer {
         appState.transactions.editingTransaction = false
         appState.editor.isValid = false // Important! need set here
         appState.editor.validator.reset(.new)
+      case .delete(at: let indexSet):
+        let transactions = state.transactions.transactions.elements(atOffsets: indexSet)
+        appCommand = AppCommands.DeleteTransactionCommand(transactions: transactions)
       }
     }
 
     return (appState, appCommand)
+  }
+}
+
+extension Array {
+  /// RangeReplaceableCollection.remove(atOffsets offsets: IndexSet)
+  func elements(atOffsets offsets: IndexSet) -> [Element] {
+    enumerated()
+      .filter { offsets.contains($0.offset) }
+      .map { $0.element }
   }
 }

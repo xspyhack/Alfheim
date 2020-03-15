@@ -62,8 +62,42 @@ extension AppCommands {
       do {
         try persistence.save()
       } catch {
-        print("Update account failed: \(error)")
+        print("Update transaction failed: \(error)")
       }
+    }
+  }
+
+  struct DeleteTransactionCommand: AppCommand {
+    let transactions: [Alne.Transaction]
+
+    func execute(in store: AppStore) {
+      guard !transactions.isEmpty else {
+        return
+      }
+
+      let persistence = Persistences.Transaction(context: store.context)
+
+      for transaction in transactions {
+        delete(transaction, persistence: persistence)
+      }
+
+      do {
+        try persistence.save()
+      } catch {
+        print("Delete transaction failed: \(error)")
+      }
+    }
+
+    private func delete(_ transaction: Alne.Transaction, persistence: Persistences.Transaction) {
+      guard let uuid = UUID(uuidString: transaction.id) else {
+        return
+      }
+
+      guard let object = persistence.transaction(withID: uuid) else {
+        fatalError("Should not be here!")
+      }
+      object.fill(transaction)
+      persistence.delete(object)
     }
   }
 }

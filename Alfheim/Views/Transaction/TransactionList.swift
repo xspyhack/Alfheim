@@ -27,6 +27,9 @@ struct TransactionList: View {
             self.store.dispatch(.transactions(.editTransaction(transaction)))
         }
       }
+      .onDelete { indexSet in
+        self.store.dispatch(.transactions(.delete(at: indexSet)))
+      }
     }
     .navigationBarTitle("Transactions")
     .sheet(

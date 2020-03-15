@@ -31,6 +31,11 @@ extension Persistences {
       try context.save()
     }
 
+    /// Delete, without save.
+    func delete(_ object: NSManagedObject) {
+      context.delete(object)
+    }
+
     func object(withID id: UUID) -> NSManagedObject? {
       let predicate = NSPredicate(format: "id == %@", id as CVarArg)
       guard let object = context.registeredObjects(with: predicate).first else {
