@@ -59,7 +59,7 @@ struct OverviewView: View {
               .foregroundColor(.primary)
             }) {
               ForEach(self.shared.displayTransactions) { transaction in
-                TransactionRow(transaction: transaction)
+                TransactionRow(transaction: transaction, tag: self.shared.account.tag)
                   .onTapGesture {
                     self.store.dispatch(.overviews(.editTransaction(transaction)))
                 }
@@ -133,7 +133,11 @@ extension OverviewView {
       }
       .background(
         RoundedRectangle(cornerRadius: cornerRadius)
-          .fill(Color(tagit: state.account.tag))
+          .fill(LinearGradient(
+            gradient: Gradient(colors: [Color("Pink40"), Color("Violet40")]),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+          ))
           .shadow(radius: 8)
       ).rotation3DEffect(.degrees(flipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
     }

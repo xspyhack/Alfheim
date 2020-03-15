@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TransactionRow: View {
   var transaction: Alne.Transaction
+  var tag: Alne.Tagit
 
   var body: some View {
     HStack {
@@ -25,7 +26,7 @@ struct TransactionRow: View {
       }
       Spacer()
       Text("-\(transaction.currency.symbol)\(String(format: "%.1f", transaction.amount))").font(.system(size: 28, weight: .semibold))
-        .foregroundColor(.red)
+        .foregroundColor(Color(tagit: tag))
     }
     .frame(height: 64)
   }
@@ -35,8 +36,8 @@ struct TransactionRow: View {
 struct TransactionRow_Previews: PreviewProvider {
   static var previews: some View {
     ScrollView {
-      TransactionRow(transaction: Alne.Transactions.samples()[0])
-      TransactionRow(transaction: Alne.Transactions.samples().last!)
+      TransactionRow(transaction: Alne.Transactions.samples()[0], tag: .alfheim)
+      TransactionRow(transaction: Alne.Transactions.samples().last!, tag: .alfheim)
     }.padding()
   }
 }

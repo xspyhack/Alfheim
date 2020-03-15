@@ -19,10 +19,14 @@ struct TransactionList: View {
     $store.state.transactions
   }
 
+  private var tag: Tagit {
+    store.state.shared.account.tag
+  }
+
   var body: some View {
     List {
       ForEach(state.transactions) { transaction in
-        TransactionRow(transaction: transaction)
+        TransactionRow(transaction: transaction, tag: self.tag)
           .onTapGesture {
             self.store.dispatch(.transactions(.editTransaction(transaction)))
         }
