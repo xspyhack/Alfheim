@@ -31,7 +31,7 @@ struct LineChart: View {
     GeometryReader { geometry in
       ZStack(alignment: .center) {
         RoundedRectangle(cornerRadius: 20)
-          .fill(Color.ah00)
+          .fill(Color(.systemBackground))
           .shadow(radius: 8)
         VStack(alignment: .leading) {
           if !self.showsIndicator {

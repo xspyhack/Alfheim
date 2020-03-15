@@ -201,7 +201,13 @@ extension OverviewView {
     private func backSide() -> some View {
       ZStack(alignment: .topTrailing) {
         ZStack {
-          Color(tagit: state.account.tag).cornerRadius(cornerRadius)
+          RoundedRectangle(cornerRadius: cornerRadius)
+            .fill(LinearGradient(
+              gradient: Gradient(colors: [Color("Violet40"), Color("Pink40")]),
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing
+            ))
+            .cornerRadius(cornerRadius)
             .onTapGesture {
               self.flip(false)
           }

@@ -51,9 +51,10 @@ struct Pie: View {
 }
 
 extension Color {
-  static var random: Color {
+  static func color(at index: Int) -> Color {
     let all: [Color] = [.red, .green, .blue, .orange, .yellow, .pink, .purple]
-    return all[Int.random(in: 0..<6)]
+    let i = index % all.count
+    return all[i]
   }
 }
 
