@@ -38,10 +38,12 @@ struct OverviewView: View {
               .frame(height: geometry.size.width*9/16)
               .background(
                 Spacer()
-                  .sheet(isPresented: self.binding.isStatisticsPresented) {
-                    StatisticsView() {
+                  .sheet(
+                    isPresented: self.binding.isStatisticsPresented,
+                    onDismiss: {
                       self.store.dispatch(.overviews(.toggleStatistics(presenting: false)))
-                    }
+                  }) {
+                    StatisticsView().environmentObject(self.store)
                 }
               )
               .onTapGesture {

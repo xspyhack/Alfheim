@@ -38,13 +38,16 @@ struct BarChart: View {
               if !self.showsValue {
                 Text(self.title)
                   .font(.system(size: 24, weight: .semibold))
+                  .foregroundColor(.primary)
 
                 if self.legend != nil {
-                  Text(self.legend!).font(.callout).foregroundColor(.gray)
+                  Text(self.legend!).font(.callout)
+                    .foregroundColor(.secondary)
                 }
               } else {
                 Text("\(self.currentValue, specifier: self.specifier)")
-                  .font(.system(size: 41, weight: .bold, design: .default))
+                  .font(.system(size: 41, weight: .bold))
+                  .foregroundColor(.primary)
               }
             }
             Spacer()

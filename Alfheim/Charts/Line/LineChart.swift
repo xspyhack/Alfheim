@@ -13,7 +13,7 @@ struct LineChart: View {
   var title: String
   var legend: String?
 
-  typealias Value = (rate: Int, specifier: String)
+  typealias Value = (rate: Double, specifier: String)
   private var value: Value
 
   @State private var touchLocation: CGPoint = .zero
@@ -37,8 +37,10 @@ struct LineChart: View {
           if !self.showsIndicator {
             VStack(alignment: .leading, spacing: 8) {
               Text(self.title).font(.system(size: 24, weight: .semibold))
+                .foregroundColor(.primary)
               if self.legend != nil {
-                Text(self.legend!).font(.callout).foregroundColor(.gray)
+                Text(self.legend!).font(.callout)
+                  .foregroundColor(.secondary)
               }
               HStack {
                 if self.value.rate >= 0 {
@@ -46,7 +48,8 @@ struct LineChart: View {
                 } else {
                   Image(systemName: "arrow.down")
                 }
-                Text("\(self.value.rate)%")
+                Text("\(self.value.rate, specifier: self.value.specifier)%")
+                  .foregroundColor(.primary)
               }
             }
             .transition(.opacity)
@@ -58,6 +61,7 @@ struct LineChart: View {
               Spacer()
               Text("\(self.currentValue, specifier: self.value.specifier)")
                 .font(.system(size: 41, weight: .bold))
+                .foregroundColor(.primary)
                 .offset(x: 0, y: 30)
               Spacer()
             }

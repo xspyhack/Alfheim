@@ -101,5 +101,11 @@ extension AppState {
     var amountText: String {
       "\(account.currency.symbol)\(amount)"
     }
+
+    var categorizedAmount: [String: Double] {
+      displayTransactions
+        .grouped { $0.catemoji.category }
+        .mapValues { $0.reduce(0, { $0 + $1.amount }) }
+    }
   }
 }

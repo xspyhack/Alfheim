@@ -9,18 +9,45 @@
 import SwiftUI
 
 struct StatisticList: View {
+  @EnvironmentObject var store: AppStore
+
+  private var state: AppState.Shared {
+    store.state.shared
+  }
+
+  private var transactions: [Alne.Transaction] {
+    state.displayTransactions
+  }
+
+  private var lineData: [Double] {
+    transactions.reversed().map { $0.amount }
+  }
+
+  private var trend: Double {
+    guard !lineData.isEmpty else {
+      return 0
+    }
+    return (lineData.last! - lineData.first!) / lineData.first! * 100.0
+  }
+
+  private var pieData: [(String, Double)] {
+    state.categorizedAmount.map { ($0.key, $0.value) }
+  }
+
   var body: some View {
     GeometryReader { geometry in
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
-          LineChart(data: [11, 3, 2, 5, 29, 9], title: "Weekly", legend: "this week", value: (10, "%.1f"))
+          LineChart(data: self.lineData, title: self.state.account.name, legend: self.state.period.display, value: (self.trend, "%.1f"))
             .frame(height: geometry.size.width*16/15)
 
-          PieChart(data: [8,23,54,32,12,37,43], title: "Categories", legend: "7 total")
+          PieChart(data: UnitData(values: self.pieData), title: "Categories", legend: "\(self.pieData.count) total")
             .frame(height: geometry.size.width*16/15)
 
+          /*
           BarChart(data: UnitData(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "this week")
             .frame(height: geometry.size.width*16/15)
+           */
         }
         .padding(20)
       }

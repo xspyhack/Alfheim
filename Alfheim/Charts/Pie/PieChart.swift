@@ -13,8 +13,8 @@ struct PieChart: View {
   var title: String
   var legend: String?
 
-  init(data: [Double], title: String, legend: String? = nil) {
-    self.data = UnitData(points: data)
+  init(data: UnitData, title: String, legend: String? = nil) {
+    self.data = data
     self.title = title
     self.legend = legend
   }
@@ -29,8 +29,11 @@ struct PieChart: View {
           HStack {
             VStack(alignment: .leading, spacing: 8) {
               Text(self.title).font(.system(size: 24, weight: .semibold))
+                .foregroundColor(.primary)
               if self.legend != nil {
-                Text(self.legend!).font(.callout).foregroundColor(.gray).padding(.leading, 2)
+                Text(self.legend!).font(.callout)
+                  .foregroundColor(.secondary)
+                  .padding(.leading, 2)
               }
             }
             Spacer()
@@ -54,7 +57,7 @@ struct PieChart_Previews : PreviewProvider {
   static var previews: some View {
     ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       GeometryReader { geometry in
-        PieChart(data: [8,23,54,32,12,7,43], title: "Pie", legend: "accounts")
+        PieChart(data: UnitData(points: [8,23,54,32,12,7,43]), title: "Pie", legend: "accounts")
           .frame(height: geometry.size.width*16/15)
        }
       .environment(\.colorScheme, colorScheme)
