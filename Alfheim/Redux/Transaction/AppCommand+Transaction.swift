@@ -7,22 +7,28 @@
 //
 
 import Foundation
+import Combine
 
 extension AppCommands {
   struct LoadTransactionsCommand: AppCommand {
+    let filter: AnyPublisher<(Date, Date), Never>
+    var token: SubscriptionToken
+
     func execute(in store: AppStore) {
-      let token = SubscriptionToken()
-      Persistences.Transaction(context: store.context)
-        .fetchAllPublisher()
+      filter.setFailureType(to: NSError.self)
+        .map {
+          Persistences.Transaction(context: store.context)
+            .fetchPublisher(from: $0.0, to: $0.1)
+        }
+        .switchToLatest()
+        .map { $0.compactMap { Alne.Transaction($0) } }
         .sink(receiveCompletion: { completion in
-          switch completion {
-          case .failure(let error):
-            print("Load transaction failured: \(error)")
-          case .finished:
-            print("Load transactoin finished")
+          if case .failure(let error) = completion {
+            print("error")
           }
-        }, receiveValue: { transactions in
-          store.dispatch(.transactions(.loadAllDone(transactions.map { Alne.Transaction($0) })))
+          self.token.unseal()
+        }, receiveValue: { value in
+          store.dispatch(.transactions(.loadAllDone(value)))
         })
         .seal(in: token)
     }

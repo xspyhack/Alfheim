@@ -20,7 +20,9 @@ extension AppReducers {
         appState.transactions.transactions = transactions
       case .loadAll:
         appState.transactions.isLoading = true
-        appCommand = AppCommands.LoadTransactionsCommand()
+        appState.transactions.loader.token.unseal() // cancel previous load and observer
+        let loader = appState.transactions.loader
+        appCommand = AppCommands.LoadTransactionsCommand(filter: loader.filter, token: loader.token)
       case .loadAllDone(let transactions):
         appState.transactions.transactions = transactions
         appState.transactions.isLoading = false

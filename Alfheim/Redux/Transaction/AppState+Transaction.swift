@@ -25,5 +25,18 @@ extension AppState {
         .sorted(by: { $0.date > $1.date })
         .filter { $0.date <= end && $0.date >= start }
     }
+
+    class Loader {
+      @Published var from: Date = Date()
+      @Published var to: Date = Date()
+
+      var filter: AnyPublisher<(Date, Date), Never> {
+        Publishers.Zip($from, $to).eraseToAnyPublisher()
+      }
+
+      var token = SubscriptionToken()
+    }
+
+    var loader = Loader()
   }
 }
