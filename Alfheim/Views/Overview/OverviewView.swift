@@ -29,53 +29,9 @@ struct OverviewView: View {
       GeometryReader { geometry in
         ScrollView(.vertical, showsIndicators: false) {
           VStack {
-            AccountCard()
-              .frame(height: geometry.size.width*9/16)
-              .background(
-                Spacer()
-                  .sheet(
-                    isPresented: self.binding.isStatisticsPresented,
-                    onDismiss: {
-                      self.store.dispatch(.overview(.toggleStatistics(presenting: false)))
-                  }) {
-                    StatisticsView().environmentObject(self.store)
-                }
-              )
-              .onTapGesture {
-                self.store.dispatch(.overview(.toggleStatistics(presenting: true)))
-            }
-
+            self.accountCard(height: geometry.size.width*9/16)
             Spacer().frame(height: 36)
-
-            Section(header: NavigationLink(destination: TransactionList()) {
-              HStack {
-                Text("Transactions").font(.system(size: 24, weight: .bold))
-                Spacer()
-                Image(systemName: "chevron.right")
-              }
-              .foregroundColor(.primary)
-            }) {
-              ForEach(self.shared.displayTransactions) { transaction in
-                TransactionRow(transaction: transaction, tag: self.shared.account.tag)
-                  .onTapGesture {
-                    self.store.dispatch(.overview(.editTransaction(transaction)))
-                }
-              }
-            }
-            .sheet(
-              isPresented: self.binding.editingTransaction,
-              onDismiss: {
-                self.store.dispatch(.overview(.editTransactionDone))
-            }) {
-              ComposerView(mode: .edit).environmentObject(self.store)
-            }
-            /* don't use this
-            .sheet(item: self.binding.selectedTransaction) { transaction in
-              ComposerView(mode: .edit) {
-                self.store.dispatch(.overview(.editTransactionDone))
-              }
-              .environmentObject(self.store)
-            }*/
+            self.transactions()
           }
           .padding(18)
         }
@@ -97,6 +53,56 @@ struct OverviewView: View {
         }
       )
     }
+  }
+
+  private func accountCard(height: CGFloat) -> some View {
+    AccountCard()
+      .frame(height: height)
+      .background(
+        Spacer()
+          .sheet(
+            isPresented: self.binding.isStatisticsPresented,
+            onDismiss: {
+              self.store.dispatch(.overview(.toggleStatistics(presenting: false)))
+          }) {
+            StatisticsView().environmentObject(self.store)
+        }
+      )
+      .onTapGesture {
+        self.store.dispatch(.overview(.toggleStatistics(presenting: true)))
+    }
+  }
+
+  private func transactions() -> some View {
+    Section(header: NavigationLink(destination: TransactionList()) {
+      HStack {
+        Text("Transactions").font(.system(size: 24, weight: .bold))
+        Spacer()
+        Image(systemName: "chevron.right")
+      }
+      .foregroundColor(.primary)
+    }) {
+      ForEach(self.shared.displayTransactions) { transaction in
+        TransactionRow(transaction: transaction, tag: self.shared.account.tag)
+          .onTapGesture {
+            self.store.dispatch(.overview(.editTransaction(transaction)))
+        }
+      }
+    }
+    .sheet(
+      isPresented: self.binding.editingTransaction,
+      onDismiss: {
+        self.store.dispatch(.overview(.editTransactionDone))
+    }) {
+      ComposerView(mode: .edit).environmentObject(self.store)
+    }
+    /* don't use this
+    .sheet(item: self.binding.selectedTransaction) { transaction in
+      ComposerView(mode: .edit) {
+        self.store.dispatch(.overview(.editTransactionDone))
+      }
+      .environmentObject(self.store)
+    }*/
   }
 }
 
