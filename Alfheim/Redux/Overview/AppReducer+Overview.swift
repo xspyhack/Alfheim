@@ -10,7 +10,7 @@ import Foundation
 
 extension AppReducers {
   enum Overview {
-    static func reduce(state: AppState, action: AppAction.Overviews) -> (AppState, AppCommand?) {
+    static func reduce(state: AppState, action: AppAction.Overview) -> (AppState, AppCommand?) {
       var appState = state
       let appCommand: AppCommand? = nil
 

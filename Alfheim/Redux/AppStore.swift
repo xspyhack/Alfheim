@@ -33,7 +33,7 @@ class AppStore: ObservableObject {
       .dropFirst()
       .removeDuplicates()
       .sink { isValid in
-        self.dispatch(.editors(.validate(valid: isValid)))
+        self.dispatch(.editor(.validate(valid: isValid)))
       }
       .store(in: &disposeBag)
 
@@ -49,7 +49,7 @@ class AppStore: ObservableObject {
           print("Load account failed: \(error)")
         }
       }, receiveValue: { expenses in
-        self.dispatch(.accounts(.updateDone(expenses)))
+        self.dispatch(.account(.updateDone(expenses)))
       })
       .store(in: &disposeBag)
 

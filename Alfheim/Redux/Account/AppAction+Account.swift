@@ -9,7 +9,7 @@
 import Foundation
 
 extension AppAction {
-  enum Accounts {
+  enum Account {
     case update(Alne.Account)
     case updateDone(Alne.Account)
   }

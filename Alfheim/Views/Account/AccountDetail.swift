@@ -27,7 +27,7 @@ struct AccountDetail: View {
             Text("Cancel")
           },
           trailing: Button(action: {
-            self.store.dispatch(.accounts(.update(self.store.state.accountDetail.account)))
+            self.store.dispatch(.account(.update(self.store.state.accountDetail.account)))
           }) {
             Text("Save").bold()
           }

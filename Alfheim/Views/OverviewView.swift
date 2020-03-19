@@ -41,13 +41,13 @@ struct OverviewView: View {
                   .sheet(
                     isPresented: self.binding.isStatisticsPresented,
                     onDismiss: {
-                      self.store.dispatch(.overviews(.toggleStatistics(presenting: false)))
+                      self.store.dispatch(.overview(.toggleStatistics(presenting: false)))
                   }) {
                     StatisticsView().environmentObject(self.store)
                 }
               )
               .onTapGesture {
-                self.store.dispatch(.overviews(.toggleStatistics(presenting: true)))
+                self.store.dispatch(.overview(.toggleStatistics(presenting: true)))
             }
 
             Spacer().frame(height: 36)
@@ -63,21 +63,21 @@ struct OverviewView: View {
               ForEach(self.shared.displayTransactions) { transaction in
                 TransactionRow(transaction: transaction, tag: self.shared.account.tag)
                   .onTapGesture {
-                    self.store.dispatch(.overviews(.editTransaction(transaction)))
+                    self.store.dispatch(.overview(.editTransaction(transaction)))
                 }
               }
             }
             .sheet(
               isPresented: self.binding.editingTransaction,
               onDismiss: {
-                self.store.dispatch(.overviews(.editTransactionDone))
+                self.store.dispatch(.overview(.editTransactionDone))
             }) {
               ComposerView(mode: .edit).environmentObject(self.store)
             }
             /* don't use this
             .sheet(item: self.binding.selectedTransaction) { transaction in
               ComposerView(mode: .edit) {
-                self.store.dispatch(.overviews(.editTransactionDone))
+                self.store.dispatch(.overview(.editTransactionDone))
               }
               .environmentObject(self.store)
             }*/
@@ -88,14 +88,14 @@ struct OverviewView: View {
       .navigationBarTitle("Journals")
       .navigationBarItems(trailing:
         Button(action: {
-          self.store.dispatch(.overviews(.toggleNewTransaction(presenting: true)))
+          self.store.dispatch(.overview(.toggleNewTransaction(presenting: true)))
         }) {
           Text("New Transaction").bold()
         }
         .sheet(
           isPresented: binding.isEditorPresented,
           onDismiss: {
-            self.store.dispatch(.overviews(.toggleNewTransaction(presenting: false)))
+            self.store.dispatch(.overview(.toggleNewTransaction(presenting: false)))
         }) {
           ComposerView(mode: .new)
             .environmentObject(self.store)
@@ -150,7 +150,7 @@ extension OverviewView {
           HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 6) {
               Button(action: {
-                self.store.dispatch(.overviews(.toggleAccountDetail(presenting: true)))
+                self.store.dispatch(.overview(.toggleAccountDetail(presenting: true)))
               }) {
                 Text(state.account.name)
                   .font(.system(size: 22, weight: .semibold))
@@ -158,13 +158,13 @@ extension OverviewView {
               }
               .sheet(isPresented: binding.isAccountDetailPresented) {
                 AccountDetail() {
-                  self.store.dispatch(.overviews(.toggleAccountDetail(presenting: false)))
+                  self.store.dispatch(.overview(.toggleAccountDetail(presenting: false)))
                 }
                 .environmentObject(self.store)
               }
 
               Button(action: {
-                self.store.dispatch(.overviews(.switchPeriod))
+                self.store.dispatch(.overview(.switchPeriod))
               }) {
                 Image(systemName: "chevron.right")
                   .resizable()

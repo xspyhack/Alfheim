@@ -9,7 +9,7 @@
 import Foundation
 
 extension AppAction {
-  enum Editors {
+  enum Editor {
     case save(Alne.Transaction, mode: EditMode)
     case validate(valid: Bool)
     case edit(Alne.Transaction)

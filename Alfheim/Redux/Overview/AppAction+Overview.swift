@@ -9,7 +9,7 @@
 import Foundation
 
 extension AppAction {
-  enum Overviews {
+  enum Overview {
     case toggleNewTransaction(presenting: Bool)
     case editTransaction(Alne.Transaction)
     case editTransactionDone

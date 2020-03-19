@@ -10,7 +10,7 @@ import Foundation
 
 extension AppReducers {
   enum Editor {
-    static func reduce(state: AppState, action: AppAction.Editors) -> (AppState, AppCommand?) {
+    static func reduce(state: AppState, action: AppAction.Editor) -> (AppState, AppCommand?) {
       var appState = state
       var appCommand: AppCommand? = nil
 

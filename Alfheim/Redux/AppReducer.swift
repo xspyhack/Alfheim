@@ -11,13 +11,13 @@ import Foundation
 struct AppReducer {
   func reduce(state: AppState, action: AppAction) -> (AppState, AppCommand?) {
     switch action {
-    case .overviews(let subaction):
+    case .overview(let subaction):
       return AppReducers.Overview.reduce(state: state, action: subaction)
-    case .editors(let subaction):
+    case .editor(let subaction):
       return AppReducers.Editor.reduce(state: state, action: subaction)
     case .settings(let subaction):
       return AppReducers.Settings.reduce(state: state, action: subaction)
-    case .accounts(let subaction):
+    case .account(let subaction):
       return AppReducers.Account.reduce(state: state, action: subaction)
     case .transactions(let subaction):
       return AppReducers.Transactions.reduce(state: state, action: subaction)
