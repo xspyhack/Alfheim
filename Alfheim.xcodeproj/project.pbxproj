@@ -297,7 +297,7 @@
 		1F39992F23D6A06100E6BBD9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1F39993023D6A0A400E6BBD9 /* OverviewView.swift */,
+				1F45EBD724235E9A0058AEDC /* Overview */,
 				FA80C79C23FD79B500E0331C /* Transaction */,
 				FABE82A923FD7E05008A2A94 /* Editor */,
 				FABE82A823FD7DFC008A2A94 /* Account */,
@@ -327,6 +327,14 @@
 				1F39995B23D7FCF500E6BBD9 /* Sector.swift */,
 			);
 			path = Pie;
+			sourceTree = "<group>";
+		};
+		1F45EBD724235E9A0058AEDC /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				1F39993023D6A0A400E6BBD9 /* OverviewView.swift */,
+			);
+			path = Overview;
 			sourceTree = "<group>";
 		};
 		1F8AC4852411EF77006D9551 /* DataModel */ = {
