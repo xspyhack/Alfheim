@@ -30,9 +30,9 @@ struct AccountCard: View {
     .background(
       RoundedRectangle(cornerRadius: cornerRadius)
         .fill(LinearGradient(
-          gradient: Gradient(colors: [Color("Pink40"), Color("Violet40")]),
-          startPoint: .topLeading,
-          endPoint: .bottomTrailing
+          gradient: Gradient(colors: [Color("AH03"), Color("Blue60")]),
+          startPoint: .top,
+          endPoint: .bottom
         ))
         .shadow(radius: 8)
     ).rotation3DEffect(.degrees(flipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
@@ -97,9 +97,9 @@ struct AccountCard: View {
       ZStack {
         RoundedRectangle(cornerRadius: cornerRadius)
           .fill(LinearGradient(
-            gradient: Gradient(colors: [Color("Violet40"), Color("Pink40")]),
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
+            gradient: Gradient(colors: [Color("AH03"), Color("Blue60")]),
+            startPoint: .top,
+            endPoint: .bottom
           ))
           .cornerRadius(cornerRadius)
           .onTapGesture {
