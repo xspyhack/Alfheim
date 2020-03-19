@@ -14,27 +14,17 @@ class UnitData: ObservableObject {
 
   var valuesGiven: Bool = false
 
-  init<N: BinaryFloatingPoint>(points: [N]) {
-    self.units = points.map { ("", Double($0)) }
+  init(points: [Double]) {
+    self.units = points.map { ("", $0) }
   }
 
-  init<N: BinaryInteger>(values: [(String, N)]) {
+  init(values: [(String, Int)]) {
     self.units = values.map { ($0.0, Double($0.1)) }
     self.valuesGiven = true
   }
 
-  init<N: BinaryFloatingPoint>(values: [(String, N)]) {
-    self.units = values.map { ($0.0, Double($0.1)) }
-    self.valuesGiven = true
-  }
-
-  init<N: BinaryInteger>(numberValues: [(N, N)]) {
-    self.units = numberValues.map { (String($0.0), Double($0.1)) }
-    self.valuesGiven = true
-  }
-
-  init<N: BinaryFloatingPoint & LosslessStringConvertible>(numberValues: [(N, N)]) {
-    self.units = numberValues.map { (String($0.0), Double($0.1)) }
+  init(values: [(String, Double)]) {
+    self.units = values.map { ($0.0, $0.1) }
     self.valuesGiven = true
   }
 
