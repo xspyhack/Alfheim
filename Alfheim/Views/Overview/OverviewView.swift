@@ -9,26 +9,21 @@
 import SwiftUI
 
 struct OverviewView: View {
-
+  /// App Store
   @EnvironmentObject var store: AppStore
-
+  /// Ovewview state
   private var state: AppState.Overview {
     store.state.overview
   }
-
+  /// Shared state
   private var shared: AppState.Shared {
     store.state.shared
   }
-
+  /// Overview binding
   private var binding: Binding<AppState.Overview> {
     $store.state.overview
   }
 
-  #if targetEnvironment(macCatalyst)
-  var body: some View {
-      SplitView()
-  }
-  #else
   var body: some View {
     NavigationView {
       GeometryReader { geometry in
@@ -102,13 +97,6 @@ struct OverviewView: View {
         }
       )
     }
-  }
-  #endif
-}
-
-struct SplitView: View {
-  var body: some View {
-    Text("Hello split view")
   }
 }
 

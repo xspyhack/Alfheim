@@ -30,6 +30,7 @@
 		1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995923D7F75500E6BBD9 /* Slice.swift */; };
 		1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995B23D7FCF500E6BBD9 /* Sector.swift */; };
 		1F39995E23D805C600E6BBD9 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39995D23D805C600E6BBD9 /* PieChart.swift */; };
+		1F45EBD924235F130058AEDC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F45EBD824235F130058AEDC /* MainView.swift */; };
 		1F5A47B3240D0D9300DEA96B /* Alne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A47B2240D0D9300DEA96B /* Alne.swift */; };
 		1F8AC4872411EF95006D9551 /* Account+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC4862411EF95006D9551 /* Account+CoreData.swift */; };
 		1F8AC48D2411FCEC006D9551 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AC48C2411FCEC006D9551 /* DataModel.swift */; };
@@ -127,6 +128,7 @@
 		1F39995923D7F75500E6BBD9 /* Slice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slice.swift; sourceTree = "<group>"; };
 		1F39995B23D7FCF500E6BBD9 /* Sector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sector.swift; sourceTree = "<group>"; };
 		1F39995D23D805C600E6BBD9 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
+		1F45EBD824235F130058AEDC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1F5A47B2240D0D9300DEA96B /* Alne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alne.swift; sourceTree = "<group>"; };
 		1F8AC4862411EF95006D9551 /* Account+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+CoreData.swift"; sourceTree = "<group>"; };
 		1F8AC48C2411FCEC006D9551 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 		1F39992F23D6A06100E6BBD9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1F45EBD824235F130058AEDC /* MainView.swift */,
 				1F45EBD724235E9A0058AEDC /* Overview */,
 				FA80C79C23FD79B500E0331C /* Transaction */,
 				FABE82A923FD7E05008A2A94 /* Editor */,
@@ -628,6 +631,7 @@
 				782403F623F6DBAF00478338 /* TransactionsView.swift in Sources */,
 				782403EC23F2E48000478338 /* AppAction.swift in Sources */,
 				1F8AC4872411EF95006D9551 /* Account+CoreData.swift in Sources */,
+				1F45EBD924235F130058AEDC /* MainView.swift in Sources */,
 				1F2379B723D84C0E00B4E79E /* Piece.swift in Sources */,
 				789E8E6723E807CA006D180B /* EditorView.swift in Sources */,
 				789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */,
