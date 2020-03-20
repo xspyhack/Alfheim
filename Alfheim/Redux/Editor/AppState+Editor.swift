@@ -78,14 +78,16 @@ extension AppState {
                              amount: Double(amount)!,
                              catemoji: emoji,
                              notes: notes,
-                             currency: currency)
+                             currency: currency,
+                             payment: payment)
         case .edit(let transaction):
           return Alne.Transaction(id: transaction.id,
                              date: date,
                              amount: Double(amount)!,
                              catemoji: emoji,
                              notes: notes,
-                             currency: currency)
+                             currency: currency,
+                             payment: payment)
         }
       }
     }
