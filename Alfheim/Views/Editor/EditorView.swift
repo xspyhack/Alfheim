@@ -52,8 +52,7 @@ struct EditorView: View {
         }
         HStack {
           Text("Notes")
-          TextField("", text: binding.validator.notes)
-            .lineLimit(nil)
+          InputTextField("", text: binding.validator.notes, isFirstResponder: .constant(false))
             .multilineTextAlignment(.trailing)
         }
         HStack {
