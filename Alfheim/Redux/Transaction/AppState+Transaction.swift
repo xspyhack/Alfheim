@@ -20,6 +20,8 @@ extension AppState {
     var selectedTransaction: Alne.Transaction?
     var editingTransaction: Bool = false
 
+    var searchText = ""
+
     func displayTransactions(from start: Date, to end: Date) -> [Alne.Transaction] {
       return transactions
         .sorted(by: { $0.date > $1.date })
