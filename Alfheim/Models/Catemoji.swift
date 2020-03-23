@@ -15,7 +15,7 @@ protocol CategoryEmojiRepresentable {
 
 extension Alne {
   /// Category emoji
-  enum Catemoji: CategoryEmojiRepresentable {
+  enum Catemojis: CategoryEmojiRepresentable {
     case food(Food)
     case fruit(Fruit)
     case drink(Drink)
@@ -67,7 +67,7 @@ extension Alne {
       }
     }
 
-    var allCases: [Catemoji] {
+    var allCases: [Catemojis] {
       switch self {
       case .food:
         return Food.allCases.map { .food($0) }
@@ -89,25 +89,25 @@ extension Alne {
     }
 
     /// All categories
-    static var allCates: [Catemoji] {
+    static var allCates: [Catemojis] {
       [.food(.others), .fruit(.others), .drink(.others), .clothes(.others), .household(.others), .transportation(.others), .personal(.others), .uncleared(.uncleared)]
     }
 
-    static var allCases: [Catemoji] {
+    static var allCases: [Catemojis] {
       allCates.flatMap { $0.allCases }
     }
   }
 }
 
 
-extension Catemoji {
+extension Catemojis {
   enum Food: String, CaseIterable, CategoryEmojiRepresentable {
     case groceries = "🛒"
     case eating = "🍽"
     case snacks = "🍟"
     case others = "🍔"
 
-    var catemoji: Catemoji {
+    var catemoji: Catemojis {
       .food(self)
     }
 
@@ -127,7 +127,7 @@ extension Catemoji {
     case cherries = "🍒"
     case others = "🍓"
 
-    var catemoji: Catemoji {
+    var catemoji: Catemojis {
       .fruit(self)
     }
 
@@ -147,7 +147,7 @@ extension Catemoji {
     case wine = "🍷"
     case others = "🍹"
 
-    var catemoji: Catemoji {
+    var catemoji: Catemojis {
       .drink(self)
     }
 
@@ -168,7 +168,7 @@ extension Catemoji {
     case skirt = "👗"
     case others = "👔"
 
-    var catemoji: Catemoji {
+    var catemoji: Catemojis {
       .clothes(self)
     }
 
@@ -187,7 +187,7 @@ extension Catemoji {
     case travel = "🏖"
     case others = "🏠"
 
-    var catemoji: Catemoji {
+    var catemoji: Catemojis {
       .household(self)
     }
 
@@ -205,7 +205,7 @@ extension Catemoji {
     case privacy = "🔏"
     case others = "🤷‍♂️"
 
-    var catemoji: Catemoji {
+    var catemoji: Catemojis {
       .personal(self)
     }
 
@@ -228,7 +228,7 @@ extension Catemoji {
     case boat = "🛳"
     case others = "🚲"
 
-    var catemoji: Catemoji {
+    var catemoji: Catemojis {
       .transportation(self)
     }
 
@@ -244,7 +244,7 @@ extension Catemoji {
   enum Uncleared: String, CaseIterable, CategoryEmojiRepresentable {
     case uncleared = "🧚‍♀️"
 
-    var catemoji: Catemoji {
+    var catemoji: Catemojis {
       .uncleared(self)
     }
 
@@ -258,7 +258,7 @@ extension Catemoji {
   }
 }
 
-extension Catemoji {
+extension Catemojis {
   init(_ emoji: String) {
     switch emoji {
     case Food.groceries.emoji:
@@ -343,4 +343,4 @@ extension Catemoji {
   }
 }
 
-extension Catemoji: Hashable {}
+extension Catemojis: Hashable {}

@@ -17,5 +17,5 @@ enum Alne {
 typealias Currency = Alne.Currency
 typealias Payment = Alne.Payment
 //typealias Account = Alne.Account
-typealias Catemoji = Alne.Catemoji
+typealias Catemojis = Alne.Catemojis
 typealias Tagit = Alne.Tagit

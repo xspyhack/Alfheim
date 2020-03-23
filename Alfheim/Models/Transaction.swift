@@ -13,7 +13,7 @@ extension Alne {
     let id: String
     var date: Date
     var amount: Double
-    var catemoji: Catemoji
+    var catemoji: Catemojis
     var notes: String
     var currency: Currency = .cny
     /// payment method
@@ -30,7 +30,7 @@ extension Alne.Transaction {
   init(id: String = UUID().uuidString,
        date: Date,
        amount: Double,
-       catemoji: Catemoji,
+       catemoji: Catemojis,
        notes: String,
        currency: Currency = .cny,
        payment: Payment = .uncleared) {

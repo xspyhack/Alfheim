@@ -29,7 +29,7 @@ extension AppState {
     class Validator {
       @Published var amount: String = ""
       @Published var currency: Currency = .cny
-      @Published var emoji: Catemoji = Catemoji.uncleared(.uncleared)
+      @Published var emoji: Catemojis = Catemojis.uncleared(.uncleared)
       @Published var date: Date = Date()
       @Published var notes: String = ""
       @Published var payment: Payment = Payment.uncleared
@@ -41,7 +41,7 @@ extension AppState {
         case .new:
           amount = ""
           currency = .cny
-          emoji = Catemoji.uncleared(.uncleared)
+          emoji = Catemojis.uncleared(.uncleared)
           date = Date()
           notes = ""
           payment = Payment.uncleared

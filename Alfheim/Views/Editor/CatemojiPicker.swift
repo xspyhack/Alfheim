@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-extension Catemoji: Identifiable {
+extension Catemojis: Identifiable {
   var id: String { emoji }
 }
 
 struct CatemojiPicker<Label>: View where Label: View {
   let numbersPerRow = 6
-  let catemojis = Catemoji.allCases
+  let catemojis = Catemojis.allCases
 
   private var numberOfRows: Int {
     if catemojis.count % numbersPerRow == 0 {
@@ -26,10 +26,10 @@ struct CatemojiPicker<Label>: View where Label: View {
 
   @State var isContentActive: Bool = false
 
-  let selection: Binding<Catemoji>
+  let selection: Binding<Catemojis>
   let label: Label
 
-  init(selection: Binding<Catemoji>, label: Label) {
+  init(selection: Binding<Catemojis>, label: Label) {
     self.selection = selection
     self.label = label
   }
@@ -69,11 +69,11 @@ struct CatemojiPicker<Label>: View where Label: View {
     }
   }
 
-  private func items(at row: Int) -> [Catemoji] {
+  private func items(at row: Int) -> [Catemojis] {
     if row < numberOfRows - 1 {
-      return Array(Catemoji.allCases[numbersPerRow * row ..< numbersPerRow * row + numbersPerRow])
+      return Array(Catemojis.allCases[numbersPerRow * row ..< numbersPerRow * row + numbersPerRow])
     } else if row == numberOfRows - 1 {
-      return Array(Catemoji.allCases[numbersPerRow * row ..< numbersPerRow * row + catemojis.count % numbersPerRow])
+      return Array(Catemojis.allCases[numbersPerRow * row ..< numbersPerRow * row + catemojis.count % numbersPerRow])
     } else {
       fatalError("row out of bounds")
     }
