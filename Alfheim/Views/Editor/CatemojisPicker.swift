@@ -12,7 +12,7 @@ extension Catemojis: Identifiable {
   var id: String { emoji }
 }
 
-struct CatemojiPicker<Label>: View where Label: View {
+struct CatemojisPicker<Label>: View where Label: View {
   let numbersPerRow = 6
   let catemojis = Catemojis.allCases
 
@@ -85,9 +85,9 @@ struct CatemojiPicker<Label>: View where Label: View {
 }
 
 #if DEBUG
-struct CatemojiPicker_Previews: PreviewProvider {
+struct CatemojisPicker_Previews: PreviewProvider {
   static var previews: some View {
-    CatemojiPicker(selection: .constant(.food(.eating)), label: Text(""))
+    CatemojisPicker(selection: .constant(.food(.eating)), label: Text(""))
 //      .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
   }
 }
