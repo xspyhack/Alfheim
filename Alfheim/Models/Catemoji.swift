@@ -14,6 +14,15 @@ protocol CategoryEmojiRepresentable {
 }
 
 extension Alne {
+  struct Catemoji: CategoryEmojiRepresentable {
+    let category: String
+    let emoji: String
+  }
+}
+
+extension Alne.Catemoji: Hashable {}
+
+extension Alne {
   /// Category emoji
   enum Catemojis: CategoryEmojiRepresentable {
     case food(Food)
