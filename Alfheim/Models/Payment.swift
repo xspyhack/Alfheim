@@ -9,6 +9,35 @@
 import Foundation
 
 extension Alne {
+  struct Payment {
+    var name: String
+    var kind: Kind
+
+    enum Kind: Int {
+      case cash
+      case debitCard
+      case creditCard
+      case uncleared
+
+      var name: String {
+        switch self {
+        case .cash:
+          return "Cash"
+        case .debitCard:
+          return "Debit Card"
+        case .creditCard:
+          return "Credit Card"
+        case .uncleared:
+          return "Uncleared"
+        }
+      }
+    }
+  }
+}
+
+extension Alne.Payment: Hashable {}
+
+extension Alne {
   enum Payments: Hashable {
 
     case cash
