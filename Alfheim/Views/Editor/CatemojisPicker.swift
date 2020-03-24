@@ -1,5 +1,5 @@
 //
-//  CatemojiPicker.swift
+//  CatemojisPicker.swift
 //  Alfheim
 //
 //  Created by alex.huo on 2020/3/1.

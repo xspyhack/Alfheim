@@ -33,6 +33,7 @@ extension Alne {
     case transportation(Transportation)
     case personal(Personal)
     case uncleared(Uncleared)
+    case custom(String)
 
     var emoji: String {
       switch self {
@@ -52,6 +53,8 @@ extension Alne {
         return personal.emoji
       case .uncleared(let uncleared):
         return uncleared.emoji
+      case .custom(let emoji):
+        return emoji
       }
     }
 
@@ -73,6 +76,8 @@ extension Alne {
         return personal.category
       case .uncleared(let uncleared):
         return uncleared.category
+      case .custom:
+        return "Custom"
       }
     }
 
@@ -94,6 +99,8 @@ extension Alne {
         return Personal.allCases.map { .personal($0) }
       case .uncleared:
         return Uncleared.allCases.map { .uncleared($0) }
+      case .custom(let emoji):
+        return [Catemojis.custom(emoji)]
       }
     }
 
@@ -170,7 +177,7 @@ extension Catemojis {
   }
 
   enum Clothes: String, CaseIterable, CategoryEmojiRepresentable {
-    case thirt = "👕"
+    case shirt = "👕"
     case pants = "👖"
     case sock = "🧦"
     case coat = "🧥"
@@ -194,6 +201,7 @@ extension Catemojis {
     case goods = "🧺"
     case love = "👩‍❤️‍👨"
     case travel = "🏖"
+    case object = "💡"
     case others = "🏠"
 
     var catemoji: Catemojis {
@@ -212,6 +220,7 @@ extension Catemojis {
   enum Personal: String, CaseIterable, CategoryEmojiRepresentable {
     case health = "💊"
     case privacy = "🔏"
+    case services = "🌐"
     case others = "🤷‍♂️"
 
     var catemoji: Catemojis {
@@ -301,8 +310,8 @@ extension Catemojis {
     case Drink.others.emoji:
       self = .drink(.others)
 
-    case Clothes.thirt.emoji:
-      self = .clothes(.thirt)
+    case Clothes.shirt.emoji:
+      self = .clothes(.shirt)
     case Clothes.pants.emoji:
       self = .clothes(.pants)
     case Clothes.sock.emoji:
@@ -320,6 +329,8 @@ extension Catemojis {
       self = .household(.travel)
     case Household.love.emoji:
       self = .household(.love)
+    case Household.object.emoji:
+      self = .household(.object)
     case Household.others.emoji:
       self = .household(.others)
 
@@ -327,6 +338,8 @@ extension Catemojis {
       self = .personal(.health)
     case Personal.privacy.emoji:
       self = .personal(.privacy)
+    case Personal.services.emoji:
+      self = .personal(.services)
     case Personal.others.emoji:
       self = .personal(.others)
 
@@ -346,8 +359,10 @@ extension Catemojis {
       self = .transportation(.boat)
     case Transportation.others.emoji:
       self = .transportation(.others)
-    default:
+    case Uncleared.uncleared.emoji:
       self = .uncleared(.uncleared)
+    default:
+      self = .custom(emoji)
     }
   }
 }

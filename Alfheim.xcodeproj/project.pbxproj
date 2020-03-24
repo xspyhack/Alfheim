@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F14AC362428A1650021CF4D /* CatemojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F14AC352428A1650021CF4D /* CatemojiPicker.swift */; };
 		1F1CF967240622A500828426 /* Shape+Divided.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1CF966240622A500828426 /* Shape+Divided.swift */; };
 		1F2379B323D83BD900B4E79E /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2379B223D83BD900B4E79E /* Bar.swift */; };
 		1F2379B523D83C2400B4E79E /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2379B423D83C2400B4E79E /* BarChart.swift */; };
@@ -103,6 +104,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F14AC352428A1650021CF4D /* CatemojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatemojiPicker.swift; sourceTree = "<group>"; };
 		1F1CF966240622A500828426 /* Shape+Divided.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape+Divided.swift"; sourceTree = "<group>"; };
 		1F2379B223D83BD900B4E79E /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 		1F2379B423D83C2400B4E79E /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				FACF2A7523FFCFA2003BB675 /* ComposerView.swift */,
 				789E8E6623E807CA006D180B /* EditorView.swift */,
 				FA014087240C01B800F6FE92 /* CatemojisPicker.swift */,
+				1F14AC352428A1650021CF4D /* CatemojiPicker.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				1F39992623D695EE00E6BBD9 /* LineChart.swift in Sources */,
 				788863F423F2A6320037210B /* AppReducer.swift in Sources */,
 				1F91CA06241A4CF900B552E7 /* AppCommand+Transaction.swift in Sources */,
+				1F14AC362428A1650021CF4D /* CatemojiPicker.swift in Sources */,
 				FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */,
 				782403F823F83A6600478338 /* AccountDetail.swift in Sources */,
 				1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */,
