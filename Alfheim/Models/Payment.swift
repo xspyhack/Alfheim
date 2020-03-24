@@ -15,18 +15,18 @@ extension Alne {
 
     enum Kind: Int {
       case cash
-      case debitCard
-      case creditCard
+      case debit
+      case credit
       case uncleared
 
       var name: String {
         switch self {
         case .cash:
           return "Cash"
-        case .debitCard:
-          return "Debit Card"
-        case .creditCard:
-          return "Credit Card"
+        case .debit:
+          return "Debit"
+        case .credit:
+          return "Credit"
         case .uncleared:
           return "Uncleared"
         }
