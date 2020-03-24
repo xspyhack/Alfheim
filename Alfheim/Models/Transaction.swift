@@ -17,7 +17,7 @@ extension Alne {
     var notes: String
     var currency: Currency = .cny
     /// payment method
-    var payment: Payment = .uncleared
+    var payment: Payments = .uncleared
     var payee: String? = nil
     var number: Int = 0
     /// account
@@ -33,7 +33,7 @@ extension Alne.Transaction {
        catemoji: Catemojis,
        notes: String,
        currency: Currency = .cny,
-       payment: Payment = .uncleared) {
+       payment: Payments = .uncleared) {
     self.id = id
     self.date = date
     self.amount = amount
@@ -89,74 +89,6 @@ extension Alne {
         Transaction(date: Date(timeIntervalSince1970: 1582306192.0), amount: 2233.0, catemoji: .household(.travel), notes: "Travel"),
         Transaction(date: Date(timeIntervalSince1970: 1582201232.0), amount: 21.0, catemoji: .fruit(.apple), notes: "Apple"),
       ]
-    }
-  }
-}
-
-extension Alne {
-  enum Payment: Hashable {
-
-    case cash
-    case debitCard
-    case creditCard(Credit)
-    case uncleared
-
-    var name: String {
-      switch self {
-      case .cash:
-        return "Cash"
-      case .debitCard:
-        return "Debit Card"
-      case .creditCard(let from):
-        return "Credit Card - \(from.name)"
-      case .uncleared:
-        return "Uncleared"
-      }
-    }
-
-    enum Credit: Hashable {
-      case apple
-      case wechat
-      case alipay
-      case unionpay
-
-      var name: String {
-        switch self {
-        case .apple:
-          return "Pay"
-        case .wechat:
-          return "Wechat"
-        case .alipay:
-          return "Alipay"
-        case .unionpay:
-          return "UnionPay"
-        }
-      }
-    }
-
-    static var allCases: [Payment] {
-      [.cash, .debitCard, .creditCard(.apple), .creditCard(.wechat), .creditCard(.alipay), .creditCard(.unionpay), .uncleared]
-    }
-  }
-}
-
-extension Alne.Payment {
-  init(_ name: String) {
-    switch name {
-    case "Cash":
-      self = .cash
-    case "Debit Card":
-      self = .debitCard
-    case "Credit Card - Pay":
-      self = .creditCard(.apple)
-    case "Credit Card - Wechat":
-      self = .creditCard(.wechat)
-    case "Credit Card - Alipay":
-      self = .creditCard(.alipay)
-    case "Credit Card - UnionPay":
-      self = .creditCard(.unionpay)
-    default:
-      self = .uncleared
     }
   }
 }

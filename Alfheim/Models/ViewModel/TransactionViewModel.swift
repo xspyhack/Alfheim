@@ -17,7 +17,7 @@ extension Alne.Transaction {
     self.catemoji = object.emoji.map { Catemojis($0) } ?? .uncleared(.uncleared)
     self.notes = object.notes
     self.currency = Currency(rawValue: Int(object.currency))!
-    self.payment = object.payment.map { Payment($0) } ?? .uncleared
+    self.payment = object.payment.map { Payments($0) } ?? .uncleared
     self.payee = object.payee
     self.number = Int(object.number)
   }

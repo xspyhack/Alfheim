@@ -58,7 +58,7 @@ struct EditorView: View {
         }
         HStack {
           Picker(selection: binding.validator.payment, label: Text("Payment")) {
-            ForEach(Payment.allCases, id: \.self) {
+            ForEach(Payments.allCases, id: \.self) {
               Text($0.name).tag($0.name)
             }
           }

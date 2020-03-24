@@ -51,6 +51,7 @@
 		1F91CA04241A4CEE00B552E7 /* AppAction+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91CA03241A4CEE00B552E7 /* AppAction+Transaction.swift */; };
 		1F91CA06241A4CF900B552E7 /* AppCommand+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91CA05241A4CF900B552E7 /* AppCommand+Transaction.swift */; };
 		1F91CA08241A4D9800B552E7 /* AppReducer+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91CA07241A4D9800B552E7 /* AppReducer+Account.swift */; };
+		1FFA61132429C187005C628C /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA61122429C187005C628C /* Payment.swift */; };
 		782403EC23F2E48000478338 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403EB23F2E48000478338 /* AppAction.swift */; };
 		782403EE23F2E55100478338 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403ED23F2E55100478338 /* AppError.swift */; };
 		782403F023F2E5FF00478338 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403EF23F2E5FF00478338 /* Redux.swift */; };
@@ -152,6 +153,7 @@
 		1F91CA03241A4CEE00B552E7 /* AppAction+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppAction+Transaction.swift"; sourceTree = "<group>"; };
 		1F91CA05241A4CF900B552E7 /* AppCommand+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppCommand+Transaction.swift"; sourceTree = "<group>"; };
 		1F91CA07241A4D9800B552E7 /* AppReducer+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppReducer+Account.swift"; sourceTree = "<group>"; };
+		1FFA61122429C187005C628C /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		782403EB23F2E48000478338 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		782403ED23F2E55100478338 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		782403EF23F2E5FF00478338 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 				789E8E6B23E810A6006D180B /* Account.swift */,
 				FAEC0378240AB126003BFE2C /* Tagit.swift */,
 				FAEC037C240ADA34003BFE2C /* Catemoji.swift */,
+				1FFA61122429C187005C628C /* Payment.swift */,
 				1F8AC4852411EF77006D9551 /* DataModel */,
 				FA014084240B8F5F00F6FE92 /* ViewModel */,
 			);
@@ -662,6 +665,7 @@
 				782403F023F2E5FF00478338 /* Redux.swift in Sources */,
 				1F39993323D6D53200E6BBD9 /* QuadCurve.swift in Sources */,
 				FAEC037D240ADA34003BFE2C /* Catemoji.swift in Sources */,
+				1FFA61132429C187005C628C /* Payment.swift in Sources */,
 				1F39992623D695EE00E6BBD9 /* LineChart.swift in Sources */,
 				788863F423F2A6320037210B /* AppReducer.swift in Sources */,
 				1F91CA06241A4CF900B552E7 /* AppCommand+Transaction.swift in Sources */,
