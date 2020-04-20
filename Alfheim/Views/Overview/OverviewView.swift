@@ -82,10 +82,10 @@ struct OverviewView: View {
       }
       .foregroundColor(.primary)
     }) {
-      ForEach(self.shared.displayTransactions) { transaction in
-        TransactionRow(transaction: transaction, tag: self.shared.account.tag)
+      ForEach(self.shared.displayTransactions) { viewModel in
+        TransactionRow(model: viewModel)
           .onTapGesture {
-            self.store.dispatch(.overview(.editTransaction(transaction)))
+            self.store.dispatch(.overview(.editTransaction(viewModel.transaction)))
         }
       }
     }

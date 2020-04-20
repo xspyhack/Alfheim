@@ -23,7 +23,7 @@ struct ComposerView: View {
     NavigationView {
       EditorView()
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("New Transaction")
+        .navigationBarTitle(self.state.isNew ? " New Transaction" : "Edit Transaction")
         .navigationBarItems(
           leading: Button(action: {
             self.presentationMode.wrappedValue.dismiss()

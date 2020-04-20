@@ -52,13 +52,16 @@ struct EditorView: View {
         }
         HStack {
           Text("Notes")
-          InputTextField("e.g. Coffee", text: binding.validator.notes, isFirstResponder: .constant(false))
+          InputTextField("Notes", text: binding.validator.notes, isFirstResponder: .constant(false))
             .multilineTextAlignment(.trailing)
         }
         HStack {
           Picker(selection: binding.validator.payment, label: Text("Payment")) {
-            ForEach(Payments.allCases, id: \.self) {
-              Text($0.name).tag($0.name)
+            ForEach(0..<state.payments.count) { payment in
+              HStack(alignment: .center, spacing: 2) {
+                Text(self.state.payments[payment].name)
+                //Text(" - \(payment.kind.fullname)")
+              }
             }
           }
         }

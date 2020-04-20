@@ -10,11 +10,11 @@ import Foundation
 
 extension AppAction {
   enum Transactions {
-    case updated([Alne.Transaction])
+    case updated([Alfheim.Transaction])
     case loadAll
-    case loadAllDone([Alne.Transaction])
+    case loadAllDone([Alfheim.Transaction])
 
-    case editTransaction(Alne.Transaction)
+    case editTransaction(Alfheim.Transaction)
     case editTransactionDone
 
     case delete(at: IndexSet)

@@ -13,7 +13,7 @@ extension AppState {
   struct Overview {
     var isEditorPresented: Bool = false
     var isStatisticsPresented: Bool = false
-    var selectedTransaction: Alne.Transaction?
+    var selectedTransaction: Alfheim.Transaction?
     var editingTransaction: Bool = false
     var isAccountDetailPresented: Bool = false
 

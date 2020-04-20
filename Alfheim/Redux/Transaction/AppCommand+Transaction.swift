@@ -21,7 +21,6 @@ extension AppCommands {
             .fetchPublisher(from: $0.0, to: $0.1)
         }
         .switchToLatest()
-        .map { $0.compactMap { Alne.Transaction($0) } }
         .sink(receiveCompletion: { completion in
           if case .failure(let error) = completion {
             print("error")
@@ -35,7 +34,7 @@ extension AppCommands {
   }
 
   struct CreateTransactionCommand: AppCommand {
-    let transaction: Alne.Transaction
+    let transaction: Alfheim.Transaction.Snapshot
 
     func execute(in store: AppStore) {
       let persistence = Persistences.Transaction(context: store.context)
@@ -51,15 +50,11 @@ extension AppCommands {
   }
 
   struct UpdateTransactionCommand: AppCommand {
-    let transaction: Alne.Transaction
+    let transaction: Alfheim.Transaction.Snapshot
 
     func execute(in store: AppStore) {
-      guard let uuid = UUID(uuidString: transaction.id) else {
-        return
-      }
-
       let persistence = Persistences.Transaction(context: store.context)
-      if let object = persistence.transaction(withID: uuid) {
+      if let object = persistence.transaction(withID: transaction.id) {
         object.fill(transaction)
       } else {
         fatalError("Should not be here!")
@@ -74,7 +69,7 @@ extension AppCommands {
   }
 
   struct DeleteTransactionCommand: AppCommand {
-    let transactions: [Alne.Transaction]
+    let transactions: [Alfheim.Transaction]
 
     func execute(in store: AppStore) {
       guard !transactions.isEmpty else {
@@ -94,15 +89,11 @@ extension AppCommands {
       }
     }
 
-    private func delete(_ transaction: Alne.Transaction, persistence: Persistences.Transaction) {
-      guard let uuid = UUID(uuidString: transaction.id) else {
-        return
-      }
-
-      guard let object = persistence.transaction(withID: uuid) else {
+    private func delete(_ transaction: Alfheim.Transaction, persistence: Persistences.Transaction) {
+      guard let object = persistence.transaction(withID: transaction.id) else {
         fatalError("Should not be here!")
       }
-      object.fill(transaction)
+      // object.fill(transaction)
       persistence.delete(object)
     }
   }

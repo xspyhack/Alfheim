@@ -55,7 +55,6 @@ class AppStore: ObservableObject {
 
     Persistences.Transaction(context: context)
       .fetchAllPublisher()
-      .map { $0.compactMap { Alne.Transaction($0) } }
       .removeDuplicates()
       .sink(receiveCompletion: { completion in
         switch completion {
@@ -66,6 +65,21 @@ class AppStore: ObservableObject {
         }
       }, receiveValue: { transactions in
         self.dispatch(.transactions(.updated(transactions)))
+      })
+      .store(in: &disposeBag)
+
+    Persistences.Payment(context: context)
+      .fetchAllPublisher()
+      .removeDuplicates()
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print("Load account finished")
+        case .failure(let error):
+          print("Load account failed: \(error)")
+        }
+      }, receiveValue: { payments in
+        self.dispatch(.payment(.updated(payments)))
       })
       .store(in: &disposeBag)
   }

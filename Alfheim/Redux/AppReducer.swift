@@ -21,6 +21,8 @@ struct AppReducer {
       return AppReducers.Account.reduce(state: state, action: subaction)
     case .transactions(let subaction):
       return AppReducers.Transactions.reduce(state: state, action: subaction)
+    case .payment(let subaction):
+      return AppReducers.Payment.reduce(state: state, action: subaction)
     }
   }
 }

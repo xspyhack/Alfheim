@@ -15,8 +15,8 @@ struct StatisticList: View {
     store.state.shared
   }
 
-  private var transactions: [Alne.Transaction] {
-    state.displayTransactions
+  private var transactions: [Alfheim.Transaction] {
+    state.periodTransactions
   }
 
   private var lineData: [Double] {

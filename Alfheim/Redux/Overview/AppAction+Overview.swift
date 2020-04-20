@@ -11,7 +11,7 @@ import Foundation
 extension AppAction {
   enum Overview {
     case toggleNewTransaction(presenting: Bool)
-    case editTransaction(Alne.Transaction)
+    case editTransaction(Alfheim.Transaction)
     case editTransactionDone
     case toggleStatistics(presenting: Bool)
     case toggleAccountDetail(presenting: Bool)

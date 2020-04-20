@@ -8,13 +8,14 @@
 
 import Foundation
 import Combine
+import CoreData
 
 extension AppState {
   /// Composer, editor state
   struct Editor {
     enum Mode {
       case new
-      case edit(Alne.Transaction)
+      case edit(Transaction)
 
       var isNew: Bool {
         switch self {
@@ -32,8 +33,11 @@ extension AppState {
       @Published var emoji: Catemojis = Catemojis.uncleared(.uncleared)
       @Published var date: Date = Date()
       @Published var notes: String = ""
-      @Published var payment: Payments = Payments.uncleared
+      //@Published var payment: Alfheim.Payment? = nil
+      @Published var payment: Int = 0
 
+      var payments: [Alfheim.Payment] = []
+      var defaultPayment: Alfheim.Payment?
       var mode: Mode = .new
 
       func reset(_ mode: Mode) {
@@ -44,14 +48,19 @@ extension AppState {
           emoji = Catemojis.uncleared(.uncleared)
           date = Date()
           notes = ""
-          payment = Payments.uncleared
+          payment = 0
         case .edit(let transaction):
           amount = "\(transaction.amount)"
-          currency = transaction.currency
-          emoji = transaction.catemoji
+          currency = Currency(rawValue: Int(transaction.currency)) ?? .cny
+          emoji = transaction.emoji.map { Catemojis($0) } ?? .uncleared(.uncleared)
           date = transaction.date
           notes = transaction.notes
-          payment = transaction.payment
+          if let payment = transaction.payment,
+            let index = payments.firstIndex(of: payment) {
+            self.payment = index
+          } else {
+            self.payment = 0
+          }
         }
         self.mode = mode
       }
@@ -71,29 +80,59 @@ extension AppState {
           .eraseToAnyPublisher()
       }
 
-      var transaction: Alne.Transaction {
+      func transaction(context: NSManagedObjectContext) -> Alfheim.Transaction {
+        let newTransaction: Alfheim.Transaction
         switch mode {
         case .new:
-          return Alne.Transaction(date: date,
-                             amount: Double(amount)!,
-                             catemoji: emoji,
-                             notes: notes,
-                             currency: currency,
-                             payment: payment)
+          newTransaction = Alfheim.Transaction(context: context)
+          newTransaction.id = UUID()
         case .edit(let transaction):
-          return Alne.Transaction(id: transaction.id,
-                             date: date,
-                             amount: Double(amount)!,
-                             catemoji: emoji,
-                             notes: notes,
-                             currency: currency,
-                             payment: payment)
+          newTransaction = transaction
         }
+
+        newTransaction.date = date
+        newTransaction.amount = Double(amount)!
+        newTransaction.category = emoji.category
+        newTransaction.emoji = emoji.emoji
+        newTransaction.notes = notes
+        newTransaction.currency = Int16(currency.rawValue)
+        newTransaction.payment = payments.count > payment ? payments[payment] : nil
+        return newTransaction
+      }
+
+      var transaction: Alfheim.Transaction.Snapshot {
+        let pm = payments.count > payment ? payments[payment] : nil
+        let snapshot: Alfheim.Transaction.Snapshot
+        switch mode {
+        case .new:
+          snapshot = Alfheim.Transaction.Snapshot(date: date,
+                                                  amount: Double(amount)!,
+                                                  currency: Int16(currency.rawValue),
+                                                  category: emoji.category,
+                                                  emoji: emoji.emoji,
+                                                  notes: notes,
+                                                  payment: pm)
+        case .edit(let transaction):
+          transaction.date = date
+          transaction.amount = Double(amount)!
+          transaction.category = emoji.category
+          transaction.emoji = emoji.emoji
+          transaction.notes = notes
+          transaction.currency = Int16(currency.rawValue)
+          transaction.payment = pm
+          snapshot = Alfheim.Transaction.Snapshot(transaction)        }
+        return snapshot
       }
     }
 
     var validator = Validator()
     var isValid: Bool = false
+
+    var payments: [Alfheim.Payment] = [] {
+      didSet {
+        validator.payments = payments
+      }
+    }
     
     var isNew: Bool {
       return validator.mode.isNew

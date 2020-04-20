@@ -15,14 +15,14 @@ struct AppState {
   var transactions = TransactionList()
   var editor = Editor()
   var settings = Settings()
+  var payment = Payment()
   // shared global state
 
   var accountDetail: AccountDetail
 
   init() {
     let account = Alne.Accounts.expenses
-    let transactions = Alne.Transactions.samples()
-    shared = Shared(account: account, allTransactions: transactions)
+    shared = Shared(account: account, allPayments: [], allTransactions: [])
     accountDetail = AccountDetail(account: account)
   }
 }
@@ -61,9 +61,11 @@ extension AppState {
     /// this should be latest selected sorting
     var sorting: Sorting = .date
 
-    var allTransactions: [Alne.Transaction]
+    var allPayments: [Alfheim.Payment]
 
-    var periodTransactions: [Alne.Transaction] {
+    var allTransactions: [Alfheim.Transaction]
+
+    var periodTransactions: [Alfheim.Transaction] {
       let current = Date()
       let startDate: Date
       switch period {
@@ -79,17 +81,18 @@ extension AppState {
         .filter { $0.date >= startDate }
     }
 
-    var displayTransactions: [Alne.Transaction] {
-      let sortBy: (Alne.Transaction, Alne.Transaction) -> Bool
+    var displayTransactions: [TransactionViewModel] {
+      let sortBy: (Alfheim.Transaction, Alfheim.Transaction) -> Bool
       switch sorting {
       case .date:
         sortBy = { $0.date > $1.date }
       case .currency:
-        sortBy = { $0.currency.rawValue < $1.currency.rawValue }
+        sortBy = { $0.currency < $1.currency }
       }
 
       return periodTransactions
         .sorted(by: sortBy)
+        .map { TransactionViewModel(transaction: $0, tag: account.tag) }
     }
 
     var amount: Double {

@@ -19,13 +19,13 @@ extension AppReducers {
         appState.editor.validator.reset(.new)
       case .edit(let transaction):
         appState.editor.validator.reset(.edit(transaction))
-      case .save(let transaction, let mode):
+      case .save(let snashot, let mode):
         appState.editor.validator.reset(.new)
         switch mode {
         case .new:
-          appCommand = AppCommands.CreateTransactionCommand(transaction: transaction)
+          appCommand = AppCommands.CreateTransactionCommand(transaction: snashot)
         case .update:
-          appCommand = AppCommands.UpdateTransactionCommand(transaction: transaction)
+          appCommand = AppCommands.UpdateTransactionCommand(transaction: snashot)
         case .delete:
           fatalError("Editor can't delete")
         }

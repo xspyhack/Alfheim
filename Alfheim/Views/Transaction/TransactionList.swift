@@ -25,10 +25,10 @@ struct TransactionList: View {
 
   var body: some View {
     List {
-      ForEach(state.transactions) { transaction in
-        TransactionRow(transaction: transaction, tag: self.tag)
+      ForEach(state.displayViewModels(tag: self.tag)) { viewModel in
+        TransactionRow(model: viewModel)
           .onTapGesture {
-            self.store.dispatch(.transactions(.editTransaction(transaction)))
+            self.store.dispatch(.transactions(.editTransaction(viewModel.transaction)))
         }
       }
       .onDelete { indexSet in
