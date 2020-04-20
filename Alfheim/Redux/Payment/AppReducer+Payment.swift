@@ -20,8 +20,8 @@ extension AppReducers {
         appState.payment.payments = payments
         appState.editor.payments = payments
 
-        if let payment = (payments.filter { $0.kind == -1 }).first {
-          appState.editor.validator.defaultPayment = payment
+        if !(payments.filter { $0.kind == -1 }).isEmpty {
+          //appState.editor.validator.defaultPayment = payment
         } else {
           appCommand = AppCommands.LoadPaymentCommand(kind: -1)
         }
@@ -29,7 +29,7 @@ extension AppReducers {
         appCommand = AppCommands.LoadPaymentCommand(kind: kind)
       case .loadPaymentDone(let payment):
         if payment.kind == -1 {
-          appState.editor.validator.defaultPayment = payment
+          //appState.editor.validator.defaultPayment = payment
         }
       }
 

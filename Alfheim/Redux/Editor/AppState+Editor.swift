@@ -33,11 +33,9 @@ extension AppState {
       @Published var emoji: Catemojis = Catemojis.uncleared(.uncleared)
       @Published var date: Date = Date()
       @Published var notes: String = ""
-      //@Published var payment: Alfheim.Payment? = nil
       @Published var payment: Int = 0
 
       var payments: [Alfheim.Payment] = []
-      var defaultPayment: Alfheim.Payment?
       var mode: Mode = .new
 
       func reset(_ mode: Mode) {
