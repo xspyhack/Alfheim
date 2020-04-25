@@ -16,5 +16,6 @@ extension AppAction {
     case toggleStatistics(presenting: Bool)
     case toggleAccountDetail(presenting: Bool)
     case switchPeriod
+    case toggleSettings(presenting: Bool)
   }
 }

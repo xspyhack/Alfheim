@@ -16,6 +16,7 @@ extension AppState {
     var selectedTransaction: Alfheim.Transaction?
     var editingTransaction: Bool = false
     var isAccountDetailPresented: Bool = false
+    var isSettingsPresented: Bool = false
 
     var transactions: [Alne.Transaction] {
       Alne.Transactions.samples()

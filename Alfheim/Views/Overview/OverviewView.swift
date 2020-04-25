@@ -37,8 +37,21 @@ struct OverviewView: View {
         }
       }
       .navigationBarTitle("Journals")
-      .navigationBarItems(trailing:
-        Button(action: {
+      .navigationBarItems(
+        leading: Button(action: {
+          self.store.dispatch(.overview(.toggleSettings(presenting: true)))
+        }) {
+          Text("Settings").bold()
+        }
+        .sheet(
+          isPresented: binding.isSettingsPresented,
+          onDismiss: {
+            self.store.dispatch(.overview(.toggleSettings(presenting: false)))
+        }) {
+          SettingsView()
+            .environmentObject(self.store)
+        },
+        trailing: Button(action: {
           self.store.dispatch(.overview(.toggleNewTransaction(presenting: true)))
         }) {
           Text("New Transaction").bold()

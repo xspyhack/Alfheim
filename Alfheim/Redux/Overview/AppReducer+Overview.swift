@@ -34,6 +34,8 @@ extension AppReducers {
       case .toggleAccountDetail(let presenting):
         appState.accountDetail.account = appState.shared.account // save draft
         appState.overview.isAccountDetailPresented = presenting
+      case .toggleSettings(let presenting):
+        appState.overview.isSettingsPresented = presenting
       case .switchPeriod:
         switch state.shared.period {
         case .weekly:
