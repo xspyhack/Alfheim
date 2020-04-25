@@ -37,6 +37,14 @@ class AppStore: ObservableObject {
       }
       .store(in: &disposeBag)
 
+    state.payment.validator.isValid
+      .dropFirst()
+      .removeDuplicates()
+      .sink { isValid in
+        self.dispatch(.payment(.validate(valid: isValid)))
+      }
+      .store(in: &disposeBag)
+
     Persistences.Account(context: context)
       .fetchPublisher(withName: Persistences.Account.Buildin.expenses.name)
       .map { Alne.Account($0) }

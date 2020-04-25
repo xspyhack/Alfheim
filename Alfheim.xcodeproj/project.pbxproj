@@ -75,6 +75,7 @@
 		FA3C17542454626E0079944F /* AppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C17532454626E0079944F /* AppearanceView.swift */; };
 		FA3C1756245462BC0079944F /* CloudSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C1755245462BC0079944F /* CloudSettingView.swift */; };
 		FA3C1758245463080079944F /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C1757245463080079944F /* HelpView.swift */; };
+		FA3C175C2454683D0079944F /* PaymentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C175B2454683D0079944F /* PaymentEditor.swift */; };
 		FA3C5047242B9E8A00EB544D /* Payment+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C5045242B9E8A00EB544D /* Payment+CoreData.swift */; };
 		FA3C504E242BA46F00EB544D /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C504D242BA46F00EB544D /* PaymentViewModel.swift */; };
 		FA527AC924095C9800CEC549 /* Date+Alfheim.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA527AC824095C9800CEC549 /* Date+Alfheim.swift */; };
@@ -194,6 +195,7 @@
 		FA3C17532454626E0079944F /* AppearanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceView.swift; sourceTree = "<group>"; };
 		FA3C1755245462BC0079944F /* CloudSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSettingView.swift; sourceTree = "<group>"; };
 		FA3C1757245463080079944F /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		FA3C175B2454683D0079944F /* PaymentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentEditor.swift; sourceTree = "<group>"; };
 		FA3C5045242B9E8A00EB544D /* Payment+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payment+CoreData.swift"; sourceTree = "<group>"; };
 		FA3C504D242BA46F00EB544D /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		FA527AC824095C9800CEC549 /* Date+Alfheim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Alfheim.swift"; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				FAD5EFC8244D8CC3002F8337 /* PaymentsView.swift */,
 				FAD5EFCA244D8D46002F8337 /* PaymentList.swift */,
 				FAD5EFCC244D8DEE002F8337 /* PaymentRow.swift */,
+				FA3C175B2454683D0079944F /* PaymentEditor.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				FA3C1756245462BC0079944F /* CloudSettingView.swift in Sources */,
 				782403F623F6DBAF00478338 /* TransactionsView.swift in Sources */,
 				782403EC23F2E48000478338 /* AppAction.swift in Sources */,
+				FA3C175C2454683D0079944F /* PaymentEditor.swift in Sources */,
 				FAE1DF9F2441CB0000741C86 /* AppCommand+Payment.swift in Sources */,
 				1F8AC4872411EF95006D9551 /* Account+CoreData.swift in Sources */,
 				1F45EBD924235F130058AEDC /* MainView.swift in Sources */,

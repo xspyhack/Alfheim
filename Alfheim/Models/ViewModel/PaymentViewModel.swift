@@ -37,6 +37,7 @@ struct PaymentViewModel: Identifiable {
   let id: String
   var name: String
   var kind: Alne.Payment.Kind
+  var description: String?
 
   init(payment: Alfheim.Payment, tag: Alne.Tagit) {
     self.payment = payment
@@ -44,6 +45,7 @@ struct PaymentViewModel: Identifiable {
     self.id = payment.id.uuidString
     self.name = payment.name
     self.kind = Alne.Payment.Kind(rawValue: Int(payment.kind)) ?? .uncleared
+    self.description = payment.introduction
   }
 }
 
@@ -54,6 +56,7 @@ extension PaymentViewModel {
     payment.id = UUID()
     payment.name = "Pay"
     payment.kind = -1
+    payment.introduction = "Apple Pay"
     return PaymentViewModel(payment: payment, tag: .alfheim)
   }
 }

@@ -41,7 +41,8 @@ struct OverviewView: View {
         leading: Button(action: {
           self.store.dispatch(.overview(.toggleSettings(presenting: true)))
         }) {
-          Text("Settings").bold()
+          //Text("Settings").bold()
+          Image(systemName: "gear")
         }
         .sheet(
           isPresented: binding.isSettingsPresented,
@@ -54,7 +55,9 @@ struct OverviewView: View {
         trailing: Button(action: {
           self.store.dispatch(.overview(.toggleNewTransaction(presenting: true)))
         }) {
-          Text("New Transaction").bold()
+          //Text("New Transaction").bold()
+          //Image(systemName: "plus")
+          Image(systemName: "plus.circle").font(Font.system(size: 18))
         }
         .sheet(
           isPresented: binding.isEditorPresented,

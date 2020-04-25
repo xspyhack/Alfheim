@@ -31,6 +31,36 @@ extension AppReducers {
         if payment.kind == -1 {
           //appState.editor.validator.defaultPayment = payment
         }
+
+      case .toggleNewPayment(let presenting):
+        appState.payment.isEditorPresented = presenting
+        appState.payment.isValid = false // Important! need set here
+        appState.payment.validator.reset(.new)
+      case .editPayment(let payment):
+        appState.payment.editingPayment = true
+        appState.payment.isValid = true // Important! need set here
+        appState.payment.validator.reset(.edit(payment))
+      case .editPaymentDone:
+        appState.payment.editingPayment = false
+        appState.payment.isValid = false // Important! need set here
+        appState.payment.validator.reset(.new)
+
+      case .save(let snapshot, mode: let mode):
+        appState.editor.validator.reset(.new)
+        switch mode {
+        case .new:
+          appCommand = AppCommands.CreatePaymentCommand(payment: snapshot)
+        case .update:
+          appCommand = AppCommands.UpdatePaymentCommand(payment: snapshot)
+        case .delete:
+          fatalError("Editor can't delete")
+        }
+      case .validate(let valid):
+        appState.payment.isValid = valid
+      case .edit(let payment):
+        appState.payment.validator.reset(.edit(payment))
+      case .new:
+        appState.payment.validator.reset(.new)
       }
 
       return (appState, appCommand)

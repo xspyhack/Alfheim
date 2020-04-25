@@ -13,7 +13,7 @@ extension Alne {
     var name: String
     var kind: Kind
 
-    enum Kind: Int {
+    enum Kind: Int, CaseIterable {
       case uncleared = -1
       case cash
       case debit

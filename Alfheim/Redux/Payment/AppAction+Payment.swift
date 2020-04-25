@@ -13,5 +13,14 @@ extension AppAction {
     case updated([Alfheim.Payment])
     case loadPayment(kind: Int)
     case loadPaymentDone(Alfheim.Payment)
+
+    case toggleNewPayment(presenting: Bool)
+    case editPayment(Alfheim.Payment)
+    case editPaymentDone
+
+    case save(Alfheim.Payment.Snapshot, mode: EditMode)
+    case validate(valid: Bool)
+    case edit(Alfheim.Payment)
+    case new
   }
 }

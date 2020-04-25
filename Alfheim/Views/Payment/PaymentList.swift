@@ -28,14 +28,37 @@ struct PaymentList: View {
       ForEach(state.displayViewModels(tag: self.tag)) { viewModel in
         PaymentRow(model: viewModel)
           .onTapGesture {
-            //self.store.dispatch(.transactions(.editTransaction(viewModel.transaction)))
+            self.store.dispatch(.payment(.editPayment(viewModel.payment)))
         }
       }
       .onDelete { indexSet in
         self.store.dispatch(.transactions(.delete(at: indexSet)))
       }
+      .sheet(
+        isPresented: self.binding.editingPayment,
+        onDismiss: {
+          self.store.dispatch(.payment(.editPaymentDone))
+      }) {
+        PaymentComposer(mode: .edit)
+          .environmentObject(self.store)
+      }
     }
     .navigationBarTitle("Payments")
+    .navigationBarItems(
+      trailing: Button(action: {
+        self.store.dispatch(.payment(.toggleNewPayment(presenting: true)))
+      }) {
+        Image(systemName: "plus.circle")
+      }
+    )
+    .sheet(
+      isPresented: binding.isEditorPresented,
+      onDismiss: {
+        self.store.dispatch(.payment(.toggleNewPayment(presenting: false)))
+    }) {
+      PaymentComposer(mode: .new)
+        .environmentObject(self.store)
+    }
   }
 }
 
