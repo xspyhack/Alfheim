@@ -102,7 +102,7 @@ extension AppState {
     }
 
     var amountText: String {
-      "\(account.currency.symbol)\(amount)"
+      "\(account.currency.symbol)\(String(format: "%.1f", amount))"
     }
 
     var categorizedAmount: [String: Double] {

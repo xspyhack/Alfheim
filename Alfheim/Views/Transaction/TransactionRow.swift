@@ -24,7 +24,8 @@ struct TransactionRow: View {
           .lineLimit(1)
       }
       Spacer()
-      Text("-\(model.currency.symbol)\(String(format: "%.1f", model.amount))").font(.system(size: 28, weight: .semibold))
+      Text("-\(model.currency.symbol)\(String(format: "%.1f", model.amount))")
+        .font(.system(size: 28, weight: .semibold))
         .foregroundColor(Color(tagit: model.tag))
     }
     .frame(height: 64)
