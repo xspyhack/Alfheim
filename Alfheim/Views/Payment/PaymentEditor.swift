@@ -60,6 +60,8 @@ struct PaymentEditor: View {
       Section(header: Spacer()) {
         TextField("Name", text: binding.validator.name)
         TextField("Description", text: binding.validator.description)
+          //.font(.system(size: 16, weight: .thin))
+          .foregroundColor(.gray)
       }
 
       Section(header: Spacer()) {

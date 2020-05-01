@@ -24,6 +24,7 @@ struct PaymentRow: View {
             .stroke(Color(tagit: model.tag), lineWidth: 1)
       )
     }
+    .contentShape(Rectangle())
   }
 }
 
