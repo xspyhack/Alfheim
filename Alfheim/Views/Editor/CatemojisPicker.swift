@@ -70,7 +70,7 @@ struct CatemojisPicker<Label>: View where Label: View {
   }
 
   private func items(at row: Int) -> [Catemojis] {
-    if row < numberOfRows - 1 {
+    if row < numberOfRows - 1 || catemojis.count % numbersPerRow == 0 {
       return Array(Catemojis.allCases[numbersPerRow * row ..< numbersPerRow * row + numbersPerRow])
     } else if row == numberOfRows - 1 {
       return Array(Catemojis.allCases[numbersPerRow * row ..< numbersPerRow * row + catemojis.count % numbersPerRow])
