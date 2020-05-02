@@ -17,7 +17,7 @@ struct TransactionViewModel: Identifiable {
   let id: String
   let date: Date
   let amount: Double
-  let catemoji: Catemojis
+  let catemoji: Catemoji
   let notes: String
   let currency: Currency
   /// payment method
@@ -32,7 +32,11 @@ extension TransactionViewModel {
     self.id = transaction.id.uuidString
     self.date = transaction.date
     self.amount = transaction.amount
-    self.catemoji = transaction.emoji.map { Catemojis($0) } ?? .uncleared(.uncleared)
+    if let value = transaction.category, let category = Category(rawValue: value), let emoji = transaction.emoji {
+      self.catemoji = Catemoji(category: category, emoji: emoji)
+    } else {
+      self.catemoji = Catemoji.uncleared
+    }
     self.notes = transaction.notes
     self.currency = Currency(rawValue: Int(transaction.currency)) ?? .cny
     self.payment = transaction.payment.map { Alne.Payment($0) } ?? Payments.uncleared
@@ -48,7 +52,7 @@ extension TransactionViewModel {
     transaction.date = Date(timeIntervalSince1970: 1582726132.0)
     transaction.amount = 23.0
     transaction.category = "Fruit"
-    transaction.emoji = Catemojis.Fruit.apple.emoji
+    transaction.emoji = Alne.Fruit.apple.emoji
     transaction.notes = "Apple"
     transaction.currency = Int16(Currency.cny.rawValue)
     return TransactionViewModel(transaction: transaction, tag: .alfheim)

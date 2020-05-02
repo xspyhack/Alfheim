@@ -107,7 +107,7 @@ extension AppState {
 
     var categorizedAmount: [String: Double] {
       displayTransactions
-        .grouped { $0.catemoji.category }
+        .grouped { $0.catemoji.category.name }
         .mapValues { $0.reduce(0, { $0 + $1.amount }) }
     }
   }

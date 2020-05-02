@@ -1,5 +1,5 @@
 //
-//  CatemojisPicker.swift
+//  EmojiPicker.swift
 //  Alfheim
 //
 //  Created by alex.huo on 2020/3/1.
@@ -8,28 +8,26 @@
 
 import SwiftUI
 
-extension Catemojis: Identifiable {
-  var id: String { emoji }
-}
-
-struct CatemojisPicker<Label>: View where Label: View {
+struct EmojiPicker<Label>: View where Label: View {
   let numbersPerRow = 6
-  let catemojis = Catemojis.allCases
+  let emojis: [Emoji] = [""]
+
+  typealias Emoji = String
 
   private var numberOfRows: Int {
-    if catemojis.count % numbersPerRow == 0 {
-      return catemojis.count / numbersPerRow
+    if emojis.count % numbersPerRow == 0 {
+      return emojis.count / numbersPerRow
     } else {
-      return catemojis.count / numbersPerRow + 1
+      return emojis.count / numbersPerRow + 1
     }
   }
 
   @State var isContentActive: Bool = false
 
-  let selection: Binding<Catemojis>
+  let selection: Binding<Emoji>
   let label: Label
 
-  init(selection: Binding<Catemojis>, label: Label) {
+  init(selection: Binding<Emoji>, label: Label) {
     self.selection = selection
     self.label = label
   }
@@ -39,7 +37,7 @@ struct CatemojisPicker<Label>: View where Label: View {
       HStack {
         label
         Spacer()
-        Text(selection.wrappedValue.emoji)
+        Text(selection.wrappedValue)
       }
     }
   }
@@ -50,12 +48,12 @@ struct CatemojisPicker<Label>: View where Label: View {
         VStack(alignment: .leading, spacing: 0) {
           ForEach(0..<self.numberOfRows) { row in
             HStack(spacing: 0) {
-              ForEach(self.items(at: row)) { catemoji in
+              ForEach(self.items(at: row), id: \.self) { emoji in
                 Button(action: {
-                  self.selection.wrappedValue = catemoji
+                  self.selection.wrappedValue = emoji
                   self.isContentActive = false
                 }) {
-                  Text(catemoji.emoji).font(Font.system(size: 28))
+                  Text(emoji).font(Font.system(size: 28))
                 }
                 .frame(width: self.itemWidth(in: proxy), height: self.itemWidth(in: proxy))
               }
@@ -69,11 +67,11 @@ struct CatemojisPicker<Label>: View where Label: View {
     }
   }
 
-  private func items(at row: Int) -> [Catemojis] {
-    if row < numberOfRows - 1 || catemojis.count % numbersPerRow == 0 {
-      return Array(Catemojis.allCases[numbersPerRow * row ..< numbersPerRow * row + numbersPerRow])
+  private func items(at row: Int) -> [Emoji] {
+    if row < numberOfRows - 1 || emojis.count % numbersPerRow == 0 {
+      return Array(emojis[numbersPerRow * row ..< numbersPerRow * row + numbersPerRow])
     } else if row == numberOfRows - 1 {
-      return Array(Catemojis.allCases[numbersPerRow * row ..< numbersPerRow * row + catemojis.count % numbersPerRow])
+      return Array(emojis[numbersPerRow * row ..< numbersPerRow * row + emojis.count % numbersPerRow])
     } else {
       fatalError("row out of bounds")
     }
@@ -87,7 +85,7 @@ struct CatemojisPicker<Label>: View where Label: View {
 #if DEBUG
 struct CatemojisPicker_Previews: PreviewProvider {
   static var previews: some View {
-    CatemojisPicker(selection: .constant(.food(.eating)), label: Text(""))
+    EmojiPicker(selection: .constant(""), label: Text(""))
 //      .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
   }
 }

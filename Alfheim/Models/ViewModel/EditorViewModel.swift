@@ -13,7 +13,7 @@ struct EditorViewModel {
 
   var date: Date = Date()
   var amount = ""
-  var catemoji = Catemojis.uncleared(.uncleared)
+  var catemoji = Catemoji(uncleared: .uncleared)
   var notes: String = ""
   var currency: Currency = .cny
   var payment: Payment?

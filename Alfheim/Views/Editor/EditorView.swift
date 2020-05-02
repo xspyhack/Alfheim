@@ -48,7 +48,7 @@ struct EditorView: View {
           Text("Date")
         }
         HStack {
-          CatemojisPicker(selection: binding.validator.emoji, label: Text("Emoji"))
+          CatemojiPicker(selection: binding.validator.catemoji, label: Text("Emoji"))
         }
         HStack {
           Text("Notes")

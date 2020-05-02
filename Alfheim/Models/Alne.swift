@@ -18,5 +18,5 @@ typealias Currency = Alne.Currency
 //typealias Payment = Alne.Payment
 typealias Payments = Alne.Payments
 //typealias Account = Alne.Account
-typealias Catemojis = Alne.Catemojis
+typealias Catemoji = Alne.Catemoji
 typealias Tagit = Alne.Tagit

@@ -10,18 +10,18 @@ import SwiftUI
 
 struct Grid<Data, ID, SelectionValue, Content> : View where Data: RandomAccessCollection, ID : Hashable, SelectionValue == Data.Element {
 
+  struct Item: Identifiable {
+    let id: ID
+    let content: AnyView
+    let data: Data.Element
+  }
+  
   private var numberOfRows: Int {
     if items.count % style.columns == 0 {
       return items.count / style.columns
     } else {
       return items.count / style.columns + 1
     }
-  }
-
-  struct Item: Identifiable {
-    let id: ID
-    let content: AnyView
-    let data: Data.Element
   }
 
   @Environment(\.gridStyle) private var style
@@ -41,15 +41,19 @@ struct Grid<Data, ID, SelectionValue, Content> : View where Data: RandomAccessCo
                 }
                 .frame(width: self.itemWidth(in: proxy), height: self.itemWidth(in: proxy))
               }
+              if self.items.count < self.style.columns {
+                Spacer()
+              }
             }
           }
         }
       }
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
   }
 
   private func items(at row: Int) -> [Item] {
-     if row < numberOfRows - 1 {
+     if row < numberOfRows - 1 || items.count % style.columns == 0 {
        return Array(items[style.columns * row ..< style.columns * row + style.columns])
      } else if row == numberOfRows - 1 {
        return Array(items[style.columns * row ..< style.columns * row + items.count % style.columns])
@@ -64,14 +68,14 @@ struct Grid<Data, ID, SelectionValue, Content> : View where Data: RandomAccessCo
 }
 
 extension Grid where ID == Data.Element.ID, Content : View, Data.Element : Identifiable {
-  init(_ data: Data, selection: Binding<SelectionValue>?, @ViewBuilder item: @escaping (Data.Element) -> Content) {
+  init(_ data: Data, selection: Binding<SelectionValue>? = nil, @ViewBuilder item: @escaping (Data.Element) -> Content) {
     self.items = data.map { Item(id: $0.id, content: AnyView(item($0)), data: $0) }
     self.selection = selection
   }
 }
 
 extension Grid where Content : View {
-  init(_ data: Data, id: KeyPath<Data.Element, ID>, selection: Binding<SelectionValue>?, @ViewBuilder item: @escaping (Data.Element) -> Content) {
+  init(_ data: Data, id: KeyPath<Data.Element, ID>, selection: Binding<SelectionValue>? = nil, @ViewBuilder item: @escaping (Data.Element) -> Content) {
     self.items = data.map { Item(id: $0[keyPath: id], content: AnyView(item($0)), data: $0) }
     self.selection = selection
   }
@@ -98,7 +102,7 @@ struct GridSyle {
 struct GridStyleKey: EnvironmentKey {
   static let defaultValue = GridSyle(columnsInPortrait: 6,
                                      columnsInLandscape: 8,
-                                     spacing: 8)
+                                     spacing: 0)
 }
 
 extension EnvironmentValues {
@@ -106,6 +110,18 @@ extension EnvironmentValues {
     get { self[GridStyleKey.self] }
     set { self[GridStyleKey.self] = newValue }
   }
+}
+
+extension View {
+  func gridStyle(columns: Int = 6, spacing: CGFloat = 0) -> some View {
+    let style = GridSyle(
+      columnsInPortrait: columns,
+      columnsInLandscape: columns,
+      spacing: spacing
+    )
+    return self.environment(\.gridStyle, style)
+  }
+
 }
 
 #if DEBUG

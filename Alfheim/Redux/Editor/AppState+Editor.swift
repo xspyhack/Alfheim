@@ -30,7 +30,7 @@ extension AppState {
     class Validator {
       @Published var amount: String = ""
       @Published var currency: Currency = .cny
-      @Published var emoji: Catemojis = Catemojis.uncleared(.uncleared)
+      @Published var catemoji: Catemoji = Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
       @Published var date: Date = Date()
       @Published var notes: String = ""
       @Published var payment: Int = 0
@@ -43,14 +43,18 @@ extension AppState {
         case .new:
           amount = ""
           currency = .cny
-          emoji = Catemojis.uncleared(.uncleared)
+          catemoji = Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
           date = Date()
           notes = ""
           payment = 0
         case .edit(let transaction):
           amount = "\(transaction.amount)"
           currency = Currency(rawValue: Int(transaction.currency)) ?? .cny
-          emoji = transaction.emoji.map { Catemojis($0) } ?? .uncleared(.uncleared)
+          if let value = transaction.category, let category = Category(rawValue: value), let emoji = transaction.emoji {
+            catemoji = Catemoji(category: category, emoji: emoji)
+          } else {
+            catemoji = Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
+          }
           date = transaction.date
           notes = transaction.notes
           if let payment = transaction.payment,
@@ -90,8 +94,8 @@ extension AppState {
 
         newTransaction.date = date
         newTransaction.amount = Double(amount)!
-        newTransaction.category = emoji.category
-        newTransaction.emoji = emoji.emoji
+        newTransaction.category = catemoji.category.rawValue
+        newTransaction.emoji = catemoji.emoji
         newTransaction.notes = notes
         newTransaction.currency = Int16(currency.rawValue)
         newTransaction.payment = payments.count > payment ? payments[payment] : nil
@@ -106,15 +110,15 @@ extension AppState {
           snapshot = Alfheim.Transaction.Snapshot(date: date,
                                                   amount: Double(amount)!,
                                                   currency: Int16(currency.rawValue),
-                                                  category: emoji.category,
-                                                  emoji: emoji.emoji,
+                                                  category: catemoji.category.rawValue,
+                                                  emoji: catemoji.emoji,
                                                   notes: notes,
                                                   payment: pm)
         case .edit(let transaction):
           transaction.date = date
           transaction.amount = Double(amount)!
-          transaction.category = emoji.category
-          transaction.emoji = emoji.emoji
+          transaction.category = catemoji.category.rawValue
+          transaction.emoji = catemoji.emoji
           transaction.notes = notes
           transaction.currency = Int16(currency.rawValue)
           transaction.payment = pm
