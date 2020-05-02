@@ -23,6 +23,8 @@ struct AppReducer {
       return AppReducers.Transactions.reduce(state: state, action: subaction)
     case .payment(let subaction):
       return AppReducers.Payment.reduce(state: state, action: subaction)
+    case .catemoji(let subaction):
+      return AppReducer.Catemoji.reduce(state: state, action: subaction)
     }
   }
 }

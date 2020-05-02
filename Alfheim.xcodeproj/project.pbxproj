@@ -83,6 +83,15 @@
 		FA66C7D92427B40000462C46 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA66C7D82427B40000462C46 /* SearchBar.swift */; };
 		FABEBB7A245C0B4C00637226 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB79245C0B4C00637226 /* Grid.swift */; };
 		FABEBB7D245D138E00637226 /* CatemojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB7C245D138E00637226 /* CatemojiView.swift */; };
+		FABEBB7F245D4A6300637226 /* Emoji+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB7E245D4A6300637226 /* Emoji+CoreData.swift */; };
+		FABEBB82245D4C9500637226 /* Persistences+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB81245D4C9500637226 /* Persistences+Emoji.swift */; };
+		FABEBB84245D51B700637226 /* AppState+Catemoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB83245D51B700637226 /* AppState+Catemoji.swift */; };
+		FABEBB86245D531A00637226 /* AppAction+Catemoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB85245D531A00637226 /* AppAction+Catemoji.swift */; };
+		FABEBB88245D535E00637226 /* AppReducer+Catemoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB87245D535E00637226 /* AppReducer+Catemoji.swift */; };
+		FABEBB8A245D65EA00637226 /* AppCommand+Catemoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB89245D65EA00637226 /* AppCommand+Catemoji.swift */; };
+		FABEBB8C245D826300637226 /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB8B245D826300637226 /* TextAlert.swift */; };
+		FABEBB8E245D84B100637226 /* CatemojiChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB8D245D84B100637226 /* CatemojiChooser.swift */; };
+		FABEBB90245DB2CE00637226 /* View+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEBB8F245DB2CE00637226 /* View+Modal.swift */; };
 		FAC065A22409843B00A73F14 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC065A12409843B00A73F14 /* Text+Gradient.swift */; };
 		FACF2A7623FFCFA2003BB675 /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7523FFCFA2003BB675 /* ComposerView.swift */; };
 		FACF2A7823FFD179003BB675 /* StatisticList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF2A7723FFD179003BB675 /* StatisticList.swift */; };
@@ -205,6 +214,15 @@
 		FA66C7D82427B40000462C46 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		FABEBB79245C0B4C00637226 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		FABEBB7C245D138E00637226 /* CatemojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatemojiView.swift; sourceTree = "<group>"; };
+		FABEBB7E245D4A6300637226 /* Emoji+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emoji+CoreData.swift"; sourceTree = "<group>"; };
+		FABEBB81245D4C9500637226 /* Persistences+Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistences+Emoji.swift"; sourceTree = "<group>"; };
+		FABEBB83245D51B700637226 /* AppState+Catemoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Catemoji.swift"; sourceTree = "<group>"; };
+		FABEBB85245D531A00637226 /* AppAction+Catemoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppAction+Catemoji.swift"; sourceTree = "<group>"; };
+		FABEBB87245D535E00637226 /* AppReducer+Catemoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppReducer+Catemoji.swift"; sourceTree = "<group>"; };
+		FABEBB89245D65EA00637226 /* AppCommand+Catemoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppCommand+Catemoji.swift"; sourceTree = "<group>"; };
+		FABEBB8B245D826300637226 /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
+		FABEBB8D245D84B100637226 /* CatemojiChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatemojiChooser.swift; sourceTree = "<group>"; };
+		FABEBB8F245DB2CE00637226 /* View+Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Modal.swift"; sourceTree = "<group>"; };
 		FAC065A12409843B00A73F14 /* Text+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Gradient.swift"; sourceTree = "<group>"; };
 		FACF2A7523FFCFA2003BB675 /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
 		FACF2A7723FFD179003BB675 /* StatisticList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticList.swift; sourceTree = "<group>"; };
@@ -399,6 +417,7 @@
 				FA3C5045242B9E8A00EB544D /* Payment+CoreData.swift */,
 				1F8AC4862411EF95006D9551 /* Account+CoreData.swift */,
 				1F8AC4922411FE6D006D9551 /* Transaction+CoreData.swift */,
+				FABEBB7E245D4A6300637226 /* Emoji+CoreData.swift */,
 				1F8AC48C2411FCEC006D9551 /* DataModel.swift */,
 			);
 			path = DataModel;
@@ -451,6 +470,7 @@
 				1F91CA00241A4CCA00B552E7 /* Transaction */,
 				1F91C9F9241A4C4900B552E7 /* Editor */,
 				1F91C9F2241A4B8C00B552E7 /* Account */,
+				FABEBB80245D4C7C00637226 /* Catemoji */,
 				FAE1DF992441CAC500741C86 /* Payment */,
 				FAF2AA3A241DF80600EE40AA /* Setting */,
 			);
@@ -505,9 +525,11 @@
 				1F8AC49824122619006D9551 /* CurrencyFormatter.swift */,
 				1F91C9F02419DF1F00B552E7 /* Publishers+FetchRequest.swift */,
 				FAF3803A2414C5D600C592D4 /* Publishers+CoreData.swift */,
+				FABEBB8F245DB2CE00637226 /* View+Modal.swift */,
 				FABEBB79245C0B4C00637226 /* Grid.swift */,
 				FA5F768524261F7D00277B6E /* InputTextField.swift */,
 				FA66C7D82427B40000462C46 /* SearchBar.swift */,
+				FABEBB8B245D826300637226 /* TextAlert.swift */,
 			);
 			path = Kit;
 			sourceTree = "<group>";
@@ -555,6 +577,18 @@
 			isa = PBXGroup;
 			children = (
 				FABEBB7C245D138E00637226 /* CatemojiView.swift */,
+				FABEBB8D245D84B100637226 /* CatemojiChooser.swift */,
+			);
+			path = Catemoji;
+			sourceTree = "<group>";
+		};
+		FABEBB80245D4C7C00637226 /* Catemoji */ = {
+			isa = PBXGroup;
+			children = (
+				FABEBB83245D51B700637226 /* AppState+Catemoji.swift */,
+				FABEBB85245D531A00637226 /* AppAction+Catemoji.swift */,
+				FABEBB89245D65EA00637226 /* AppCommand+Catemoji.swift */,
+				FABEBB87245D535E00637226 /* AppReducer+Catemoji.swift */,
 			);
 			path = Catemoji;
 			sourceTree = "<group>";
@@ -616,6 +650,7 @@
 				FAF380362414BA1700C592D4 /* Persistences+Account.swift */,
 				FAF3803C24152EED00C592D4 /* Persistences+Transaction.swift */,
 				FAE1DF972441C77700741C86 /* Persistences+Payment.swift */,
+				FABEBB81245D4C9500637226 /* Persistences+Emoji.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -753,13 +788,16 @@
 				FAD5EFCD244D8DEE002F8337 /* PaymentRow.swift in Sources */,
 				1F8AC49924122619006D9551 /* CurrencyFormatter.swift in Sources */,
 				FAF2AA39241DF7CC00EE40AA /* AppReducer+Editor.swift in Sources */,
+				FABEBB82245D4C9500637226 /* Persistences+Emoji.swift in Sources */,
 				789E8E6C23E810A6006D180B /* Account.swift in Sources */,
 				1F3998FD23D6958700E6BBD9 /* SceneDelegate.swift in Sources */,
+				FABEBB7F245D4A6300637226 /* Emoji+CoreData.swift in Sources */,
 				1F91C9F12419DF1F00B552E7 /* Publishers+FetchRequest.swift in Sources */,
 				1F39995E23D805C600E6BBD9 /* PieChart.swift in Sources */,
 				FAF380392414BA2400C592D4 /* Persistences.swift in Sources */,
 				1F91CA08241A4D9800B552E7 /* AppReducer+Account.swift in Sources */,
 				1F39992B23D697F700E6BBD9 /* UnitData.swift in Sources */,
+				FABEBB90245DB2CE00637226 /* View+Modal.swift in Sources */,
 				FAF2AA49241DFA0D00EE40AA /* AppAction+Overview.swift in Sources */,
 				FAF2AA40241DF89E00EE40AA /* AppAction+Setting.swift in Sources */,
 				1F91C9F4241A4BA000B552E7 /* AppState+Account.swift in Sources */,
@@ -778,6 +816,7 @@
 				1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */,
 				1F5A47B3240D0D9300DEA96B /* Alne.swift in Sources */,
 				FAF2AA42241DF8D200EE40AA /* Array+Alfheim.swift in Sources */,
+				FABEBB84245D51B700637226 /* AppState+Catemoji.swift in Sources */,
 				FAF3803D24152EED00C592D4 /* Persistences+Transaction.swift in Sources */,
 				789E8E6923E80FFC006D180B /* Transaction.swift in Sources */,
 				FAF2AA47241DF9F200EE40AA /* AppState+Overview.swift in Sources */,
@@ -785,7 +824,9 @@
 				FA036810241CD5C50038A26E /* TransactionViewModel.swift in Sources */,
 				FA5F768624261F7D00277B6E /* InputTextField.swift in Sources */,
 				FACF2A7823FFD179003BB675 /* StatisticList.swift in Sources */,
+				FABEBB8E245D84B100637226 /* CatemojiChooser.swift in Sources */,
 				1F91C9FB241A4C5800B552E7 /* AppState+Editor.swift in Sources */,
+				FABEBB8C245D826300637226 /* TextAlert.swift in Sources */,
 				FAF3803B2414C5D600C592D4 /* Publishers+CoreData.swift in Sources */,
 				1F91C9FD241A4C6500B552E7 /* AppAction+Editor.swift in Sources */,
 				788863F623F2A85D0037210B /* AppCommand.swift in Sources */,
@@ -794,6 +835,7 @@
 				782403EE23F2E55100478338 /* AppError.swift in Sources */,
 				FA3C1758245463080079944F /* HelpView.swift in Sources */,
 				1F2379B323D83BD900B4E79E /* Bar.swift in Sources */,
+				FABEBB88245D535E00637226 /* AppReducer+Catemoji.swift in Sources */,
 				FAF2AA37241DF75900EE40AA /* AppReducer+Transaction.swift in Sources */,
 				788863EF23F2A3D00037210B /* AppState.swift in Sources */,
 				1F91CA02241A4CE000B552E7 /* AppState+Transaction.swift in Sources */,
@@ -810,6 +852,7 @@
 				FABEBB7D245D138E00637226 /* CatemojiView.swift in Sources */,
 				1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */,
 				FAF2AA45241DF97700EE40AA /* AppReducer+Overview.swift in Sources */,
+				FABEBB8A245D65EA00637226 /* AppCommand+Catemoji.swift in Sources */,
 				1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */,
 				1F91C9F8241A4BC200B552E7 /* AppCommand+Account.swift in Sources */,
 				1F45EBDB2423605D0058AEDC /* AccountCard.swift in Sources */,
@@ -819,6 +862,7 @@
 				1F8AC48D2411FCEC006D9551 /* DataModel.swift in Sources */,
 				FAF2AA3C241DF82E00EE40AA /* AppReducer+Setting.swift in Sources */,
 				FA3C5047242B9E8A00EB544D /* Payment+CoreData.swift in Sources */,
+				FABEBB86245D531A00637226 /* AppAction+Catemoji.swift in Sources */,
 				FAE1DF982441C77700741C86 /* Persistences+Payment.swift in Sources */,
 				FABEBB7A245C0B4C00637226 /* Grid.swift in Sources */,
 			);

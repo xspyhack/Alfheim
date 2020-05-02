@@ -1,5 +1,5 @@
 //
-//  CatemojiView.swift
+//  CatemojiChooser.swift
 //  Alfheim
 //
 //  Created by alex.huo on 2020/5/2.
@@ -8,16 +8,12 @@
 
 import SwiftUI
 
-struct CatemojiView: View {
-  @State private var selectedCategory: Category = .uncleared
-  @EnvironmentObject var store: AppStore
+struct CatemojiChooser: View {
+  @State var selectedCategory: Category = .uncleared
+  let catemojis: [Category: [Catemoji]]
 
-  private var state: AppState.Catemoji {
-    store.state.catemoji
-  }
-  private var binding: Binding<AppState.Catemoji> {
-    $store.state.catemoji
-  }
+  var onAdd: (Category) -> Void
+  var onSelection: (Catemoji) -> Void
 
   var body: some View {
     VStack(alignment: .leading) {
@@ -45,22 +41,10 @@ struct CatemojiView: View {
         Text(selectedCategory.name.uppercased())
           .bold()
 
-        Spacer().background(
-          EmptyView().alert(
-            isPresented: binding.isAlertPresented,
-            TextAlert(title: "Add Emoji", action: { emoji in
-              // check here
-              guard let emoji = emoji else {
-                return
-              }
-              let catemoji = Catemoji(category: self.selectedCategory, emoji: emoji)
-              self.store.dispatch(.catemoji(.added(catemoji)))
-            })
-          )
-        )
+        Spacer()
 
         Button(action: {
-          self.store.dispatch(.catemoji(.toggleAddCatemoji(presenting: true)))
+          self.onAdd(self.selectedCategory)
         }) {
           Image(systemName: "plus")
         }
@@ -70,7 +54,7 @@ struct CatemojiView: View {
       Grid(self.emojis(in: selectedCategory), id: \.self) { emoji in
         Button(action: {
           let catemoji = Catemoji(category: self.selectedCategory, emoji: emoji)
-          // context menu edit
+          self.onSelection(catemoji)
         }) {
           Text(emoji).font(.system(size: 28))
         }
@@ -78,18 +62,23 @@ struct CatemojiView: View {
       .gridStyle(columns: 6)
     }
     .navigationBarTitle("Emoji")
-    .padding(EdgeInsets(top: 12, leading: 4, bottom: 0, trailing: 4))
+    .padding()
   }
 
   private func emojis(in category: Category) -> [String] {
-    state.categorized()[category]?.compactMap { $0.emoji } ?? []
+    catemojis[category]?.compactMap { $0.emoji } ?? []
   }
 }
 
-#if DEBUG
-struct CatemojiView_Previews: PreviewProvider {
+
+struct CatemojiChooser_Previews: PreviewProvider {
   static var previews: some View {
-    CatemojiView()
+    CatemojiChooser(
+      catemojis: [.transportation: Alne.Transportation.catemojis],
+      onAdd: { category in
+
+      },
+      onSelection: { catemoji in
+      })
   }
 }
-#endif

@@ -31,6 +31,9 @@ struct SettingsView: View {
               Text("Payments").fontWeight(.medium)
             }
           }
+          NavigationLink(destination: CatemojiView()) {
+            Text("Catemojis").fontWeight(.medium)
+          }
           NavigationLink(destination: CloudSettingView()) {
             Text("Cloud").fontWeight(.medium)
           }

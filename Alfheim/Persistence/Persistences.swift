@@ -64,6 +64,13 @@ extension Persistences {
       payment.kind = Int16(Alne.Payments.uncleared.kind.rawValue)
       payment.name = Alne.Payments.uncleared.name
 
+      // Catemoji
+      buildinCatemojis().forEach {
+        let emoji = Alfheim.Emoji(context: context)
+        emoji.category = $0.category.name
+        emoji.text = $0.emoji
+      }
+
       try context.save()
     }
   }
@@ -72,5 +79,11 @@ extension Persistences {
 extension NSManagedObjectContext {
   func registeredObjects(with predicate: NSPredicate) -> Set<NSManagedObject> {
     registeredObjects.filter { predicate.evaluate(with: $0) }
+  }
+}
+
+extension Persistences.Bootstrap {
+  private func buildinCatemojis() -> [Catemoji] {
+    Alne.Food.catemojis + Alne.Drink.catemojis + Alne.Fruit.catemojis + Alne.Clothes.catemojis + Alne.Household.catemojis + Alne.Personal.catemojis + Alne.Transportation.catemojis + Alne.Services.catemojis + Alne.Uncleared.catemojis
   }
 }

@@ -13,7 +13,7 @@ extension Alne {
     let id: String
     var date: Date
     var amount: Double
-    var catemoji: Catemoji
+    var catemoji: Alne.Catemoji
     var notes: String
     var currency: Currency = .cny
     /// payment method

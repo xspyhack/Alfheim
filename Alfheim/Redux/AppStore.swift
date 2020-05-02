@@ -90,6 +90,21 @@ class AppStore: ObservableObject {
         self.dispatch(.payment(.updated(payments)))
       })
       .store(in: &disposeBag)
+
+    Persistences.Emoji(context: context)
+      .fetchAllPublisher()
+      .map { $0.compactMap(Catemoji.init(emoji:)) }
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print("Load account finished")
+        case .failure(let error):
+          print("Load account failed: \(error)")
+        }
+      }, receiveValue: { emojis in
+        self.dispatch(.catemoji(.updated(emojis)))
+      })
+      .store(in: &disposeBag)
   }
 
   func dispatch(_ action: AppAction) {

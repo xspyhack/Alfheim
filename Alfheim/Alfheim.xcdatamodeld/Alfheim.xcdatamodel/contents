@@ -14,6 +14,10 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Emoji" representedClassName=".Emoji" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Payment" representedClassName=".Payment" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="introduction" optional="YES" attributeType="String"/>
@@ -47,5 +51,6 @@
         <element name="Account" positionX="-63" positionY="-18" width="128" height="148"/>
         <element name="Payment" positionX="231.0625" positionY="273.39453125" width="128" height="118"/>
         <element name="Transaction" positionX="414.48046875" positionY="-18.36328125" width="128" height="193"/>
+        <element name="Emoji" positionX="144" positionY="135" width="128" height="73"/>
     </elements>
 </model>

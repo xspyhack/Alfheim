@@ -33,7 +33,7 @@ struct Grid<Data, ID, SelectionValue, Content> : View where Data: RandomAccessCo
     GeometryReader { proxy in
       ScrollView {
         VStack(alignment: .leading, spacing: self.style.spacing) {
-          ForEach(0..<self.numberOfRows) { row in
+          ForEach(0..<self.numberOfRows, id: \.self) { row in
             HStack(spacing: self.style.spacing) {
               ForEach(self.items(at: row)) { item in
                 item.content.onTapGesture {
@@ -53,18 +53,18 @@ struct Grid<Data, ID, SelectionValue, Content> : View where Data: RandomAccessCo
   }
 
   private func items(at row: Int) -> [Item] {
-     if row < numberOfRows - 1 || items.count % style.columns == 0 {
-       return Array(items[style.columns * row ..< style.columns * row + style.columns])
-     } else if row == numberOfRows - 1 {
-       return Array(items[style.columns * row ..< style.columns * row + items.count % style.columns])
-     } else {
-       fatalError("row out of bounds")
-     }
-   }
+    if row < numberOfRows - 1 || items.count % style.columns == 0 {
+      return Array(items[style.columns * row ..< style.columns * row + style.columns])
+    } else if row == numberOfRows - 1 {
+      return Array(items[style.columns * row ..< style.columns * row + items.count % style.columns])
+    } else {
+      fatalError("row out of bounds")
+    }
+  }
 
-   private func itemWidth(in geo: GeometryProxy) -> CGFloat {
+  private func itemWidth(in geo: GeometryProxy) -> CGFloat {
     (geo.size.width - CGFloat(style.columns - 1) * style.spacing) / CGFloat(style.columns)
-   }
+  }
 }
 
 extension Grid where ID == Data.Element.ID, Content : View, Data.Element : Identifiable {

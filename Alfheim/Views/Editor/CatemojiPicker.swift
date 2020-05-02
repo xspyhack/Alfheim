@@ -12,23 +12,26 @@ struct CatemojiPicker<Label>: View where Label: View {
 
   @State private var selectedCategory: Category
   @State private var isContentActive: Bool = false
-  private let selection: Binding<Catemoji>
+  private let selection: Binding<Alne.Catemoji>
   private let label: Label
 
-  init(selection: Binding<Catemoji>, label: Label) {
+  private let catemojis: [Category: [Catemoji]]
+
+  init(_ catemojis: [Category: [Catemoji]], selection: Binding<Catemoji>, label: Label) {
+    self.catemojis = catemojis
     self.selection = selection
     self.label = label
     self._selectedCategory = State(initialValue: selection.wrappedValue.category)
   }
 
   var body: some View {
-   NavigationLink(destination: content, isActive: $isContentActive) {
-     HStack {
-       label
-       Spacer()
-       Text(selection.wrappedValue.emoji)
-     }
-   }
+    NavigationLink(destination: content, isActive: $isContentActive) {
+      HStack {
+        label
+        Spacer()
+        Text(selection.wrappedValue.emoji)
+      }
+    }
   }
 
   private var content: some View {
@@ -36,15 +39,15 @@ struct CatemojiPicker<Label>: View where Label: View {
       ScrollView(.horizontal, showsIndicators: false) {
         HStack(spacing: 10) {
           ForEach(Category.allCases, id: \.self) { category in
-            ZStack {
-              if self.selectedCategory == category {
-                Circle().foregroundColor(Color.gray).opacity(0.2)
-              }
-              Text(category.text).font(.system(size: 28))
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
+            Button(action: {
               self.selectedCategory = category
+            }) {
+              ZStack {
+                if self.selectedCategory == category {
+                  Circle().foregroundColor(Color.gray).opacity(0.2)
+                }
+                Text(category.text).font(.system(size: 28))
+              }
             }
             .frame(width: 44, height: 44)
           }
@@ -58,55 +61,32 @@ struct CatemojiPicker<Label>: View where Label: View {
           .bold()
 
         Spacer()
-
-        Button(action: {
-        }) {
-          Image(systemName: "plus")
-        }
       }
-      .padding(EdgeInsets(top: 20, leading: 16, bottom: 0, trailing: 16))
+      .padding(EdgeInsets(top: 20, leading: 14, bottom: 0, trailing: 14))
 
       Grid(self.emojis(in: selectedCategory), id: \.self) { emoji in
-        Text(emoji).font(.system(size: 28))
-          .onTapGesture {
-            self.selection.wrappedValue = Catemoji(category: self.selectedCategory, emoji: emoji)
-            self.isContentActive = false
-          }
+        Button(action: {
+          self.selection.wrappedValue = Catemoji(category: self.selectedCategory, emoji: emoji)
+          self.isContentActive = false
+        }) {
+          Text(emoji).font(.system(size: 28))
+        }
       }
       .gridStyle(columns: 6)
     }
-    .navigationBarTitle("Catemoji")
-    .padding()
+    .navigationBarTitle("Emoji")
+    .padding(EdgeInsets(top: 12, leading: 4, bottom: 0, trailing: 4))
   }
 
   private func emojis(in category: Category) -> [String] {
-    switch category {
-    case .food:
-      return Alne.Food.allCases.map { $0.emoji }
-    case .drink:
-      return Alne.Drink.allCases.map { $0.emoji }
-    case .fruit:
-      return Alne.Fruit.allCases.map { $0.emoji }
-    case .clothes:
-      return Alne.Clothes.allCases.map { $0.emoji }
-    case .household:
-      return Alne.Household.allCases.map { $0.emoji }
-    case .personal:
-      return Alne.Personal.allCases.map { $0.emoji }
-    case .transportation:
-      return Alne.Transportation.allCases.map { $0.emoji }
-    case .services:
-      return ["Services"]
-    case .uncleared:
-      return ["Uncleared"]
-    }
+    catemojis[category]?.compactMap { $0.emoji } ?? []
   }
 }
 
 #if DEBUG
 struct CatemojiPicker_Previews: PreviewProvider {
   static var previews: some View {
-    CatemojiPicker(selection: .constant(Catemoji(category: .food, emoji: "")), label: Text(""))
+    CatemojiPicker([.transportation: Alne.Transportation.catemojis], selection: .constant(Alne.Catemoji(category: .food, emoji: "")), label: Text(""))
   }
 }
 #endif

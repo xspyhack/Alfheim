@@ -17,7 +17,7 @@ struct TransactionViewModel: Identifiable {
   let id: String
   let date: Date
   let amount: Double
-  let catemoji: Catemoji
+  let catemoji: Alne.Catemoji
   let notes: String
   let currency: Currency
   /// payment method
@@ -33,9 +33,9 @@ extension TransactionViewModel {
     self.date = transaction.date
     self.amount = transaction.amount
     if let value = transaction.category, let category = Category(rawValue: value), let emoji = transaction.emoji {
-      self.catemoji = Catemoji(category: category, emoji: emoji)
+      self.catemoji = Alne.Catemoji(category: category, emoji: emoji)
     } else {
-      self.catemoji = Catemoji.uncleared
+      self.catemoji = Alne.Catemoji.uncleared
     }
     self.notes = transaction.notes
     self.currency = Currency(rawValue: Int(transaction.currency)) ?? .cny

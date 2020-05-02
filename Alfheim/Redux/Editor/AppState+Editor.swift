@@ -30,7 +30,7 @@ extension AppState {
     class Validator {
       @Published var amount: String = ""
       @Published var currency: Currency = .cny
-      @Published var catemoji: Catemoji = Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
+      @Published var catemoji: Alne.Catemoji = Alne.Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
       @Published var date: Date = Date()
       @Published var notes: String = ""
       @Published var payment: Int = 0
@@ -43,7 +43,7 @@ extension AppState {
         case .new:
           amount = ""
           currency = .cny
-          catemoji = Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
+          catemoji = Alne.Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
           date = Date()
           notes = ""
           payment = 0
@@ -51,9 +51,9 @@ extension AppState {
           amount = "\(transaction.amount)"
           currency = Currency(rawValue: Int(transaction.currency)) ?? .cny
           if let value = transaction.category, let category = Category(rawValue: value), let emoji = transaction.emoji {
-            catemoji = Catemoji(category: category, emoji: emoji)
+            catemoji = Alne.Catemoji(category: category, emoji: emoji)
           } else {
-            catemoji = Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
+            catemoji = Alne.Catemoji.uncleared
           }
           date = transaction.date
           notes = transaction.notes
@@ -135,6 +135,8 @@ extension AppState {
         validator.payments = payments
       }
     }
+
+    var catemojis: [Category: [Alne.Catemoji]] = [:]
     
     var isNew: Bool {
       return validator.mode.isNew

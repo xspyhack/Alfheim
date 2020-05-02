@@ -16,6 +16,7 @@ struct AppState {
   var editor = Editor()
   var settings = Settings()
   var payment = Payment()
+  var catemoji = Catemoji()
   // shared global state
 
   var accountDetail: AccountDetail
