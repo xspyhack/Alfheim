@@ -39,22 +39,20 @@ extension Persistences {
       context.delete(object)
     }
 
-    func objects(inCategory category: String) -> [NSManagedObject] {
+    func emojis(inCategory category: String) -> [Alfheim.Emoji] {
       let predicate = NSPredicate(format: "category == %@", category)
-      let objects = context.registeredObjects(with: predicate)
-      return Array(objects)
+      let objects = context.registeredObjects(Alfheim.Emoji.self, with: predicate)
+      return objects
     }
 
-    func objects(in category: Category) -> [NSManagedObject] {
-      return objects(inCategory: category.name)
+    func emojis(in category: Category) -> [Alfheim.Emoji] {
+      return emojis(inCategory: category.name)
     }
 
     func emoji(withText text: String) -> Alfheim.Emoji? {
       let predicate = NSPredicate(format: "text == %@", text)
-      guard let object = context.registeredObjects(with: predicate).first as? Alfheim.Emoji else {
-        return nil
-      }
-      return object
+      let emojis = context.registeredObjects(Alfheim.Emoji.self, with: predicate)
+      return emojis.first
     }
 
     func fetch(withCategory category: String, text: String) throws -> [Alfheim.Emoji] {
@@ -62,6 +60,12 @@ extension Persistences {
       let fetchRequest: NSFetchRequest<Alfheim.Emoji> = Alfheim.Emoji.fetchRequest()
       fetchRequest.predicate = predicate
       return try context.fetch(fetchRequest)
+    }
+
+    func exists(withText text: String) -> Bool {
+      let predicate = NSPredicate(format: "text == %@", text)
+      let emojis = context.registeredObjects(Alfheim.Emoji.self, with: predicate)
+      return !emojis.isEmpty
     }
 
     // MARK: - Publishes

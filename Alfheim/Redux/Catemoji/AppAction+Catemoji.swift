@@ -12,7 +12,9 @@ extension AppAction {
   enum Catemoji {
     case updated([Alne.Catemoji])
     case toggleAddCatemoji(presenting: Bool)
-    case added(Alne.Catemoji)
-    case deleted(Alne.Catemoji)
+    case add(Alne.Catemoji)
+    case addDone(Result<Alne.Catemoji, AppError.Catemoji>)
+    case delete(Alne.Catemoji)
+    case deleteDone(Result<Alne.Catemoji, AppError.Catemoji>)
   }
 }

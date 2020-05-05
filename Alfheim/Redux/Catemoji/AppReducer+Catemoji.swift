@@ -20,10 +20,25 @@ extension AppReducer {
         appState.editor.catemojis = catemojis.grouped(by: { $0.category })
       case .toggleAddCatemoji(let presenting):
         appState.catemoji.isAlertPresented = presenting
-      case .added(let catemoji):
+      case .add(let catemoji):
+        appState.catemoji.isAlertPresented = false
         appCommand = AppCommands.CreateCatemojiCommand(catemoji: catemoji)
-      case .deleted(let catemoji):
+      case .addDone(let result):
+        switch result {
+        case .success:
+          break
+        case .failure(let error):
+          appState.catemoji.addError = error
+        }
+      case .delete(let catemoji):
         appCommand = AppCommands.DeleteCatemojiCommand(catemojis: [catemoji])
+      case .deleteDone(let result):
+        switch result {
+        case .success:
+          break
+        case .failure(let error):
+          appState.catemoji.deleteError = error
+        }
       }
 
       return (appState, appCommand)

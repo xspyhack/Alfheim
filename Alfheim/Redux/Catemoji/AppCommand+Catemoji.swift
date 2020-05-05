@@ -14,6 +14,12 @@ extension AppCommands {
 
     func execute(in store: AppStore) {
       let persistence = Persistences.Emoji(context: store.context)
+
+      guard !persistence.exists(withText: catemoji.emoji) else {
+        store.dispatch(.catemoji(.addDone(.failure(.alreadyExists))))
+        return
+      }
+
       let object = Alfheim.Emoji(context: store.context)
       object.category = catemoji.category.name
       object.text = catemoji.emoji
@@ -21,6 +27,7 @@ extension AppCommands {
       do {
         try persistence.save()
       } catch {
+        store.dispatch(.catemoji(.addDone(.failure(.addFailed(error)))))
         print("Update account failed: \(error)")
       }
     }
@@ -47,6 +54,7 @@ extension AppCommands {
       do {
         try persistence.save()
       } catch {
+        store.dispatch(.catemoji(.addDone(.failure(.deleteFailed(error)))))
         print("Delete emoji failed: \(error)")
       }
     }

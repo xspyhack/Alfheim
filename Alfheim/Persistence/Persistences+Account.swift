@@ -78,7 +78,7 @@ extension Persistences {
 
     func account(withID id: UUID) -> Alfheim.Account? {
       let predicate = NSPredicate(format: "id == %@", id as CVarArg)
-      guard let object = context.registeredObjects(with: predicate).first as? Alfheim.Account else {
+      guard let object = context.registeredObjects(Alfheim.Account.self, with: predicate).first else {
         return nil
       }
       return object

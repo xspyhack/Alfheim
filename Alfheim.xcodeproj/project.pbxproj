@@ -104,6 +104,9 @@
 		FAE1DF9D2441CAF300741C86 /* AppAction+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1DF9C2441CAF300741C86 /* AppAction+Payment.swift */; };
 		FAE1DF9F2441CB0000741C86 /* AppCommand+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1DF9E2441CB0000741C86 /* AppCommand+Payment.swift */; };
 		FAE1DFA12441CB0E00741C86 /* AppReducer+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1DFA02441CB0E00741C86 /* AppReducer+Payment.swift */; };
+		FAEAA03F24612645003C6799 /* emojis.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEAA03E24612644003C6799 /* emojis.json */; };
+		FAEAA0412461278F003C6799 /* Emojis.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEAA0402461278F003C6799 /* Emojis.swift */; };
+		FAEAA043246158E2003C6799 /* AppError+Catemoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEAA042246158E2003C6799 /* AppError+Catemoji.swift */; };
 		FAEC0379240AB126003BFE2C /* Tagit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC0378240AB126003BFE2C /* Tagit.swift */; };
 		FAEC037B240AB840003BFE2C /* Color+Tagit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC037A240AB840003BFE2C /* Color+Tagit.swift */; };
 		FAEC037D240ADA34003BFE2C /* Catemoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC037C240ADA34003BFE2C /* Catemoji.swift */; };
@@ -235,6 +238,9 @@
 		FAE1DF9C2441CAF300741C86 /* AppAction+Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppAction+Payment.swift"; sourceTree = "<group>"; };
 		FAE1DF9E2441CB0000741C86 /* AppCommand+Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppCommand+Payment.swift"; sourceTree = "<group>"; };
 		FAE1DFA02441CB0E00741C86 /* AppReducer+Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppReducer+Payment.swift"; sourceTree = "<group>"; };
+		FAEAA03E24612644003C6799 /* emojis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emojis.json; sourceTree = "<group>"; };
+		FAEAA0402461278F003C6799 /* Emojis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojis.swift; sourceTree = "<group>"; };
+		FAEAA042246158E2003C6799 /* AppError+Catemoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppError+Catemoji.swift"; sourceTree = "<group>"; };
 		FAEC0378240AB126003BFE2C /* Tagit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagit.swift; sourceTree = "<group>"; };
 		FAEC037A240AB840003BFE2C /* Color+Tagit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Tagit.swift"; sourceTree = "<group>"; };
 		FAEC037C240ADA34003BFE2C /* Catemoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catemoji.swift; sourceTree = "<group>"; };
@@ -321,6 +327,7 @@
 				1F39990B23D6958800E6BBD9 /* Info.plist */,
 				1F45EBE12423652A0058AEDC /* InfoPlist.strings */,
 				1F3998FE23D6958700E6BBD9 /* Alfheim.xcdatamodeld */,
+				FAEAA03E24612644003C6799 /* emojis.json */,
 				1F39990523D6958800E6BBD9 /* Preview Content */,
 			);
 			path = Alfheim;
@@ -529,7 +536,9 @@
 				FABEBB79245C0B4C00637226 /* Grid.swift */,
 				FA5F768524261F7D00277B6E /* InputTextField.swift */,
 				FA66C7D82427B40000462C46 /* SearchBar.swift */,
+				FA014087240C01B800F6FE92 /* EmojiPicker.swift */,
 				FABEBB8B245D826300637226 /* TextAlert.swift */,
+				FAEAA0402461278F003C6799 /* Emojis.swift */,
 			);
 			path = Kit;
 			sourceTree = "<group>";
@@ -558,7 +567,6 @@
 			children = (
 				FACF2A7523FFCFA2003BB675 /* ComposerView.swift */,
 				789E8E6623E807CA006D180B /* EditorView.swift */,
-				FA014087240C01B800F6FE92 /* EmojiPicker.swift */,
 				1F14AC352428A1650021CF4D /* CatemojiPicker.swift */,
 			);
 			path = Editor;
@@ -589,6 +597,7 @@
 				FABEBB85245D531A00637226 /* AppAction+Catemoji.swift */,
 				FABEBB89245D65EA00637226 /* AppCommand+Catemoji.swift */,
 				FABEBB87245D535E00637226 /* AppReducer+Catemoji.swift */,
+				FAEAA042246158E2003C6799 /* AppError+Catemoji.swift */,
 			);
 			path = Catemoji;
 			sourceTree = "<group>";
@@ -736,6 +745,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAEAA03F24612645003C6799 /* emojis.json in Resources */,
 				1F39990A23D6958800E6BBD9 /* LaunchScreen.storyboard in Resources */,
 				1F39992D23D69C0700E6BBD9 /* Colors.xcassets in Resources */,
 				1F39990723D6958800E6BBD9 /* Preview Assets.xcassets in Resources */,
@@ -812,6 +822,7 @@
 				1F91CA06241A4CF900B552E7 /* AppCommand+Transaction.swift in Sources */,
 				1F14AC362428A1650021CF4D /* CatemojiPicker.swift in Sources */,
 				FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */,
+				FAEAA0412461278F003C6799 /* Emojis.swift in Sources */,
 				782403F823F83A6600478338 /* AccountDetail.swift in Sources */,
 				1F39995C23D7FCF500E6BBD9 /* Sector.swift in Sources */,
 				1F5A47B3240D0D9300DEA96B /* Alne.swift in Sources */,
@@ -849,6 +860,7 @@
 				FA014088240C01B800F6FE92 /* EmojiPicker.swift in Sources */,
 				FA3C1750245423B40079944F /* SettingsView.swift in Sources */,
 				FACF2A7A23FFD2B7003BB675 /* AccountDetailList.swift in Sources */,
+				FAEAA043246158E2003C6799 /* AppError+Catemoji.swift in Sources */,
 				FABEBB7D245D138E00637226 /* CatemojiView.swift in Sources */,
 				1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */,
 				FAF2AA45241DF97700EE40AA /* AppReducer+Overview.swift in Sources */,

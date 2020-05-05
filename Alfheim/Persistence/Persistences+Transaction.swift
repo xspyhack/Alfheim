@@ -36,17 +36,9 @@ extension Persistences {
       context.delete(object)
     }
 
-    func object(withID id: UUID) -> NSManagedObject? {
-      let predicate = NSPredicate(format: "id == %@", id as CVarArg)
-      guard let object = context.registeredObjects(with: predicate).first else {
-        return nil
-      }
-      return object
-    }
-
     func transaction(withID id: UUID) -> Alfheim.Transaction? {
       let predicate = NSPredicate(format: "id == %@", id as CVarArg)
-      guard let object = context.registeredObjects(with: predicate).first as? Alfheim.Transaction else {
+      guard let object = context.registeredObjects(Alfheim.Transaction.self, with: predicate).first else {
         return nil
       }
       return object

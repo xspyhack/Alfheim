@@ -11,17 +11,17 @@ import UIKit
 
 /// https://gist.github.com/chriseidhof/cb662d2161a59a0cd5babf78e3562272
 extension UIAlertController {
-  convenience init(alert: TextAlert) {
-      self.init(title: alert.title, message: nil, preferredStyle: .alert)
-      addTextField { $0.placeholder = alert.placeholder }
-      addAction(UIAlertAction(title: alert.cancel, style: .cancel) { _ in
-          alert.action(nil)
-      })
-      let textField = self.textFields?.first
-      addAction(UIAlertAction(title: alert.accept, style: .default) { _ in
-          alert.action(textField?.text)
-      })
-  }
+    convenience init(alert: TextAlert) {
+        self.init(title: alert.title, message: nil, preferredStyle: .alert)
+        addTextField { $0.placeholder = alert.placeholder }
+        addAction(UIAlertAction(title: alert.cancel, style: .cancel) { _ in
+            alert.action(nil)
+        })
+        let textField = self.textFields?.first
+        addAction(UIAlertAction(title: alert.accept, style: .default) { _ in
+            alert.action(textField?.text)
+        })
+    }
 }
 
 

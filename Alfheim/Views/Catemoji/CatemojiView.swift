@@ -44,21 +44,7 @@ struct CatemojiView: View {
       HStack {
         Text(selectedCategory.name.uppercased())
           .bold()
-
-        Spacer().background(
-          EmptyView().alert(
-            isPresented: binding.isAlertPresented,
-            TextAlert(title: "Add Emoji", action: { emoji in
-              // check here
-              guard let emoji = emoji else {
-                return
-              }
-              let catemoji = Catemoji(category: self.selectedCategory, emoji: emoji)
-              self.store.dispatch(.catemoji(.added(catemoji)))
-            })
-          )
-        )
-
+        Spacer()
         Button(action: {
           self.store.dispatch(.catemoji(.toggleAddCatemoji(presenting: true)))
         }) {
@@ -66,14 +52,37 @@ struct CatemojiView: View {
         }
       }
       .padding(EdgeInsets(top: 20, leading: 14, bottom: 0, trailing: 14))
+      .sheet(
+        isPresented: binding.isAlertPresented,
+        onDismiss: {
+          self.store.dispatch(.catemoji(.toggleAddCatemoji(presenting: false)))
+      }) {
+        EmojiPicker(onSelected: { emoji in
+          let catemoji = Catemoji(category: self.selectedCategory, emoji: emoji)
+          self.store.dispatch(.catemoji(.add(catemoji)))
+        })
+      }
 
       Grid(self.emojis(in: selectedCategory), id: \.self) { emoji in
+        /*
         Button(action: {
           let catemoji = Catemoji(category: self.selectedCategory, emoji: emoji)
           // context menu edit
         }) {
           Text(emoji).font(.system(size: 28))
-        }
+        }*/
+
+        Text(emoji).font(.system(size: 28))
+          .contextMenu {
+            Button(action: {
+              let catemoji = Catemoji(category: self.selectedCategory, emoji: emoji)
+              self.store.dispatch(.catemoji(.delete(catemoji)))
+            }) {
+              Text("Delete").foregroundColor(.red)
+              Image(systemName: "trash.circle").foregroundColor(.red)
+            }
+            .foregroundColor(.red)
+          }
       }
       .gridStyle(columns: 6)
     }

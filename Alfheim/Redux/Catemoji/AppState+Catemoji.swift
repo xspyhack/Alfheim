@@ -13,6 +13,9 @@ extension AppState {
     var catemojis: [Alne.Catemoji] = []
     var isAlertPresented: Bool = false
 
+    var addError: AppError.Catemoji?
+    var deleteError: AppError.Catemoji?
+
     func categorized() -> [Category: [Alne.Catemoji]] {
       catemojis.grouped(by: { $0.category })
     }
