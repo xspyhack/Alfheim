@@ -59,7 +59,7 @@ struct EditorView: View {
           Picker(selection: binding.validator.payment, label: Text("Payment")) {
             ForEach(0..<state.payments.count) { payment in
               HStack(alignment: .center, spacing: 2) {
-                Text(self.state.payments[payment].name)
+                Text(self.state.payments[payment].fullname)
                 //Text(" - \(payment.kind.fullname)")
               }
             }

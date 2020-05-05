@@ -30,6 +30,15 @@ extension Alfheim.Payment {
   }
 }
 
+extension Alfheim.Payment {
+  var fullname: String {
+    guard let kind = Alne.Payment.Kind(rawValue: Int(kind)), kind != .uncleared else {
+      return name
+    }
+    return "\(name) - \(kind.name)"
+  }
+}
+
 struct PaymentViewModel: Identifiable {
   let payment: Alfheim.Payment
   let tag: Alne.Tagit
