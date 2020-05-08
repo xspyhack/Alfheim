@@ -25,22 +25,24 @@ struct PaymentList: View {
 
   var body: some View {
     List {
-      ForEach(state.displayViewModels(tag: self.tag)) { viewModel in
-        PaymentRow(model: viewModel)
-          .onTapGesture {
-            self.store.dispatch(.payment(.editPayment(viewModel.payment)))
+      Section(header: Spacer()) {
+        ForEach(state.displayViewModels(tag: self.tag)) { viewModel in
+          PaymentRow(model: viewModel)
+            .onTapGesture {
+              self.store.dispatch(.payment(.editPayment(viewModel.payment)))
+          }
         }
-      }
-      .onDelete { indexSet in
-        self.store.dispatch(.transactions(.delete(at: indexSet)))
-      }
-      .sheet(
-        isPresented: self.binding.editingPayment,
-        onDismiss: {
-          self.store.dispatch(.payment(.editPaymentDone))
-      }) {
-        PaymentComposer(mode: .edit)
-          .environmentObject(self.store)
+        .onDelete { indexSet in
+          self.store.dispatch(.transactions(.delete(at: indexSet)))
+        }
+        .sheet(
+          isPresented: self.binding.editingPayment,
+          onDismiss: {
+            self.store.dispatch(.payment(.editPaymentDone))
+        }) {
+          PaymentComposer(mode: .edit)
+            .environmentObject(self.store)
+        }
       }
     }
     .navigationBarTitle("Payments")
