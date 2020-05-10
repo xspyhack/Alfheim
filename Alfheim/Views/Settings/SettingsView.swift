@@ -55,7 +55,7 @@ struct SettingsView: View {
           HStack {
             Text("Version").fontWeight(.medium)
             Spacer()
-            Text("1.0.0")
+            Text(state.appVersion)
           }
         }
       }

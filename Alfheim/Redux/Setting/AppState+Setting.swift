@@ -11,5 +11,9 @@ import Foundation
 extension AppState {
   struct Settings {
     var isPaymentEnabled = true
+
+    var appVersion: String {
+      Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
+    }
   }
 }
