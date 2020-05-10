@@ -17,20 +17,6 @@ extension Alne.Payment {
 }
 
 extension Alfheim.Payment {
-  static func object(_ model: Alne.Payment, context: NSManagedObjectContext) -> Alfheim.Payment {
-    let object = Alfheim.Payment(context: context)
-    object.fill(model)
-    return object
-  }
-
-  func fill(_ model: Alne.Payment) {
-    name = model.name
-    kind = Int16(model.kind.rawValue)
-    // FIXME: transactions ??
-  }
-}
-
-extension Alfheim.Payment {
   var fullname: String {
     guard let kind = Alne.Payment.Kind(rawValue: Int(kind)), kind != .uncleared else {
       return name

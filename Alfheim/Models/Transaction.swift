@@ -17,7 +17,7 @@ extension Alne {
     var notes: String
     var currency: Currency = .cny
     /// payment method
-    var payment: Alne.Payment = Payments.uncleared
+    var payment: Alne.Payment = Payment.uncleared
     var payee: String? = nil
     var number: Int = 0
     /// account
@@ -33,7 +33,7 @@ extension Alne.Transaction {
        catemoji: Catemoji,
        notes: String,
        currency: Currency = .cny,
-       payment: Alne.Payment = Payments.uncleared) {
+       payment: Alne.Payment = Alne.Payment.uncleared) {
     self.id = id
     self.date = date
     self.amount = amount

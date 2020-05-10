@@ -39,7 +39,7 @@ extension TransactionViewModel {
     }
     self.notes = transaction.notes
     self.currency = Currency(rawValue: Int(transaction.currency)) ?? .cny
-    self.payment = transaction.payment.map { Alne.Payment($0) } ?? Payments.uncleared
+    self.payment = transaction.payment.map { Alne.Payment($0) } ?? Alne.Payment.uncleared
     self.tag = tag
   }
 }

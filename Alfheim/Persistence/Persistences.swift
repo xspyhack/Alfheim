@@ -61,8 +61,8 @@ extension Persistences {
       // Payment
       let payment = Alfheim.Payment(context: context)
       payment.id = UUID()
-      payment.kind = Int16(Alne.Payments.uncleared.kind.rawValue)
-      payment.name = Alne.Payments.uncleared.name
+      payment.kind = Int16(Alne.Payment.uncleared.kind.rawValue)
+      payment.name = Alne.Payment.uncleared.name
 
       // Catemoji
       buildinCatemojis().forEach {
