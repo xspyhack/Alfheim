@@ -28,6 +28,12 @@ struct TransactionsView: View {
           .navigationBarTitle("Transactions")
       }
     }
+    .navigationBarItems(trailing:
+      Button(action: {
+      }) {
+        Image(systemName: "line.horizontal.3.decrease.circle")
+      }
+    )
   }
 }
 
