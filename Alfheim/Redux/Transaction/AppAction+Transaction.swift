@@ -18,5 +18,9 @@ extension AppAction {
     case editTransactionDone
 
     case delete(at: IndexSet)
+
+    // picker date
+    case selectDate
+    case selectDateDone(Date)
   }
 }

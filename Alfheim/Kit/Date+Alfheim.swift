@@ -42,14 +42,16 @@ extension Date {
     let dateComponents = calendar.dateComponents(components, from: self)
     return calendar.date(from: dateComponents)!
   }
-}
 
-extension Date {
-  enum EndComponent {
-    case day
-    case week
-    case month
-    case year
+  func next(of component: StartComponent, calendar: Calendar = .current) -> Date {
+    switch component {
+    case .week:
+      return calendar.date(byAdding: .day, value: 7, to: self)!
+    case .month:
+      return calendar.date(byAdding: .month, value: 1, to: self)!
+    case .year:
+      return calendar.date(byAdding: .year, value: 1, to: self)!
+    }
   }
 }
 

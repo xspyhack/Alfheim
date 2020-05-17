@@ -1,0 +1,58 @@
+//
+//  OverlaySheet.swift
+//  Alfheim
+//
+//  Created by bl4ckra1sond3tre on 2020/5/17.
+//  Copyright © 2020 blessingsoft. All rights reserved.
+//
+
+import SwiftUI
+
+struct OverlaySheet<Content: View>: View {
+  private let isPresented: Binding<Bool>
+  private let makeContent: () -> Content
+
+  @GestureState private var translation = CGPoint.zero
+
+  init(isPresented: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
+    self.isPresented = isPresented
+    self.makeContent = content
+  }
+
+  var body: some View {
+    ZStack {
+      VStack {
+        Spacer()
+        makeContent()
+      }
+      .offset(y: (isPresented.wrappedValue ? 0 : UIScreen.main.bounds.height) + max(0, translation.y))
+      .animation(.default)
+    }
+    .background(isPresented.wrappedValue ? Color.gray.opacity(0.5) : Color.clear)
+    .animation(.default)
+    .edgesIgnoringSafeArea(.all)
+  }
+
+  var panelDraggingGesture: some Gesture {
+    DragGesture()
+      .updating($translation) { current, state, _ in
+        state.y = current.translation.height
+      }
+      .onEnded { state in
+        if state.translation.height > 250 {
+          self.isPresented.wrappedValue = false
+        }
+      }
+  }
+}
+
+extension View {
+  func overlaySheet<Content: View>(
+    isPresented: Binding<Bool>,
+    @ViewBuilder content: @escaping () -> Content
+  ) -> some View {
+    overlay(
+      OverlaySheet(isPresented: isPresented, content: content)
+    )
+  }
+}

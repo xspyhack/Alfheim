@@ -23,15 +23,18 @@ struct TransactionList: View {
     store.state.shared.account.tag
   }
 
+  @State var selectMonth = false
+  @State private var birthDate = Date()
+
   var body: some View {
     List {
       Section(header:
         HStack {
           HStack(alignment: .lastTextBaseline) {
-            Text("May")
+            Text(state.selectedMonth)
               .font(.system(size: 34, weight: .semibold))
               .foregroundColor(.primary)
-            Text("2020")
+            Text(state.selectedYear)
               .font(.system(size: 28, weight: .medium))
               .foregroundColor(.secondary)
 
@@ -42,10 +45,11 @@ struct TransactionList: View {
           }
           .onTapGesture {
             // select month
+            self.store.dispatch(.transactions(.selectDate))
           }
           Spacer()
           NavigationLink(destination: StatisticList()) {
-            Text("$233")
+            Text(state.displayAmountText)
               .font(.system(size: 18))
               .foregroundColor(.secondary)
             Image(systemName: "chevron.right")
@@ -74,7 +78,27 @@ struct TransactionList: View {
         self.store.dispatch(.transactions(.editTransactionDone))
     }) {
       ComposerView(mode: .edit).environmentObject(self.store)
-    }/*
+    }
+    .overlaySheet(isPresented: binding.showDatePicker) {
+      VStack {
+        HStack {
+          Text(self.state.pickedDateText)
+          Spacer()
+          Button(action: {
+            self.store.dispatch(.transactions(.selectDateDone(self.state.selectedDate)))
+          }) {
+            Text("OK")
+          }
+        }
+        .padding([.top, .leading, .trailing])
+        DatePicker("",
+                   selection: self.binding.selectedDate,
+                   in: ...Date(),
+                   displayedComponents: .date)
+      }
+      .background(Color(.systemBackground))
+    }
+    /*
     .sheet(item: $transaction) { transaction in
       ComposerView(mode: .edit).environmentObject(self.store)
     }*/

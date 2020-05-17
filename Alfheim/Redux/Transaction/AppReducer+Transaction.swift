@@ -39,6 +39,12 @@ extension AppReducers {
       case .delete(at: let indexSet):
         let transactions = state.transactions.transactions.elements(atOffsets: indexSet)
         appCommand = AppCommands.DeleteTransactionCommand(transactions: transactions)
+
+      case .selectDate:
+        appState.transactions.showDatePicker = true
+      case .selectDateDone(let date):
+        appState.transactions.showDatePicker = false
+        appState.transactions.filterDate = date
       }
 
       return (appState, appCommand)

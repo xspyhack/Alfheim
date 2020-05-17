@@ -76,8 +76,13 @@ extension Persistences {
         .eraseToAnyPublisher()
     }
 
-    func fetchPublisher(from start: Date, to end: Date = Date()) -> AnyPublisher<[Alfheim.Transaction], NSError> {
+    func fetchPublisher(from start: Date, closedTo end: Date = Date()) -> AnyPublisher<[Alfheim.Transaction], NSError> {
       let predicate = NSPredicate(format: "date >= %@ AND date <= %@", start as NSDate, end as NSDate)
+      return fetchPublisher(with: predicate)
+    }
+
+    func fetchPublisher(from start: Date, to end: Date = Date()) -> AnyPublisher<[Alfheim.Transaction], NSError> {
+      let predicate = NSPredicate(format: "date >= %@ AND date < %@", start as NSDate, end as NSDate)
       return fetchPublisher(with: predicate)
     }
   }

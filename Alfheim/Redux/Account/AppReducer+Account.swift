@@ -20,6 +20,7 @@ extension AppReducers {
         appCommand = AppCommands.UpdateAccountCommand(account: account)
       case .updateDone(let account):
         appState.shared.account = account
+        appState.transactions.currency = account.currency
       }
 
       return (appState, appCommand)

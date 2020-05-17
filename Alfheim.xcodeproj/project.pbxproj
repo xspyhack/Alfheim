@@ -67,6 +67,7 @@
 		789E8E6923E80FFC006D180B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6823E80FFC006D180B /* Transaction.swift */; };
 		789E8E6C23E810A6006D180B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6B23E810A6006D180B /* Account.swift */; };
 		789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionList.swift */; };
+		78CB4D5A24713D3500FF9A54 /* OverlaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */; };
 		FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014085240B8F7100F6FE92 /* AccountViewModel.swift */; };
 		FA014088240C01B800F6FE92 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014087240C01B800F6FE92 /* EmojiPicker.swift */; };
 		FA036810241CD5C50038A26E /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03680F241CD5C50038A26E /* TransactionViewModel.swift */; };
@@ -201,6 +202,7 @@
 		789E8E6823E80FFC006D180B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		789E8E6B23E810A6006D180B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		789E8E6F23EA96FC006D180B /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
+		78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaySheet.swift; sourceTree = "<group>"; };
 		FA014085240B8F7100F6FE92 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		FA014087240C01B800F6FE92 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 		FA03680F241CD5C50038A26E /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				FA66C7D82427B40000462C46 /* SearchBar.swift */,
 				FA014087240C01B800F6FE92 /* EmojiPicker.swift */,
 				FABEBB8B245D826300637226 /* TextAlert.swift */,
+				78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */,
 				FAEAA0402461278F003C6799 /* Emojis.swift */,
 			);
 			path = Kit;
@@ -874,6 +877,7 @@
 				1F8AC48D2411FCEC006D9551 /* DataModel.swift in Sources */,
 				FAF2AA3C241DF82E00EE40AA /* AppReducer+Setting.swift in Sources */,
 				FA3C5047242B9E8A00EB544D /* Payment+CoreData.swift in Sources */,
+				78CB4D5A24713D3500FF9A54 /* OverlaySheet.swift in Sources */,
 				FABEBB86245D531A00637226 /* AppAction+Catemoji.swift in Sources */,
 				FAE1DF982441C77700741C86 /* Persistences+Payment.swift in Sources */,
 				FABEBB7A245C0B4C00637226 /* Grid.swift in Sources */,
