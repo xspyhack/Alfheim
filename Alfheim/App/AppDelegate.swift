@@ -61,14 +61,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     })
 
     // initialize the CloudKit schema
-    let id = "iCloud.com.example.apple-samplecode.Earthquakes"
+    let id = "iCloud.com.xspyhack.Alfheim"
     let options = NSPersistentCloudKitContainerOptions(containerIdentifier: id)
 
-    container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-    //container.viewContext.automaticallyMergesChangesFromParent = true
+    //container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
+    container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+    container.viewContext.automaticallyMergesChangesFromParent = true
 
     return container
   }()
+
+  func initializeCloudKitScheme() {
+    do {
+      try persistentContainer.initializeCloudKitSchema(options: .printSchema)
+    } catch {
+      print("Initialize the CloudKit scheme failed: \(error)")
+      assertionFailure(error.localizedDescription)
+    }
+  }
 
   // MARK: - Core Data Saving support
 
