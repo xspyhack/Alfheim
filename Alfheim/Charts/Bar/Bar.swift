@@ -15,7 +15,7 @@ struct Bar: View {
     let max = data.points().max() ?? 0
     let min = data.points().min() ?? 0
     var pieces: [Piece.Data] = []
-    let delta = 0.15 * (max - min)
+    let delta = min == 0 ? 0 : 0.15 * (max - min)
     for unit in data.units {
       let amount: Double = Double(unit.value - (min - delta))/Double(max - (min - delta))
       let data = Piece.Data(unit: unit, amount: amount)
@@ -28,7 +28,12 @@ struct Bar: View {
     GeometryReader { geometry in
       HStack(alignment: .bottom, spacing: CGFloat(geometry.size.width) / CGFloat(4 * self.pieces.count - 1)) {
         ForEach(0..<self.pieces.count) { index in
-          self.piece(at: index, height: geometry.size.height)
+          VStack(spacing: 4) {
+            self.piece(at: index, height: geometry.size.height - 28)
+            Text("Thu")
+              .font(.system(size: 12))
+              .frame(height: 24)
+          }
         }
       }
     }

@@ -9,13 +9,19 @@
 import SwiftUI
 
 struct ChartsView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  var body: some View {
+    VStack {
+      BarChart(data: UnitData(values: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)]), title: "Weekly")
+        .frame(height: 280)
     }
+    .padding()
+  }
 }
 
+#if DEBUG
 struct ChartsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChartsView()
-    }
+  static var previews: some View {
+    ChartsView()
+  }
 }
+#endif

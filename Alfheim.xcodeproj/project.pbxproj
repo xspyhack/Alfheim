@@ -68,6 +68,7 @@
 		789E8E6C23E810A6006D180B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6B23E810A6006D180B /* Account.swift */; };
 		789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionList.swift */; };
 		78CB4D5A24713D3500FF9A54 /* OverlaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */; };
+		78CB4D5C24792D6800FF9A54 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D5B24792D6800FF9A54 /* ChartsView.swift */; };
 		FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014085240B8F7100F6FE92 /* AccountViewModel.swift */; };
 		FA014088240C01B800F6FE92 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014087240C01B800F6FE92 /* EmojiPicker.swift */; };
 		FA036810241CD5C50038A26E /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03680F241CD5C50038A26E /* TransactionViewModel.swift */; };
@@ -203,6 +204,7 @@
 		789E8E6B23E810A6006D180B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		789E8E6F23EA96FC006D180B /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaySheet.swift; sourceTree = "<group>"; };
+		78CB4D5B24792D6800FF9A54 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		FA014085240B8F7100F6FE92 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		FA014087240C01B800F6FE92 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 		FA03680F241CD5C50038A26E /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 			children = (
 				782403F123F5A3F300478338 /* StatisticsView.swift */,
 				FACF2A7723FFD179003BB675 /* StatisticList.swift */,
+				78CB4D5B24792D6800FF9A54 /* ChartsView.swift */,
 			);
 			path = Statistic;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				FAEAA043246158E2003C6799 /* AppError+Catemoji.swift in Sources */,
 				FABEBB7D245D138E00637226 /* CatemojiView.swift in Sources */,
 				1F39995A23D7F75500E6BBD9 /* Slice.swift in Sources */,
+				78CB4D5C24792D6800FF9A54 /* ChartsView.swift in Sources */,
 				FAF2AA45241DF97700EE40AA /* AppReducer+Overview.swift in Sources */,
 				FABEBB8A245D65EA00637226 /* AppCommand+Catemoji.swift in Sources */,
 				1F39992923D6963600E6BBD9 /* Indicator.swift in Sources */,

@@ -62,8 +62,7 @@ struct BarChart: View {
             Bar(data: self.data)
           }
           .clipShape(RoundedRectangle(cornerRadius: 20))
-          .padding(25)
-          .padding(.bottom, 5)
+          .padding([.leading, .trailing, .bottom], 25)
           .gesture(DragGesture()
             .onChanged { value in
               self.touchLocation = value.location
