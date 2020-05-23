@@ -11,11 +11,15 @@ import SwiftUI
 struct OverlaySheet<Content: View>: View {
   private let isPresented: Binding<Bool>
   private let makeContent: () -> Content
+  private let onDismiss: (() -> Void)?
 
   @GestureState private var translation = CGPoint.zero
 
-  init(isPresented: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
+  init(isPresented: Binding<Bool>,
+       onDismiss: (() -> Void)? = nil,
+       @ViewBuilder content: @escaping () -> Content) {
     self.isPresented = isPresented
+    self.onDismiss = onDismiss
     self.makeContent = content
   }
 
@@ -27,10 +31,15 @@ struct OverlaySheet<Content: View>: View {
       }
       .offset(y: (isPresented.wrappedValue ? 0 : UIScreen.main.bounds.height) + max(0, translation.y))
       .animation(.default)
+      .onTapGesture {
+      }
     }
     .background(isPresented.wrappedValue ? Color.gray.opacity(0.5) : Color.clear)
     .animation(.default)
     .edgesIgnoringSafeArea(.all)
+    .onTapGesture {
+      self.onDismiss?()
+    }
   }
 
   var panelDraggingGesture: some Gesture {
@@ -49,10 +58,13 @@ struct OverlaySheet<Content: View>: View {
 extension View {
   func overlaySheet<Content: View>(
     isPresented: Binding<Bool>,
+    onDismiss: (() -> Void)? = nil,
     @ViewBuilder content: @escaping () -> Content
   ) -> some View {
     overlay(
-      OverlaySheet(isPresented: isPresented, content: content)
+      OverlaySheet(isPresented: isPresented,
+                   onDismiss: onDismiss,
+                   content: content)
     )
   }
 }

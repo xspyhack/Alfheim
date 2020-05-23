@@ -79,7 +79,11 @@ struct TransactionList: View {
     }) {
       ComposerView(mode: .edit).environmentObject(self.store)
     }
-    .overlaySheet(isPresented: binding.showDatePicker) {
+    .overlaySheet(
+      isPresented: binding.showDatePicker,
+      onDismiss: {
+        self.store.dispatch(.transactions(.selectDateCancalled))
+    }) {
       VStack {
         HStack {
           Text(self.state.pickedDateText)
@@ -87,7 +91,7 @@ struct TransactionList: View {
           Button(action: {
             self.store.dispatch(.transactions(.selectDateDone(self.state.selectedDate)))
           }) {
-            Text("OK")
+            Text("OK").bold()
           }
         }
         .padding([.top, .leading, .trailing])

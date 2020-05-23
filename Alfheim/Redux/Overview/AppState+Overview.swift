@@ -18,6 +18,8 @@ extension AppState {
     var isAccountDetailPresented: Bool = false
     var isSettingsPresented: Bool = false
 
+    var isTransactionListActive = false
+
     var transactions: [Alne.Transaction] {
       Alne.Transactions.samples()
     }

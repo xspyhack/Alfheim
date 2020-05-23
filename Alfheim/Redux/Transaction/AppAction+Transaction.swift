@@ -19,8 +19,11 @@ extension AppAction {
 
     case delete(at: IndexSet)
 
+    case reset(Bool)
+
     // picker date
     case selectDate
     case selectDateDone(Date)
+    case selectDateCancalled
   }
 }

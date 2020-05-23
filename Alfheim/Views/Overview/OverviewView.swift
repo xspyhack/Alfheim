@@ -90,13 +90,16 @@ struct OverviewView: View {
   }
 
   private func transactions() -> some View {
-    Section(header: NavigationLink(destination: TransactionList()) {
+    Section(header: NavigationLink(destination: TransactionList(), isActive: binding.isTransactionListActive) {
       HStack {
         Text("Transactions").font(.system(size: 24, weight: .bold))
         Spacer()
         Image(systemName: "chevron.right")
       }
       .foregroundColor(.primary)
+      .onAppear() {
+        self.store.dispatch(.transactions(.reset(true)))
+      }
     }) {
       ForEach(self.shared.displayTransactions) { viewModel in
         TransactionRow(model: viewModel)

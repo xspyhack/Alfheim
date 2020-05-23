@@ -40,11 +40,17 @@ extension AppReducers {
         let transactions = state.transactions.transactions.elements(atOffsets: indexSet)
         appCommand = AppCommands.DeleteTransactionCommand(transactions: transactions)
 
+      case .reset:
+        appState.transactions.selectedDate = Date()
+        appState.transactions.filterDate = Date()
+
       case .selectDate:
         appState.transactions.showDatePicker = true
       case .selectDateDone(let date):
         appState.transactions.showDatePicker = false
         appState.transactions.filterDate = date
+      case .selectDateCancalled:
+        appState.transactions.showDatePicker = false
       }
 
       return (appState, appCommand)
