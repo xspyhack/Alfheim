@@ -41,6 +41,7 @@ extension AppReducers {
         appCommand = AppCommands.DeleteTransactionCommand(transactions: transactions)
 
       case .reset:
+        appState.transactions.showDatePicker = false
         appState.transactions.selectedDate = Date()
         appState.transactions.filterDate = Date()
 

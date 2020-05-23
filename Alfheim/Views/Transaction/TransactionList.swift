@@ -87,6 +87,7 @@ struct TransactionList: View {
       VStack {
         HStack {
           Text(self.state.pickedDateText)
+            .fontWeight(.medium)
           Spacer()
           Button(action: {
             self.store.dispatch(.transactions(.selectDateDone(self.state.selectedDate)))
@@ -99,8 +100,9 @@ struct TransactionList: View {
                    selection: self.binding.selectedDate,
                    in: ...Date(),
                    displayedComponents: .date)
+          .background(Color(.systemBackground))
       }
-      .background(Color(.systemBackground))
+      .background(Color(.secondarySystemBackground))
     }
     /*
     .sheet(item: $transaction) { transaction in
