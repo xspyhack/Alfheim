@@ -26,13 +26,13 @@ struct Bar: View {
 
   var body: some View {
     GeometryReader { geometry in
-      HStack(alignment: .bottom, spacing: CGFloat(geometry.size.width) / CGFloat(4 * self.pieces.count - 1)) {
+      HStack(alignment: .bottom, spacing: CGFloat(geometry.size.width) / CGFloat(3 * (self.pieces.count - 1))) {
         ForEach(0..<self.pieces.count) { index in
           VStack(spacing: 4) {
-            self.piece(at: index, height: geometry.size.height - 28)
-            Text("Thu")
-              .font(.system(size: 12))
-              .frame(height: 24)
+            ZStack(alignment: .bottom) {
+              Capsule().fill(Color(.secondarySystemBackground))
+              self.piece(at: index, height: geometry.size.height)
+            }
           }
         }
       }

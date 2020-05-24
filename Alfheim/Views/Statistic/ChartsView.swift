@@ -10,12 +10,25 @@ import SwiftUI
 
 struct ChartsView: View {
   var body: some View {
-    VStack {
-      BarChart(data: UnitData(values: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)]), title: "Weekly")
-        .frame(height: 280)
+    ScrollView {
+      VStack(spacing: 32) {
+        BarChart(data: self.data, title: "Week", legend: "Chart")
+          .frame(height: 280)
+
+        LineChart(data: data.values(), title: "Month", legend: "Chart", value: (10.0, "%.1f"))
+          .frame(height: 280)
+
+        PieChart(data: data, title: "Categories", legend: "7 total")
+
+        ForEach(0..<20) { index in
+          Text("Hello \(index)")
+        }
+      }
+      .padding()
     }
-    .padding()
   }
+
+  let data = UnitData(values: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)])
 }
 
 #if DEBUG

@@ -13,19 +13,24 @@ class UnitData: ObservableObject {
   @Published var units: [Unit] = [Unit]()
 
   var valuesGiven: Bool = false
+  let isNamed: Bool
 
   init(points: [Double]) {
     self.units = points.map { ("", $0) }
+    self.isNamed = false
+    self.valuesGiven = true
   }
 
   init(values: [(String, Int)]) {
     self.units = values.map { ($0.0, Double($0.1)) }
     self.valuesGiven = true
+    self.isNamed = true
   }
 
   init(values: [(String, Double)]) {
     self.units = values.map { ($0.0, $0.1) }
     self.valuesGiven = true
+    self.isNamed = true
   }
 
   func points() -> [Double] {

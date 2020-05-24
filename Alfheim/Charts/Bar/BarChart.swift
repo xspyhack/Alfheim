@@ -31,7 +31,7 @@ struct BarChart: View {
       ZStack(alignment: .center) {
         RoundedRectangle(cornerRadius: 20)
           .fill(Color.ah00)
-          .shadow(radius: 8)
+          .shadow(color: Color.shadow, radius: 8)
         VStack(alignment: .leading, spacing: 2) {
           HStack {
             VStack(alignment: .leading, spacing: 8) {
@@ -55,14 +55,12 @@ struct BarChart: View {
           }
           .transition(.opacity)
           .animation(.easeIn(duration: 0.1))
-          .frame(width: nil, height: 80, alignment: .center)
-          .padding()
+          .frame(height: 54, alignment: .center)
+          .padding(.bottom, 24)
 
           GeometryReader { geometry in
             Bar(data: self.data)
           }
-          .clipShape(RoundedRectangle(cornerRadius: 20))
-          .padding([.leading, .trailing, .bottom], 25)
           .gesture(DragGesture()
             .onChanged { value in
               self.touchLocation = value.location
@@ -73,7 +71,22 @@ struct BarChart: View {
               self.showsValue = false
             }
           )
+
+          if self.data.isNamed {
+            GeometryReader { geometry in
+              HStack(alignment: .bottom, spacing: CGFloat(geometry.size.width) / CGFloat(3 * (self.data.units.count - 1))) {
+                ForEach(self.data.units, id: \.name) { unit in
+                  Text(unit.name)
+                    .font(.system(size: 12))
+                    .frame(maxWidth: .infinity)
+                }
+              }
+            }
+            .frame(height: 24)
+            .padding(.top, 4)
+          }
         }
+        .padding(20)
       }
     }
   }
@@ -93,16 +106,16 @@ extension BarChart {
 #if DEBUG
 struct BarChart_Previews : PreviewProvider {
   static var previews: some View {
-    ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
+//    ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       GeometryReader { geometry in
         BarChart(data: UnitData(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "chart")
       }
-      .environment(\.colorScheme, colorScheme)
-      .previewDisplayName("\(colorScheme)")
-    }
-    .previewLayout(.sizeThatFits)
-    .background(Color(.systemBackground))
-    .padding(10)
+//      .environment(\.colorScheme, colorScheme)
+//      .previewDisplayName("\(colorScheme)")
+//    }
+//    .previewLayout(.sizeThatFits)
+//    .background(Color(.systemBackground))
+//    .padding(10)
   }
 }
 #endif

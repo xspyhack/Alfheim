@@ -32,7 +32,7 @@ struct LineChart: View {
       ZStack(alignment: .center) {
         RoundedRectangle(cornerRadius: 20)
           .fill(Color(.systemBackground))
-          .shadow(radius: 8)
+          .shadow(color: Color.shadow, radius: 8)
         VStack(alignment: .leading) {
           if !self.showsIndicator {
             VStack(alignment: .leading, spacing: 8) {
@@ -54,25 +54,25 @@ struct LineChart: View {
             }
             .transition(.opacity)
             .animation(.easeIn(duration: 0.1))
-            .padding([.leading, .top])
-            .frame(width: nil, height: 120, alignment: .center)
+            .padding(.leading, 20)
+            .frame(width: nil, height: 80, alignment: .center)
+            .padding(.bottom, 24)
           } else {
             HStack {
               Spacer()
               Text("\(self.currentValue, specifier: self.value.specifier)")
                 .font(.system(size: 41, weight: .bold))
                 .foregroundColor(.primary)
-                .offset(x: 0, y: 30)
               Spacer()
             }
             .transition(.scale)
-            .frame(width: nil, height: 120, alignment: .center)
+            .frame(width: nil, height: 80, alignment: .center)
+            .padding(.bottom, 24)
           }
           Spacer()
           GeometryReader { geometry in
             Line(data: self.data, frame: .constant(geometry.frame(in: .local)), touchLocation: self.$touchLocation, showsIndicator: self.$showsIndicator)
           }
-          .clipShape(RoundedRectangle(cornerRadius: 20))
           .offset(x: 0, y: 0)
           .gesture(DragGesture()
             .onChanged { value in
@@ -85,6 +85,7 @@ struct LineChart: View {
             }
           )
         }
+        .padding(.vertical, 20)
       }
     }
   }

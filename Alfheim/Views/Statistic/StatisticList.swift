@@ -34,20 +34,26 @@ struct StatisticList: View {
     state.categorizedAmount.map { ($0.key, $0.value) }
   }
 
+  private var barData: UnitData {
+    UnitData(values: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)])
+  }
+
+  private static let height: CGFloat = 280
+
   var body: some View {
     GeometryReader { geometry in
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
+          BarChart(data: self.barData, title: self.state.account.name, legend: "may 01 ~ 07")
+            .frame(height: StatisticList.height)
+
           LineChart(data: self.lineData, title: self.state.account.name, legend: self.state.period.display, value: (self.trend, "%.1f"))
-            .frame(height: geometry.size.width*16/15)
+            .frame(height: StatisticList.height)
 
           PieChart(data: UnitData(values: self.pieData), title: "Categories", legend: "\(self.pieData.count) total")
-            .frame(height: geometry.size.width*16/15)
+//            .frame(height: StatisticList.height)
 
-          /*
-          BarChart(data: UnitData(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "this week")
-            .frame(height: geometry.size.width*16/15)
-           */
+          Text("Footer")
         }
         .padding(20)
       }
@@ -71,6 +77,6 @@ struct StatisticList: View {
 
 struct StatisticList_Previews: PreviewProvider {
   static var previews: some View {
-    StatisticList()
+    StatisticList().environmentObject(AppStore(moc: viewContext))
   }
 }

@@ -15,7 +15,7 @@ struct Line: View {
   @Binding var showsIndicator: Bool
   @State private var fill: Bool = false
   @State var showsBackground: Bool = true
-  @State var padding: CGFloat = 20
+  @State var padding: CGFloat = 4
 
   var stepWidth: CGFloat {
     if data.units.count < 2 {
@@ -93,6 +93,8 @@ extension Color {
   static let ah01 = Color("AH01")
   static let ah02 = Color("AH02")
   static let ah03 = Color("AH03")
+
+  static let shadow = Color(.sRGBLinear, white: 0, opacity: 0.23)
 }
 
 

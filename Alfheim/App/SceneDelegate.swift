@@ -92,10 +92,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 #if DEBUG
-
 extension PreviewProvider {
   static var viewContext: NSManagedObjectContext {
     return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
   }
 }
+
+extension AppState {
+  static var mock: AppState {
+    let transactions = TransactionList()
+    var state = AppState()
+    state.transactions = transactions
+    return state
+  }
+}
+
+extension AppStore {
+  static func mock(moc: NSManagedObjectContext) -> AppStore {
+    AppStore(state: AppState.mock, reducer: AppReducer(), moc: moc)
+  }
+}
+
 #endif

@@ -16,14 +16,14 @@ struct Pie: View {
     var degrees: Double = 0
     let sum = data.points().reduce(0, +)
 
-    for unit in data.units {
+    for (index, unit) in data.units.enumerated() {
       let normalized: Double = Double(unit.value)/Double(sum)
       let startDegrees = degrees
       let endDegress = degrees + (normalized * 360)
       let data = Slice.Data(startDegrees: startDegrees,
                             endDegrees: endDegress,
                             unit: unit,
-                            color: .red,
+                            color: Color.color(at: index),
                             normalizedValue: normalized)
       slices.append(data)
       degrees = endDegress

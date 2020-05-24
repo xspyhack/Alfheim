@@ -32,7 +32,7 @@ struct Slice: View {
   var body: some View {
     sector
       .fill()
-      .foregroundColor(Color.color(at: self.index))
+      .foregroundColor(color)
       .overlay(sector.stroke(Color.white, lineWidth: 2))
       .scaleEffect(self.fill ? 1 : 0)
       .animation(Animation.spring().delay(Double(self.index) * 0.05))
