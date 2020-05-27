@@ -9,17 +9,17 @@
 import SwiftUI
 
 struct BarChart: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var data: Histogram<Dimension>
   var title: String
   var legend: String?
 
   private var specifier: String
 
   @State private var touchLocation: CGPoint = .zero
-  @State private var currentValue: Double = 0
+  @State private var currentValue: Value = 0
   @State private var showsValue: Bool = false
 
-  init(data: UnitData, title: String, legend: String? = nil, specifier: String = "%.1f") {
+  init(data: Histogram<Dimension>, title: String, legend: String? = nil, specifier: String = "%.1f") {
     self.data = data
     self.title = title
     self.legend = legend
@@ -75,8 +75,8 @@ struct BarChart: View {
           if self.data.isNamed {
             GeometryReader { geometry in
               HStack(alignment: .bottom, spacing: CGFloat(geometry.size.width) / CGFloat(3 * (self.data.units.count - 1))) {
-                ForEach(self.data.units, id: \.name) { unit in
-                  Text(unit.name)
+                ForEach(self.data.units, id: \.symbol) { unit in
+                  Text(unit.symbol)
                     .font(.system(size: 12))
                     .frame(maxWidth: .infinity)
                 }
@@ -108,7 +108,7 @@ struct BarChart_Previews : PreviewProvider {
   static var previews: some View {
 //    ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       GeometryReader { geometry in
-        BarChart(data: UnitData(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "chart")
+        BarChart(data: Histogram<Dimension>(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "chart")
       }
 //      .environment(\.colorScheme, colorScheme)
 //      .previewDisplayName("\(colorScheme)")

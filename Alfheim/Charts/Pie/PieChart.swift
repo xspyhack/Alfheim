@@ -9,18 +9,34 @@
 import SwiftUI
 
 struct PieChart: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var data: Histogram<LabeledUnit>
   var title: String
   var legend: String?
+  var symbol: String?
 
   private var sum: Double {
     data.points().reduce(0, +)
   }
 
-  init(data: UnitData, title: String, legend: String? = nil) {
-    self.data = data
+  init(data: [(String, Double)],
+       title: String,
+       legend: String? = nil,
+       symbol: String? = nil) {
+    let sum = data.reduce(0, { $0 + $1.1 })
+    self.data = Histogram(values: data.map { ($0, $1, "\($1/sum)%") })
     self.title = title
     self.legend = legend
+    self.symbol = symbol
+  }
+
+  init(data: [(String, Int)],
+       title: String,
+       legend: String? = nil,
+       symbol: String? = nil) {
+    self.init(data: data.map { ($0, Double($1)) },
+              title: title,
+              legend: legend,
+              symbol: symbol)
   }
   
   var body: some View {
@@ -48,7 +64,7 @@ struct PieChart: View {
           ForEach(0..<self.data.units.count) { index in
             HStack {
               HStack {
-                Text(self.unit(at: index).name)
+                Text(self.unit(at: index).symbol)
                 Spacer()
               }
               .frame(width: 50)
@@ -69,7 +85,7 @@ struct PieChart: View {
               Spacer()
               HStack {
                 Spacer()
-                Text("$\(self.unit(at: index).value, specifier: "%.1f")")
+                Text("\(self.symbol ?? "")\(self.unit(at: index).value, specifier: "%.1f")")
                   .font(.system(size: 16))
               }
               .frame(width: 60)
@@ -92,12 +108,8 @@ struct PieChart: View {
     unit(at: index).value/sum
   }
 
-  private func unit(at index: Int) -> UnitData.Unit {
+  private func unit(at index: Int) -> LabeledUnit {
     data.units[index]
-  }
-
-  private func display(of value: Double) -> String {
-    "$\(String(format: "%.1f", value))"
   }
 }
 
@@ -106,7 +118,7 @@ struct PieChart_Previews : PreviewProvider {
   static var previews: some View {
     ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       ScrollView {
-        PieChart(data: UnitData(values: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)]), title: "Pie", legend: "accounts")
+        PieChart(data: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)], title: "Pie", legend: "accounts", symbol: "$")
        }
       .environment(\.colorScheme, colorScheme)
       .previewDisplayName("\(colorScheme)")

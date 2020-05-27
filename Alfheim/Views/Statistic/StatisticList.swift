@@ -34,8 +34,8 @@ struct StatisticList: View {
     state.categorizedAmount.map { ($0.key, $0.value) }
   }
 
-  private var barData: UnitData {
-    UnitData(values: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)])
+  private var barData: Histogram<Dimension> {
+    Histogram(values: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)])
   }
 
   private static let height: CGFloat = 280
@@ -50,8 +50,8 @@ struct StatisticList: View {
           LineChart(data: self.lineData, title: self.state.account.name, legend: self.state.period.display, value: (self.trend, "%.1f"))
             .frame(height: StatisticList.height)
 
-          PieChart(data: UnitData(values: self.pieData), title: "Categories", legend: "\(self.pieData.count) total")
-//            .frame(height: StatisticList.height)
+          PieChart(data: self.pieData, title: "Categories", legend: "\(self.pieData.count) total")
+            .frame(height: StatisticList.height)
 
           Text("Footer")
         }

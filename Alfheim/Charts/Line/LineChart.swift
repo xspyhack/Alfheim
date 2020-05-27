@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LineChart: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var data: Histogram<Dimension>
   var title: String
   var legend: String?
 
@@ -20,8 +20,12 @@ struct LineChart: View {
   @State private var showsIndicator: Bool = false
   @State private var currentValue: Double = 0
 
+  init(data: [Int], title: String, legend: String? = nil, value: Value) {
+    self.init(data: data.map { Double($0) }, title: title, legend: legend, value: value)
+  }
+
   init(data: [Double], title: String, legend: String? = nil, value: Value) {
-    self.data = UnitData(points: data)
+    self.data = Histogram(points: data)
     self.title = title
     self.legend = legend
     self.value = value

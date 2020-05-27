@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Pie: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var data: Histogram<LabeledUnit>
 
   var slices: [Slice.Data] {
     var slices: [Slice.Data] = []
@@ -62,7 +62,7 @@ extension Color {
 struct Pie_Previews : PreviewProvider {
   static var previews: some View {
     GeometryReader { geometry in
-      Pie(data:  UnitData(points: [8,23,54,32,12,37,7,23,43]))
+      Pie(data:  Histogram(values: [("Mon", 8, "a"), ("Tue", 18, "b"), ("Wed", 28, "c"), ("Thu", 12, "d"), ("Fri", 16, "e"), ("Sat", 22, "f"), ("Sun", 20, "g")]))
     }.frame(width: 200, height: 200)
   }
 }

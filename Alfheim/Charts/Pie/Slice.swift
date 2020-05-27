@@ -13,7 +13,7 @@ struct Slice: View {
     var id = UUID()
     var startDegrees: Double
     var endDegrees: Double
-    var unit: UnitData.Unit
+    var unit: Unit
     var color: Color
     var normalizedValue: Double
   }

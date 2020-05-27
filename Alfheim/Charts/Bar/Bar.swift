@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Bar: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var data: Histogram<Dimension>
 
   var pieces: [Piece.Data] {
     let max = data.points().max() ?? 0
@@ -52,7 +52,7 @@ struct Bar_Previews : PreviewProvider {
     GeometryReader { geometry in
 //      Bar(data: UnitData(points: [20, 6, 4, 0, 4, 6, 10]))
 //      Bar(data: UnitData(points: [-2, 0, 2, 4, 6, 8, 10]))
-      Bar(data: UnitData(points: [-2, 0, 1, 3, 4, 5, 6]))
+      Bar(data: Histogram<Dimension>(points: [-2, 0, 1, 3, 4, 5, 6]))
     }.frame(width: 200, height: 200)
   }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct Piece: View {
   struct Data: Identifiable {
     var id = UUID()
-    var unit: UnitData.Unit
+    var unit: Unit
     var amount: Double
   }
 

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Line: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var data: Histogram<Dimension>
   @Binding var frame: CGRect
   @Binding var touchLocation: CGPoint
   @Binding var showsIndicator: Bool
@@ -102,7 +102,7 @@ extension Color {
 struct Line_Previews: PreviewProvider {
   static var previews: some View {
     GeometryReader { geometry in
-      Line(data: UnitData(points: [20, 6, 4, 2, 4, 6, 0]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 10, y: 12)), showsIndicator: .constant(true))
+      Line(data: Histogram(points: [20, 6, 4, 2, 4, 6, 0]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 10, y: 12)), showsIndicator: .constant(true))
     }
     .frame(width: 320, height: 460)
     .environment(\.colorScheme, .dark)
