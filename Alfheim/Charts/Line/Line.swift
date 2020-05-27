@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Line: View {
-  @ObservedObject var data: Histogram<Dimension>
+  @ObservedObject var histogram: Histogram<Dimension>
   @Binding var frame: CGRect
   @Binding var touchLocation: CGPoint
   @Binding var showsIndicator: Bool
@@ -18,14 +18,14 @@ struct Line: View {
   @State var padding: CGFloat = 4
 
   var stepWidth: CGFloat {
-    if data.units.count < 2 {
+    if histogram.units.count < 2 {
       return 0
     }
-    return frame.size.width / CGFloat(data.units.count - 1)
+    return frame.size.width / CGFloat(histogram.units.count - 1)
   }
 
   var stepHeight: CGFloat {
-    let points = data.points()
+    let points = histogram.points()
 
     guard let min = points.min(),
       let max = points.max(), min != max else {
@@ -39,14 +39,14 @@ struct Line: View {
   }
 
   var path: Path {
-    let points = data.points()
+    let points = histogram.points()
     return Path.quadCurved(points: points,
                            step: step,
                            padding: padding)
   }
 
   var closedPath: Path {
-    let points = data.points()
+    let points = histogram.points()
     return Path.quadCurved(points: points,
                            step: step,
                            padding: padding,
@@ -102,7 +102,7 @@ extension Color {
 struct Line_Previews: PreviewProvider {
   static var previews: some View {
     GeometryReader { geometry in
-      Line(data: Histogram(points: [20, 6, 4, 2, 4, 6, 0]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 10, y: 12)), showsIndicator: .constant(true))
+      Line(histogram: Histogram(points: [20, 6, 4, 2, 4, 6, 0]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 10, y: 12)), showsIndicator: .constant(true))
     }
     .frame(width: 320, height: 460)
     .environment(\.colorScheme, .dark)

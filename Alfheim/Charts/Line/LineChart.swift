@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LineChart: View {
-  @ObservedObject var data: Histogram<Dimension>
+  @ObservedObject var histogram: Histogram<Dimension>
   var title: String
   var legend: String?
 
@@ -21,11 +21,24 @@ struct LineChart: View {
   @State private var currentValue: Double = 0
 
   init(data: [Int], title: String, legend: String? = nil, value: Value) {
-    self.init(data: data.map { Double($0) }, title: title, legend: legend, value: value)
+    self.init(data: data.map { Double($0) },
+              title: title,
+              legend: legend,
+              value: value)
   }
 
   init(data: [Double], title: String, legend: String? = nil, value: Value) {
-    self.data = Histogram(points: data)
+    self.init(histogram: Histogram(points: data),
+              title: title,
+              legend: legend,
+              value: value)
+  }
+
+  init(histogram: Histogram<Dimension>,
+       title: String,
+       legend: String? = nil,
+       value: Value) {
+    self.histogram = histogram
     self.title = title
     self.legend = legend
     self.value = value
@@ -75,7 +88,7 @@ struct LineChart: View {
           }
           Spacer()
           GeometryReader { geometry in
-            Line(data: self.data, frame: .constant(geometry.frame(in: .local)), touchLocation: self.$touchLocation, showsIndicator: self.$showsIndicator)
+            Line(histogram: self.histogram, frame: .constant(geometry.frame(in: .local)), touchLocation: self.$touchLocation, showsIndicator: self.$showsIndicator)
           }
           .offset(x: 0, y: 0)
           .gesture(DragGesture()
@@ -98,7 +111,7 @@ struct LineChart: View {
 extension LineChart {
   @discardableResult
   func handleTouch(to point: CGPoint, in frame: CGSize) -> CGPoint {
-    let points = self.data.points()
+    let points = self.histogram.points()
 
     let stepWidth: CGFloat = frame.width / CGFloat(points.count - 1)
     let stepHeight: CGFloat = (frame.height - 60) / CGFloat(points.max()! - points.min()!)

@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct Pie: View {
-  @ObservedObject var data: Histogram<LabeledUnit>
+  @ObservedObject var histogram: Histogram<LabeledUnit>
 
   var slices: [Slice.Data] {
     var slices: [Slice.Data] = []
     var degrees: Double = 0
-    let sum = data.points().reduce(0, +)
+    let sum = histogram.points().reduce(0, +)
 
-    for (index, unit) in data.units.enumerated() {
+    for (index, unit) in histogram.units.enumerated() {
       let normalized: Double = Double(unit.value)/Double(sum)
       let startDegrees = degrees
       let endDegress = degrees + (normalized * 360)
@@ -62,7 +62,7 @@ extension Color {
 struct Pie_Previews : PreviewProvider {
   static var previews: some View {
     GeometryReader { geometry in
-      Pie(data:  Histogram(values: [("Mon", 8, "a"), ("Tue", 18, "b"), ("Wed", 28, "c"), ("Thu", 12, "d"), ("Fri", 16, "e"), ("Sat", 22, "f"), ("Sun", 20, "g")]))
+      Pie(histogram:  Histogram(values: [("Mon", 8, "a"), ("Tue", 18, "b"), ("Wed", 28, "c"), ("Thu", 12, "d"), ("Fri", 16, "e"), ("Sat", 22, "f"), ("Sun", 20, "g")]))
     }.frame(width: 200, height: 200)
   }
 }

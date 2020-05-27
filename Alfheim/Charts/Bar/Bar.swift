@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct Bar: View {
-  @ObservedObject var data: Histogram<Dimension>
+  @ObservedObject var histogram: Histogram<Dimension>
 
   var pieces: [Piece.Data] {
-    let max = data.points().max() ?? 0
-    let min = data.points().min() ?? 0
+    let max = histogram.points().max() ?? 0
+    let min = histogram.points().min() ?? 0
     var pieces: [Piece.Data] = []
     let delta = min == 0 ? 0 : 0.15 * (max - min)
-    for unit in data.units {
+    for unit in histogram.units {
       let amount: Double = Double(unit.value - (min - delta))/Double(max - (min - delta))
       let data = Piece.Data(unit: unit, amount: amount)
       pieces.append(data)
@@ -52,7 +52,7 @@ struct Bar_Previews : PreviewProvider {
     GeometryReader { geometry in
 //      Bar(data: UnitData(points: [20, 6, 4, 0, 4, 6, 10]))
 //      Bar(data: UnitData(points: [-2, 0, 2, 4, 6, 8, 10]))
-      Bar(data: Histogram<Dimension>(points: [-2, 0, 1, 3, 4, 5, 6]))
+      Bar(histogram: Histogram<Dimension>(points: [-2, 0, 1, 3, 4, 5, 6]))
     }.frame(width: 200, height: 200)
   }
 }

@@ -30,8 +30,8 @@ struct StatisticList: View {
     return (lineData.last! - lineData.first!) / lineData.first! * 100.0
   }
 
-  private var pieData: [(String, Double)] {
-    state.categorizedAmount.map { ($0.key, $0.value) }
+  private var pieData: [(String, Double, String)] {
+    state.categorizedAmount.map { ($0.key, $0.value, "Unknown") }
   }
 
   private var barData: Histogram<Dimension> {
@@ -44,7 +44,7 @@ struct StatisticList: View {
     GeometryReader { geometry in
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
-          BarChart(data: self.barData, title: self.state.account.name, legend: "may 01 ~ 07")
+          BarChart(histogram: self.barData, title: self.state.account.name, legend: "may 01 ~ 07")
             .frame(height: StatisticList.height)
 
           LineChart(data: self.lineData, title: self.state.account.name, legend: self.state.period.display, value: (self.trend, "%.1f"))
