@@ -38,6 +38,7 @@ extension Alne {
       try container.encode(id, forKey: .id)
       try container.encode(date, forKey: .date)
       try container.encode(amount, forKey: .amount)
+      try container.encode(notes, forKey: .notes)
       try container.encode(currency, forKey: .currency)
       try container.encode(payment.name, forKey: .payment)
     }
