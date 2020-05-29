@@ -18,5 +18,7 @@ extension AppAction {
     case editTransactionDone
 
     case delete(at: IndexSet)
+
+    case export
   }
 }

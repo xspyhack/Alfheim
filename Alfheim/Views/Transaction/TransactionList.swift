@@ -36,6 +36,16 @@ struct TransactionList: View {
       }
     }
     .navigationBarTitle("Transactions")
+    .navigationBarItems(trailing:
+      Button(action: {
+        self.store.dispatch(.transactions(.export))
+      }) {
+        Text("Export")
+      }
+      .sheet(item: binding.file) {
+        ActivityView(activityItems: [$0])
+      }
+    )
     .sheet(
       isPresented: binding.editingTransaction,
       onDismiss: {

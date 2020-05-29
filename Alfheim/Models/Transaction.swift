@@ -9,7 +9,7 @@
 import Foundation
 
 extension Alne {
-  struct Transaction: Identifiable {
+  struct Transaction: Identifiable, Encodable {
     let id: String
     var date: Date
     var amount: Double
@@ -23,6 +23,24 @@ extension Alne {
     /// account
     var from: Account? = Accounts.income
     var to: Account? = Accounts.expenses
+
+    enum CodingKeys: String, CodingKey {
+      case id
+      case date
+      case amount
+      case notes
+      case currency
+      case payment
+    }
+
+    func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(id, forKey: .id)
+      try container.encode(date, forKey: .date)
+      try container.encode(amount, forKey: .amount)
+      try container.encode(currency, forKey: .currency)
+      try container.encode(payment.name, forKey: .payment)
+    }
   }
 }
 
@@ -47,7 +65,7 @@ extension Alne.Transaction {
 extension Alne.Transaction: Hashable {}
 
 extension Alne {
-  enum Currency: Int, CaseIterable {
+  enum Currency: Int, CaseIterable, Encodable {
     case cny
     case hkd
     case jpy

@@ -20,6 +20,8 @@ extension AppState {
     var selectedTransaction: Alne.Transaction?
     var editingTransaction: Bool = false
 
+    var file: URL?
+
     var searchText = ""
 
     func displayTransactions(from start: Date, to end: Date) -> [Alne.Transaction] {
@@ -41,4 +43,8 @@ extension AppState {
 
     var loader = Loader()
   }
+}
+
+extension URL: Identifiable {
+  public var id: String { absoluteString }
 }

@@ -39,6 +39,13 @@ extension AppReducers {
       case .delete(at: let indexSet):
         let transactions = state.transactions.transactions.elements(atOffsets: indexSet)
         appCommand = AppCommands.DeleteTransactionCommand(transactions: transactions)
+
+      case .export:
+        let data = try? JSONEncoder().encode(state.shared.allTransactions)
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let url = directory.appendingPathComponent("alfheim.json")
+        try? data?.write(to: url)
+        appState.transactions.file = url
       }
 
       return (appState, appCommand)
