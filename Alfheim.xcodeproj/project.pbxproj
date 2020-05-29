@@ -59,6 +59,7 @@
 		782403F423F6D79F00478338 /* TransactionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403F323F6D79F00478338 /* TransactionRow.swift */; };
 		782403F623F6DBAF00478338 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403F523F6DBAF00478338 /* TransactionsView.swift */; };
 		782403F823F83A6600478338 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782403F723F83A6600478338 /* AccountDetail.swift */; };
+		787444E62480E6EB006EA297 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787444E52480E6EB006EA297 /* Serializer.swift */; };
 		788863EF23F2A3D00037210B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788863EE23F2A3D00037210B /* AppState.swift */; };
 		788863F223F2A3F70037210B /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788863F123F2A3F70037210B /* AppStore.swift */; };
 		788863F423F2A6320037210B /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788863F323F2A6320037210B /* AppReducer.swift */; };
@@ -69,6 +70,9 @@
 		789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionList.swift */; };
 		78CB4D5A24713D3500FF9A54 /* OverlaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */; };
 		78CB4D5C24792D6800FF9A54 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D5B24792D6800FF9A54 /* ChartsView.swift */; };
+		78CB4D642480B80A00FF9A54 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D632480B80A00FF9A54 /* ShareViewController.swift */; };
+		78CB4D672480B80A00FF9A54 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78CB4D652480B80A00FF9A54 /* MainInterface.storyboard */; };
+		78CB4D6B2480B80A00FF9A54 /* Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 78CB4D612480B80A00FF9A54 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014085240B8F7100F6FE92 /* AccountViewModel.swift */; };
 		FA014088240C01B800F6FE92 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014087240C01B800F6FE92 /* EmojiPicker.swift */; };
 		FA036810241CD5C50038A26E /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03680F241CD5C50038A26E /* TransactionViewModel.swift */; };
@@ -136,7 +140,28 @@
 			remoteGlobalIDString = 1F3998F623D6958700E6BBD9;
 			remoteInfo = Alfheim;
 		};
+		78CB4D692480B80A00FF9A54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F3998EF23D6958700E6BBD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78CB4D602480B80A00FF9A54;
+			remoteInfo = Share;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		78CB4D6C2480B80B00FF9A54 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				78CB4D6B2480B80A00FF9A54 /* Share.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1F14AC352428A1650021CF4D /* CatemojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatemojiPicker.swift; sourceTree = "<group>"; };
@@ -195,6 +220,7 @@
 		782403F323F6D79F00478338 /* TransactionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRow.swift; sourceTree = "<group>"; };
 		782403F523F6DBAF00478338 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
 		782403F723F83A6600478338 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetail.swift; sourceTree = "<group>"; };
+		787444E52480E6EB006EA297 /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
 		788863EE23F2A3D00037210B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		788863F123F2A3F70037210B /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		788863F323F2A6320037210B /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
@@ -205,6 +231,10 @@
 		789E8E6F23EA96FC006D180B /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaySheet.swift; sourceTree = "<group>"; };
 		78CB4D5B24792D6800FF9A54 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
+		78CB4D612480B80A00FF9A54 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		78CB4D632480B80A00FF9A54 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		78CB4D662480B80A00FF9A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		78CB4D682480B80A00FF9A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA014085240B8F7100F6FE92 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		FA014087240C01B800F6FE92 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 		FA03680F241CD5C50038A26E /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
@@ -281,6 +311,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		78CB4D5E2480B80A00FF9A54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -300,6 +337,7 @@
 			children = (
 				1F3998F923D6958700E6BBD9 /* Alfheim */,
 				1F39991323D6958800E6BBD9 /* AlfheimTests */,
+				78CB4D622480B80A00FF9A54 /* Share */,
 				1F3998F823D6958700E6BBD9 /* Products */,
 				FAF380322413FAC800C592D4 /* Frameworks */,
 			);
@@ -310,6 +348,7 @@
 			children = (
 				1F3998F723D6958700E6BBD9 /* Alfheim.app */,
 				1F39991023D6958800E6BBD9 /* AlfheimTests.xctest */,
+				78CB4D612480B80A00FF9A54 /* Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -467,6 +506,14 @@
 			path = Transaction;
 			sourceTree = "<group>";
 		};
+		787444E42480E6A5006EA297 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				787444E52480E6EB006EA297 /* Serializer.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		788863F023F2A3EE0037210B /* Redux */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +550,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		78CB4D622480B80A00FF9A54 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				78CB4D632480B80A00FF9A54 /* ShareViewController.swift */,
+				78CB4D652480B80A00FF9A54 /* MainInterface.storyboard */,
+				78CB4D682480B80A00FF9A54 /* Info.plist */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		FA014084240B8F5F00F6FE92 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +586,7 @@
 		FA527AC724095C5200CEC549 /* Kit */ = {
 			isa = PBXGroup;
 			children = (
+				787444E42480E6A5006EA297 /* Helpers */,
 				FA527AC824095C9800CEC549 /* Date+Alfheim.swift */,
 				FAC065A12409843B00A73F14 /* Text+Gradient.swift */,
 				FAEC037A240AB840003BFE2C /* Color+Tagit.swift */,
@@ -680,10 +738,12 @@
 				1F3998F323D6958700E6BBD9 /* Sources */,
 				1F3998F423D6958700E6BBD9 /* Frameworks */,
 				1F3998F523D6958700E6BBD9 /* Resources */,
+				78CB4D6C2480B80B00FF9A54 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				78CB4D6A2480B80A00FF9A54 /* PBXTargetDependency */,
 			);
 			name = Alfheim;
 			productName = Alfheim;
@@ -708,13 +768,30 @@
 			productReference = 1F39991023D6958800E6BBD9 /* AlfheimTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		78CB4D602480B80A00FF9A54 /* Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78CB4D6F2480B80B00FF9A54 /* Build configuration list for PBXNativeTarget "Share" */;
+			buildPhases = (
+				78CB4D5D2480B80A00FF9A54 /* Sources */,
+				78CB4D5E2480B80A00FF9A54 /* Frameworks */,
+				78CB4D5F2480B80A00FF9A54 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Share;
+			productName = Share;
+			productReference = 78CB4D612480B80A00FF9A54 /* Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1F3998EF23D6958700E6BBD9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = blessingsoft;
 				TargetAttributes = {
@@ -724,6 +801,9 @@
 					1F39990F23D6958800E6BBD9 = {
 						CreatedOnToolsVersion = 11.3.1;
 						TestTargetID = 1F3998F623D6958700E6BBD9;
+					};
+					78CB4D602480B80A00FF9A54 = {
+						CreatedOnToolsVersion = 11.4.1;
 					};
 				};
 			};
@@ -742,6 +822,7 @@
 			targets = (
 				1F3998F623D6958700E6BBD9 /* Alfheim */,
 				1F39990F23D6958800E6BBD9 /* AlfheimTests */,
+				78CB4D602480B80A00FF9A54 /* Share */,
 			);
 		};
 /* End PBXProject section */
@@ -767,6 +848,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		78CB4D5F2480B80A00FF9A54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78CB4D672480B80A00FF9A54 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -785,6 +874,7 @@
 				1F39993123D6A0A400E6BBD9 /* OverviewView.swift in Sources */,
 				FAE1DFA12441CB0E00741C86 /* AppReducer+Payment.swift in Sources */,
 				FAF380372414BA1700C592D4 /* Persistences+Account.swift in Sources */,
+				787444E62480E6EB006EA297 /* Serializer.swift in Sources */,
 				1F3998FB23D6958700E6BBD9 /* AppDelegate.swift in Sources */,
 				1F8AC4932411FE6D006D9551 /* Transaction+CoreData.swift in Sources */,
 				788863F223F2A3F70037210B /* AppStore.swift in Sources */,
@@ -896,6 +986,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		78CB4D5D2480B80A00FF9A54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78CB4D642480B80A00FF9A54 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -903,6 +1001,11 @@
 			isa = PBXTargetDependency;
 			target = 1F3998F623D6958700E6BBD9 /* Alfheim */;
 			targetProxy = 1F39991123D6958800E6BBD9 /* PBXContainerItemProxy */;
+		};
+		78CB4D6A2480B80A00FF9A54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 78CB4D602480B80A00FF9A54 /* Share */;
+			targetProxy = 78CB4D692480B80A00FF9A54 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -913,6 +1016,14 @@
 				1F39990923D6958800E6BBD9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		78CB4D652480B80A00FF9A54 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78CB4D662480B80A00FF9A54 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1035,6 +1146,7 @@
 		1F39991A23D6958900E6BBD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Alfheim/Alfheim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1058,6 +1170,7 @@
 		1F39991B23D6958900E6BBD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Alfheim/Alfheim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1122,6 +1235,46 @@
 			};
 			name = Release;
 		};
+		78CB4D6D2480B80B00FF9A54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJ5N6T769K;
+				INFOPLIST_FILE = Share/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Alfheim.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		78CB4D6E2480B80B00FF9A54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJ5N6T769K;
+				INFOPLIST_FILE = Share/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Alfheim.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1148,6 +1301,15 @@
 			buildConfigurations = (
 				1F39991D23D6958900E6BBD9 /* Debug */,
 				1F39991E23D6958900E6BBD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78CB4D6F2480B80B00FF9A54 /* Build configuration list for PBXNativeTarget "Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78CB4D6D2480B80B00FF9A54 /* Debug */,
+				78CB4D6E2480B80B00FF9A54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
