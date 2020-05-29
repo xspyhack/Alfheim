@@ -22,5 +22,7 @@ extension AppAction {
     case validate(valid: Bool)
     case edit(Alfheim.Payment)
     case new
+
+    case delete(at: IndexSet)
   }
 }

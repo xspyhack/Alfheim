@@ -33,7 +33,7 @@ struct PaymentList: View {
           }
         }
         .onDelete { indexSet in
-          self.store.dispatch(.transactions(.delete(at: indexSet)))
+          self.store.dispatch(.payment(.delete(at: indexSet)))
         }
         .sheet(
           isPresented: self.binding.editingPayment,

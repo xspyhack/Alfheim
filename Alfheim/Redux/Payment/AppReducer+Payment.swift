@@ -61,6 +61,15 @@ extension AppReducers {
         appState.payment.validator.reset(.edit(payment))
       case .new:
         appState.payment.validator.reset(.new)
+
+      case .delete(at: let indexSet):
+        let payments = state.payment.payments.elements(atOffsets: indexSet)
+        if let id = UserDefaults.standard.string(forKey: "com.alfheim.payment.build-in") {
+          let valids = payments.filter { $0.id.uuidString != id }
+          appCommand = AppCommands.DeletePaymentCommand(payments: valids)
+        } else {
+          appCommand = AppCommands.DeletePaymentCommand(payments: payments)
+        }
       }
 
       return (appState, appCommand)

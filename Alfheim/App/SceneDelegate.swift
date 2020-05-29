@@ -56,7 +56,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       }
     }
 
-    Persistences.Bootstrap(context: context).migrate()
+    //Persistences.Bootstrap(context: context).migrate()
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

@@ -63,6 +63,9 @@ extension Persistences {
       payment.id = UUID()
       payment.kind = Int16(Alne.Payment.uncleared.kind.rawValue)
       payment.name = Alne.Payment.uncleared.name
+      payment.introduction = "Buid In"
+
+      UserDefaults.standard.set(payment.id.uuidString, forKey: "com.alfheim.payment.build-in")
 
       // Catemoji
       buildinCatemojis().forEach {
@@ -80,13 +83,9 @@ extension Persistences {
       payment.id = UUID()
       payment.kind = Int16(Alne.Payment.uncleared.kind.rawValue)
       payment.name = Alne.Payment.uncleared.name
+      payment.introduction = "Buid In"
 
-      // Catemoji
-      buildinCatemojis().forEach {
-        let emoji = Alfheim.Emoji(context: context)
-        emoji.category = $0.category.name
-        emoji.text = $0.emoji
-      }
+      UserDefaults.standard.set(payment.id.uuidString, forKey: "com.alfheim.payment.build-in")
 
       try? context.save()
     }
