@@ -221,6 +221,7 @@
 		782403F523F6DBAF00478338 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
 		782403F723F83A6600478338 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetail.swift; sourceTree = "<group>"; };
 		787444E52480E6EB006EA297 /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
+		787444F024811809006EA297 /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Share.entitlements; sourceTree = "<group>"; };
 		788863EE23F2A3D00037210B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		788863F123F2A3F70037210B /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		788863F323F2A6320037210B /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
@@ -553,6 +554,7 @@
 		78CB4D622480B80A00FF9A54 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				787444F024811809006EA297 /* Share.entitlements */,
 				78CB4D632480B80A00FF9A54 /* ShareViewController.swift */,
 				78CB4D652480B80A00FF9A54 /* MainInterface.storyboard */,
 				78CB4D682480B80A00FF9A54 /* Info.plist */,
@@ -1238,6 +1240,7 @@
 		78CB4D6D2480B80B00FF9A54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DJ5N6T769K;
 				INFOPLIST_FILE = Share/Info.plist;
@@ -1258,6 +1261,7 @@
 		78CB4D6E2480B80B00FF9A54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DJ5N6T769K;
 				INFOPLIST_FILE = Share/Info.plist;
