@@ -73,10 +73,11 @@ struct PieChart: View {
           ForEach(0..<self.histogram.units.count) { index in
             HStack {
               HStack {
-                Text(self.unit(at: index).symbol)
+                Text(self.unit(at: index).symbol.capitalized)
+                  .font(.system(size: 16, weight: .medium))
                 Spacer()
               }
-              .frame(width: 50)
+              .frame(width: 86)
               VStack(alignment: .leading, spacing: 2) {
                 HStack {
                   Text(self.unit(at: index).label).font(.system(size: 14))
@@ -100,9 +101,9 @@ struct PieChart: View {
               HStack {
                 Spacer()
                 Text("\(self.symbol ?? "")\(self.unit(at: index).value, specifier: "%.1f")")
-                  .font(.system(size: 16))
+                  .font(.system(size: 14))
               }
-              .frame(width: 60)
+              .frame(width: 72)
             }
             .frame(height: 36)
           }

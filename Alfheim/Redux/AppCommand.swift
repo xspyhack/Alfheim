@@ -38,7 +38,7 @@ extension AppCommands {
         let transactions = try serializer.decode()
         for transaction in transactions {
           let id = transaction["id"] as? String
-          let date = transaction["date"] as? String ?? ""
+          let date = transaction["date"] as? Double ?? 0.0
           let amount = transaction["amount"] as? Double ?? 0
           let notes = transaction["notes"] as? String ?? ""
           let currency = transaction["currency"] as? Int ?? 0
@@ -46,6 +46,7 @@ extension AppCommands {
 
           let obj = Transaction(context: store.context)
           obj.id = UUID()
+          obj.date = Date(timeIntervalSinceReferenceDate: date)
           obj.amount = amount
           obj.notes = notes
           obj.currency = Int16(currency)

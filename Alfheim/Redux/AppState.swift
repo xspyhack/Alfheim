@@ -106,6 +106,18 @@ extension AppState {
       "\(account.currency.symbol)\(String(format: "%.2f", amount))"
     }
 
+    var categorizedTransactions: [(String, String, Double)] {
+      categorized
+        .map { category, viewModels in
+          (category, viewModels.first!.catemoji.emoji, viewModels.reduce(0.0, { $0 + $1.amount }))
+        }
+    }
+
+    var categorized: [String: [TransactionViewModel]] {
+      displayTransactions
+        .grouped { $0.catemoji.category.name }
+    }
+
     var categorizedAmount: [String: Double] {
       displayTransactions
         .grouped { $0.catemoji.category.name }

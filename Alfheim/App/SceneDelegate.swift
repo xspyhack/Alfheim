@@ -55,6 +55,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("Execute core data fetch request failed: \(error)")
       }
     }
+
+    Persistences.Bootstrap(context: context).migrate()
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

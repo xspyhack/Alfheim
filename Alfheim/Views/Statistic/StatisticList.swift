@@ -31,7 +31,10 @@ struct StatisticList: View {
   }
 
   private var pieData: [(String, Double, String)] {
-    state.categorizedAmount.map { ($0.key, $0.value, "Unknown") }
+    state.categorized
+      .map { category, viewModels in
+        (category, viewModels.reduce(0.0, { $0 + $1.amount }), viewModels.first!.catemoji.emoji)
+      }
   }
 
   private var barData: Histogram<Dimension> {
@@ -50,10 +53,7 @@ struct StatisticList: View {
           LineChart(data: self.lineData, title: self.state.account.name, legend: self.state.period.display, value: (self.trend, "%.1f"))
             .frame(height: StatisticList.height)
 
-          PieChart(data: self.pieData, title: "Categories", legend: "\(self.pieData.count) total")
-            .frame(height: StatisticList.height)
-
-          Text("Footer")
+          PieChart(data: self.pieData, title: "Categories", legend: "\(self.pieData.count) total", symbol: self.state.account.currency.symbol)
         }
         .padding(20)
       }

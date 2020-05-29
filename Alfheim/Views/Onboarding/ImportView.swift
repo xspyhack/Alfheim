@@ -20,7 +20,7 @@ struct ImportView: View {
 
       Spacer()
       Button(action: {
-        self.store.dispatch(.importing)
+        self.store.dispatch(.startImport)
       }) {
         Text("Import")
           .fontWeight(.bold)

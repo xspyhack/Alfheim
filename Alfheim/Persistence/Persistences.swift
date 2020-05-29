@@ -73,6 +73,23 @@ extension Persistences {
 
       try context.save()
     }
+
+    func migrate() {
+      // Payment
+      let payment = Alfheim.Payment(context: context)
+      payment.id = UUID()
+      payment.kind = Int16(Alne.Payment.uncleared.kind.rawValue)
+      payment.name = Alne.Payment.uncleared.name
+
+      // Catemoji
+      buildinCatemojis().forEach {
+        let emoji = Alfheim.Emoji(context: context)
+        emoji.category = $0.category.name
+        emoji.text = $0.emoji
+      }
+
+      try? context.save()
+    }
   }
 }
 
