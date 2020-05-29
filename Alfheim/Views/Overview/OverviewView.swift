@@ -68,6 +68,10 @@ struct OverviewView: View {
             .environmentObject(self.store)
         }
       )
+      .modal(isPresented: binding.isOnboardingPresented) {
+        OnboardingView()
+          .environmentObject(self.store)
+      }
     }
   }
 

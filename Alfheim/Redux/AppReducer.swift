@@ -25,6 +25,13 @@ struct AppReducer {
       return AppReducers.Payment.reduce(state: state, action: subaction)
     case .catemoji(let subaction):
       return AppReducer.Catemoji.reduce(state: state, action: subaction)
+
+    case .startImport:
+      return (state, AppCommands.ImportTransactionsCommand())
+    case .finishImport:
+      var appState = state
+      appState.overview.isOnboardingPresented = false
+      return (appState, nil)
     }
   }
 }

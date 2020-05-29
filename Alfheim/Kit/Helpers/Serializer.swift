@@ -10,37 +10,45 @@ import Foundation
 
 /// Import transactions
 struct Serializer {
+  let directory: URL
+
+  init?() {
+    guard let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.xspyhack.Alfheim") else {
+      return nil
+    }
+    directory = container.appendingPathComponent("shared", isDirectory: true)
+  }
 
   func handle(url: URL) -> Bool {
-    guard url.isFileURL else {
+    guard url.host == "share" else {
       return false
     }
-
-    try? decode(from: url)
     return true
   }
 
-  func decode(from fileURL: URL) throws {
-    guard let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.xspyhack.Alfheim") else {
-      return
-    }
-    let directory = container.appendingPathComponent("shared", isDirectory: true)
-
+  func decode() throws -> [[String: Any]] {
     let contents = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
 
-    for url in contents {
-      let data = try Data(contentsOf: url)
-      let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+    return try contents.flatMap {
+      try decode(from: $0)
+    }
+  }
 
-      if let transactions = json as? [[String: Any]] {
-        for transaction in transactions {
-          let amount = transaction["amount"]
-          let date = transaction["date"]
-          let notes = transaction["notes"]
-          let currency = transaction["currency"]
-          let payment = transaction["payment"]
-        }
-      }
+  func clear() throws {
+    let contents = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+    for url in contents {
+      try FileManager.default.removeItem(at: url)
+    }
+  }
+
+  func decode(from fileURL: URL) throws -> [[String: Any]] {
+    let data = try Data(contentsOf: fileURL)
+    let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+
+    if let transactions = json as? [[String: Any]] {
+      return transactions
+    } else {
+      return []
     }
   }
 }

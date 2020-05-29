@@ -16,6 +16,9 @@ enum AppAction {
   case transactions(Transactions)
   case payment(Payment)
   case catemoji(Catemoji)
+  
+  case startImport
+  case finishImport
 }
 
 extension AppAction {

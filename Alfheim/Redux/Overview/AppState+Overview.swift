@@ -17,6 +17,7 @@ extension AppState {
     var editingTransaction: Bool = false
     var isAccountDetailPresented: Bool = false
     var isSettingsPresented: Bool = false
+    var isOnboardingPresented: Bool = false
 
     var isTransactionListActive = false
 

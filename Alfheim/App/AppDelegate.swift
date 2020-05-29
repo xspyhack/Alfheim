@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return false
     }
 
-    return Importer().handle(url: url)
+    return Serializer().handle(url: url)
   }
 
   // MARK: UISceneSession Lifecycle

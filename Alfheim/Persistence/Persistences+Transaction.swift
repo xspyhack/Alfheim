@@ -87,3 +87,12 @@ extension Persistences {
     }
   }
 }
+
+/**
+ let id = transaction["id"]
+ let date = transaction["date"]
+ let amount = transaction["amount"]
+ let notes = transaction["notes"]
+ let currency = transaction["currency"]
+ let payment = transaction["payment"]
+ */
