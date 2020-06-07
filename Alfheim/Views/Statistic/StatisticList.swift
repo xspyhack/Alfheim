@@ -37,8 +37,15 @@ struct StatisticList: View {
       }
   }
 
-  private var barData: Histogram<Dimension> {
-    Histogram(values: [("Sat", 0), ("Sun", 30), ("Mon", 18), ("Tue", 28), ("Wed", 36), ("Thu", 23), ("Fri", 16)])
+  private var barData: [(String, Double)] {
+    state.labeledAmount(with: state.period)
+  }
+
+  private var barLegend: String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM dd"
+    let range = state.range(with: state.period)
+    return "\(formatter.string(from: range.lowerBound))-\(formatter.string(from: range.upperBound))"
   }
 
   private static let height: CGFloat = 280
@@ -47,7 +54,7 @@ struct StatisticList: View {
     GeometryReader { geometry in
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
-          BarChart(histogram: self.barData, title: self.state.account.name, legend: "may 01 ~ 07")
+          BarChart(data: self.barData, title: self.state.account.name, legend: self.barLegend)
             .frame(height: StatisticList.height)
 
           LineChart(data: self.lineData, title: self.state.account.name, legend: self.state.period.display, value: (self.trend, "%.1f"))

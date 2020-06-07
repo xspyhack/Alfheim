@@ -73,14 +73,14 @@ struct PieChart: View {
           ForEach(0..<self.histogram.units.count) { index in
             HStack {
               HStack {
-                Text(self.unit(at: index).symbol.capitalized)
-                  .font(.system(size: 16, weight: .medium))
+                Text(self.unit(at: index).label)
+                  .font(.system(size: 26, weight: .medium))
                 Spacer()
               }
-              .frame(width: 86)
+              .frame(width: 40)
               VStack(alignment: .leading, spacing: 2) {
                 HStack {
-                  Text(self.unit(at: index).label).font(.system(size: 14))
+                  Text(self.unit(at: index).symbol).font(.system(size: 14))
                   Text("\(self.percent(at: index), specifier: "%.1f")%")
                     .font(.system(size: 12))
                     .foregroundColor(Color.secondary)

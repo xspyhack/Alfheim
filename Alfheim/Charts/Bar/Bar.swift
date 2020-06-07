@@ -31,7 +31,7 @@ struct Bar: View {
           VStack(spacing: 4) {
             ZStack(alignment: .bottom) {
               Capsule().fill(Color(.secondarySystemBackground))
-              self.piece(at: index, height: geometry.size.height)
+              self.piece(at: index, size: geometry.size)
             }
           }
         }
@@ -39,10 +39,18 @@ struct Bar: View {
     }
   }
 
-  func piece(at index: Int, height: CGFloat) -> some View {
+  func piece(at index: Int, size: CGSize) -> some View {
     let piece = pieces[index]
+    let adjust: CGFloat
+    if piece.amount > 0.0 && piece.amount < 1.0 {
+      let gap = CGFloat(size.width) / CGFloat(3 * (self.pieces.count - 1))
+      let width = (size.width - CGFloat((histogram.points().count - 1)) * gap) / CGFloat(histogram.points().count)
+      adjust = width
+    } else {
+      adjust = 0.0
+    }
     return Piece(index: index)
-      .frame(height: CGFloat(piece.amount) * height)
+      .frame(height: CGFloat(piece.amount) * size.height + adjust)
   }
 }
 

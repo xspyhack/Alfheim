@@ -53,6 +53,17 @@ extension Date {
       return calendar.date(byAdding: .year, value: 1, to: self)!
     }
   }
+
+  func end(of component: StartComponent, calendar: Calendar = .current) -> Date {
+    switch component {
+    case .week:
+      return next(of: .week, calendar: calendar).start(of: .week)
+    case .month:
+      return next(of: .month, calendar: calendar).start(of: .month)
+    case .year:
+      return next(of: .year, calendar: calendar).start(of: .year)
+    }
+  }
 }
 
 extension Date {

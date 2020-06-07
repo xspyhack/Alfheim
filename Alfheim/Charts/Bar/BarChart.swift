@@ -131,7 +131,7 @@ struct BarChart_Previews : PreviewProvider {
   static var previews: some View {
     ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       GeometryReader { geometry in
-        BarChart(histogram: Histogram<Dimension>(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "chart")
+        BarChart(data: [("A", 21), ("B", 9800), ("C", 0), ("D", 22)], title: "Bar", legend: "chart")
       }
       .environment(\.colorScheme, colorScheme)
       .previewDisplayName("\(colorScheme)")
