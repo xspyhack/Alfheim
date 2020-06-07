@@ -53,7 +53,7 @@ struct BarChart: View {
     GeometryReader { geometry in
       ZStack(alignment: .center) {
         RoundedRectangle(cornerRadius: 20)
-          .fill(Color.ah00)
+          .fill(Color(.systemBackground))
           .shadow(color: Color.shadow, radius: 8)
         VStack(alignment: .leading, spacing: 2) {
           HStack {
@@ -129,16 +129,16 @@ extension BarChart {
 #if DEBUG
 struct BarChart_Previews : PreviewProvider {
   static var previews: some View {
-//    ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
+    ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       GeometryReader { geometry in
         BarChart(histogram: Histogram<Dimension>(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "chart")
       }
-//      .environment(\.colorScheme, colorScheme)
-//      .previewDisplayName("\(colorScheme)")
-//    }
-//    .previewLayout(.sizeThatFits)
-//    .background(Color(.systemBackground))
-//    .padding(10)
+      .environment(\.colorScheme, colorScheme)
+      .previewDisplayName("\(colorScheme)")
+    }
+    .previewLayout(.sizeThatFits)
+    .background(Color(.systemBackground))
+    .padding(10)
   }
 }
 #endif

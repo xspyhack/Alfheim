@@ -50,7 +50,7 @@ struct PaymentList: View {
       trailing: Button(action: {
         self.store.dispatch(.payment(.toggleNewPayment(presenting: true)))
       }) {
-        Image(systemName: "plus.circle")
+        Image(systemName: "plus.circle").padding()
       }
     )
     .sheet(

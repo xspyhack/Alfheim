@@ -31,7 +31,7 @@ struct TransactionsView: View {
     .navigationBarItems(trailing:
       Button(action: {
       }) {
-        Image(systemName: "line.horizontal.3.decrease.circle")
+        Image(systemName: "line.horizontal.3.decrease.circle").padding()
       }
     )
   }
