@@ -87,7 +87,8 @@ class AppStore: ObservableObject {
           print("Load account failed: \(error)")
         }
       }, receiveValue: { payments in
-        self.dispatch(.payment(.updated(payments)))
+        let sorted = payments.sorted(by: { $0.transactions?.count ?? 0 > $1.transactions?.count ?? 0 })
+        self.dispatch(.payment(.updated(sorted)))
       })
       .store(in: &disposeBag)
 
