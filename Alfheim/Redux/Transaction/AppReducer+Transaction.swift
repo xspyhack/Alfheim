@@ -37,7 +37,7 @@ extension AppReducers {
         appState.editor.isValid = false // Important! need set here
         appState.editor.validator.reset(.new)
       case .delete(at: let indexSet):
-        let transactions = state.transactions.transactions.elements(atOffsets: indexSet)
+        let transactions = state.transactions.displayTransactions.elements(atOffsets: indexSet)
         appCommand = AppCommands.DeleteTransactionCommand(transactions: transactions)
 
       case .reset:
