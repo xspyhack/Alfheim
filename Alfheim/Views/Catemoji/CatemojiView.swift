@@ -48,7 +48,7 @@ struct CatemojiView: View {
         Button(action: {
           self.store.dispatch(.catemoji(.toggleAddCatemoji(presenting: true)))
         }) {
-          Image(systemName: "plus").padding()
+          Image(systemName: "plus").padding(.leading)
         }
       }
       .padding(EdgeInsets(top: 20, leading: 14, bottom: 0, trailing: 14))

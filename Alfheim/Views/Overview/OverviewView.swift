@@ -42,7 +42,7 @@ struct OverviewView: View {
           self.store.dispatch(.overview(.toggleSettings(presenting: true)))
         }) {
           //Text("Settings").bold()
-          Image(systemName: "gear").padding()
+          Image(systemName: "gear").padding(.trailing)
         }
         .sheet(
           isPresented: binding.isSettingsPresented,
@@ -57,7 +57,7 @@ struct OverviewView: View {
         }) {
           //Text("New Transaction").bold()
           //Image(systemName: "plus")
-          Image(systemName: "plus.circle").font(Font.system(size: 18)).padding()
+          Image(systemName: "plus.circle").font(Font.system(size: 18)).padding(.leading)
         }
         .sheet(
           isPresented: binding.isEditorPresented,
