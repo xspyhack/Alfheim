@@ -148,7 +148,7 @@ extension AppState {
       switch period {
       case .weekly:
         let intervals: TimeInterval = 24 * 60 * 60
-        let from = calendar.date(byAdding: .day, value: -7, to: today)!
+        let from = calendar.date(byAdding: .day, value: -6, to: today)!
         let formatter = DateFormatter()
         formatter.dateFormat = "E"
         return stride(from: from, to: Date(), by: intervals)
@@ -164,7 +164,7 @@ extension AppState {
 
       case .montly:
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd"
+        formatter.dateFormat = "dd"
         var result = [(String, Double)]()
         for idx in (0..<7).reversed() {
           let week = calendar.date(byAdding: .weekOfYear, value: -idx, to: Date())!

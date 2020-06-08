@@ -45,7 +45,7 @@ struct StatisticList: View {
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM dd"
     let range = state.range(with: state.period)
-    return "\(formatter.string(from: range.lowerBound))-\(formatter.string(from: range.upperBound))"
+    return "\(formatter.string(from: range.lowerBound)) - \(formatter.string(from: range.upperBound))"
   }
 
   private static let height: CGFloat = 280
