@@ -81,7 +81,7 @@ struct PieChart: View {
               VStack(alignment: .leading, spacing: 2) {
                 HStack {
                   Text(self.unit(at: index).symbol).font(.system(size: 14))
-                  Text("\(self.percent(at: index), specifier: "%.1f")%")
+                  Text("\(self.percent(at: index) * 100, specifier: "%.1f")%")
                     .font(.system(size: 12))
                     .foregroundColor(Color.secondary)
                   Spacer()
@@ -90,9 +90,8 @@ struct PieChart: View {
                   GeometryReader { proxy in
                     Capsule().fill(Color(.secondarySystemBackground))
                       .padding(.vertical, 2)
-                    Capsule().fill(Color.color(at: index))
-                      .frame(width: CGFloat(self.percent(at: index)) * proxy.size.width)
-                    .padding(.vertical, 2)
+                    self.progress(at: index, size: proxy.size)
+                      .padding(.vertical, 2)
                   }
                 }
               }
@@ -126,6 +125,16 @@ struct PieChart: View {
   private func unit(at index: Int) -> LabeledUnit {
     histogram.units[index]
   }
+
+  private func progress(at index: Int, size: CGSize) -> some View {
+    let percent = self.percent(at: index)
+    var width = CGFloat(percent) * size.width
+    if percent > 0 {
+      width = max(width, size.height - 4)
+    }
+    return Capsule().fill(Color.color(at: index))
+      .frame(width: width)
+  }
 }
 
 #if DEBUG
@@ -133,7 +142,7 @@ struct PieChart_Previews : PreviewProvider {
   static var previews: some View {
     ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       ScrollView {
-        PieChart(data: [("Sat", 0, "A"), ("Sun", 30, "A"), ("Mon", 18, "A"), ("Tue", 28, "A"), ("Wed", 36, "A"), ("Thu", 23, "A"), ("Fri", 16, "A")], title: "Pie", legend: "accounts", symbol: "$")
+        PieChart(data: [("Sat", 0, "A"), ("Sun", 1, "A"), ("Mon", 18, "A"), ("Tue", 28, "A"), ("Wed", 36, "A"), ("Thu", 23, "A"), ("Fri", 100, "A")], title: "Pie", legend: "accounts", symbol: "$")
        }
       .environment(\.colorScheme, colorScheme)
       .previewDisplayName("\(colorScheme)")
