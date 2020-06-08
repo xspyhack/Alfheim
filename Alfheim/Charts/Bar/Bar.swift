@@ -41,16 +41,14 @@ struct Bar: View {
 
   func piece(at index: Int, size: CGSize) -> some View {
     let piece = pieces[index]
-    let adjust: CGFloat
-    if piece.amount > 0.0 && piece.amount < 1.0 {
+    var height = CGFloat(piece.amount) * size.height
+    if piece.amount > 0.0 {
       let gap = CGFloat(size.width) / CGFloat(3 * (self.pieces.count - 1))
       let width = (size.width - CGFloat((histogram.points().count - 1)) * gap) / CGFloat(histogram.points().count)
-      adjust = width
-    } else {
-      adjust = 0.0
+      height = max(height, width)
     }
     return Piece(index: index)
-      .frame(height: CGFloat(piece.amount) * size.height + adjust)
+      .frame(height: height)
   }
 }
 
