@@ -184,7 +184,7 @@ extension AppState {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM"
         var result = [(String, Double)]()
-        for idx in 0..<7 {
+        for idx in (0..<7).reversed() {
           let month = calendar.date(byAdding: .month, value: -idx, to: Date())!
           let start = month.start(of: .month)
           let end = month.end(of: .month)
