@@ -46,7 +46,7 @@ struct CatemojiChooser: View {
         Button(action: {
           self.onAdd(self.selectedCategory)
         }) {
-          Image(systemName: "plus").padding(.leading)
+          Image(systemName: "plus").padding(.vertical).padding(.leading)
         }
       }
       .padding(EdgeInsets(top: 20, leading: 14, bottom: 0, trailing: 14))

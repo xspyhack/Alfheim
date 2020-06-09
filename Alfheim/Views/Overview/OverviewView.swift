@@ -42,7 +42,7 @@ struct OverviewView: View {
           self.store.dispatch(.overview(.toggleSettings(presenting: true)))
         }) {
           //Text("Settings").bold()
-          Image(systemName: "gear").padding(.trailing)
+          Image(systemName: "gear").padding(.vertical).padding(.trailing)
         }
         .sheet(
           isPresented: binding.isSettingsPresented,
@@ -55,9 +55,9 @@ struct OverviewView: View {
         trailing: Button(action: {
           self.store.dispatch(.overview(.toggleNewTransaction(presenting: true)))
         }) {
-          //Text("New Transaction").bold()
+          //Text("New Transation").bold()
           //Image(systemName: "plus")
-          Image(systemName: "plus.circle").font(Font.system(size: 18)).padding(.leading)
+          Image(systemName: "plus.circle").padding(.vertical).font(Font.system(size: 18)).padding(.leading)
         }
         .sheet(
           isPresented: binding.isEditorPresented,
