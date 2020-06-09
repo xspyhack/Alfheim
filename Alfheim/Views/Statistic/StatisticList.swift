@@ -58,12 +58,6 @@ struct StatisticList: View {
     GeometryReader { geometry in
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
-          Picker("", selection: .constant(1)) {
-            Text("Daily").tag(0)
-            Text("Weekly").tag(1)
-            Text("Monthly").tag(2)
-          }
-          .pickerStyle(SegmentedPickerStyle())
           BarChart(data: self.barData, title: self.barTitle, legend: self.barLegend)
             .frame(height: StatisticList.height)
 
@@ -73,20 +67,6 @@ struct StatisticList: View {
           PieChart(data: self.pieData, title: "Categories", legend: "\(self.pieData.count) total", symbol: self.state.account.currency.symbol)
         }
         .padding(20)
-      }
-    }
-  }
-
-  var weeklyCard: some View {
-    ZStack {
-      LineChart(data: [11, 3, 2, 5, 29, 9], title: "Weekly", legend: "this week", value: (10, "%.1f"))
-      HStack {
-        Spacer()
-        VStack {
-          Image(systemName: "arrow.right.circle")
-            .padding([.top, .trailing], 20)
-          Spacer()
-        }
       }
     }
   }
