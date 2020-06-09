@@ -15,6 +15,8 @@ extension AppState {
   struct TransactionList {
     var transactions: [Alfheim.Transaction] = []
 
+    var isStatisticsPresented: Bool = false
+
     var filterDate = Date()
     var displayTransactions: [Alfheim.Transaction] {
       // current month transactions

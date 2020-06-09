@@ -52,6 +52,10 @@ extension AppReducers {
         appState.transactions.filterDate = date
       case .selectDateCancalled:
         appState.transactions.showDatePicker = false
+
+      case .toggleStatistics(let presenting):
+        appState.transactions.isStatisticsPresented = presenting
+        appState.statistics.transactions = state.transactions.displayTransactions
       }
 
       return (appState, appCommand)

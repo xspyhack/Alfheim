@@ -48,7 +48,9 @@ struct TransactionList: View {
             self.store.dispatch(.transactions(.selectDate))
           }
           Spacer()
-          NavigationLink(destination: StatisticList()) {
+          Button(action: {
+            self.store.dispatch(.transactions(.toggleStatistics(presenting: true)))
+          }) {
             Text(state.displayAmountText)
               .font(.system(size: 18))
               .foregroundColor(.secondary)
@@ -56,6 +58,22 @@ struct TransactionList: View {
               .font(.system(size: 18))
               .foregroundColor(.secondary)
           }
+          .modal(
+            isPresented: self.binding.isStatisticsPresented,
+            onDismiss: {
+              self.store.dispatch(.transactions(.toggleStatistics(presenting: false)))
+          }) {
+            StatisticsView().environmentObject(self.store)
+          }
+          /*
+          NavigationLink(destination: StatisticList()) {
+            Text(state.displayAmountText)
+              .font(.system(size: 18))
+              .foregroundColor(.secondary)
+            Image(systemName: "chevron.right")
+              .font(.system(size: 18))
+              .foregroundColor(.secondary)
+          }*/
         }
         .foregroundColor(.primary)
       ) {

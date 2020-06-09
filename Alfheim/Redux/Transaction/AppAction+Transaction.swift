@@ -25,5 +25,7 @@ extension AppAction {
     case selectDate
     case selectDateDone(Date)
     case selectDateCancalled
+
+    case toggleStatistics(presenting: Bool)
   }
 }
