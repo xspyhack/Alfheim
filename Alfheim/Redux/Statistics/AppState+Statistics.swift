@@ -16,6 +16,35 @@ extension AppState {
 
     var transactions: [Alfheim.Transaction] = []
 
+    static let day: TimeInterval = 24 * 60 * 60
+    static let week: TimeInterval = 7 * day
+    static let month: TimeInterval = 30 * day
+
+    var preferPeriod: Period {
+      switch period {
+      case .weekly:
+        return .weekly
+      case .montly:
+        let start = Date().start(of: .month)
+        let interval = -start.timeIntervalSinceNow
+        // 3 weeks
+        if interval < 3 * AppState.Statistics.week {
+          return .weekly
+        } else {
+          return .montly
+        }
+      case .yearly:
+        let start = Date().start(of: .year)
+        let interval = -start.timeIntervalSinceNow
+        // 3 weeks
+        if interval < 4 * AppState.Statistics.month {
+          return .montly
+        } else {
+          return .yearly
+        }
+      }
+    }
+
     var displayTransactions: [TransactionViewModel] {
       transactions
         .map { TransactionViewModel(transaction: $0, tag: account.tag) }

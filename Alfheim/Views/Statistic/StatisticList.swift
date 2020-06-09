@@ -38,17 +38,17 @@ struct StatisticList: View {
   }
 
   private var barData: [(String, Double)] {
-    state.labeledAmount(with: state.period)
+    state.labeledAmount(with: state.preferPeriod)
   }
 
   private var barTitle: String {
-    state.title(with: state.period)
+    state.title(with: state.preferPeriod)
   }
 
   private var barLegend: String {
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM dd"
-    let range = state.range(with: state.period)
+    let range = state.range(with: state.preferPeriod)
     return "\(formatter.string(from: range.lowerBound)) - \(formatter.string(from: range.upperBound))"
   }
 
