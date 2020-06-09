@@ -71,6 +71,7 @@
 		789E8E6923E80FFC006D180B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6823E80FFC006D180B /* Transaction.swift */; };
 		789E8E6C23E810A6006D180B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6B23E810A6006D180B /* Account.swift */; };
 		789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E8E6F23EA96FC006D180B /* TransactionList.swift */; };
+		78C5A258248E392400B17499 /* AppState+Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C5A257248E392400B17499 /* AppState+Statistics.swift */; };
 		78CB4D5A24713D3500FF9A54 /* OverlaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */; };
 		78CB4D5C24792D6800FF9A54 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D5B24792D6800FF9A54 /* ChartsView.swift */; };
 		78CB4D642480B80A00FF9A54 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB4D632480B80A00FF9A54 /* ShareViewController.swift */; };
@@ -236,6 +237,7 @@
 		789E8E6823E80FFC006D180B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		789E8E6B23E810A6006D180B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		789E8E6F23EA96FC006D180B /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
+		78C5A257248E392400B17499 /* AppState+Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Statistics.swift"; sourceTree = "<group>"; };
 		78CB4D5924713D3500FF9A54 /* OverlaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaySheet.swift; sourceTree = "<group>"; };
 		78CB4D5B24792D6800FF9A54 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		78CB4D612480B80A00FF9A54 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -546,6 +548,7 @@
 				1F91CA00241A4CCA00B552E7 /* Transaction */,
 				1F91C9F9241A4C4900B552E7 /* Editor */,
 				1F91C9F2241A4B8C00B552E7 /* Account */,
+				78C5A256248E390500B17499 /* Statistics */,
 				FAF2AA3A241DF80600EE40AA /* Setting */,
 				FABEBB80245D4C7C00637226 /* Catemoji */,
 				FAE1DF992441CAC500741C86 /* Payment */,
@@ -566,6 +569,14 @@
 				FA014084240B8F5F00F6FE92 /* ViewModel */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		78C5A256248E390500B17499 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				78C5A257248E392400B17499 /* AppState+Statistics.swift */,
+			);
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 		78CB4D622480B80A00FF9A54 /* Share */ = {
@@ -906,6 +917,7 @@
 				1F8AC4872411EF95006D9551 /* Account+CoreData.swift in Sources */,
 				1F45EBD924235F130058AEDC /* MainView.swift in Sources */,
 				1F2379B723D84C0E00B4E79E /* Piece.swift in Sources */,
+				78C5A258248E392400B17499 /* AppState+Statistics.swift in Sources */,
 				789E8E6723E807CA006D180B /* EditorView.swift in Sources */,
 				789E8E7023EA96FC006D180B /* TransactionList.swift in Sources */,
 				FA3C1752245462260079944F /* AppIconSettingView.swift in Sources */,

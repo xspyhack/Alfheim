@@ -11,12 +11,12 @@ import SwiftUI
 struct StatisticList: View {
   @EnvironmentObject var store: AppStore
 
-  private var state: AppState.Shared {
-    store.state.shared
+  private var state: AppState.Statistics {
+    store.state.statistics
   }
 
   private var transactions: [Alfheim.Transaction] {
-    state.periodTransactions
+    state.transactions
   }
 
   private var lineData: [Double] {
@@ -41,6 +41,10 @@ struct StatisticList: View {
     state.labeledAmount(with: state.period)
   }
 
+  private var barTitle: String {
+    state.title(with: state.period)
+  }
+
   private var barLegend: String {
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM dd"
@@ -54,7 +58,13 @@ struct StatisticList: View {
     GeometryReader { geometry in
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
-          BarChart(data: self.barData, title: self.state.account.name, legend: self.barLegend)
+          Picker("", selection: .constant(1)) {
+            Text("Daily").tag(0)
+            Text("Weekly").tag(1)
+            Text("Monthly").tag(2)
+          }
+          .pickerStyle(SegmentedPickerStyle())
+          BarChart(data: self.barData, title: self.barTitle, legend: self.barLegend)
             .frame(height: StatisticList.height)
 
           LineChart(data: self.lineData, title: self.state.account.name, legend: self.state.period.display, value: (self.trend, "%.1f"))
@@ -82,8 +92,10 @@ struct StatisticList: View {
   }
 }
 
+#if DEBUG
 struct StatisticList_Previews: PreviewProvider {
   static var previews: some View {
     StatisticList().environmentObject(AppStore(moc: viewContext))
   }
 }
+#endif

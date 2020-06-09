@@ -31,6 +31,7 @@ extension AppReducers {
         appState.editor.validator.reset(.new)
       case .toggleStatistics(let presenting):
         appState.overview.isStatisticsPresented = presenting
+        appState.statistics.transactions = state.shared.periodTransactions
       case .toggleAccountDetail(let presenting):
         appState.accountDetail.account = appState.shared.account // save draft
         appState.overview.isAccountDetailPresented = presenting
