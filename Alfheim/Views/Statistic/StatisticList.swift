@@ -27,13 +27,14 @@ struct StatisticList: View {
     guard !lineData.isEmpty else {
       return 0
     }
-    return (lineData.last! - lineData.first!) / lineData.first! * 100.0
+    return lineData.reduce(0, +)
+    //return (lineData.last! - lineData.first!) / lineData.first! * 100.0
   }
 
   private var pieData: [(String, Double, String)] {
     state.categorized
       .map { category, viewModels in
-        (category, viewModels.reduce(0.0, { $0 + $1.amount }), viewModels.first!.catemoji.emoji)
+        (category, viewModels.reduce(0.0, { $0 + $1.amount }), viewModels.first!.catemoji.category.text)
       }
   }
 
@@ -48,8 +49,12 @@ struct StatisticList: View {
   private var barLegend: String {
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM dd"
-    let range = state.range(with: state.preferPeriod)
+    let range = state.closedTimeRange
     return "\(formatter.string(from: range.lowerBound)) - \(formatter.string(from: range.upperBound))"
+  }
+
+  private var symbol: String {
+    state.account.currency.symbol
   }
 
   private static let height: CGFloat = 280
@@ -58,13 +63,22 @@ struct StatisticList: View {
     GeometryReader { geometry in
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
-          BarChart(data: self.barData, title: self.barTitle, legend: self.barLegend)
+          BarChart(data: self.barData,
+                   title: self.barTitle,
+                   legend: self.barLegend)
             .frame(height: StatisticList.height)
 
-          LineChart(data: self.lineData, title: self.state.account.name, legend: self.state.period.display, value: (self.trend, "%.1f"))
+          LineChart(data: self.lineData,
+                    title: self.state.account.name,
+                    legend: self.state.period.display,
+                    value: (self.trend, "%.1f"),
+                    symbol: self.symbol)
             .frame(height: StatisticList.height)
 
-          PieChart(data: self.pieData, title: "Categories", legend: "\(self.pieData.count) total", symbol: self.state.account.currency.symbol)
+          PieChart(data: self.pieData,
+                   title: "Categories",
+                   legend: "\(self.pieData.count) total",
+            symbol: self.symbol)
         }
         .padding(20)
       }

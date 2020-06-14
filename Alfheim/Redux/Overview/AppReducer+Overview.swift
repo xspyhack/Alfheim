@@ -33,6 +33,7 @@ extension AppReducers {
         appState.overview.isStatisticsPresented = presenting
         appState.statistics.transactions = state.shared.periodTransactions
         appState.statistics.period = state.shared.period
+        appState.statistics.timeRange = state.shared.timeRange
       case .toggleAccountDetail(let presenting):
         appState.accountDetail.account = appState.shared.account // save draft
         appState.overview.isAccountDetailPresented = presenting

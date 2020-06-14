@@ -47,6 +47,7 @@ struct Bar: View {
       let width = (size.width - CGFloat((histogram.points().count - 1)) * gap) / CGFloat(histogram.points().count)
       height = max(height, width)
     }
+    print("height: \(height)")
     return Piece(index: index)
       .frame(height: height)
   }

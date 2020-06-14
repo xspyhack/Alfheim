@@ -57,6 +57,7 @@ extension AppReducers {
         appState.transactions.isStatisticsPresented = presenting
         appState.statistics.transactions = state.transactions.displayTransactions
         appState.statistics.period = .montly
+        appState.statistics.timeRange = state.transactions.displayTimeRange
       }
 
       return (appState, appCommand)

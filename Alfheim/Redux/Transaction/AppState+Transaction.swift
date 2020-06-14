@@ -21,8 +21,14 @@ extension AppState {
     var displayTransactions: [Alfheim.Transaction] {
       // current month transactions
       transactions.filter {
-        $0.date >= filterDate.start(of: .month) && $0.date < filterDate.next(of: .month).start(of: .month)
+        displayTimeRange.contains($0.date)
+        //$0.date >= filterDate.start(of: .month) && $0.date < filterDate.next(of: .month).start(of: .month)
       }
+    }
+
+    // display time range
+    var displayTimeRange: Range<Date> {
+      filterDate.start(of: .month)..<filterDate.next(of: .month).start(of: .month)
     }
 
     var isLoading = false

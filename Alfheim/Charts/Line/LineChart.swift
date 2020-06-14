@@ -15,33 +15,38 @@ struct LineChart: View {
 
   typealias Value = (rate: Double, specifier: String)
   private var value: Value
+  private var symbol: String?
 
   @State private var touchLocation: CGPoint = .zero
   @State private var showsIndicator: Bool = false
   @State private var currentValue: Double = 0
 
-  init(data: [Int], title: String, legend: String? = nil, value: Value) {
+  init(data: [Int], title: String, legend: String? = nil, value: Value, symbol: String? = nil) {
     self.init(data: data.map { Double($0) },
               title: title,
               legend: legend,
-              value: value)
+              value: value,
+              symbol: symbol)
   }
 
-  init(data: [Double], title: String, legend: String? = nil, value: Value) {
+  init(data: [Double], title: String, legend: String? = nil, value: Value, symbol: String? = nil) {
     self.init(histogram: Histogram(points: data),
               title: title,
               legend: legend,
-              value: value)
+              value: value,
+              symbol: symbol)
   }
 
   init(histogram: Histogram<Dimension>,
        title: String,
        legend: String? = nil,
-       value: Value) {
+       value: Value,
+       symbol: String? = nil) {
     self.histogram = histogram
     self.title = title
     self.legend = legend
     self.value = value
+    self.symbol = symbol
   }
 
   var body: some View {
@@ -60,12 +65,13 @@ struct LineChart: View {
                   .foregroundColor(.secondary)
               }
               HStack {
+                /*
                 if self.value.rate >= 0 {
                   Image(systemName: "arrow.up")
                 } else {
                   Image(systemName: "arrow.down")
-                }
-                Text("\(self.value.rate, specifier: self.value.specifier)%")
+                }*/
+                Text("\(self.symbol ?? "")\(self.value.rate, specifier: self.value.specifier)")
                   .foregroundColor(.primary)
               }
             }
