@@ -21,7 +21,7 @@ extension AppCommands {
         persistence.fetchPublisher(withKind: kind)
           .sink(receiveCompletion: { completion in
             if case .failure(let error) = completion {
-              print("error")
+              print("error: \(error)")
             }
             token.unseal()
           }, receiveValue: { payment in

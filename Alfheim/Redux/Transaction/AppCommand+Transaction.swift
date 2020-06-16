@@ -23,7 +23,7 @@ extension AppCommands {
         .switchToLatest()
         .sink(receiveCompletion: { completion in
           if case .failure(let error) = completion {
-            print("error")
+            print("error: \(error)")
           }
           self.token.unseal()
         }, receiveValue: { value in

@@ -37,12 +37,12 @@ extension AppCommands {
       do {
         let transactions = try serializer.decode()
         for transaction in transactions {
-          let id = transaction["id"] as? String
+          //let id = transaction["id"] as? String
           let date = transaction["date"] as? Double ?? 0.0
           let amount = transaction["amount"] as? Double ?? 0
           let notes = transaction["notes"] as? String ?? ""
           let currency = transaction["currency"] as? Int ?? 0
-          let payment = transaction["payment"] as? String ?? ""
+          //let payment = transaction["payment"] as? String ?? ""
 
           let obj = Transaction(context: store.context)
           obj.id = UUID()
