@@ -132,7 +132,7 @@ struct PieChart: View {
     if percent > 0 {
       width = max(width, size.height - 4)
     }
-    return Capsule().fill(Color.color(at: index))
+    return Capsule().fill(Color.with(symbol: unit(at: index).symbol, at: index))
       .frame(width: width)
   }
 }

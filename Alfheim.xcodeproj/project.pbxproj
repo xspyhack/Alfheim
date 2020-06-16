@@ -80,6 +80,7 @@
 		FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014085240B8F7100F6FE92 /* AccountViewModel.swift */; };
 		FA014088240C01B800F6FE92 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014087240C01B800F6FE92 /* EmojiPicker.swift */; };
 		FA036810241CD5C50038A26E /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03680F241CD5C50038A26E /* TransactionViewModel.swift */; };
+		FA32138B2498A593006BC855 /* Color+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32138A2498A593006BC855 /* Color+Category.swift */; };
 		FA3C1750245423B40079944F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C174F245423B40079944F /* SettingsView.swift */; };
 		FA3C1752245462260079944F /* AppIconSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C1751245462260079944F /* AppIconSettingView.swift */; };
 		FA3C17542454626E0079944F /* AppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C17532454626E0079944F /* AppearanceView.swift */; };
@@ -247,6 +248,7 @@
 		FA014085240B8F7100F6FE92 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		FA014087240C01B800F6FE92 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 		FA03680F241CD5C50038A26E /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		FA32138A2498A593006BC855 /* Color+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Category.swift"; sourceTree = "<group>"; };
 		FA3C174F245423B40079944F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FA3C1751245462260079944F /* AppIconSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconSettingView.swift; sourceTree = "<group>"; };
 		FA3C17532454626E0079944F /* AppearanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceView.swift; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 				FA527AC824095C9800CEC549 /* Date+Alfheim.swift */,
 				FAC065A12409843B00A73F14 /* Text+Gradient.swift */,
 				FAEC037A240AB840003BFE2C /* Color+Tagit.swift */,
+				FA32138A2498A593006BC855 /* Color+Category.swift */,
 				FAF2AA41241DF8D200EE40AA /* Array+Alfheim.swift */,
 				1F8AC49824122619006D9551 /* CurrencyFormatter.swift */,
 				1F91C9F02419DF1F00B552E7 /* Publishers+FetchRequest.swift */,
@@ -987,6 +990,7 @@
 				FA66C7D92427B40000462C46 /* SearchBar.swift in Sources */,
 				FAEC0379240AB126003BFE2C /* Tagit.swift in Sources */,
 				FA014088240C01B800F6FE92 /* EmojiPicker.swift in Sources */,
+				FA32138B2498A593006BC855 /* Color+Category.swift in Sources */,
 				FA3C1750245423B40079944F /* SettingsView.swift in Sources */,
 				FACF2A7A23FFD2B7003BB675 /* AccountDetailList.swift in Sources */,
 				FAEAA043246158E2003C6799 /* AppError+Catemoji.swift in Sources */,

@@ -23,7 +23,7 @@ struct Pie: View {
       let data = Slice.Data(startDegrees: startDegrees,
                             endDegrees: endDegress,
                             unit: unit,
-                            color: Color.color(at: index),
+                            color: Color.with(symbol: unit.symbol, at: index),
                             normalizedValue: normalized)
       slices.append(data)
       degrees = endDegress
@@ -55,6 +55,64 @@ extension Color {
     let all: [Color] = [.red, .green, .blue, .orange, .yellow, .pink, .purple]
     let i = index % all.count
     return all[i]
+  }
+  
+  static func with(label: String, at index: Int) -> Color {
+    return with(label: label) ?? color(at: index)
+  }
+  
+  static func with(symbol: String, at index: Int) -> Color {
+    return with(symbol: symbol) ?? color(at: index)
+  }
+  
+  static func with(label: String) -> Color? {
+    switch label {
+    case "🍔":
+      return Color("Orange")
+    case "🥤":
+      return Color("Teal")
+    case "🍎":
+      return Color("Red")
+    case "👔":
+      return Color("Blue")
+    case "🏠":
+      return Color("Pink")
+    case "🤷‍♂️":
+      return Color("Cyan")
+    case "🚘":
+      return Color("Indigo")
+    case "🌐":
+      return Color("Green")
+    case "👀":
+      return Color("Grape")
+    default:
+      return nil
+    }
+  }
+  
+  static func with(symbol: String) -> Color? {
+    switch symbol.lowercased() {
+    case "food":
+      return Color("Orange")
+    case "drink":
+      return Color("Teal")
+    case "fruit":
+      return Color("Red")
+    case "clothes":
+      return Color("Blue")
+    case "household":
+      return Color("Pink")
+    case "personal":
+      return Color("Cyan")
+    case "transportation":
+      return Color("Indigo")
+    case "services":
+      return Color("Green")
+    case "uncleared":
+      return Color("Grape")
+    default:
+      return nil
+    }
   }
 }
 
