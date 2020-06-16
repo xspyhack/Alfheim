@@ -23,11 +23,11 @@ extension Color {
     case .clothes:
       self = Color("Blue")
     case .household:
-      self = Color("Pink")
+      self = Color("Lime")
     case .personal:
       self = Color("Cyan")
     case .services:
-      self = Color("Green")
+      self = Color("Yellow")
     case .transportation:
       self = Color("Indigo")
     }

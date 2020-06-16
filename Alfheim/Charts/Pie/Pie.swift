@@ -76,13 +76,13 @@ extension Color {
     case "👔":
       return Color("Blue")
     case "🏠":
-      return Color("Pink")
+      return Color("Lime")
     case "🤷‍♂️":
       return Color("Cyan")
     case "🚘":
       return Color("Indigo")
     case "🌐":
-      return Color("Green")
+      return Color("Yellow")
     case "👀":
       return Color("Grape")
     default:
@@ -101,13 +101,13 @@ extension Color {
     case "clothes":
       return Color("Blue")
     case "household":
-      return Color("Pink")
+      return Color("Lime")
     case "personal":
       return Color("Cyan")
     case "transportation":
       return Color("Indigo")
     case "services":
-      return Color("Green")
+      return Color("Yellow")
     case "uncleared":
       return Color("Grape")
     default:
