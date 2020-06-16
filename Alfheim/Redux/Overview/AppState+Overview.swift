@@ -31,7 +31,7 @@ extension AppState {
       switch period {
       case .weekly:
         startDate = current.start(of: .week)
-      case .montly:
+      case .monthly:
         startDate = current.start(of: .month)
       case .yearly:
         startDate = current.start(of: .year)

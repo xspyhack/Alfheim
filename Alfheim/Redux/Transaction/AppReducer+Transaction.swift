@@ -56,7 +56,7 @@ extension AppReducers {
       case .toggleStatistics(let presenting):
         appState.transactions.isStatisticsPresented = presenting
         appState.statistics.transactions = state.transactions.displayTransactions
-        appState.statistics.period = .montly
+        appState.statistics.period = .monthly
         appState.statistics.timeRange = state.transactions.displayTimeRange
       }
 

@@ -42,8 +42,8 @@ extension AppReducers {
       case .switchPeriod:
         switch state.shared.period {
         case .weekly:
-          appState.shared.period = .montly
-        case .montly:
+          appState.shared.period = .monthly
+        case .monthly:
           appState.shared.period = .yearly
         case .yearly:
           appState.shared.period = .weekly

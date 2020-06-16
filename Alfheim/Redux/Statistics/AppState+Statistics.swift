@@ -12,7 +12,7 @@ extension AppState {
   /// Statistics view state
   struct Statistics {
     var account: Alne.Account
-    var period: Period = .montly
+    var period: Period = .monthly
     var timeRange: Range<Date> = Date()..<Date() // Half-Open range, defaults empty range
     var closedTimeRange: ClosedRange<Date> {
       let upper = timeRange.upperBound.addingTimeInterval(-0.01)
@@ -29,7 +29,7 @@ extension AppState {
       switch period {
       case .weekly:
         return .weekly
-      case .montly:
+      case .monthly:
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         if timeRange.contains(today) {
@@ -40,17 +40,17 @@ extension AppState {
           if interval < 3 * AppState.Statistics.week {
             return .weekly
           } else {
-            return .montly
+            return .monthly
           }
         } else {
-          return .montly
+          return .monthly
         }
       case .yearly:
         let start = Date().start(of: .year)
         let interval = -start.timeIntervalSinceNow
         // 3 weeks
         if interval < 4 * AppState.Statistics.month {
-          return .montly
+          return .monthly
         } else {
           return .yearly
         }
@@ -84,7 +84,7 @@ extension AppState {
       switch period {
       case .weekly:
         return "Daily"
-      case .montly:
+      case .monthly:
         return "Weekly"
       case .yearly:
         return "Monthly"
@@ -115,7 +115,7 @@ extension AppState {
             return (label, amount)
           }
 
-      case .montly:
+      case .monthly:
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMMMdd"
         var result = [(String, Double)]()

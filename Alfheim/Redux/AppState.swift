@@ -34,14 +34,14 @@ extension AppState {
   /// Transaction period
   enum Period {
     case weekly
-    case montly
+    case monthly
     case yearly
 
     var display: String {
       switch self {
       case .weekly:
         return "this week"
-      case .montly:
+      case .monthly:
         return "this month"
       case .yearly:
         return "this year"
@@ -60,7 +60,7 @@ extension AppState {
   struct Shared {
     var account: Alne.Account
     /// this should be latest selected period
-    var period: Period = .montly
+    var period: Period = .monthly
     /// this should be latest selected sorting
     var sorting: Sorting = .date
 
@@ -74,7 +74,7 @@ extension AppState {
       switch period {
       case .weekly:
         startDate = current.start(of: .week)
-      case .montly:
+      case .monthly:
         startDate = current.start(of: .month)
       case .yearly:
         startDate = current.start(of: .year)
@@ -115,7 +115,7 @@ extension AppState {
       switch period {
       case .weekly:
         startDate = current.start(of: .week)
-      case .montly:
+      case .monthly:
         startDate = current.start(of: .month)
       case .yearly:
         startDate = current.start(of: .year)
