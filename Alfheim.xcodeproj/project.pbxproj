@@ -367,7 +367,6 @@
 		1F3998F923D6958700E6BBD9 /* Alfheim */ = {
 			isa = PBXGroup;
 			children = (
-				FAF380312413FAA700C592D4 /* Alfheim.entitlements */,
 				1F39992E23D6A05800E6BBD9 /* App */,
 				FAF380352414B9C300C592D4 /* Persistence */,
 				788863F023F2A3EE0037210B /* Redux */,
@@ -381,6 +380,7 @@
 				1F39990B23D6958800E6BBD9 /* Info.plist */,
 				1F45EBE12423652A0058AEDC /* InfoPlist.strings */,
 				1F3998FE23D6958700E6BBD9 /* Alfheim.xcdatamodeld */,
+				FAF380312413FAA700C592D4 /* Alfheim.entitlements */,
 				FAEAA03E24612644003C6799 /* emojis.json */,
 				1F39990523D6958800E6BBD9 /* Preview Content */,
 			);

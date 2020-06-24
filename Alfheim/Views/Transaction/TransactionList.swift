@@ -65,15 +65,6 @@ struct TransactionList: View {
           }) {
             StatisticsView().environmentObject(self.store)
           }
-          /*
-          NavigationLink(destination: StatisticList()) {
-            Text(state.displayAmountText)
-              .font(.system(size: 18))
-              .foregroundColor(.secondary)
-            Image(systemName: "chevron.right")
-              .font(.system(size: 18))
-              .foregroundColor(.secondary)
-          }*/
         }
         .foregroundColor(.primary)
       ) {
@@ -122,10 +113,6 @@ struct TransactionList: View {
       }
       .background(Color(.secondarySystemBackground))
     }
-    /*
-    .sheet(item: $transaction) { transaction in
-      ComposerView(mode: .edit).environmentObject(self.store)
-    }*/
   }
 }
 
