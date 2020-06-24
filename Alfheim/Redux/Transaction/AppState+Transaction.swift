@@ -2,7 +2,7 @@
 //  AppState+Transaction.swift
 //  Alfheim
 //
-//  Created by alex.huo on 2020/3/12.
+//  Created by bl4ckra1sond3tre on 2020/3/7.
 //  Copyright © 2020 blessingsoft. All rights reserved.
 //
 
