@@ -245,11 +245,6 @@
 		78CB4D632480B80A00FF9A54 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		78CB4D662480B80A00FF9A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		78CB4D682480B80A00FF9A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		78CFC09E24139049009A236B /* AppState+Overview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Overview.swift"; sourceTree = "<group>"; };
-		78CFC0A02413905E009A236B /* AppState+Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Editor.swift"; sourceTree = "<group>"; };
-		78CFC0A224139081009A236B /* AppState+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Shared.swift"; sourceTree = "<group>"; };
-		78CFC0A7241390CC009A236B /* AppAction+Overview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppAction+Overview.swift"; sourceTree = "<group>"; };
-		78CFC0AE2413914D009A236B /* AppState+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Settings.swift"; sourceTree = "<group>"; };
 		FA014085240B8F7100F6FE92 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		FA014087240C01B800F6FE92 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 		FA03680F241CD5C50038A26E /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
@@ -356,7 +351,6 @@
 				78CB4D622480B80A00FF9A54 /* Share */,
 				1F3998F823D6958700E6BBD9 /* Products */,
 				FAF380322413FAC800C592D4 /* Frameworks */,
-				FAA1464124A3045F00845ED4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -653,18 +647,6 @@
 				782403F523F6DBAF00478338 /* TransactionsView.swift */,
 			);
 			path = Transaction;
-			sourceTree = "<group>";
-		};
-		FAA1464124A3045F00845ED4 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				78CFC0A224139081009A236B /* AppState+Shared.swift */,
-				78CFC0AE2413914D009A236B /* AppState+Settings.swift */,
-				78CFC0A02413905E009A236B /* AppState+Editor.swift */,
-				78CFC0A7241390CC009A236B /* AppAction+Overview.swift */,
-				78CFC09E24139049009A236B /* AppState+Overview.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		FABE82A823FD7DFC008A2A94 /* Account */ = {
