@@ -23,7 +23,7 @@ struct ComposerView: View {
     NavigationView {
       EditorView()
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("New Transaction")
+        .navigationBarTitle(self.state.isNew ? " New Transaction" : "Edit Transaction")
         .navigationBarItems(
           leading: Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -31,7 +31,8 @@ struct ComposerView: View {
             Text("Cancel")
           },
           trailing: Button(action: {
-            self.store.dispatch(.editors(.save(self.state.validator.transaction)))
+            let action = AppAction.Editor.save(self.state.validator.transaction, mode: self.state.isNew ? .new : .update)
+            self.store.dispatch(.editor(action))
             self.presentationMode.wrappedValue.dismiss()
           }) {
             Text("Save").bold()

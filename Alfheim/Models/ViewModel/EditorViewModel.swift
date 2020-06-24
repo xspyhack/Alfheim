@@ -9,5 +9,12 @@
 import Foundation
 
 struct EditorViewModel {
-  
+  let transaction: Alfheim.Transaction?
+
+  var date: Date = Date()
+  var amount = ""
+  var catemoji = Catemoji(uncleared: .uncleared)
+  var notes: String = ""
+  var currency: Currency = .cny
+  var payment: Payment?
 }

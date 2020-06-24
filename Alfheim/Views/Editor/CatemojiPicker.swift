@@ -2,38 +2,28 @@
 //  CatemojiPicker.swift
 //  Alfheim
 //
-//  Created by alex.huo on 2020/3/1.
+//  Created by alex.huo on 2020/3/23.
 //  Copyright © 2020 blessingsoft. All rights reserved.
 //
 
 import SwiftUI
 
-extension Catemoji: Identifiable {
-  var id: String { emoji }
-}
-
 struct CatemojiPicker<Label>: View where Label: View {
-  let numbersPerRow = 6
-  let catemojis = Catemoji.allCases
 
-  private var numberOfRows: Int {
-    if catemojis.count % numbersPerRow == 0 {
-      return catemojis.count / numbersPerRow
-    } else {
-      return catemojis.count / numbersPerRow + 1
-    }
-  }
+  @State private var selectedCategory: Category
+  @State private var isContentActive: Bool = false
+  private let selection: Binding<Alne.Catemoji>
+  private let label: Label
 
-  @State var isContentActive: Bool = false
+  private let catemojis: [Category: [Catemoji]]
 
-  let selection: Binding<Catemoji>
-  let label: Label
-
-  init(selection: Binding<Catemoji>, label: Label) {
+  init(_ catemojis: [Category: [Catemoji]], selection: Binding<Catemoji>, label: Label) {
+    self.catemojis = catemojis
     self.selection = selection
     self.label = label
+    self._selectedCategory = State(initialValue: selection.wrappedValue.category)
   }
-  
+
   var body: some View {
     NavigationLink(destination: content, isActive: $isContentActive) {
       HStack {
@@ -44,51 +34,59 @@ struct CatemojiPicker<Label>: View where Label: View {
     }
   }
 
-  var content: some View {
-    Group {
-      GeometryReader { proxy in
-        VStack(alignment: .leading, spacing: 0) {
-          ForEach(0..<self.numberOfRows) { row in
-            HStack(spacing: 0) {
-              ForEach(self.items(at: row)) { catemoji in
-                Button(action: {
-                  self.selection.wrappedValue = catemoji
-                  self.isContentActive = false
-                }) {
-                  Text(catemoji.emoji).font(Font.system(size: 28))
+  private var content: some View {
+    VStack(alignment: .leading) {
+      ScrollView(.horizontal, showsIndicators: false) {
+        HStack(spacing: 10) {
+          ForEach(Category.allCases, id: \.self) { category in
+            Button(action: {
+              self.selectedCategory = category
+            }) {
+              ZStack {
+                if self.selectedCategory == category {
+                  Circle().foregroundColor(Color.gray).opacity(0.2)
                 }
-                .frame(width: self.itemWidth(in: proxy), height: self.itemWidth(in: proxy))
+                Text(category.text).font(.system(size: 28))
               }
             }
+            .frame(width: 44, height: 44)
           }
-          Spacer()
+        }
+        .padding(.leading, 10)
+        .padding(.trailing, 16)
+      }
+
+      HStack {
+        Text(selectedCategory.name.uppercased())
+          .bold()
+
+        Spacer()
+      }
+      .padding(EdgeInsets(top: 20, leading: 14, bottom: 0, trailing: 14))
+
+      Grid(self.emojis(in: selectedCategory), id: \.self) { emoji in
+        Button(action: {
+          self.selection.wrappedValue = Catemoji(category: self.selectedCategory, emoji: emoji)
+          self.isContentActive = false
+        }) {
+          Text(emoji).font(.system(size: 28))
         }
       }
-      .navigationBarTitle("Emoji")
-      .padding()
+      .gridStyle(columns: 6)
     }
+    .navigationBarTitle("Emoji")
+    .padding(EdgeInsets(top: 12, leading: 4, bottom: 0, trailing: 4))
   }
 
-  private func items(at row: Int) -> [Catemoji] {
-    if row < numberOfRows - 1 {
-      return Array(Catemoji.allCases[numbersPerRow * row ..< numbersPerRow * row + numbersPerRow])
-    } else if row == numberOfRows - 1 {
-      return Array(Catemoji.allCases[numbersPerRow * row ..< numbersPerRow * row + catemojis.count % numbersPerRow])
-    } else {
-      fatalError("row out of bounds")
-    }
-  }
-
-  private func itemWidth(in geo: GeometryProxy) -> CGFloat {
-    geo.size.width / CGFloat(numbersPerRow)
+  private func emojis(in category: Category) -> [String] {
+    catemojis[category]?.compactMap { $0.emoji } ?? []
   }
 }
 
 #if DEBUG
 struct CatemojiPicker_Previews: PreviewProvider {
   static var previews: some View {
-    CatemojiPicker(selection: .constant(.food(.eating)), label: Text(""))
-//      .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+    CatemojiPicker([.transportation: Alne.Transportation.catemojis], selection: .constant(Alne.Catemoji(category: .food, emoji: "")), label: Text(""))
   }
 }
 #endif

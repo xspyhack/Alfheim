@@ -13,26 +13,27 @@ extension Alne {
     let id: String
     var date: Date
     var amount: Double
-    var catemoji: Catemoji
+    var catemoji: Alne.Catemoji
     var notes: String
     var currency: Currency = .cny
     /// payment method
-    var payment: String? = nil
+    var payment: Alne.Payment = Payment.uncleared
     var payee: String? = nil
     var number: Int = 0
+    /// account
     var from: Account? = Accounts.income
     var to: Account? = Accounts.expenses
   }
 }
 
-extension Transaction {
+extension Alne.Transaction {
   init(id: String = UUID().uuidString,
        date: Date,
        amount: Double,
        catemoji: Catemoji,
        notes: String,
        currency: Currency = .cny,
-       payment: String? = nil) {
+       payment: Alne.Payment = Alne.Payment.uncleared) {
     self.id = id
     self.date = date
     self.amount = amount
@@ -42,6 +43,8 @@ extension Transaction {
     self.payment = payment
   }
 }
+
+extension Alne.Transaction: Hashable {}
 
 extension Alne {
   enum Currency: Int, CaseIterable {
@@ -74,57 +77,52 @@ extension Alne {
   enum Transactions {
     static func samples() -> [Transaction] {
       return [
-        Transaction(date: Date(timeIntervalSince1970: 1582726132.0), amount: 23.0, catemoji: .fruit(.apple), notes: "Apple", currency: .usd),
-        Transaction(date: Date(timeIntervalSince1970: 1582720132.0), amount: 123.0, catemoji: .drink(.beer), notes: "Food"),
-        Transaction(date: Date(timeIntervalSince1970: 1582624196.0), amount: 13.5, catemoji: .food(.snacks), notes: "Mc"),
-        Transaction(date: Date(timeIntervalSince1970: 1582616139.0), amount: 2333.0, catemoji: .transportation(.airplane), notes: "Transportation"),
-        Transaction(date: Date(timeIntervalSince1970: 1582531152.0), amount: 17.5, catemoji: .transportation(.taxi), notes: "Texi"),
-        Transaction(date: Date(timeIntervalSince1970: 1582526132.0), amount: 77.0, catemoji: .clothes(.thirt), notes: "Clothes"),
-        Transaction(date: Date(timeIntervalSince1970: 1582486532.0), amount: 230.0, catemoji: .household(.others), notes: "Household"),
-        Transaction(date: Date(timeIntervalSince1970: 1582444232.0), amount: 5.0, catemoji: .personal(.privacy), notes: "Personal"),
-        Transaction(date: Date(timeIntervalSince1970: 1582320132.0), amount: 93.0, catemoji: .drink(.beer), notes: "Food"),
-        Transaction(date: Date(timeIntervalSince1970: 1582306192.0), amount: 2233.0, catemoji: .household(.travel), notes: "Travel"),
-        Transaction(date: Date(timeIntervalSince1970: 1582201232.0), amount: 21.0, catemoji: .fruit(.apple), notes: "Apple"),
+        Transaction(date: Date(timeIntervalSince1970: 1582726132.0), amount: 23.0, catemoji: Catemoji(fruit: .apple), notes: "Apple", currency: .usd),
+        Transaction(date: Date(timeIntervalSince1970: 1582720132.0), amount: 123.0, catemoji: Catemoji(food: .snacks), notes: "Food"),
+        Transaction(date: Date(timeIntervalSince1970: 1582624196.0), amount: 13.5, catemoji: Catemoji(food: .eating), notes: "Mc"),
+        Transaction(date: Date(timeIntervalSince1970: 1582616139.0), amount: 2333.0, catemoji: Catemoji(transportation: .airplane), notes: "Transportation"),
+        Transaction(date: Date(timeIntervalSince1970: 1582531152.0), amount: 17.5, catemoji: Catemoji(transportation: .taxi), notes: "Taxi"),
+        Transaction(date: Date(timeIntervalSince1970: 1582526132.0), amount: 77.0, catemoji: Catemoji(clothes: .shirt), notes: "Clothes"),
+        Transaction(date: Date(timeIntervalSince1970: 1582486532.0), amount: 230.0, catemoji: Catemoji(household: .goods), notes: "Household"),
+        Transaction(date: Date(timeIntervalSince1970: 1582444232.0), amount: 5.0, catemoji: Catemoji(personal: .health), notes: "Personal"),
       ]
     }
   }
 }
 
-extension Alne {
-  enum Payment {
-    case cash
-    case debitCard
-    case creditCard(Credit)
+extension Alne.Catemoji {
+  init(food: Alne.Food) {
+    self.category = .food
+    self.emoji = food.emoji
+  }
 
-    var name: String {
-      switch self {
-      case .cash:
-        return "Cash"
-      case .debitCard:
-        return "Debit Card"
-      case .creditCard(let from):
-        return "Credit Card - \(from.name)"
-      }
-    }
+  init(fruit: Alne.Fruit) {
+    self.category = .fruit
+    self.emoji = fruit.emoji
+  }
 
-    enum Credit {
-      case apple
-      case wechat
-      case alipay
-      case unionpay
+  init(clothes: Alne.Clothes) {
+    self.category = .clothes
+    self.emoji = clothes.emoji
+  }
 
-      var name: String {
-        switch self {
-        case .apple:
-          return "ApplePay"
-        case .wechat:
-          return "Wechat"
-        case .alipay:
-          return "Alipay"
-        case .unionpay:
-          return "UnionPay"
-        }
-      }
-    }
+  init(transportation: Alne.Transportation) {
+    self.category = .transportation
+    self.emoji = transportation.emoji
+  }
+
+  init(household: Alne.Household) {
+    self.category = .household
+    self.emoji = household.emoji
+  }
+
+  init(personal: Alne.Personal) {
+    self.category = .personal
+    self.emoji = personal.emoji
+  }
+
+  init(uncleared: Alne.Uncleared) {
+    self.category = .uncleared
+    self.emoji = uncleared.emoji
   }
 }

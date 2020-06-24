@@ -9,10 +9,10 @@
 import Foundation
 
 extension AppAction {
-  enum Editors {
-    case save(Transaction)
+  enum Editor {
+    case save(Alfheim.Transaction.Snapshot, mode: EditMode)
     case validate(valid: Bool)
-    case edit(Transaction)
+    case edit(Alfheim.Transaction)
     case new
   }
 }

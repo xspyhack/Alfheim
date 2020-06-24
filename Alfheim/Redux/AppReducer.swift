@@ -10,71 +10,31 @@ import Foundation
 
 struct AppReducer {
   func reduce(state: AppState, action: AppAction) -> (AppState, AppCommand?) {
-    var appState = state
-    var appCommand: AppCommand? = nil
-
     switch action {
-    case .overviews(let subaction):
-      switch subaction {
-      case .toggleNewTransaction(let presenting):
-        appState.overview.isEditorPresented = presenting
-      case .editTransaction(let transaction):
-        appState.overview.selectedTransaction = transaction
-        appState.overview.editingTransaction = true
-        appState.editor.isValid = true // Important! need set here
-        appState.editor.validator.reset(.edit(transaction))
-      case .editTransactionDone:
-        appState.overview.selectedTransaction = nil
-        appState.overview.editingTransaction = false
-        appState.editor.isValid = false // Important! need set here
-        appState.editor.validator.reset(.new)
-      case .toggleStatistics(let presenting):
-        appState.overview.isStatisticsPresented = presenting
-      case .toggleAccountDetail(let presenting):
-        appState.accountDetail.account = appState.shared.account
-        appState.overview.isAccountDetailPresented = presenting
-      case .switchPeriod:
-        switch state.shared.period {
-        case .weekly:
-          appState.shared.period = .montly
-        case .montly:
-          appState.shared.period = .yearly
-        case .yearly:
-          appState.shared.period = .weekly
-        }
-      }
-    case .editors(let subaction):
-      switch subaction {
-      case .new:
-        appState.editor.validator.reset(.new)
-      case .edit(let transaction):
-        appState.editor.validator.reset(.edit(transaction))
-      case .save(let transaction):
-        if let index = state.shared.allTransactions.firstIndex(where: { $0.id == transaction.id }) {
-          appState.shared.allTransactions[index] = transaction
-        } else {
-          appState.shared.allTransactions.append(transaction)
-        }
-        appState.editor.validator.reset(.new)
-      case .validate(let valid):
-        appState.editor.isValid = valid
-      }
+    case .overview(let subaction):
+      return AppReducers.Overview.reduce(state: state, action: subaction)
+    case .editor(let subaction):
+      return AppReducers.Editor.reduce(state: state, action: subaction)
     case .settings(let subaction):
-      switch subaction {
-      case .togglePayment:
-        appState.settings.isPaymentEnabled.toggle()
-        
-      }
-    case .accounts(let subaction):
-      switch subaction {
-      case .update(let account):
-        appState.shared.account = account
-        appState.overview.isAccountDetailPresented = false
-      }
-    @unknown default:
-      fatalError("unknown")
-    }
+      return AppReducers.Settings.reduce(state: state, action: subaction)
+    case .account(let subaction):
+      return AppReducers.Account.reduce(state: state, action: subaction)
+    case .transactions(let subaction):
+      return AppReducers.Transactions.reduce(state: state, action: subaction)
+    case .payment(let subaction):
+      return AppReducers.Payment.reduce(state: state, action: subaction)
+    case .catemoji(let subaction):
+      return AppReducer.Catemoji.reduce(state: state, action: subaction)
 
-    return (appState, appCommand)
+    case .startImport:
+      return (state, AppCommands.ImportTransactionsCommand())
+    case .finishImport:
+      var appState = state
+      appState.overview.isOnboardingPresented = false
+      return (appState, nil)
+    }
   }
+}
+
+enum AppReducers {
 }

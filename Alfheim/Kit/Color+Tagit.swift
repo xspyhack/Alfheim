@@ -17,6 +17,7 @@ extension Color {
   }
 }
 
+/*
 extension Color {
   init(tagit: Tagit) {
     self.init(hex: tagit.hexValue)
@@ -24,5 +25,12 @@ extension Color {
 
   init(_ tag: Tagit) {
     self.init(hex: tag.hexValue)
+  }
+}
+*/
+
+extension Color {
+  init(tagit: Tagit) {
+    self.init(tagit.name)
   }
 }

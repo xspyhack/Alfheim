@@ -9,23 +9,23 @@
 import SwiftUI
 
 struct Line: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var histogram: Histogram<Dimension>
   @Binding var frame: CGRect
   @Binding var touchLocation: CGPoint
   @Binding var showsIndicator: Bool
   @State private var fill: Bool = false
   @State var showsBackground: Bool = true
-  @State var padding: CGFloat = 20
+  @State var padding: CGFloat = 4
 
   var stepWidth: CGFloat {
-    if data.units.count < 2 {
+    if histogram.units.count < 2 {
       return 0
     }
-    return frame.size.width / CGFloat(data.units.count - 1)
+    return frame.size.width / CGFloat(histogram.units.count - 1)
   }
 
   var stepHeight: CGFloat {
-    let points = data.points()
+    let points = histogram.points()
 
     guard let min = points.min(),
       let max = points.max(), min != max else {
@@ -39,14 +39,14 @@ struct Line: View {
   }
 
   var path: Path {
-    let points = data.points()
+    let points = histogram.points()
     return Path.quadCurved(points: points,
                            step: step,
                            padding: padding)
   }
 
   var closedPath: Path {
-    let points = data.points()
+    let points = histogram.points()
     return Path.quadCurved(points: points,
                            step: step,
                            padding: padding,
@@ -57,7 +57,7 @@ struct Line: View {
     ZStack {
       if fill && showsBackground {
         closedPath
-          .fill(LinearGradient(gradient: Gradient(colors: [.ah01, .white]), startPoint: .bottom, endPoint: .top))
+          .fill(LinearGradient(gradient: Gradient(colors: [.ah01, Color(.systemBackground)]), startPoint: .bottom, endPoint: .top))
           .rotationEffect(.degrees(180), anchor: .center)
           .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
           .transition(.opacity)
@@ -93,6 +93,8 @@ extension Color {
   static let ah01 = Color("AH01")
   static let ah02 = Color("AH02")
   static let ah03 = Color("AH03")
+
+  static let shadow = Color(.sRGBLinear, white: 0, opacity: 0.23)
 }
 
 
@@ -100,7 +102,7 @@ extension Color {
 struct Line_Previews: PreviewProvider {
   static var previews: some View {
     GeometryReader { geometry in
-      Line(data: UnitData(points: [20, 6, 4, 2, 4, 6, 0]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 10, y: 12)), showsIndicator: .constant(true))
+      Line(histogram: Histogram(points: [20, 6, 4, 2, 4, 6, 0]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 10, y: 12)), showsIndicator: .constant(true))
     }
     .frame(width: 320, height: 460)
     .environment(\.colorScheme, .dark)

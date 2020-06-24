@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AccountDetailList: View {
-  @Binding var account: Account
+  @Binding var account: Alne.Account
 
   var body: some View {
     List {

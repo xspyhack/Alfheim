@@ -9,14 +9,22 @@
 import Foundation
 
 enum AppAction {
-  case overviews(Overviews)
-  case editors(Editors)
+  case overview(Overview)
+  case editor(Editor)
   case settings(Settings)
-  case accounts(Accounts)
+  case account(Account)
+  case transactions(Transactions)
+  case payment(Payment)
+  case catemoji(Catemoji)
+  
+  case startImport
+  case finishImport
 }
 
 extension AppAction {
-  enum Settings {
-    case togglePayment
+  enum EditMode {
+    case new
+    case update
+    case delete
   }
 }

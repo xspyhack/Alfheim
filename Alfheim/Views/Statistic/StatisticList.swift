@@ -9,41 +9,87 @@
 import SwiftUI
 
 struct StatisticList: View {
+  @EnvironmentObject var store: AppStore
+
+  private var state: AppState.Statistics {
+    store.state.statistics
+  }
+
+  private var transactions: [Alfheim.Transaction] {
+    state.transactions
+  }
+
+  private var lineData: [Double] {
+    transactions.reversed().map { $0.amount }
+  }
+
+  private var trend: Double {
+    guard !lineData.isEmpty else {
+      return 0
+    }
+    return lineData.reduce(0, +)
+    //return (lineData.last! - lineData.first!) / lineData.first! * 100.0
+  }
+
+  private var pieData: [(String, Double, String)] {
+    state.categorized
+      .map { category, viewModels in
+        (category, viewModels.reduce(0.0, { $0 + $1.amount }), viewModels.first!.catemoji.category.text)
+      }
+  }
+
+  private var barData: [(String, Double)] {
+    state.labeledAmount(with: state.preferPeriod)
+  }
+
+  private var barTitle: String {
+    state.title(with: state.preferPeriod)
+  }
+
+  private var barLegend: String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM dd"
+    let range = state.closedTimeRange
+    return "\(formatter.string(from: range.lowerBound)) - \(formatter.string(from: range.upperBound))"
+  }
+
+  private var symbol: String {
+    state.account.currency.symbol
+  }
+
+  private static let height: CGFloat = 280
+
   var body: some View {
     GeometryReader { geometry in
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 24) {
-          LineChart(data: [11, 3, 2, 5, 29, 9], title: "Weekly", legend: "this week", value: (10, "%.1f"))
-            .frame(height: geometry.size.width*16/15)
+          BarChart(data: self.barData,
+                   title: self.barTitle,
+                   legend: self.barLegend)
+            .frame(height: StatisticList.height)
 
-          PieChart(data: [8,23,54,32,12,37,43], title: "Categories", legend: "7 total")
-            .frame(height: geometry.size.width*16/15)
+          LineChart(data: self.lineData,
+                    title: self.state.account.name,
+                    legend: self.state.period.display,
+                    value: (self.trend, "%.1f"),
+                    symbol: self.symbol)
+            .frame(height: StatisticList.height)
 
-          BarChart(data: UnitData(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "this week")
-            .frame(height: geometry.size.width*16/15)
+          PieChart(data: self.pieData,
+                   title: "Categories",
+                   legend: "\(self.pieData.count) total",
+            symbol: self.symbol)
         }
         .padding(20)
       }
     }
   }
-
-  var weeklyCard: some View {
-    ZStack {
-      LineChart(data: [11, 3, 2, 5, 29, 9], title: "Weekly", legend: "this week", value: (10, "%.1f"))
-      HStack {
-        Spacer()
-        VStack {
-          Image(systemName: "arrow.right.circle")
-            .padding([.top, .trailing], 20)
-          Spacer()
-        }
-      }
-    }
-  }
 }
 
+#if DEBUG
 struct StatisticList_Previews: PreviewProvider {
   static var previews: some View {
-    StatisticList()
+    StatisticList().environmentObject(AppStore(moc: viewContext))
   }
 }
+#endif

@@ -8,25 +8,103 @@
 
 import Foundation
 import Combine
+import CoreData
 
 class AppStore: ObservableObject {
   @Published var state: AppState
   private let reducer: AppReducer
 
+  var context: NSManagedObjectContext
+
   private var disposeBag = Set<AnyCancellable>()
 
-  init(state: AppState = AppState(), reducer: AppReducer = AppReducer()) {
+  init(state: AppState = AppState(),
+       reducer: AppReducer = AppReducer(),
+       moc: NSManagedObjectContext) {
     self.state = state
     self.reducer = reducer
+    self.context = moc
 
     binding()
   }
 
   private func binding() {
     state.editor.validator.isValid
+      .dropFirst()
+      .removeDuplicates()
       .sink { isValid in
-        self.dispatch(.editors(.validate(valid: isValid)))
+        self.dispatch(.editor(.validate(valid: isValid)))
       }
+      .store(in: &disposeBag)
+
+    state.payment.validator.isValid
+      .dropFirst()
+      .removeDuplicates()
+      .sink { isValid in
+        self.dispatch(.payment(.validate(valid: isValid)))
+      }
+      .store(in: &disposeBag)
+
+    Persistences.Account(context: context)
+      .fetchPublisher(withName: Persistences.Account.Buildin.expenses.name)
+      .map { Alne.Account($0) }
+      .removeDuplicates()
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print("Load account finished")
+        case .failure(let error):
+          print("Load account failed: \(error)")
+        }
+      }, receiveValue: { expenses in
+        self.dispatch(.account(.updateDone(expenses)))
+      })
+      .store(in: &disposeBag)
+
+    Persistences.Transaction(context: context)
+      .fetchAllPublisher()
+      .removeDuplicates()
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print("Load account finished")
+        case .failure(let error):
+          print("Load account failed: \(error)")
+        }
+      }, receiveValue: { transactions in
+        self.dispatch(.transactions(.updated(transactions)))
+      })
+      .store(in: &disposeBag)
+
+    Persistences.Payment(context: context)
+      .fetchAllPublisher()
+      .removeDuplicates()
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print("Load account finished")
+        case .failure(let error):
+          print("Load account failed: \(error)")
+        }
+      }, receiveValue: { payments in
+        let sorted = payments.sorted(by: { $0.transactions?.count ?? 0 > $1.transactions?.count ?? 0 })
+        self.dispatch(.payment(.updated(sorted)))
+      })
+      .store(in: &disposeBag)
+
+    Persistences.Emoji(context: context)
+      .fetchAllPublisher()
+      .map { $0.compactMap(Catemoji.init(emoji:)) }
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print("Load account finished")
+        case .failure(let error):
+          print("Load account failed: \(error)")
+        }
+      }, receiveValue: { emojis in
+        self.dispatch(.catemoji(.updated(emojis)))
+      })
       .store(in: &disposeBag)
   }
 

@@ -9,94 +9,75 @@
 import Foundation
 
 extension Alne {
-  /// Category emoji
-  enum Catemoji {
-    case food(Food)
-    case fruit(Fruit)
-    case drink(Drink)
-    case clothes(Clothes)
-    case household(Household)
-    case transportation(Transportation)
-    case personal(Personal)
+  struct Catemoji {
+    let category: Category
+    let emoji: String
 
-    var emoji: String {
-      switch self {
-      case .food(let food):
-        return food.rawValue
-      case .fruit(let fruit):
-        return fruit.rawValue
-      case .drink(let drink):
-        return drink.rawValue
-      case .clothes(let clothes):
-        return clothes.rawValue
-      case .household(let household):
-        return household.rawValue
-      case .transportation(let transport):
-        return transport.rawValue
-      case .personal(let personal):
-        return personal.rawValue
-      }
-    }
+    static let uncleared = Catemoji(category: .uncleared, emoji: Alne.Uncleared.uncleared.emoji)
+  }
+}
 
-    var category: String {
-      switch self {
-      case .food:
-        return "Food"
-      case .fruit:
-        return "Fruit"
-      case .drink:
-        return "Drink"
-      case .clothes:
-        return "Clothes"
-      case .household:
-        return "Household"
-      case .transportation:
-        return "Transportation"
-      case .personal:
-        return "Personal"
-      }
-    }
+extension Alne.Catemoji: Hashable {}
 
-    var allCases: [Catemoji] {
-      switch self {
-      case .food:
-        return Food.allCases.map { .food($0) }
-      case .fruit:
-        return Fruit.allCases.map { .fruit($0) }
-      case .drink:
-        return Drink.allCases.map { .drink($0) }
-      case .clothes:
-        return Clothes.allCases.map { .clothes($0) }
-      case .household:
-        return Household.allCases.map { .household($0) }
-      case .transportation:
-        return Transportation.allCases.map { .transportation($0) }
-      case .personal:
-        return Personal.allCases.map { .personal($0) }
-      }
-    }
+enum Category: String, CaseIterable {
+  case uncleared
+  case food
+  case drink
+  case fruit
+  case clothes
+  case household
+  case personal
+  case transportation
+  case services
 
-    /// All categories
-    static var allCates: [Catemoji] {
-      [.food(.others), .fruit(.others), .drink(.others), .clothes(.others), .household(.others), .transportation(.others), .personal(.others)]
-    }
+  var name: String {
+    rawValue
+  }
 
-    static var allCases: [Catemoji] {
-      allCates.flatMap { $0.allCases }
+  var text: String {
+    switch self {
+    case .food:
+      return "🍔"
+    case .drink:
+      return "🥤"
+    case .fruit:
+      return "🍎"
+    case .clothes:
+      return "👔"
+    case .household:
+      return "🏠"
+    case .personal:
+      return "🤷‍♂️"
+    case .transportation:
+      return "🚘"
+    case .services:
+      return "🌐"
+    case .uncleared:
+      return "👀"
     }
   }
 }
 
-
-extension Catemoji {
+/// Build in catemojis
+extension Alne {
   enum Food: String, CaseIterable {
     case groceries = "🛒"
     case eating = "🍽"
     case snacks = "🍟"
-    case others = "🍔"
+    case pizza = "🍕"
+    case pasta = "🍝"
+    case rice = "🍚"
 
-    var catemoji: Catemoji {
-      .food(self)
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .food
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
     }
   }
 
@@ -105,55 +86,96 @@ extension Catemoji {
     case banana = "🍌"
     case grapes = "🍇"
     case cherries = "🍒"
-    case others = "🍓"
 
-    var catemoji: Catemoji {
-      .fruit(self)
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .fruit
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
     }
   }
 
   enum Drink: String, CaseIterable {
     case beer = "🍻"
     case milk = "🥛"
-    case tea = "🥤"
+    case tea = "🍵"
     case wine = "🍷"
-    case others = "🍹"
+    case coffee = "☕️"
 
-    var catemoji: Catemoji {
-      .drink(self)
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .drink
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
     }
   }
 
   enum Clothes: String, CaseIterable {
-    case thirt = "👕"
+    case shirt = "👕"
     case pants = "👖"
     case sock = "🧦"
     case coat = "🧥"
     case skirt = "👗"
-    case others = "👔"
+    case shoes = "👟"
 
-    var catemoji: Catemoji {
-      .clothes(self)
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .clothes
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
     }
   }
 
   enum Household: String, CaseIterable {
     case goods = "🧺"
+    case love = "👩‍❤️‍👨"
     case travel = "🏖"
-    case others = "🏠"
+    case object = "💡"
+    case house = "🏡"
 
-    var catemoji: Catemoji {
-      .household(self)
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .household
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
     }
   }
 
   enum Personal: String, CaseIterable {
     case health = "💊"
     case privacy = "🔏"
-    case others = "🤷‍♂️"
+    case movie = "🎬"
 
-    var catemoji: Catemoji {
-      .personal(self)
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .personal
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
     }
   }
 
@@ -165,10 +187,51 @@ extension Catemoji {
     case metro = "🚇"
     case train = "🚄"
     case boat = "🛳"
-    case others = "🚲"
+    case bike = "🚲"
 
-    var catemoji: Catemoji {
-      .transportation(self)
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .transportation
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
+    }
+  }
+
+  enum Services: String, CaseIterable {
+    case subscription = "🌐"
+    case mobile = "📱"
+
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .services
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
+    }
+  }
+
+  enum Uncleared: String, CaseIterable {
+    case uncleared = "💰"
+
+    var emoji: String {
+      rawValue
+    }
+
+    var category: Category {
+      .uncleared
+    }
+
+    static var catemojis: [Catemoji] {
+      allCases.map { Catemoji(category: $0.category, emoji: $0.emoji) }
     }
   }
 }

@@ -9,42 +9,68 @@
 import SwiftUI
 
 struct BarChart: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var histogram: Histogram<Dimension>
   var title: String
   var legend: String?
 
   private var specifier: String
 
   @State private var touchLocation: CGPoint = .zero
-  @State private var currentValue: Double = 0
+  @State private var currentValue: Value = 0
   @State private var showsValue: Bool = false
 
-  init(data: UnitData, title: String, legend: String? = nil, specifier: String = "%.1f") {
-    self.data = data
+  init(histogram: Histogram<Dimension>,
+       title: String,
+       legend: String? = nil,
+       specifier: String = "%.1f") {
+    self.histogram = histogram
     self.title = title
     self.legend = legend
     self.specifier = specifier
+  }
+
+  init(data: [(String, Double)],
+       title: String,
+       legend: String? = nil,
+       specifier: String = "%.1f") {
+    self.init(histogram: Histogram(values: data),
+              title: title,
+              legend: legend,
+              specifier: specifier)
+  }
+
+  init(data: [(String, Int)],
+       title: String,
+       legend: String? = nil,
+       specifier: String = "%.1f") {
+    self.init(data: data.map { ($0, Double($1)) },
+              title: title,
+              legend: legend,
+              specifier: specifier)
   }
 
   var body: some View {
     GeometryReader { geometry in
       ZStack(alignment: .center) {
         RoundedRectangle(cornerRadius: 20)
-          .fill(Color.ah00)
-          .shadow(radius: 8)
+          .fill(Color(.systemBackground))
+          .shadow(color: Color.shadow, radius: 8)
         VStack(alignment: .leading, spacing: 2) {
           HStack {
             VStack(alignment: .leading, spacing: 8) {
               if !self.showsValue {
                 Text(self.title)
                   .font(.system(size: 24, weight: .semibold))
+                  .foregroundColor(.primary)
 
                 if self.legend != nil {
-                  Text(self.legend!).font(.callout).foregroundColor(.gray)
+                  Text(self.legend!).font(.callout)
+                    .foregroundColor(.secondary)
                 }
               } else {
                 Text("\(self.currentValue, specifier: self.specifier)")
-                  .font(.system(size: 41, weight: .bold, design: .default))
+                  .font(.system(size: 41, weight: .bold))
+                  .foregroundColor(.primary)
               }
             }
             Spacer()
@@ -52,15 +78,12 @@ struct BarChart: View {
           }
           .transition(.opacity)
           .animation(.easeIn(duration: 0.1))
-          .frame(width: nil, height: 80, alignment: .center)
-          .padding()
+          .frame(height: 54, alignment: .center)
+          .padding(.bottom, 24)
 
           GeometryReader { geometry in
-            Bar(data: self.data)
+            Bar(histogram: self.histogram)
           }
-          .clipShape(RoundedRectangle(cornerRadius: 20))
-          .padding(25)
-          .padding(.bottom, 5)
           .gesture(DragGesture()
             .onChanged { value in
               self.touchLocation = value.location
@@ -71,7 +94,22 @@ struct BarChart: View {
               self.showsValue = false
             }
           )
+
+          if self.histogram.isNamed {
+            GeometryReader { geometry in
+              HStack(alignment: .bottom, spacing: CGFloat(geometry.size.width) / CGFloat(3 * (self.histogram.units.count - 1))) {
+                ForEach(self.histogram.units, id: \.symbol) { unit in
+                  Text(unit.symbol)
+                    .font(.system(size: 12))
+                    .frame(maxWidth: .infinity)
+                }
+              }
+            }
+            .frame(height: 24)
+            .padding(.top, 4)
+          }
         }
+        .padding(20)
       }
     }
   }
@@ -80,9 +118,9 @@ struct BarChart: View {
 extension BarChart {
   @discardableResult
   private func handleTouch(to location: CGPoint, in frame: CGSize) -> Int {
-    let points = data.points()
+    let points = histogram.points()
     let step = frame.width / CGFloat(points.count)
-    let idx = max(0, min(data.points().count - 1, Int(location.x / step)))
+    let idx = max(0, min(histogram.points().count - 1, Int(location.x / step)))
     self.currentValue = points[idx]
     return idx
   }
@@ -93,7 +131,7 @@ struct BarChart_Previews : PreviewProvider {
   static var previews: some View {
     ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
       GeometryReader { geometry in
-        BarChart(data: UnitData(values: [("A", 20), ("B", 30), ("C", 15), ("D", 22)]), title: "Bar", legend: "chart")
+        BarChart(data: [("A", 21), ("B", 9800), ("C", 0), ("D", 22)], title: "Bar", legend: "chart")
       }
       .environment(\.colorScheme, colorScheme)
       .previewDisplayName("\(colorScheme)")

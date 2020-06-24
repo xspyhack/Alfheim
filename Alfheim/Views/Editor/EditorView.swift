@@ -48,19 +48,22 @@ struct EditorView: View {
           Text("Date")
         }
         HStack {
-          CatemojiPicker(selection: binding.validator.emoji, label: Text("Emoji"))
+          CatemojiPicker(state.catemojis, selection: binding.validator.catemoji, label: Text("Emoji"))
         }
         HStack {
           Text("Notes")
-          TextField("", text: binding.validator.notes)
-            .lineLimit(nil)
+          InputTextField("Notes", text: binding.validator.notes, isFirstResponder: .constant(false))
             .multilineTextAlignment(.trailing)
         }
         HStack {
-          Text("Payment")
-          TextField("", text: binding.validator.payment)
-            .foregroundColor(.gray).opacity(0.8)
-            .multilineTextAlignment(.trailing)
+          Picker(selection: binding.validator.payment, label: Text("Payment")) {
+            ForEach(0..<state.payments.count) { payment in
+              HStack(alignment: .center, spacing: 2) {
+                Text(self.state.payments[payment].fullname)
+                //Text(" - \(payment.kind.fullname)")
+              }
+            }
+          }
         }
       }
     }
@@ -73,7 +76,7 @@ struct EditorView: View {
 struct EditorView_Previews: PreviewProvider {
   @State static var notes = ""
   static var previews: some View {
-    EditorView().environmentObject(AppStore())
+    EditorView().environmentObject(AppStore(moc: viewContext))
   }
 }
 #endif

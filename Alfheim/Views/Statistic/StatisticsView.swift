@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct StatisticsView: View {
-  var onDismiss: () -> Void
+  @EnvironmentObject var store: AppStore
+  @Environment(\.presentationMode) var presentationMode
 
   var body: some View {
     NavigationView {
@@ -17,7 +18,7 @@ struct StatisticsView: View {
         .navigationBarTitle("Statistics")
         .navigationBarItems(leading:
           Button(action: {
-            self.onDismiss()
+            self.presentationMode.wrappedValue.dismiss()
           }) {
             Text("Cancel")
           }
@@ -29,7 +30,7 @@ struct StatisticsView: View {
 #if DEBUG
 struct StatisticView_Previews: PreviewProvider {
   static var previews: some View {
-    StatisticsView(onDismiss: {})
+    StatisticsView().environmentObject(AppStore(moc: viewContext))
   }
 }
 #endif

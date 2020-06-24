@@ -13,27 +13,31 @@ extension AppState {
   struct Overview {
     var isEditorPresented: Bool = false
     var isStatisticsPresented: Bool = false
-    var selectedTransaction: Transaction?
+    var selectedTransaction: Alfheim.Transaction?
     var editingTransaction: Bool = false
     var isAccountDetailPresented: Bool = false
+    var isSettingsPresented: Bool = false
+    var isOnboardingPresented: Bool = false
 
-    var transactions: [Transaction] {
+    var isTransactionListActive = false
+
+    var transactions: [Alne.Transaction] {
       Alne.Transactions.samples()
     }
 
-    func displayTransactions(with period: Period, sorting: Sorting) -> [Transaction] {
+    func displayTransactions(with period: Period, sorting: Sorting) -> [Alne.Transaction] {
       let current = Date()
       let startDate: Date
       switch period {
       case .weekly:
         startDate = current.start(of: .week)
-      case .montly:
+      case .monthly:
         startDate = current.start(of: .month)
       case .yearly:
         startDate = current.start(of: .year)
       }
 
-      let sortBy: (Transaction, Transaction) -> Bool
+      let sortBy: (Alne.Transaction, Alne.Transaction) -> Bool
       switch sorting {
       case .date:
         sortBy = { $0.date > $1.date }

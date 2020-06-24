@@ -9,18 +9,24 @@
 import SwiftUI
 
 struct TransactionRow: View {
-  var transaction: Transaction
+  var model: TransactionViewModel
 
   var body: some View {
     HStack {
-      Text(transaction.catemoji.emoji).font(Font.system(size: 40, weight: .medium))
+      Text(model.catemoji.emoji)
+        .font(Font.system(size: 40, weight: .medium))
+        .frame(width: 48, height: 48)
       VStack(alignment: .leading) {
-        Text(transaction.notes).font(.system(size: 20, weight: .medium))
-        Text(transaction.date.string).font(.system(size: 14)).foregroundColor(.gray)
+        Text(model.notes).font(.system(size: 20, weight: .medium))
+        Text(model.date.string)
+          .font(.system(size: 14))
+          .foregroundColor(.gray)
+          .lineLimit(1)
       }
       Spacer()
-      Text("-\(transaction.currency.symbol)\(String(format: "%.1f", transaction.amount))").font(.system(size: 28, weight: .semibold))
-        .foregroundColor(.red)
+      Text("-\(model.currency.symbol)\(String(format: "%.1f", model.amount))")
+        .font(.system(size: 28, weight: .semibold))
+        .foregroundColor(Color(tagit: model.tag))
     }
     .frame(height: 64)
   }
@@ -29,7 +35,9 @@ struct TransactionRow: View {
 #if DEBUG
 struct TransactionRow_Previews: PreviewProvider {
   static var previews: some View {
-    TransactionRow(transaction: Alne.Transactions.samples().first!)
+    ScrollView {
+      TransactionRow(model: TransactionViewModel.mock)
+    }.padding()
   }
 }
 #endif

@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct Bar: View {
-  @ObservedObject var data: UnitData
+  @ObservedObject var histogram: Histogram<Dimension>
 
   var pieces: [Piece.Data] {
-    let max = data.points().max() ?? 0
-    let min = data.points().min() ?? 0
+    let max = histogram.points().max() ?? 0
+    let min = histogram.points().min() ?? 0
     var pieces: [Piece.Data] = []
-    let delta = 0.15 * (max - min)
-    for unit in data.units {
+    let delta = min == 0 ? 0 : 0.15 * (max - min)
+    for unit in histogram.units {
       let amount: Double = Double(unit.value - (min - delta))/Double(max - (min - delta))
       let data = Piece.Data(unit: unit, amount: amount)
       pieces.append(data)
@@ -26,18 +26,30 @@ struct Bar: View {
 
   var body: some View {
     GeometryReader { geometry in
-      HStack(alignment: .bottom, spacing: CGFloat(geometry.size.width) / CGFloat(4 * self.pieces.count - 1)) {
+      HStack(alignment: .bottom, spacing: CGFloat(geometry.size.width) / CGFloat(3 * (self.pieces.count - 1))) {
         ForEach(0..<self.pieces.count) { index in
-          self.piece(at: index, height: geometry.size.height)
+          VStack(spacing: 4) {
+            ZStack(alignment: .bottom) {
+              Capsule().fill(Color(.secondarySystemBackground))
+              self.piece(at: index, size: geometry.size)
+            }
+          }
         }
       }
     }
   }
 
-  func piece(at index: Int, height: CGFloat) -> some View {
+  func piece(at index: Int, size: CGSize) -> some View {
     let piece = pieces[index]
+    var height = CGFloat(piece.amount) * size.height
+    if piece.amount > 0.0 {
+      let gap = CGFloat(size.width) / CGFloat(3 * (self.pieces.count - 1))
+      let width = (size.width - CGFloat((histogram.points().count - 1)) * gap) / CGFloat(histogram.points().count)
+      height = max(height, width)
+    }
+    print("height: \(height)")
     return Piece(index: index)
-      .frame(height: CGFloat(piece.amount) * height)
+      .frame(height: height)
   }
 }
 
@@ -47,7 +59,7 @@ struct Bar_Previews : PreviewProvider {
     GeometryReader { geometry in
 //      Bar(data: UnitData(points: [20, 6, 4, 0, 4, 6, 10]))
 //      Bar(data: UnitData(points: [-2, 0, 2, 4, 6, 8, 10]))
-      Bar(data: UnitData(points: [-2, 0, 1, 3, 4, 5, 6]))
+      Bar(histogram: Histogram<Dimension>(points: [-2, 0, 1, 3, 4, 5, 6]))
     }.frame(width: 200, height: 200)
   }
 }

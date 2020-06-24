@@ -11,11 +11,17 @@ import Foundation
 extension Alne {
   enum Tagit: String, CaseIterable {
     case red
-    case orange
-    case yellow
-    case green
+    case pink
+    case grape
+    case violet
+    case indigo
     case blue
-    case purple
+    case cyan
+    case teal
+    case green
+    case lime
+    case yellow
+    case orange
     case alfheim = "tint"
 
     var name: String {
@@ -38,67 +44,78 @@ extension Tagit {
   var hexValue: Int {
     Int(hex.dropFirst(), radix: 16)!
   }
+
+  var hexDarkValue: Int {
+    Int(hexDark.dropFirst(), radix: 16)!
+  }
 }
 
 extension Tagit {
   var hex: String {
     switch self {
     case .red:
-      return "#FF2600"
-    case .orange:
-      return "#FF9200"
-    case .yellow:
-      return "#FEFB00"
-    case .green:
-      return "#00F900"
+      return "#E03131"
+    case .pink:
+      return "#C2255C"
+    case .grape:
+      return "#CC5DE8"
+    case .violet:
+      return "#7950F2"
+    case .indigo:
+      return "#4C6EF5"
     case .blue:
-      return "#0432FF"
-    case .purple:
-      return "#932092"
+      return "#228BE6"
+    case .cyan:
+      return "#22B8CF"
+    case .teal:
+      return "#12B886"
+    case .green:
+      return "#40C057"
+    case .lime:
+      return "#94D82D"
+    case .yellow:
+      return "#FAB005"
+    case .orange:
+      return "#FD7E14"
     case .alfheim:
-      return "#60D3D4"
+      return "#d6336c"
     }
   }
-}
 
-extension Tagit: ExpressibleByIntegerLiteral {
-  init(integerLiteral value: Int) {
-    switch value {
-    case 0:
-      self = .red
-    case 1:
-      self = .orange
-    case 2:
-      self = .yellow
-    case 3:
-      self = .green
-    case 4:
-      self = .blue
-    case 5:
-      self = .purple
-    default:
-      self = .alfheim
+  var hexDark: String {
+    switch self {
+    case .red:
+      return "#FA5252"
+    case .pink:
+      return "#F783AC"
+    case .grape:
+      return "#E599F7"
+    case .violet:
+      return "#B197FC"
+    case .indigo:
+      return "#91A7FF"
+    case .blue:
+      return "#74C0FC"
+    case .cyan:
+      return "#66D9E8"
+    case .teal:
+      return "#63E6BE"
+    case .green:
+      return "#69DB7C"
+    case .lime:
+      return "#C0EB75"
+    case .yellow:
+      return "#FFE066"
+    case .orange:
+      return "#FFA94D"
+    case .alfheim:
+      return "#d6336c"
     }
   }
 }
 
 extension Tagit: ExpressibleByStringLiteral {
   init(stringLiteral value: String) {
-    switch value {
-    case "#FF2600":
-      self = .red
-    case "#FF9200":
-      self = .orange
-    case "#FEFB00":
-      self = .yellow
-    case "#00F900":
-      self = .green
-    case "#0432FF":
-      self = .blue
-    case "#932092":
-      self = .purple
-    default:
-      self = .alfheim
-    }
+    self = Tagit(rawValue: value.lowercased()) ?? .alfheim
   }
 }

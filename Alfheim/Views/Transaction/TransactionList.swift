@@ -10,21 +10,122 @@ import SwiftUI
 
 struct TransactionList: View {
   @EnvironmentObject var store: AppStore
-  @State private var transaction: Transaction?
+
+  private var state: AppState.TransactionList {
+    store.state.transactions
+  }
+
+  private var binding: Binding<AppState.TransactionList> {
+    $store.state.transactions
+  }
+
+  private var tag: Tagit {
+    store.state.shared.account.tag
+  }
+
+  @State var selectMonth = false
+  @State private var birthDate = Date()
 
   var body: some View {
     List {
-      ForEach(Alne.Transactions.samples()) { transaction in
-        TransactionRow(transaction: transaction)
+      Section(header:
+        HStack {
+          HStack(alignment: .lastTextBaseline) {
+            Text(state.selectedMonth)
+              .font(.system(size: 34, weight: .semibold))
+              .foregroundColor(.primary)
+            Text(state.selectedYear)
+              .font(.system(size: 28, weight: .medium))
+              .foregroundColor(.secondary)
+
+            Image(systemName: "chevron.down")
+              .font(.system(size: 16, weight: .medium))
+              .foregroundColor(.secondary)
+              .padding(.bottom, 2)
+          }
           .onTapGesture {
-            self.transaction = transaction
+            // select month
+            self.store.dispatch(.transactions(.selectDate))
+          }
+          Spacer()
+          Button(action: {
+            self.store.dispatch(.transactions(.toggleStatistics(presenting: true)))
+          }) {
+            Text(state.displayAmountText)
+              .font(.system(size: 18))
+              .foregroundColor(.secondary)
+            Image(systemName: "chevron.right")
+              .font(.system(size: 18))
+              .foregroundColor(.secondary)
+          }
+          .modal(
+            isPresented: self.binding.isStatisticsPresented,
+            onDismiss: {
+              self.store.dispatch(.transactions(.toggleStatistics(presenting: false)))
+          }) {
+            StatisticsView().environmentObject(self.store)
+          }
+          /*
+          NavigationLink(destination: StatisticList()) {
+            Text(state.displayAmountText)
+              .font(.system(size: 18))
+              .foregroundColor(.secondary)
+            Image(systemName: "chevron.right")
+              .font(.system(size: 18))
+              .foregroundColor(.secondary)
+          }*/
+        }
+        .foregroundColor(.primary)
+      ) {
+        ForEach(state.displayViewModels(tag: self.tag)) { viewModel in
+          TransactionRow(model: viewModel)
+            .onTapGesture {
+              self.store.dispatch(.transactions(.editTransaction(viewModel.transaction)))
+          }
+        }
+        .onDelete { indexSet in
+          self.store.dispatch(.transactions(.delete(at: indexSet)))
         }
       }
     }
-    .navigationBarTitle("Transactions")
-    .sheet(item: $transaction) { transaction in
+    .listStyle(GroupedListStyle())
+    .navigationBarTitle("Transactions", displayMode: .inline)
+    .sheet(
+      isPresented: binding.editingTransaction,
+      onDismiss: {
+        self.store.dispatch(.transactions(.editTransactionDone))
+    }) {
       ComposerView(mode: .edit).environmentObject(self.store)
     }
+    .overlaySheet(
+      isPresented: binding.showDatePicker,
+      onDismiss: {
+        self.store.dispatch(.transactions(.selectDateCancalled))
+    }) {
+      VStack {
+        HStack {
+          Text(self.state.pickedDateText)
+            .fontWeight(.medium)
+          Spacer()
+          Button(action: {
+            self.store.dispatch(.transactions(.selectDateDone(self.state.selectedDate)))
+          }) {
+            Text("OK").bold()
+          }
+        }
+        .padding([.top, .leading, .trailing])
+        DatePicker("",
+                   selection: self.binding.selectedDate,
+                   in: ...Date(),
+                   displayedComponents: .date)
+          .background(Color(.systemBackground))
+      }
+      .background(Color(.secondarySystemBackground))
+    }
+    /*
+    .sheet(item: $transaction) { transaction in
+      ComposerView(mode: .edit).environmentObject(self.store)
+    }*/
   }
 }
 

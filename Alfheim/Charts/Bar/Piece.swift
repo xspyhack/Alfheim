@@ -11,7 +11,7 @@ import SwiftUI
 struct Piece: View {
   struct Data: Identifiable {
     var id = UUID()
-    var unit: UnitData.Unit
+    var unit: Unit
     var amount: Double
   }
 
@@ -26,5 +26,21 @@ struct Piece: View {
       .onAppear() {
         self.fill = true
     }
+  }
+}
+
+
+struct RelativeHeight<S: Shape>: Shape {
+  let shape: S
+  var relativeHeight: CGFloat
+  func path(in rect: CGRect) -> Path {
+    let childRect = rect.divided(atDistance: relativeHeight * rect.height, from: .maxYEdge).slice
+    return shape.path(in: childRect)
+  }
+}
+
+extension Shape {
+  func relativeHeight(_ height: CGFloat) -> some Shape {
+    RelativeHeight(shape: self, relativeHeight: height)
   }
 }

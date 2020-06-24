@@ -16,7 +16,7 @@ extension Alne {
     var tag: Tagit
     var group: Group
     var emoji: String?
-    let currency: Currency = .cny
+    let currency: Currency
 
     enum Group: String {
       case assets
@@ -27,6 +27,20 @@ extension Alne {
     }
   }
 }
+
+extension Alne.Account {
+  init(id: String, name: String, description: String, tag: Tagit, group: Group, currency: Currency = .cny, emoji: String? = nil) {
+    self.id = id
+    self.name = name
+    self.description = description
+    self.tag = tag
+    self.group = group
+    self.emoji = emoji
+    self.currency = currency
+  }
+}
+
+extension Alne.Account: Hashable {}
 
 extension Alne {
   enum Accounts {
@@ -51,7 +65,7 @@ extension Alne {
               name: "Assets",
               description: "Assets represent the money you have (e.g. crash).",
               tag: "",
-              group: .income)
+              group: .assets)
     }
 
     static var liabilities: Account {

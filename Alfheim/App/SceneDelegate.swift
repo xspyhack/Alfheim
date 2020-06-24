@@ -18,23 +18,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Get the managed object context from the shared persistent container.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     // Create app store
-    let store = AppStore()
+    let store = AppStore(moc: context)
     // Start app story
     startAppStory(scene: scene, store: store, context: context)
   }
 
   private func startAppStory(scene: UIScene, store: AppStore, context: NSManagedObjectContext) {
+    // Bootstrap persistences and other environments
+    bootstrap(context: context)
+
     // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
     // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-    let overviewView = OverviewView().environment(\.managedObjectContext, context).environmentObject(store)
+    let rootView = MainView().environment(\.managedObjectContext, context).environmentObject(store)
 
     // Use a UIHostingController as window root view controller.
     if let windowScene = scene as? UIWindowScene {
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UIHostingController(rootView: overviewView)
+        window.rootViewController = UIHostingController(rootView: rootView)
         self.window = window
         window.makeKeyAndVisible()
     }
+  }
+
+  private func bootstrap(context: NSManagedObjectContext) {
+    Persistences.Account(context: context).empty { result in
+      switch result {
+      case .success(let empty):
+        if empty {
+          do {
+            try Persistences.Bootstrap(context: context).start()
+          } catch {
+            print("Bootstrap starting failed: \(error)")
+          }
+        }
+      case .failure(let error):
+        print("Execute core data fetch request failed: \(error)")
+      }
+    }
+
+    //Persistences.Bootstrap(context: context).migrate()
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
@@ -71,3 +93,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+#if DEBUG
+extension PreviewProvider {
+  static var viewContext: NSManagedObjectContext {
+    return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+  }
+}
+
+extension AppState {
+  static var mock: AppState {
+    let transactions = TransactionList()
+    var state = AppState()
+    state.transactions = transactions
+    return state
+  }
+}
+
+extension AppStore {
+  static func mock(moc: NSManagedObjectContext) -> AppStore {
+    AppStore(state: AppState.mock, reducer: AppReducer(), moc: moc)
+  }
+}
+
+#endif

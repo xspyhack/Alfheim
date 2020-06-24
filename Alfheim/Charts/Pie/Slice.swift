@@ -13,7 +13,7 @@ struct Slice: View {
     var id = UUID()
     var startDegrees: Double
     var endDegrees: Double
-    var unit: UnitData.Unit
+    var unit: Unit
     var color: Color
     var normalizedValue: Double
   }
@@ -32,7 +32,7 @@ struct Slice: View {
   var body: some View {
     sector
       .fill()
-      .foregroundColor(Color.random)
+      .foregroundColor(color)
       .overlay(sector.stroke(Color.white, lineWidth: 2))
       .scaleEffect(self.fill ? 1 : 0)
       .animation(Animation.spring().delay(Double(self.index) * 0.05))
