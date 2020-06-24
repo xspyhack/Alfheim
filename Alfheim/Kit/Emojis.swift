@@ -17,10 +17,11 @@ func loadEmojis() -> [String] {
     return []
   }
 
+  let contents = string.trimmingCharacters(in: .whitespacesAndNewlines)
   var emojis: [String] = []
-  for index in 0..<string.count - 1 {
-      let emoji = string[string.index(string.startIndex, offsetBy: index)]
-      emojis.append(String(emoji))
+  for index in 0..<contents.count - 1 {
+    let emoji = contents[contents.index(contents.startIndex, offsetBy: index)]
+    emojis.append(String(emoji))
   }
 
   return emojis

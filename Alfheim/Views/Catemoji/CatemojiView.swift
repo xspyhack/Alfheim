@@ -34,7 +34,7 @@ struct CatemojiView: View {
                 Text(category.text).font(.system(size: 28))
               }
             }
-            .frame(width: 44, height: 44)
+            .frame(width: 52, height: 52)
           }
         }
         .padding(.leading, 10)

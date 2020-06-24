@@ -39,6 +39,36 @@ struct EmojiPicker: View {
     .navigationBarTitle("Emoji")
     .padding()
   }
+
+
+  /*
+  private var columns: [GridItem] {
+    [
+      GridItem(.flexible()),
+      GridItem(.flexible()),
+      GridItem(.flexible()),
+      GridItem(.flexible()),
+      GridItem(.flexible()),
+      GridItem(.flexible()),
+    ]
+  }
+
+  var body: some View {
+    ScrollView {
+      LazyVGrid(columns: columns) {
+        ForEach(emojis, id: \.self) { emoji in
+          Button(action: {
+            self.onSelected(emoji)
+          }) {
+            Text(emoji).font(.system(size: 28))
+          }
+        }
+      }
+    }
+    .navigationBarTitle("Emoji")
+    .padding()
+  }
+   */
 }
 
 #if DEBUG
