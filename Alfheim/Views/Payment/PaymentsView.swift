@@ -12,7 +12,6 @@ struct PaymentsView: View {
   var body: some View {
     NavigationView {
       PaymentList()
-        .environment(\.horizontalSizeClass, .regular)
         .navigationBarItems(
           trailing: Button(action: {
           }) {

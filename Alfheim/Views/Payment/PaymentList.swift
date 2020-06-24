@@ -45,12 +45,13 @@ struct PaymentList: View {
         }
       }
     }
+    .listStyle(InsetGroupedListStyle())
     .navigationBarTitle("Payments")
     .navigationBarItems(
       trailing: Button(action: {
         self.store.dispatch(.payment(.toggleNewPayment(presenting: true)))
       }) {
-        Image(systemName: "plus.circle").padding(.vertical).padding(.leading)
+        Image(systemName: "plus.circle").padding(.vertical).font(Font.system(size: 18)).padding(.leading)
       }
     )
     .sheet(

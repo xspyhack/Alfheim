@@ -67,7 +67,7 @@ struct EditorView: View {
         }
       }
     }
-    .listStyle(GroupedListStyle())
+    .listStyle(InsetGroupedListStyle())
   }
 }
 

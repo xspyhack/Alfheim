@@ -109,6 +109,7 @@ struct TransactionList: View {
                    selection: self.binding.selectedDate,
                    in: ...Date(),
                    displayedComponents: .date)
+          .datePickerStyle(WheelDatePickerStyle())
           .background(Color(.systemBackground))
       }
       .background(Color(.secondarySystemBackground))

@@ -22,7 +22,6 @@ struct PaymentComposer: View {
   var body: some View {
     NavigationView {
       PaymentEditor()
-        .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle(self.state.isNew ? "New Payment" : "Edit Payment")
         .navigationBarItems(
           leading: Button(action: {
@@ -56,7 +55,7 @@ struct PaymentEditor: View {
   }
 
   var body: some View {
-    Form {
+    List {
       Section(header: Spacer()) {
         TextField("Name", text: binding.validator.name)
         TextField("Description", text: binding.validator.description)
@@ -72,6 +71,7 @@ struct PaymentEditor: View {
         }
       }
     }
+    .listStyle(InsetGroupedListStyle())
   }
 }
 

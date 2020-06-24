@@ -20,7 +20,6 @@ struct AccountDetail: View {
   var body: some View {
     NavigationView {
       AccountDetailList(account: $store.state.accountDetail.account)
-        .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Account")
         .navigationBarItems(
           leading: Button(action: onDismiss) {

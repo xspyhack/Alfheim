@@ -37,7 +37,7 @@ struct AccountDetailList: View {
         }
       }
     }
-    .listStyle(GroupedListStyle())
+    .listStyle(InsetGroupedListStyle())
   }
 }
 

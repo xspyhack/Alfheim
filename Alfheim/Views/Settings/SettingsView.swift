@@ -59,8 +59,7 @@ struct SettingsView: View {
           }
         }
       }
-      .listStyle(GroupedListStyle())
-      .environment(\.horizontalSizeClass, .regular)
+      .listStyle(InsetGroupedListStyle())
       .navigationBarTitle("Settings")
       .navigationBarItems(
         leading: Button(action: {

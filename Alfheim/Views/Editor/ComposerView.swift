@@ -22,7 +22,6 @@ struct ComposerView: View {
   var body: some View {
     NavigationView {
       EditorView()
-        .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle(self.state.isNew ? " New Transaction" : "Edit Transaction")
         .navigationBarItems(
           leading: Button(action: {
