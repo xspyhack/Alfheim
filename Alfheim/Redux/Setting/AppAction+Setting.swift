@@ -11,5 +11,8 @@ import Foundation
 extension AppAction {
   enum Settings {
     case togglePayment
+
+    case selectIcon(AppIcon)
+    case selectIconDone(AppIcon, Result<Void, AppError>)
   }
 }

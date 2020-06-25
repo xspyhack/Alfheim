@@ -12,6 +12,8 @@ extension AppState {
   struct Settings {
     var isPaymentEnabled = true
 
+    var appIcon: AppIcon = .primary
+
     var appVersion: String {
       Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
     }

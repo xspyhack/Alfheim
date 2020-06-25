@@ -60,5 +60,36 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string></string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>Filled</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Filled20x20@2x</string>
+          <string>Filled20x20@3x</string>
+          <string>Filled29x29@2x</string>
+          <string>Filled29x29@3x</string>
+          <string>Filled40x40@2x</string>
+          <string>Filled40x40@3x</string>
+          <string>Filled60x60@2x</string>
+          <string>Filled60x60@3x</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>
