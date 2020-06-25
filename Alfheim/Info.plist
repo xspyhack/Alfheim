@@ -6,6 +6,37 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>Filled</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Filled20x20@2x</string>
+					<string>Filled20x20@3x</string>
+					<string>Filled29x29@2x</string>
+					<string>Filled29x29@3x</string>
+					<string>Filled40x40@2x</string>
+					<string>Filled40x40@3x</string>
+					<string>Filled60x60@2x</string>
+					<string>Filled60x60@3x</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string></string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>

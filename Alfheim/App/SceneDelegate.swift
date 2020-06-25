@@ -18,7 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Get the managed object context from the shared persistent container.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     // Create app store
-    let store = AppStore(moc: context)
+    var state = AppState()
+    if let name = UIApplication.shared.alternateIconName?.lowercased(), let icon = AppIcon(rawValue: name) {
+      state.settings.appIcon = icon
+    }
+    let store = AppStore(state: state, moc: context)
     // Start app story
     startAppStory(scene: scene, store: store, context: context)
   }
