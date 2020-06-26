@@ -13,6 +13,7 @@ struct OnboardingView: View {
     NavigationView {
       ImportView()
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 

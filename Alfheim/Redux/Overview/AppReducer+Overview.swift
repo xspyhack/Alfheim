@@ -48,6 +48,8 @@ extension AppReducers {
         case .yearly:
           appState.shared.period = .weekly
         }
+      case .onDetailed(let active):
+        appState.overview.isTransactionListActive = active
       }
 
       return (appState, appCommand)
