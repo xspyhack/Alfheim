@@ -24,6 +24,7 @@ struct StatisticsView: View {
           }
       )
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 

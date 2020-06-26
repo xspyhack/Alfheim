@@ -13,7 +13,7 @@ struct MainView: View {
 
   #if targetEnvironment(macCatalyst)
   var body: some View {
-    SplitView()
+    OverviewView()
   }
   #else
   var body: some View {

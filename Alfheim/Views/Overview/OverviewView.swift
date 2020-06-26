@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct OverviewView: View {
+  @Environment(\.horizontalSizeClass) var horizontalSizeClass
   /// App Store
   @EnvironmentObject var store: AppStore
   /// Ovewview state
@@ -71,6 +72,16 @@ struct OverviewView: View {
       .modal(isPresented: binding.isOnboardingPresented) {
         OnboardingView()
           .environmentObject(self.store)
+      }
+
+      // detail view in iPad
+      Text("\(shared.account.description)")
+        .onAppear {
+          if self.horizontalSizeClass == .compact {
+            self.store.dispatch(.overview(.onDetailed(false)))
+          } else {
+            self.store.dispatch(.overview(.onDetailed(true)))
+          }
       }
     }
   }

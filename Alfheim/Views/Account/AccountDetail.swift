@@ -32,6 +32,7 @@ struct AccountDetail: View {
           }
       )
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 

@@ -39,6 +39,7 @@ struct PaymentComposer: View {
           .disabled(!state.isValid)
         )
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 

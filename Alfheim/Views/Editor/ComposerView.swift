@@ -39,6 +39,7 @@ struct ComposerView: View {
           .disabled(!state.isValid)
         )
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 
