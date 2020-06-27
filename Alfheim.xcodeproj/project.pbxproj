@@ -77,6 +77,7 @@
 		FA014086240B8F7100F6FE92 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014085240B8F7100F6FE92 /* AccountViewModel.swift */; };
 		FA014088240C01B800F6FE92 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA014087240C01B800F6FE92 /* EmojiPicker.swift */; };
 		FA036810241CD5C50038A26E /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03680F241CD5C50038A26E /* TransactionViewModel.swift */; };
+		FA2BE85224A72FCB00133143 /* AppError+Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2BE85124A72FCB00133143 /* AppError+Setting.swift */; };
 		FA32138B2498A593006BC855 /* Color+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32138A2498A593006BC855 /* Color+Category.swift */; };
 		FA3C1750245423B40079944F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C174F245423B40079944F /* SettingsView.swift */; };
 		FA3C1752245462260079944F /* AppIconSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C1751245462260079944F /* AppIconSettingView.swift */; };
@@ -242,6 +243,7 @@
 		FA014085240B8F7100F6FE92 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		FA014087240C01B800F6FE92 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 		FA03680F241CD5C50038A26E /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		FA2BE85124A72FCB00133143 /* AppError+Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppError+Setting.swift"; sourceTree = "<group>"; };
 		FA32138A2498A593006BC855 /* Color+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Category.swift"; sourceTree = "<group>"; };
 		FA3C174F245423B40079944F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FA3C1751245462260079944F /* AppIconSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconSettingView.swift; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 				FAF2AA3F241DF89E00EE40AA /* AppAction+Setting.swift */,
 				FA83858F24A47BDA0011E0D7 /* AppCommnad+Setting.swift */,
 				FAF2AA3B241DF82E00EE40AA /* AppReducer+Setting.swift */,
+				FA2BE85124A72FCB00133143 /* AppError+Setting.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -945,6 +948,7 @@
 				FAF3803D24152EED00C592D4 /* Persistences+Transaction.swift in Sources */,
 				789E8E6923E80FFC006D180B /* Transaction.swift in Sources */,
 				FAF2AA47241DF9F200EE40AA /* AppState+Overview.swift in Sources */,
+				FA2BE85224A72FCB00133143 /* AppError+Setting.swift in Sources */,
 				1F39990023D6958700E6BBD9 /* Alfheim.xcdatamodeld in Sources */,
 				FA036810241CD5C50038A26E /* TransactionViewModel.swift in Sources */,
 				FA5F768624261F7D00277B6E /* InputTextField.swift in Sources */,

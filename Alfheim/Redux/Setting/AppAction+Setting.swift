@@ -13,6 +13,6 @@ extension AppAction {
     case togglePayment
 
     case selectIcon(AppIcon)
-    case selectIconDone(AppIcon, Result<Void, AppError>)
+    case selectIconDone(AppIcon, Result<Void, AppError.Settings>)
   }
 }

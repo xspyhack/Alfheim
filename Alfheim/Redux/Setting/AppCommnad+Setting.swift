@@ -17,7 +17,7 @@ extension AppCommands {
     func execute(in store: AppStore) {
       UIApplication.shared.setAlternateIconName(selectedIcon.alternateIconName) { error in
         if let error = error {
-          store.dispatch(.settings(.selectIconDone(self.currentIcon, .failure(AppError.changeAppIconFalied(error)))))
+          store.dispatch(.settings(.selectIconDone(self.currentIcon, .failure(AppError.Settings.changeAppIconFalied(error)))))
         } else {
           store.dispatch(.settings(.selectIconDone(self.currentIcon, .success(()))))
         }

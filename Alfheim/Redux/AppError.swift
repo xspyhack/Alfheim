@@ -10,8 +10,6 @@ import Foundation
 
 enum AppError: Error, Identifiable {
   var id: String { localizedDescription }
-
-  case changeAppIconFalied(Error)
 }
 
 extension AppError: LocalizedError {
