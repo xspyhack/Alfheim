@@ -54,6 +54,9 @@ extension AppReducers {
         appState.transactions.showDatePicker = false
 
       case .toggleStatistics(let presenting):
+        if presenting, state.transactions.displayTransactions.isEmpty {
+          break
+        }
         appState.transactions.isStatisticsPresented = presenting
         appState.statistics.transactions = state.transactions.displayTransactions
         appState.statistics.period = .monthly

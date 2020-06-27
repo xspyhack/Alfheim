@@ -30,7 +30,7 @@ extension AppReducers {
         appState.editor.isValid = false // Important! need set here
         appState.editor.validator.reset(.new)
       case .toggleStatistics(let presenting):
-        if presenting && state.shared.periodTransactions.isEmpty {
+        if presenting, state.shared.periodTransactions.isEmpty {
           break
         }
         appState.overview.isStatisticsPresented = presenting
