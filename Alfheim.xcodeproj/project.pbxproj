@@ -123,6 +123,7 @@
 		FAE1DF9D2441CAF300741C86 /* AppAction+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1DF9C2441CAF300741C86 /* AppAction+Payment.swift */; };
 		FAE1DF9F2441CB0000741C86 /* AppCommand+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1DF9E2441CB0000741C86 /* AppCommand+Payment.swift */; };
 		FAE1DFA12441CB0E00741C86 /* AppReducer+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1DFA02441CB0E00741C86 /* AppReducer+Payment.swift */; };
+		FAE434D624B815580035F0ED /* TransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE434D524B815580035F0ED /* TransactionListViewModel.swift */; };
 		FAEAA03F24612645003C6799 /* emojis.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEAA03E24612644003C6799 /* emojis.json */; };
 		FAEAA0412461278F003C6799 /* Emojis.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEAA0402461278F003C6799 /* Emojis.swift */; };
 		FAEAA043246158E2003C6799 /* AppError+Catemoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEAA042246158E2003C6799 /* AppError+Catemoji.swift */; };
@@ -289,6 +290,7 @@
 		FAE1DF9C2441CAF300741C86 /* AppAction+Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppAction+Payment.swift"; sourceTree = "<group>"; };
 		FAE1DF9E2441CB0000741C86 /* AppCommand+Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppCommand+Payment.swift"; sourceTree = "<group>"; };
 		FAE1DFA02441CB0E00741C86 /* AppReducer+Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppReducer+Payment.swift"; sourceTree = "<group>"; };
+		FAE434D524B815580035F0ED /* TransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListViewModel.swift; sourceTree = "<group>"; };
 		FAEAA03E24612644003C6799 /* emojis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emojis.json; sourceTree = "<group>"; };
 		FAEAA0402461278F003C6799 /* Emojis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojis.swift; sourceTree = "<group>"; };
 		FAEAA042246158E2003C6799 /* AppError+Catemoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppError+Catemoji.swift"; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 			children = (
 				FA014085240B8F7100F6FE92 /* AccountViewModel.swift */,
 				FA03680F241CD5C50038A26E /* TransactionViewModel.swift */,
+				FAE434D524B815580035F0ED /* TransactionListViewModel.swift */,
 				FA3C504D242BA46F00EB544D /* PaymentViewModel.swift */,
 				1F8AC494241210AE006D9551 /* EditorViewModel.swift */,
 			);
@@ -925,6 +928,7 @@
 				1F39992B23D697F700E6BBD9 /* Histogram.swift in Sources */,
 				FABEBB90245DB2CE00637226 /* View+Modal.swift in Sources */,
 				FAF2AA49241DFA0D00EE40AA /* AppAction+Overview.swift in Sources */,
+				FAE434D624B815580035F0ED /* TransactionListViewModel.swift in Sources */,
 				FAF2AA40241DF89E00EE40AA /* AppAction+Setting.swift in Sources */,
 				1F91C9F4241A4BA000B552E7 /* AppState+Account.swift in Sources */,
 				782403F423F6D79F00478338 /* TransactionRow.swift in Sources */,

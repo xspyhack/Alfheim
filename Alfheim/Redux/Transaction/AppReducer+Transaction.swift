@@ -41,18 +41,23 @@ extension AppReducers {
         appCommand = AppCommands.DeleteTransactionCommand(transactions: transactions)
 
       case .reset:
-        appState.transactions.showDatePicker = false
-        appState.transactions.selectedDate = Date()
-        appState.transactions.filterDate = Date()
+        break
+//        appState.transactions.showDatePicker = false
+//        appState.transactions.selectedDate = Date()
+//        appState.transactions.filterDate = Date()
 
       case .selectDate:
-        appState.transactions.showDatePicker = true
+//        appState.transactions.showDatePicker = true
+        break
       case .selectDateDone(let date):
-        appState.transactions.showDatePicker = false
-        appState.transactions.filterDate = date
+        break
+//        appState.transactions.showDatePicker = false
+//        appState.transactions.filterDate = date
       case .selectDateCancalled:
-        appState.transactions.showDatePicker = false
+        break
+//        appState.transactions.showDatePicker = false
 
+      case .showStatistics(
       case .toggleStatistics(let presenting):
         if presenting, state.transactions.displayTransactions.isEmpty {
           break

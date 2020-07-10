@@ -23,18 +23,23 @@ struct TransactionList: View {
     store.state.shared.account.tag
   }
 
-  @State var selectMonth = false
-  @State private var birthDate = Date()
+  private var viewModel: TransactionListViewModel {
+    state.listViewModel(filterDate: filterDate, tag: tag)
+  }
+
+  @State private var filterDate = Date()
+  @State private var selectedDate = Date()
+  @State private var showDatePicker = false
 
   var body: some View {
     List {
       Section(header:
         HStack {
           HStack(alignment: .lastTextBaseline) {
-            Text(state.selectedMonth)
+            Text(viewModel.selectedMonth)
               .font(.system(size: 34, weight: .semibold))
               .foregroundColor(.primary)
-            Text(state.selectedYear)
+            Text(viewModel.selectedYear)
               .font(.system(size: 28, weight: .medium))
               .foregroundColor(.secondary)
 
@@ -45,13 +50,14 @@ struct TransactionList: View {
           }
           .onTapGesture {
             // select month
-            self.store.dispatch(.transactions(.selectDate))
+            self.showDatePicker = true
+            //self.store.dispatch(.transactions(.selectDate))
           }
           Spacer()
           Button(action: {
             self.store.dispatch(.transactions(.toggleStatistics(presenting: true)))
           }) {
-            Text(state.displayAmountText)
+            Text(self.viewModel.displayAmountText)
               .font(.system(size: 18))
               .foregroundColor(.secondary)
             Image(systemName: "chevron.right")
@@ -68,7 +74,7 @@ struct TransactionList: View {
         }
         .foregroundColor(.primary)
       ) {
-        ForEach(state.displayViewModels(tag: self.tag)) { viewModel in
+        ForEach(self.viewModel.viewModels) { viewModel in
           TransactionRow(model: viewModel)
             .onTapGesture {
               self.store.dispatch(.transactions(.editTransaction(viewModel.transaction)))
@@ -89,24 +95,26 @@ struct TransactionList: View {
       ComposerView(mode: .edit).environmentObject(self.store)
     }
     .overlaySheet(
-      isPresented: binding.showDatePicker,
+      isPresented: self.$showDatePicker,
       onDismiss: {
-        self.store.dispatch(.transactions(.selectDateCancalled))
+        self.showDatePicker = false
+//        self.store.dispatch(.transactions(.selectDateCancalled))
     }) {
       VStack {
         HStack {
-          Text(self.state.pickedDateText)
+          Text(self.pickedDateText)
             .fontWeight(.medium)
           Spacer()
           Button(action: {
-            self.store.dispatch(.transactions(.selectDateDone(self.state.selectedDate)))
+            self.showDatePicker = false
+            self.store.dispatch(.transactions(.selectDateDone(self.selectedDate)))
           }) {
             Text("OK").bold()
           }
         }
         .padding([.top, .leading, .trailing])
         DatePicker("",
-                   selection: self.binding.selectedDate,
+                   selection: self.$selectedDate,
                    in: ...Date(),
                    displayedComponents: .date)
           .datePickerStyle(WheelDatePickerStyle())
@@ -114,6 +122,16 @@ struct TransactionList: View {
       }
       .background(Color(.secondarySystemBackground))
     }
+  }
+
+  private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMMM, yyyy"
+    return formatter
+  }()
+
+  private var pickedDateText: String {
+    return dateFormatter.string(from: selectedDate)
   }
 }
 

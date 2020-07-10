@@ -17,20 +17,6 @@ extension AppState {
 
     var isStatisticsPresented: Bool = false
 
-    var filterDate = Date()
-    var displayTransactions: [Alfheim.Transaction] {
-      // current month transactions
-      transactions.filter {
-        displayTimeRange.contains($0.date)
-        //$0.date >= filterDate.start(of: .month) && $0.date < filterDate.next(of: .month).start(of: .month)
-      }
-    }
-
-    // display time range
-    var displayTimeRange: DateInterval {
-      filterDate.interval(of: .month)!
-    }
-
     var isLoading = false
     var currency: Currency = .cny
 
@@ -39,50 +25,19 @@ extension AppState {
 
     var searchText = ""
 
-    var showDatePicker = false
-    var selectedDate = Date() // for select
-    var dateFormatter: DateFormatter {
-      let formatter = DateFormatter()
-      formatter.dateFormat = "MMMM, yyyy"
-      return formatter
-    }
-    var pickedDateText: String {
-      dateFormatter.string(from: selectedDate)
+    func listViewModel(filterDate: Date, tag: Alne.Tagit) -> TransactionListViewModel {
+      let timeRange = filterDate.start(of: .month)..<filterDate.next(of: .month).start(of: .month)
+
+      return TransactionListViewModel(
+        transactions: transactions.filter { timeRange.contains($0.date) },
+        tag: tag,
+        currency: currency,
+        filterDate: filterDate
+      )
     }
 
-    var yearFormatter: DateFormatter {
-      let formatter = DateFormatter()
-      formatter.dateFormat = "yyyy"
-      return formatter
-    }
-
-    var selectedYear: String {
-      yearFormatter.string(from: filterDate)
-    }
-
-    var monthFormatter: DateFormatter {
-      let formatter = DateFormatter()
-      formatter.dateFormat = "MMMM"
-      return formatter
-    }
-
-    var selectedMonth: String {
-      monthFormatter.string(from: filterDate)
-    }
-
-    func displayViewModels(tag: Alne.Tagit) -> [TransactionViewModel] {
-      return displayTransactions
-        .map { TransactionViewModel(transaction: $0, tag: tag) }
-    }
-
-    var displayAmount: Double {
-      displayTransactions
-        .map { $0.amount }
-        .reduce(0.0, +)
-    }
-
-    var displayAmountText: String {
-      "\(currency.symbol)\(String(format: "%.2f", displayAmount))"
+    func transactions(in range: Range<Date>) -> [Alfheim.Transaction] {
+      return transactions.filter { range.contains($0.date) }
     }
 
     func displayTransactions(from start: Date, to end: Date, tag: Alne.Tagit) -> [TransactionViewModel] {
@@ -104,5 +59,11 @@ extension AppState {
     }
 
     var loader = Loader()
+  }
+}
+
+extension Date {
+  var month: Range<Date> {
+    self.start(of: .month)..<self.next(of: .month).start(of: .month)
   }
 }
