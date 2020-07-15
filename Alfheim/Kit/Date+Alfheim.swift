@@ -23,28 +23,34 @@ extension Date {
 }
 
 extension Date {
-  enum StartComponent {
+  enum Component {
+    case day
     case week
     case month
     case year
   }
 
-  func start(of start: StartComponent, calendar: Calendar = Calendar.current) -> Date {
-    let components: Set<Calendar.Component>
-    switch start {
+  func interval(of component: Component, calendar: Calendar = .current) -> DateInterval? {
+    switch component {
+    case .day:
+      return calendar.dateInterval(of: .day, for: self)
     case .week:
-      components = [.yearForWeekOfYear, .weekOfYear]
+      return calendar.dateInterval(of: .weekOfYear, for: self)
     case .month:
-      components = [.year, .month]
+      return calendar.dateInterval(of: .month, for: self)
     case .year:
-      components = [.year]
+      return calendar.dateInterval(of: .year, for: self)
     }
-    let dateComponents = calendar.dateComponents(components, from: self)
-    return calendar.date(from: dateComponents)!
   }
 
-  func next(of component: StartComponent, calendar: Calendar = .current) -> Date {
+  func start(of component: Component, calendar: Calendar = Calendar.current) -> Date {
+    interval(of: component, calendar: calendar)!.start
+  }
+
+  func next(of component: Component, calendar: Calendar = .current) -> Date {
     switch component {
+    case .day:
+      return calendar.date(byAdding: .hour, value: 24, to: self)!
     case .week:
       return calendar.date(byAdding: .day, value: 7, to: self)!
     case .month:
@@ -54,15 +60,8 @@ extension Date {
     }
   }
 
-  func end(of component: StartComponent, calendar: Calendar = .current) -> Date {
-    switch component {
-    case .week:
-      return next(of: .week, calendar: calendar).start(of: .week)
-    case .month:
-      return next(of: .month, calendar: calendar).start(of: .month)
-    case .year:
-      return next(of: .year, calendar: calendar).start(of: .year)
-    }
+  func end(of component: Component, calendar: Calendar = .current) -> Date {
+    interval(of: component, calendar: calendar)!.end
   }
 }
 
