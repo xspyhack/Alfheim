@@ -27,8 +27,8 @@ extension AppState {
     }
 
     // display time range
-    var displayTimeRange: Range<Date> {
-      filterDate.start(of: .month)..<filterDate.next(of: .month).start(of: .month)
+    var displayTimeRange: DateInterval {
+      filterDate.interval(of: .month)!
     }
 
     var isLoading = false

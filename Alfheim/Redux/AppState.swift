@@ -107,20 +107,17 @@ extension AppState {
       "\(account.currency.symbol)\(String(format: "%.2f", amount))"
     }
 
-    var timeRange: Range<Date> {
+    var timeRange: DateInterval {
       let current = Date()
-      let startDate: Date
 
       switch period {
       case .weekly:
-        startDate = current.start(of: .week)
+        return current.interval(of: .week)!
       case .monthly:
-        startDate = current.start(of: .month)
+        return current.interval(of: .month)!
       case .yearly:
-        startDate = current.start(of: .year)
+        return current.interval(of: .year)!
       }
-
-      return startDate..<current
     }
   }
 }

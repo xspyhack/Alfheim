@@ -13,10 +13,10 @@ extension AppState {
   struct Statistics {
     var account: Alne.Account
     var period: Period = .monthly
-    var timeRange: Range<Date> = Date()..<Date() // Half-Open range, defaults empty range
-    var closedTimeRange: ClosedRange<Date> {
-      let upper = timeRange.upperBound.addingTimeInterval(-0.01)
-      return timeRange.lowerBound...upper
+    var timeRange: DateInterval = DateInterval() // Half-Open range, defaults empty range
+    var closedTimeRange: DateInterval {
+      let upper = timeRange.end.addingTimeInterval(-0.01)
+      return DateInterval(start: timeRange.start, end: upper)
     }
 
     var transactions: [Alfheim.Transaction] = []
@@ -101,7 +101,7 @@ extension AppState {
         let from = calendar.date(byAdding: .day, value: -6, to: today)!
         let formatter = DateFormatter()
         formatter.dateFormat = "E"
-        let upper = closedTimeRange.upperBound
+        let upper = closedTimeRange.end
         let to: Date = min(upper, Date())
         
         return stride(from: from, to: to, by: intervals)
@@ -119,7 +119,7 @@ extension AppState {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMMMdd"
         var result = [(String, Double)]()
-        let upper = closedTimeRange.upperBound
+        let upper = closedTimeRange.end
         let to: Date = min(upper, Date())
 
         for idx in (0..<7).reversed() {

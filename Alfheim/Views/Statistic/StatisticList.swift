@@ -50,7 +50,7 @@ struct StatisticList: View {
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM dd"
     let range = state.closedTimeRange
-    return "\(formatter.string(from: range.lowerBound)) - \(formatter.string(from: range.upperBound))"
+    return "\(formatter.string(from: range.start)) - \(formatter.string(from: range.end))"
   }
 
   private var symbol: String {
