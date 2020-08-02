@@ -17,16 +17,8 @@ extension AppAction {
     case editTransaction(Alfheim.Transaction)
     case editTransactionDone
 
-    case delete(at: IndexSet, in: Alfheim.Transaction)
-
-    case reset(Bool)
-
-    // picker date
-    case selectDate
-    case selectDateDone(Date)
-    case selectDateCancalled
-
-    case showStatistics([Alfheim.Transaction], timeRange: Range<Date>)
+    case delete(in: [Alfheim.Transaction], at: IndexSet)
+    case showStatistics([Alfheim.Transaction], timeRange: DateInterval)
     case dimissStatistics
   }
 }

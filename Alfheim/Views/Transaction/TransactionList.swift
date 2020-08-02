@@ -49,13 +49,12 @@ struct TransactionList: View {
               .padding(.bottom, 2)
           }
           .onTapGesture {
-            // select month
             self.showDatePicker = true
-            //self.store.dispatch(.transactions(.selectDate))
           }
           Spacer()
           Button(action: {
-            self.store.dispatch(.transactions(.toggleStatistics(presenting: true)))
+            let transactions = state.transactions(in: filterDate.interval(of: .month)!)
+            store.dispatch(.transactions(.showStatistics(transactions, timeRange: filterDate.interval(of: .month)!)))
           }) {
             Text(self.viewModel.displayAmountText)
               .font(.system(size: 18))
@@ -67,7 +66,7 @@ struct TransactionList: View {
           .modal(
             isPresented: self.binding.isStatisticsPresented,
             onDismiss: {
-              self.store.dispatch(.transactions(.toggleStatistics(presenting: false)))
+              store.dispatch(.transactions(.dimissStatistics))
           }) {
             StatisticsView().environmentObject(self.store)
           }
@@ -81,7 +80,7 @@ struct TransactionList: View {
           }
         }
         .onDelete { indexSet in
-          self.store.dispatch(.transactions(.delete(at: indexSet)))
+          self.store.dispatch(.transactions(.delete(in: state.transactions(in: filterDate.interval(of: .month)!), at: indexSet)))
         }
       }
     }
@@ -98,7 +97,6 @@ struct TransactionList: View {
       isPresented: self.$showDatePicker,
       onDismiss: {
         self.showDatePicker = false
-//        self.store.dispatch(.transactions(.selectDateCancalled))
     }) {
       VStack {
         HStack {
@@ -107,7 +105,7 @@ struct TransactionList: View {
           Spacer()
           Button(action: {
             self.showDatePicker = false
-            self.store.dispatch(.transactions(.selectDateDone(self.selectedDate)))
+            self.filterDate = self.selectedDate
           }) {
             Text("OK").bold()
           }

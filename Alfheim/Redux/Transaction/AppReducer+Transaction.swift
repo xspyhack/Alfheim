@@ -36,36 +36,16 @@ extension AppReducers {
         appState.transactions.editingTransaction = false
         appState.editor.isValid = false // Important! need set here
         appState.editor.validator.reset(.new)
-      case .delete(at: let indexSet):
-        let transactions = state.transactions.displayTransactions.elements(atOffsets: indexSet)
-        appCommand = AppCommands.DeleteTransactionCommand(transactions: transactions)
-
-      case .reset:
-        break
-//        appState.transactions.showDatePicker = false
-//        appState.transactions.selectedDate = Date()
-//        appState.transactions.filterDate = Date()
-
-      case .selectDate:
-//        appState.transactions.showDatePicker = true
-        break
-      case .selectDateDone(let date):
-        break
-//        appState.transactions.showDatePicker = false
-//        appState.transactions.filterDate = date
-      case .selectDateCancalled:
-        break
-//        appState.transactions.showDatePicker = false
-
-      case .showStatistics(
-      case .toggleStatistics(let presenting):
-        if presenting, state.transactions.displayTransactions.isEmpty {
-          break
-        }
-        appState.transactions.isStatisticsPresented = presenting
-        appState.statistics.transactions = state.transactions.displayTransactions
+      case .delete(in: let transactions, at: let indexSet):
+        let deleted = transactions.elements(atOffsets: indexSet)
+        appCommand = AppCommands.DeleteTransactionCommand(transactions: deleted)
+      case .showStatistics(let transactions, let timeRange):
+        appState.transactions.isStatisticsPresented = true
+        appState.statistics.transactions = transactions
         appState.statistics.period = .monthly
-        appState.statistics.timeRange = state.transactions.displayTimeRange
+        appState.statistics.timeRange = timeRange
+      case .dimissStatistics:
+        appState.transactions.isStatisticsPresented = false
       }
 
       return (appState, appCommand)

@@ -36,8 +36,8 @@ extension AppState {
       )
     }
 
-    func transactions(in range: Range<Date>) -> [Alfheim.Transaction] {
-      return transactions.filter { range.contains($0.date) }
+    func transactions(in interval: DateInterval) -> [Alfheim.Transaction] {
+      return transactions.filter { interval.contains($0.date) }
     }
 
     func displayTransactions(from start: Date, to end: Date, tag: Alne.Tagit) -> [TransactionViewModel] {
@@ -59,11 +59,5 @@ extension AppState {
     }
 
     var loader = Loader()
-  }
-}
-
-extension Date {
-  var month: Range<Date> {
-    self.start(of: .month)..<self.next(of: .month).start(of: .month)
   }
 }

@@ -112,9 +112,6 @@ struct OverviewView: View {
         Image(systemName: "chevron.right")
       }
       .foregroundColor(.primary)
-      .onAppear() {
-        self.store.dispatch(.transactions(.reset(true)))
-      }
     }) {
       ForEach(self.shared.displayTransactions) { viewModel in
         TransactionRow(model: viewModel)
