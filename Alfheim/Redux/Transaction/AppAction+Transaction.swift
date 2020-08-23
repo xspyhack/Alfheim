@@ -18,7 +18,7 @@ extension AppAction {
     case editTransactionDone
 
     case delete(in: [Alfheim.Transaction], at: IndexSet)
-    case showStatistics([Alfheim.Transaction], timeRange: DateInterval)
+    case showStatistics([Alfheim.Transaction], interval: DateInterval)
     case dimissStatistics
   }
 }

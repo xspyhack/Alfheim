@@ -27,6 +27,10 @@ struct TransactionList: View {
     state.listViewModel(filterDate: filterDate, tag: tag)
   }
 
+  private var displayTransactions: [Alfheim.Transaction] {
+    viewModel.viewModels.map { $0.transaction }
+  }
+
   @State private var filterDate = Date()
   @State private var selectedDate = Date()
   @State private var showDatePicker = false
@@ -53,8 +57,7 @@ struct TransactionList: View {
           }
           Spacer()
           Button(action: {
-            let transactions = state.transactions(in: filterDate.interval(of: .month)!)
-            store.dispatch(.transactions(.showStatistics(transactions, timeRange: filterDate.interval(of: .month)!)))
+            store.dispatch(.transactions(.showStatistics(displayTransactions, interval: filterDate.interval(of: .month)!)))
           }) {
             Text(self.viewModel.displayAmountText)
               .font(.system(size: 18))
@@ -80,7 +83,7 @@ struct TransactionList: View {
           }
         }
         .onDelete { indexSet in
-          self.store.dispatch(.transactions(.delete(in: state.transactions(in: filterDate.interval(of: .month)!), at: indexSet)))
+          self.store.dispatch(.transactions(.delete(in: displayTransactions, at: indexSet)))
         }
       }
     }

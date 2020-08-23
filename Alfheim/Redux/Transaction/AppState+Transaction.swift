@@ -26,10 +26,10 @@ extension AppState {
     var searchText = ""
 
     func listViewModel(filterDate: Date, tag: Alne.Tagit) -> TransactionListViewModel {
-      let timeRange = filterDate.start(of: .month)..<filterDate.next(of: .month).start(of: .month)
+      let interval = filterDate.interval(of: .month)!
 
       return TransactionListViewModel(
-        transactions: transactions.filter { timeRange.contains($0.date) },
+        transactions: transactions.filter { interval.contains($0.date) },
         tag: tag,
         currency: currency,
         filterDate: filterDate
@@ -40,7 +40,7 @@ extension AppState {
       return transactions.filter { interval.contains($0.date) }
     }
 
-    func displayTransactions(from start: Date, to end: Date, tag: Alne.Tagit) -> [TransactionViewModel] {
+    private func displayTransactions(from start: Date, to end: Date, tag: Alne.Tagit) -> [TransactionViewModel] {
       return transactions
         .sorted(by: { $0.date > $1.date })
         .filter { $0.date <= end && $0.date >= start }

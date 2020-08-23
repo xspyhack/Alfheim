@@ -39,11 +39,15 @@ extension AppReducers {
       case .delete(in: let transactions, at: let indexSet):
         let deleted = transactions.elements(atOffsets: indexSet)
         appCommand = AppCommands.DeleteTransactionCommand(transactions: deleted)
-      case .showStatistics(let transactions, let timeRange):
+      case .showStatistics(let transactions, let interval):
+        guard !transactions.isEmpty else {
+          // show error
+          break
+        }
         appState.transactions.isStatisticsPresented = true
         appState.statistics.transactions = transactions
         appState.statistics.period = .monthly
-        appState.statistics.timeRange = timeRange
+        appState.statistics.timeRange = interval
       case .dimissStatistics:
         appState.transactions.isStatisticsPresented = false
       }
