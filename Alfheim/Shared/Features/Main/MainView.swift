@@ -7,9 +7,10 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct MainView: View {
-  @EnvironmentObject var store: AppStore
+  let store: Store<AppState, AppAction>
   #if os(iOS)
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   #endif
@@ -22,7 +23,7 @@ struct MainView: View {
 //      SidebarNavigation()
 //    }
 //    #else
-    SidebarNavigation()
+    SidebarNavigation(store: store)
 //    #endif
   }
 }
@@ -32,14 +33,16 @@ struct SidebarNavigation: View {
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   #endif
 
-  @EnvironmentObject var store: AppStore
+  let store: Store<AppState, AppAction>
 
   var body: some View {
     NavigationView {
-      Sidebar(selectedAccount: Alne.Accounts.expenses)
-
-      //OverviewView(account: nil)
-
+      WithViewStore(store) { viewStore in
+        Sidebar(store: store)
+          .onAppear {
+            viewStore.send(.load)
+          }
+      }
       // detail view in iPad
       Text("Sidebar navigation")
     }
@@ -47,39 +50,53 @@ struct SidebarNavigation: View {
 }
 
 struct Sidebar: View {
-  @EnvironmentObject var store: AppStore
-
-  private var state: AppState {
-    store.state
-  }
-
-  @State var selectedAccount: Alne.Account?
+  let store: Store<AppState, AppAction>
 
   var body: some View {
-    List(selection: $selectedAccount) {
-      ForEach(state.account.accounts) { account in
-        NavigationLink(
-          destination: OverviewView()
-            .environmentObject(
-              store.derived(
-                state: { _ in AppState.Overview(account: account) },
-                action: AppAction.overview
-              )
-            )
-        ) {
-          Label(account.name, systemImage: "folder.circle")
+    WithViewStore(store) { viewStore in
+      List {
+        ForEachStore(
+          self.store.scope(
+            state: \.overviews,
+            action: AppAction.overview
+          )
+        ) { overviewStore in
+          WithViewStore(overviewStore) { viewStore in
+            NavigationLink(
+              destination:
+                OverviewView(store: overviewStore)
+            ) {
+              Label(viewStore.account.name, systemImage: "folder.circle")
+            }
+          }
         }
       }
+      .listStyle(SidebarListStyle())
+      .navigationBarTitle("Clic")
+      .navigationBarItems(
+        trailing: Button(action: {
+          //viewStore.send(.cleanup)
+        }) {
+          Image(systemName: "gear")
+        }
+      )
+//      .sheet(
+//        isPresented: binding.isSettingsPresented,
+//        onDismiss: {
+//          self.store.dispatch(.overview(.toggleSettings(presenting: false)))
+//      }) {
+//        SettingsView()
+//      }
+//      .toolbar(content: {
+//        ToolbarItem(placement: .primaryAction) {
+//          Button(action: {
+//            //store.dispatch(.cleanup)
+//          }) {
+//            Label("Settings", systemImage: "gear")
+//          }
+//        }
+//      })
     }
-    .listStyle(SidebarListStyle())
-    .navigationBarTitle("Clic")
-    .navigationBarItems(
-      trailing: Button(action: {
-        //store.dispatch(.account(.cleanup))
-      }) {
-        Image(systemName: "gear")
-      }
-    )
   }
 }
 

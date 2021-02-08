@@ -21,12 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Get the managed object context from the shared persistent container.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     // Create app store
-    var state = AppState()
+
 //    if let name = UIApplication.shared.alternateIconName?.lowercased(), let icon = AppIcon(rawValue: name) {
 //      state.settings.appIcon = icon
 //    }
     var environment = AppEnvironment.default
     environment.context = context
+
+    let state = AppState()
+
     let store = AppStore(initialState: state, reducer: AppReducers.appReducer, environment: environment)
     // Start app story
     startAppStory(scene: scene, store: store, context: context)
@@ -39,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
     // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-    let rootView = MainView().environment(\.managedObjectContext, context).environmentObject(store)
+    let rootView = MainView(store: store).environment(\.managedObjectContext, context)
 
     // Use a UIHostingController as window root view controller.
     if let windowScene = scene as? UIWindowScene {
@@ -48,8 +51,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
     }
-
-    store.dispatch(.load)
   }
 
   private func bootstrap(context: NSManagedObjectContext) {

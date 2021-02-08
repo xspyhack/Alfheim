@@ -9,10 +9,9 @@
 import Foundation
 
 enum AppAction {
-  case overview(Overview)
-//  case editor(Editor)
+  case overview(index: Int, action: Overview)
+  //case editor(Editor)
 //  case settings(Settings)
-  case account(Account)
 //  case transactions(Transactions)
 //  case payment(Payment)
 //  case catemoji(Catemoji)
@@ -21,6 +20,8 @@ enum AppAction {
 //  case finishImport
 
   case load
+  case loaded([Alfheim.Account])
+  case cleanup
 }
 
 extension AppAction {

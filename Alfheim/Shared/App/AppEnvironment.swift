@@ -21,3 +21,5 @@ struct AppEnvironment {
 extension AppEnvironment {
   static let `default` = AppEnvironment()
 }
+
+enum AppEnvironments {}

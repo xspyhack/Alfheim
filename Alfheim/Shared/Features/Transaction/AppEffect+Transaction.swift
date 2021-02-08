@@ -1,5 +1,5 @@
 //
-//  AppCommand+Transaction.swift
+//  AppEffect+Transaction.swift
 //  Alfheim
 //
 //  Created by alex.huo on 2020/3/12.
@@ -8,6 +8,35 @@
 
 import Foundation
 import Combine
+import ComposableArchitecture
+import CoreData
+
+extension AppEffects {
+  enum Transaction {
+    static func create(snapshot: Alfheim.Transaction.Snapshot, context: NSManagedObjectContext?) -> Effect<Bool, NSError> {
+      // TBD:
+      // Effect.fireAndForget { }
+      guard let context = context else {
+        return Effect.none
+      }
+
+      let persistence = Persistences.Transaction(context: context)
+      let object = Alfheim.Transaction(context: context)
+      object.fill(snapshot)
+
+      return Future { promise in
+        do {
+          try persistence.save()
+          promise(.success(true))
+        } catch {
+          print("Update account failed: \(error)")
+          promise(.failure(error as NSError))
+        }
+      }
+      .eraseToEffect()
+    }
+  }
+}
 
 //extension AppCommands {
 //  struct LoadTransactionsCommand: AppCommand {

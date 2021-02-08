@@ -8,11 +8,13 @@
 
 import Foundation
 
-//struct AppState: Equatable {
-//  var accounts: [Alfheim.Account] = []
-//  var transactions: [Alfheim.Transaction] = []
-//}
-
 struct AppState: Equatable {
-  var account = Account()
+  var overviews: [Overview] = []
+  //var editor = Editor()
+}
+
+extension AppState {
+  var accounts: [Alfheim.Account] {
+    overviews.map { $0.account }
+  }
 }

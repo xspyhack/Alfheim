@@ -1,17 +1,18 @@
 //
-//  AppEffect+Account.swift
+//  AppEffect+Editor.swift
 //  Alfheim
 //
-//  Created by alex.huo on 2020/3/12.
-//  Copyright © 2020 blessingsoft. All rights reserved.
+//  Created by bl4ckra1sond3tre on 2021/2/8.
+//  Copyright © 2021 blessingsoft. All rights reserved.
 //
 
 import Foundation
 import Combine
 import ComposableArchitecture
+import CoreData
 
 extension AppEffects {
-  enum Account {
+  enum Editor {
     static func delete(accounts: [Alfheim.Account], environment: AppEnvironment) -> Effect<Bool, NSError> {
       guard let context = environment.context else {
         return Effect.none

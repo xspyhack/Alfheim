@@ -8,6 +8,7 @@
 
 import Foundation
 import CasePaths
+import ComposableArchitecture
 
 enum AppReducers {
   static let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
@@ -18,16 +19,32 @@ enum AppReducers {
           .fetchAllPublisher()
           .replaceError(with: [])
           .map { accounts in
-            AppAction.account(.loaded(accounts))
+            .loaded(accounts)
           }
           .eraseToEffect()
+      case .loaded(let accounts):
+        state.overviews = accounts.map { AppState.Overview(account: $0) }
+        return .none
+      case .cleanup:
+        return AppEffects.Account.delete(accounts: state.accounts, environment: environment)
+          .replaceError(with: false)
+          .ignoreOutput()
+          .eraseToEffect()
+          .fireAndForget()
       default:
         return .none
       }
     },
-    AppReducers.Account.reducer.lift(
-      state: \.account,
-      action: /AppAction.account,
-      environment: { $0 })
+    AppReducers.Overview.reducer.forEach(
+      state: \AppState.overviews,
+      action: /AppAction.overview(index:action:),
+      environment: { $0 }
+    )
+//    AppReducers.Editor.reducer
+//      .pullback(
+//        state: \.editor,
+//        action: /AppAction.editor,
+//        environment: { _ in AppEnvironment.Editor(validator: Validator()) }
+//      )
   )
 }

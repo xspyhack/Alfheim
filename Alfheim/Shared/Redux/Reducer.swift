@@ -10,6 +10,7 @@ import Foundation
 import Combine
 import CasePaths
 
+/*
 struct Reducer<State, Action, Environment> {
   let reduce: (inout State, Action, Environment) -> Effect<Action, Never>
 
@@ -21,22 +22,40 @@ struct Reducer<State, Action, Environment> {
     reduce(&state, action, environment)
   }
 
-  func lift<TargetState, TargetAction, TargetEnvironment>(
-    state liftedState: WritableKeyPath<TargetState, State>,
-    action liftedAction: CasePath<TargetAction, Action>,
-    environment liftedEnvironment: @escaping (TargetEnvironment) -> Environment
-  ) -> Reducer<TargetState, TargetAction, TargetEnvironment> {
-    Reducer<TargetState, TargetAction, TargetEnvironment> { sourceState, sourceAction, sourceEnvironment in
-      guard let action = liftedAction.extract(from: sourceAction) else {
+  func lifted<LiftedState, LiftedAction, LiftedEnvironment>(
+    state keyPath: WritableKeyPath<LiftedState, State>,
+    action liftAction: CasePath<LiftedAction, Action>,
+    environment liftEnvironment: @escaping (LiftedEnvironment) -> Environment
+  ) -> Reducer<LiftedState, LiftedAction, LiftedEnvironment> {
+    Reducer<LiftedState, LiftedAction, LiftedEnvironment> { state, action, environment in
+      guard let action = liftAction.extract(from: action) else {
         return .none
       }
       return self.reduce(
-        &sourceState[keyPath: liftedState],
+        &state[keyPath: keyPath],
         action,
-        liftedEnvironment(sourceEnvironment)
+        liftEnvironment(environment)
       )
-      .map(liftedAction.embed)
+      .map(liftAction.embed)
       .eraseToEffect()
+    }
+  }
+
+  func indexed<IndexedState, IndexedAction, IndexedEnvironment>(
+    state keyPath: WritableKeyPath<IndexedState, [State]>,
+    action indexedAction: CasePath<IndexedAction, (Int, Action)>,
+    environment indexedEnvironment: @escaping (IndexedEnvironment) -> Environment
+  ) -> Reducer<IndexedState, IndexedAction, IndexedEnvironment> {
+    Reducer<IndexedState, IndexedAction, IndexedEnvironment> { state, action, environment in
+      guard let (index, indexAction) = indexedAction.extract(from: action) else {
+        return .none
+      }
+      return self.reduce(
+        &state[keyPath: keyPath][index],
+        indexAction,
+        indexedEnvironment(environment)
+      )
+      .map { indexedAction.embed((index, $0)) }
     }
   }
 
@@ -55,3 +74,4 @@ struct Reducer<State, Action, Environment> {
     }
   }
 }
+*/

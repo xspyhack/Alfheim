@@ -10,6 +10,7 @@ import Foundation
 import Combine
 import SwiftUI
 
+/*
 final class Store<State, Action>: ObservableObject {
   @Published private(set) var state: State
 
@@ -119,8 +120,15 @@ extension Store {
     to action: @escaping (Value) -> Action
   ) -> Binding<Value> {
     Binding<Value>(
-      get: { self.state[keyPath: keyPath] },
-      set: { self.dispatch(action($0)) }
+      get: {
+        let a = self.state[keyPath: keyPath]
+        return a
+
+      },
+      set: {
+        self.dispatch(action($0))
+      }
     )
   }
 }
+*/

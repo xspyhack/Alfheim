@@ -18,5 +18,7 @@ extension AppAction {
     case switchPeriod
     case toggleSettings(presenting: Bool)
     case onDetailed(Bool)
+
+    case editor(Editor)
   }
 }

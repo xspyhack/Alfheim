@@ -7,14 +7,16 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct AppView: View {
+  let store: Store<AppState, AppAction>
   @State var boarding: Bool = false
   var body: some View {
     if boarding {
       OnboardingView()
     } else {
-      MainView()
+      MainView(store: store)
     }
   }
 }

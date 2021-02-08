@@ -10,7 +10,7 @@ import Foundation
 
 extension AppState {
   /// Overview view state
-  struct Overview {
+  struct Overview: Equatable, Identifiable {
     var isEditorPresented: Bool = false
     var isStatisticsPresented: Bool = false
     var selectedTransaction: Alfheim.Transaction?
@@ -24,8 +24,14 @@ extension AppState {
     var account: Alfheim.Account
     var period: Period = .yearly
 
+    var editor = Editor()
+
+    var id: UUID
+
     init(account: Alfheim.Account) {
+      print("init")
       self.account = account
+      self.id = account.id
     }
 
     var transactions: [Alfheim.Transaction] {
@@ -55,7 +61,8 @@ extension AppState {
     }
 
     var amountText: String {
-      "\(Alne.Currency(rawValue: Int(account.currency))!.symbol)\(String(format: "%.2f", amount))"
+      let symbol = Alne.Currency(rawValue: Int(account.currency))?.symbol
+      return "\(symbol ?? "")\(String(format: "%.2f", amount))"
     }
   }
 }

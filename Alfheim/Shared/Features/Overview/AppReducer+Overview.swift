@@ -7,8 +7,28 @@
 //
 
 import Foundation
+import ComposableArchitecture
 
 extension AppReducers {
+  enum Overview {
+    static let reducer = Reducer<AppState.Overview, AppAction.Overview, AppEnvironment>.combine(
+      Reducer { state, action, environment in
+        switch action {
+        case .toggleNewTransaction(let presenting):
+          state.isEditorPresented = presenting
+        default:
+          ()
+        }
+        return .none
+      },
+      AppReducers.Editor.reducer
+        .pullback(
+          state: \.editor,
+          action: /AppAction.Overview.editor,
+          environment: { AppEnvironment.Editor(validator: Validator(), context: $0.context) }
+        )
+    )
+  }
 //  enum Overview {
 //    static func reduce(state: AppState, action: AppAction.Overview) -> (AppState, AppCommand?) {
 //      var appState = state

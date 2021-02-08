@@ -7,49 +7,51 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct OverviewView: View {
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
-  @EnvironmentObject var store: Store<AppState.Overview, AppAction.Overview>
+  let store: Store<AppState.Overview, AppAction.Overview>
 
   @State private var presentingStatistics = false
 
-  private var account: Alfheim.Account {
-    return store.state.account
-  }
-
   var body: some View {
-    GeometryReader { geometry in
-      ScrollView(.vertical, showsIndicators: false) {
-        VStack {
-          self.accountCard.frame(height: geometry.size.width*9/16)
-          Spacer().frame(height: 36)
-          //self.transactions()
-        }
-        .padding(18)
-      }
-    }
-    .navigationBarTitle(account.name)
-    .navigationBarItems(
-      trailing: Button(action: {
-        store.dispatch(.toggleNewTransaction(presenting: true))
-      }) {
-        Image(systemName: "plus.circle").padding(.vertical).font(Font.system(size: 18)).padding(.leading)
-        //Label("New Transation", systemImage: "plus.circle").padding(.vertical).padding(.trailing)
-      }
-      .sheet(
-        isPresented: store.binding(for: \.isEditorPresented, to: { .toggleNewTransaction(presenting: $0) })
-      ) {
-        ComposerView(mode: .new)
-          .environmentObject(self.store)
-      }
-    )
-  }
+    WithViewStore(store) { viewStore in
+      GeometryReader { geometry in
+        ScrollView(.vertical, showsIndicators: false) {
+          VStack {
+            AccountCard(store: store)
+              .frame(height: geometry.size.width*9/16)
+              .onTapGesture {
+                presentingStatistics.toggle()
+            }
+            Spacer().frame(height: 36)
 
-  private var accountCard: some View {
-    AccountCard()
-      .onTapGesture {
-        self.presentingStatistics.toggle()
+            ForEach(viewStore.account.transactions) { transaction in
+              Text(transaction.notes)
+            }
+          }
+          .padding(18)
+        }
+      }
+      .navigationBarTitle(viewStore.account.name)
+      .navigationBarItems(
+        trailing: Button(action: {
+          viewStore.send(.toggleNewTransaction(presenting: true))
+        }) {
+          Image(systemName: "plus.circle").padding(.vertical).font(.system(size: 18)).padding(.leading)
+        }
+        .sheet(
+          isPresented: viewStore.binding(get: \.isEditorPresented, send: { .toggleNewTransaction(presenting: $0) })
+        ) {
+          ComposerView(
+            store: store.scope(
+              state: \.editor,
+              action: AppAction.Overview.editor),
+            mode: .new
+          )
+        }
+      )
     }
   }
 }
@@ -93,14 +95,6 @@ struct OverviewView: View {
 //          //Text("Settings").bold()
 //          Image(systemName: "gear").padding(.vertical).padding(.trailing)
 //        },
-////        .sheet(
-////          isPresented: binding.isSettingsPresented,
-////          onDismiss: {
-////            self.store.dispatch(.overview(.toggleSettings(presenting: false)))
-////        }) {
-////          SettingsView()
-////            .environmentObject(self.store)
-////        },
 //        trailing: Button(action: {
 //          self.store.dispatch(.overview(.toggleNewTransaction(presenting: true)))
 //        }) {

@@ -10,7 +10,6 @@ import Foundation
 
 extension AppAction {
   enum Account {
-    case loaded([Alfheim.Account])
-    case cleanup
+    case update(Alfheim.Account)
   }
 }

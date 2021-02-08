@@ -8,19 +8,14 @@
 
 import Foundation
 import Combine
+import ComposableArchitecture
 
 extension AppReducers {
   enum Account {
     static let reducer = Reducer<AppState.Account, AppAction.Account, AppEnvironment> { state, action, environment in
       switch action {
-      case .loaded(let accounts):
-        state.accounts = accounts
-      case .cleanup:
-        return AppEffects.Account.delete(accounts: state.accounts, environment: environment)
-          .replaceError(with: false)
-          .ignoreOutput()
-          .eraseToEffect()
-          .forget()
+      case .update(let account):
+        ()
       }
       return .none
     }

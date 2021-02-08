@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 
+/*
 typealias Effect = AnyPublisher
 
 extension Effect {
@@ -44,3 +45,4 @@ extension AnyCancellable {
     token.cancellable = self
   }
 }
+*/
