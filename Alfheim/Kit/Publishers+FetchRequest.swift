@@ -66,6 +66,7 @@ extension Publishers {
             _ = subscriber.receive(objects)
         }
       } catch {
+        // Should map to value?
         subscriber.receive(completion: .failure(error as NSError))
       }
     }

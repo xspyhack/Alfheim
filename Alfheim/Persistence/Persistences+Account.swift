@@ -60,6 +60,11 @@ extension Persistences {
       }
     }
 
+    /// Delete, without save.
+    func delete(_ object: NSManagedObject) {
+      context.delete(object)
+    }
+
     /// Fetch with predicate, should use in context queue
     func fetch(with predicate: NSPredicate) throws -> [Alfheim.Account] {
       let fetchRequest: NSFetchRequest<Alfheim.Account> = Alfheim.Account.fetchRequest()

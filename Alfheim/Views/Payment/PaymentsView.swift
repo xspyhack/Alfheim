@@ -7,23 +7,23 @@
 //
 
 import SwiftUI
-
-struct PaymentsView: View {
-  var body: some View {
-    NavigationView {
-      PaymentList()
-        .navigationBarItems(
-          trailing: Button(action: {
-          }) {
-            Text("Edit").bold()
-          }
-        )
-    }
-  }
-}
-
-struct Payments_Previews: PreviewProvider {
-  static var previews: some View {
-    PaymentsView()
-  }
-}
+//
+//struct PaymentsView: View {
+//  var body: some View {
+//    NavigationView {
+//      PaymentList()
+//        .navigationBarItems(
+//          trailing: Button(action: {
+//          }) {
+//            Text("Edit").bold()
+//          }
+//        )
+//    }
+//  }
+//}
+//
+//struct Payments_Previews: PreviewProvider {
+//  static var previews: some View {
+//    PaymentsView()
+//  }
+//}

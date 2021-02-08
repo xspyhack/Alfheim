@@ -14,17 +14,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   var window: UIWindow?
 
+  private var environment: AppEnvironment?
+  private var store: AppStore?
+
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     // Get the managed object context from the shared persistent container.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     // Create app store
     var state = AppState()
-    if let name = UIApplication.shared.alternateIconName?.lowercased(), let icon = AppIcon(rawValue: name) {
-      state.settings.appIcon = icon
-    }
-    let store = AppStore(state: state, moc: context)
+//    if let name = UIApplication.shared.alternateIconName?.lowercased(), let icon = AppIcon(rawValue: name) {
+//      state.settings.appIcon = icon
+//    }
+    var environment = AppEnvironment.default
+    environment.context = context
+    let store = AppStore(initialState: state, reducer: AppReducers.appReducer, environment: environment)
     // Start app story
     startAppStory(scene: scene, store: store, context: context)
+    self.store = store
   }
 
   private func startAppStory(scene: UIScene, store: AppStore, context: NSManagedObjectContext) {
@@ -42,6 +48,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
     }
+
+    store.dispatch(.load)
   }
 
   private func bootstrap(context: NSManagedObjectContext) {
@@ -62,6 +70,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     //Persistences.Bootstrap(context: context).migrate()
   }
+
+//  private func startBoarding(scene: UIScene) {
+//    // Create the onboarding SwiftUI view
+//    let rootView = OnboardingView()
+//
+//    // Use a UIHostingController as window root view controller.
+//    if let windowScene = scene as? UIWindowScene {
+//        let window = UIWindow(windowScene: windowScene)
+//        window.rootViewController = UIHostingController(rootView: rootView)
+//        self.window = window
+//        window.makeKeyAndVisible()
+//    }
+//  }
 
   func sceneDidDisconnect(_ scene: UIScene) {
     // Called as the scene is being released by the system.
@@ -104,19 +125,19 @@ extension PreviewProvider {
   }
 }
 
-extension AppState {
-  static var mock: AppState {
-    let transactions = TransactionList()
-    var state = AppState()
-    state.transactions = transactions
-    return state
-  }
-}
-
-extension AppStore {
-  static func mock(moc: NSManagedObjectContext) -> AppStore {
-    AppStore(state: AppState.mock, reducer: AppReducer(), moc: moc)
-  }
-}
+//extension AppState {
+//  static var mock: AppState {
+//    let transactions = TransactionList()
+//    var state = AppState()
+//    state.transactions = transactions
+//    return state
+//  }
+//}
+//
+//extension AppStore {
+//  static func mock(moc: NSManagedObjectContext) -> AppStore {
+//    AppStore(state: AppState.mock, reducer: AppReducer(), moc: moc)
+//  }
+//}
 
 #endif

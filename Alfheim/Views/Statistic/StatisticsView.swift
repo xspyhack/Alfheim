@@ -7,31 +7,31 @@
 //
 
 import SwiftUI
-
-struct StatisticsView: View {
-  @EnvironmentObject var store: AppStore
-  @Environment(\.presentationMode) var presentationMode
-
-  var body: some View {
-    NavigationView {
-      StatisticList()
-        .navigationBarTitle("Statistics")
-        .navigationBarItems(leading:
-          Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-          }) {
-            Text("Cancel")
-          }
-      )
-    }
-    .navigationViewStyle(StackNavigationViewStyle())
-  }
-}
-
-#if DEBUG
-struct StatisticView_Previews: PreviewProvider {
-  static var previews: some View {
-    StatisticsView().environmentObject(AppStore(moc: viewContext))
-  }
-}
-#endif
+//
+//struct StatisticsView: View {
+//  @EnvironmentObject var store: AppStore
+//  @Environment(\.presentationMode) var presentationMode
+//
+//  var body: some View {
+//    NavigationView {
+//      StatisticList()
+//        .navigationBarTitle("Statistics")
+//        .navigationBarItems(leading:
+//          Button(action: {
+//            self.presentationMode.wrappedValue.dismiss()
+//          }) {
+//            Text("Cancel")
+//          }
+//      )
+//    }
+//    .navigationViewStyle(StackNavigationViewStyle())
+//  }
+//}
+//
+//#if DEBUG
+//struct StatisticView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    StatisticsView().environmentObject(AppStore(moc: viewContext))
+//  }
+//}
+//#endif

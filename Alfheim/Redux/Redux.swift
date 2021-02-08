@@ -8,6 +8,7 @@
 
 import Foundation
 
+/*
 protocol Action {}
 
 protocol Store {
@@ -23,7 +24,6 @@ protocol Reducer {
   func reduce(state: State, action: Action) -> (State, Command?)
 }
 
-/*
 struct Reducer<State, Action, Command> {
   func reduce(state: State, action: Action) -> (State, Command?) {
 
