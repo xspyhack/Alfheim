@@ -15,13 +15,7 @@ enum AppReducers {
     Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
       switch action {
       case .load:
-        return Persistences.Account(context: environment.context!)
-          .fetchAllPublisher()
-          .replaceError(with: [])
-          .map { accounts in
-            .loaded(accounts)
-          }
-          .eraseToEffect()
+        return AppEffects.Account.load(environment: environment)
       case .loaded(let accounts):
         state.overviews = accounts.map { AppState.Overview(account: $0) }
         return .none

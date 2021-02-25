@@ -14,14 +14,21 @@ extension AppAction {
     case edit(Alfheim.Transaction)
     case new
     case changed(Field)
+    case loadAccounts
+    case loadedAccounts([Alfheim.Account])
 
     enum Field {
       case amount(String)
       case currency(Currency)
-      case catemoji(Alne.Catemoji)
+      case source(UUID?)
+      case target(Alfheim.Account?)
       case date(Date)
       case notes(String)
-      case payment(Int)
+      case payee(String?)
+      case number(String?)
+      case repeated(Repeat)
+      case cleared(Bool)
+      case attachment
     }
   }
 }

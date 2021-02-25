@@ -9,9 +9,24 @@
 import Foundation
 import Combine
 import ComposableArchitecture
+import CoreData
 
 extension AppEffects {
   enum Account {
+    static func load(environment: AppEnvironment) -> Effect<AppAction, Never> {
+      guard let context = environment.context else {
+        return Effect.none
+      }
+
+      return Persistences.Account(context: context)
+        .fetchAllPublisher()
+        .replaceError(with: [])
+        .map { accounts in
+          .loaded(accounts)
+        }
+        .eraseToEffect()
+    }
+
     static func delete(accounts: [Alfheim.Account], environment: AppEnvironment) -> Effect<Bool, NSError> {
       guard let context = environment.context else {
         return Effect.none

@@ -15,21 +15,20 @@ final class Transaction: NSManagedObject, Identifiable {
   }
 
   @NSManaged var id: UUID
-  @NSManaged var date: Date
   @NSManaged var amount: Double
-  @NSManaged var notes: String
   @NSManaged var currency: Int16
+
+  @NSManaged var date: Date
+  @NSManaged var notes: String
   @NSManaged var payee: String?
-  @NSManaged var number: Int16
-  @NSManaged var repeated: Bool
+  @NSManaged var number: String?
+
+  @NSManaged var repeated: Int16
   @NSManaged var cleared: Bool
 
-  @NSManaged var category: String? // deprecated
-  @NSManaged var emoji: String?
   // relationship
   @NSManaged var target: Account?
   @NSManaged var source: Account?
-  @NSManaged var payment: Alfheim.Payment?
   @NSManaged var attachments: NSSet?
 }
 
@@ -47,9 +46,6 @@ extension Transaction: Duplicatable {
       lhs.amount == rhs.amount,
       lhs.notes == rhs.notes,
       lhs.currency == rhs.currency,
-      lhs.category == rhs.category,
-      lhs.emoji == rhs.emoji,
-      Payment.duplicated(lhs: lhs.payment, rhs: rhs.payment),
       lhs.payee == rhs.payee,
       lhs.number == rhs.number,
       lhs.target == rhs.target,
@@ -83,47 +79,67 @@ extension Transaction {
     let transaction: Transaction?
 
     var id: UUID
-    var date: Date
     var amount: Double
-    var category: String
-    var emoji: String
-    var notes: String
     var currency: Int16
-    var payment: Alfheim.Payment?
+
+    var date: Date
+    var notes: String
     var payee: String? = nil
-    var number: Int16 = 0
+    var number: String? = nil
+
+    var repeated: Int16
+    var cleared: Bool
+
+    var target: Account?
+    var source: Account?
+    var attachments: NSSet?
 
     init(_ transaction: Transaction) {
       self.transaction = transaction
+
       self.id = transaction.id
-      self.date = transaction.date
       self.amount = transaction.amount
-      self.category = transaction.category ?? ""
-      self.emoji = transaction.emoji ?? ""
-      self.notes = transaction.notes
       self.currency = transaction.currency
-      self.payment = transaction.payment
+
+      self.date = transaction.date
+      self.notes = transaction.notes
+      self.payee = transaction.payee
+      self.number = transaction.number
+
+      self.repeated = transaction.repeated
+      self.cleared = transaction.cleared
+
+      self.target = transaction.target
+      self.source = transaction.source
+      self.attachments = transaction.attachments
     }
 
-    init(date: Date,
-         amount: Double,
+    init(amount: Double,
          currency: Int16,
-         category: String,
-         emoji: String,
+         date: Date,
          notes: String,
-         payment: Alfheim.Payment?) {
+         payee: String? = nil,
+         number: String? = nil,
+         repeated: Int16 = 0,
+         cleared: Bool = true,
+         target: Account,
+         source: Account,
+         attachments: [Attachment] = []) {
       self.transaction = nil
       self.id = UUID()
-      self.date = date
       self.amount = amount
-      self.category = category
-      self.emoji = emoji
-      self.notes = notes
       self.currency = currency
-      self.payment = payment
+      self.date = date
+      self.notes = notes
+      self.payee = payee
+      self.number = number
+      self.repeated = repeated
+      self.cleared = cleared
+      self.target = target
+      self.source = source
+      self.attachments = NSSet(object: attachments)
     }
   }
-  
 }
 
 extension Alfheim.Transaction {
@@ -139,11 +155,13 @@ extension Alfheim.Transaction {
     currency = snapshot.currency
     date = snapshot.date
     notes = snapshot.notes
-    category = snapshot.category
-    emoji = snapshot.emoji
-    payment = snapshot.payment
     payee = snapshot.payee
     number = snapshot.number
+    repeated = snapshot.repeated
+    cleared = snapshot.cleared
+    target = snapshot.target
+    source = snapshot.source
+    //attachments  = snapshot.attachments
   }
 }
 

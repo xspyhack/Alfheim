@@ -9,25 +9,39 @@
 import SwiftUI
 
 struct TransactionRow: View {
-  var model: TransactionViewModel
+  var transaction: TransactionViewState
 
   var body: some View {
     HStack {
-      Text(model.catemoji.emoji)
-        .font(Font.system(size: 40, weight: .medium))
-        .frame(width: 48, height: 48)
       VStack(alignment: .leading) {
-        Text(model.notes).font(.system(size: 20, weight: .medium))
-        Text(model.date.string)
+        Text(transaction.title)
+          .font(.system(size: 20, weight: .medium))
+          .lineLimit(1)
+        Spacer()
+        HStack {
+          Text(transaction.source)
+            .font(.system(size: 14, weight: .medium))
+            .foregroundColor(.red)
+          Text("->")
+            .foregroundColor(.gray)
+          Text(transaction.target)
+            .font(.system(size: 14, weight: .medium))
+            .foregroundColor(.green)
+        }
+      }
+      Spacer()
+      VStack(alignment: .trailing) {
+        Text("-\(transaction.currency.symbol)\(String(format: "%.1f", transaction.amount))")
+          .font(.system(size: 28, weight: .semibold))
+          .foregroundColor(Color(tagit: transaction.tag))
+        Spacer()
+        Text(transaction.date.string)
           .font(.system(size: 14))
           .foregroundColor(.gray)
           .lineLimit(1)
       }
-      Spacer()
-      Text("-\(model.currency.symbol)\(String(format: "%.1f", model.amount))")
-        .font(.system(size: 28, weight: .semibold))
-        .foregroundColor(Color(tagit: model.tag))
     }
+    .padding(.vertical, 16)
     .frame(height: 64)
   }
 }
@@ -36,7 +50,7 @@ struct TransactionRow: View {
 struct TransactionRow_Previews: PreviewProvider {
   static var previews: some View {
     ScrollView {
-      TransactionRow(model: TransactionViewModel.mock)
+      TransactionRow(transaction: TransactionViewState.mock(cxt: viewContext))
     }.padding()
   }
 }

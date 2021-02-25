@@ -29,54 +29,53 @@ extension AppReducers {
             .eraseToEffect()
             .fireAndForget()
         case .update:
-          ()
-          //appCommand = AppCommands.UpdateTransactionCommand(transaction: snashot)
+          return AppEffects.Transaction.update(transaction: snapshot, context: environment.context)
+            .replaceError(with: false)
+            .ignoreOutput()
+            .eraseToEffect()
+            .fireAndForget()
         case .delete:
           fatalError("Editor can't delete")
         }
+      case .loadAccounts:
+        return AppEffects.Editor.loadAccounts(environment: environment)
+      case .loadedAccounts(let accounts):
+        state.accounts = accounts
       case .changed(let field):
         switch field {
         case .amount(let value):
           state.amount = value
-        case .catemoji(let emoji):
-          state.catemoji = emoji
         case .currency(let value):
           state.currency = value
         case .date(let value):
           state.date = value
         case .notes(let value):
           state.notes = value
-        case .payment(let payment):
-          state.payment = payment
+        case .payee(let payee):
+          state.payee = payee
+        case .number(let number):
+          state.number = number
+        case .repeated(let repeated):
+          state.repeated = repeated
+        case .cleared(let cleared):
+          state.cleared = cleared
+        case .target(let account):
+          if let a = account {
+            state.target = a
+          }
+//          let persistence = Persistences.Account(context: environment.context!)
+//          state.target = persistence.account(withID: id)
+        case .source(let id):
+          if let id = id {
+          let persistence = Persistences.Account(context: environment.context!)
+            state.source = persistence.account(withID: id)
+          }
+        case .attachment:
+          state.attachments = []
         }
         state.isValid = environment.validator.validate(state: state)
       }
       return .none
     }
-//    static func reduce(state: AppState, action: AppAction.Editor) -> (AppState, AppCommand?) {
-//      var appState = state
-//      var appCommand: AppCommand? = nil
-//
-//      switch action {
-//      case .new:
-//        appState.editor.validator.reset(.new)
-//      case .edit(let transaction):
-//        appState.editor.validator.reset(.edit(transaction))
-//      case .save(let snashot, let mode):
-//        appState.editor.validator.reset(.new)
-//        switch mode {
-//        case .new:
-//          appCommand = AppCommands.CreateTransactionCommand(transaction: snashot)
-//        case .update:
-//          appCommand = AppCommands.UpdateTransactionCommand(transaction: snashot)
-//        case .delete:
-//          fatalError("Editor can't delete")
-//        }
-//      case .validate(let valid):
-//        appState.editor.isValid = valid
-//      }
-//
-//      return (appState, appCommand)
-//    }
   }
 }

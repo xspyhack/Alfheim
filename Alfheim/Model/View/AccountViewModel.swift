@@ -24,8 +24,8 @@ extension Alne.Account {
     self.description = object.introduction
     self.tag = Tagit(stringLiteral: object.tag!)
     self.group = .expenses
-    self.emoji = object.emoji
-    self.currency = Currency(rawValue: Int(object.currency))!
+    self.emoji = object.emoji ?? ""
+    //self.currency = Currency(rawValue: Int(object.currency))!
   }
 }
 
@@ -40,7 +40,7 @@ extension Alfheim.Account {
     id = UUID()
     name = model.name
     introduction = model.description
-    currency = Int16(model.currency.rawValue)
+    //currency = Int16(model.currency.rawValue)
     emoji = model.emoji
     tag = model.tag.name
     group = model.group.rawValue // can't update

@@ -68,7 +68,7 @@ extension Date {
 extension Date {
   var string: String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "MMM dd, yyyy 'at' HH:mm"
+    formatter.dateFormat = "MMM dd HH:mm"
     return formatter.string(from: self)
   }
 }

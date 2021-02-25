@@ -11,6 +11,7 @@ import ComposableArchitecture
 
 struct OverviewView: View {
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
+  @Environment(\.managedObjectContext) var viewContext
   let store: Store<AppState.Overview, AppAction.Overview>
 
   @State private var presentingStatistics = false
@@ -30,6 +31,10 @@ struct OverviewView: View {
             ForEach(viewStore.account.transactions) { transaction in
               Text(transaction.notes)
             }
+
+            //TransactionRow(transaction: TransactionViewState.mock(cxt: viewContext))
+            //TransactionRow(transaction: TransactionViewState.mock(cxt: viewContext))
+            
           }
           .padding(18)
         }

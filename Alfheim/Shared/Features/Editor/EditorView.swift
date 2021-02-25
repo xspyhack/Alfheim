@@ -22,23 +22,53 @@ struct EditorView: View {
       List {
         Section(header: Spacer()) {
           HStack {
-            Text("Amount")
+            AccountPicker(
+              viewStore.state.groupedAccounts,
+              selection: viewStore.binding(get: { $0.source }, send: { AppAction.Editor.changed(.source($0?.id)) }),
+              label: Text(viewStore.source?.name ?? "Select Account")
+            )
             TextField(
-              "0.00",
+              "+0.00",
               text: viewStore.binding(get: { $0.amount }, send: { AppAction.Editor.changed(.amount($0)) }))
               .keyboardType(.decimalPad)
-              .multilineTextAlignment(.trailing).padding(.trailing, -2.0)
+              .multilineTextAlignment(.trailing)
+              .padding(.trailing, -2.0)
             Text("\(viewStore.currency.symbol)")
-              .foregroundColor(.gray).opacity(0.8).padding(.trailing, -2.0)
+              .foregroundColor(.gray)
+              .opacity(0.8)
+              .padding(.trailing, -2.0)
           }
           HStack {
-            Picker(
-              selection: viewStore.binding(get: { $0.currency }, send: { AppAction.Editor.changed(.currency($0)) }),
-              label: Text("Currency")) {
-              ForEach(Currency.allCases, id: \.self) {
-                Text($0.text).tag($0)
-              }
+            AccountPicker(
+              viewStore.state.groupedAccounts,
+              selection: viewStore.binding(get: { $0.target }, send: { AppAction.Editor.changed(.target($0)) }),
+              label: Text(viewStore.target?.name ?? "Select Account")
+            )
+//            ZStack {
+//              Text(viewStore.target?.name ?? "Select Account")
+//              NavigationLink(destination: AccountList()) {
+//                EmptyView()
+//              }
+//              .buttonStyle(PlainButtonStyle())
+//              .frame(width: 0)
+//              .opacity(0.0)
+//            }
+            Spacer()
+            if viewStore.amount != "" {
+              Text("-\(viewStore.amount)")
+                .multilineTextAlignment(.trailing)
+                .padding(.trailing, -2.0)
+            } else {
+              Text("-\(viewStore.amount)")
+                .foregroundColor(.gray)
+                .opacity(0.8)
+                .multilineTextAlignment(.trailing)
+                .padding(.trailing, -2.0)
             }
+            Text("\(viewStore.currency.symbol)")
+              .foregroundColor(.gray)
+              .opacity(0.8)
+              .padding(.trailing, -2.0)
           }
         }
 
@@ -50,15 +80,7 @@ struct EditorView: View {
           ) {
             Text("Date")
           }
-          HStack {
-            CatemojiPicker(
-              viewStore.catemojis,
-              selection: viewStore.binding(get: { $0.catemoji }, send: { AppAction.Editor.changed(.catemoji($0)) }),
-              label: Text("Emoji")
-            )
-          }
-          HStack {
-            Text("Notes")
+          Field("Notes") {
             InputTextField(
               "Notes",
               text: viewStore.binding(get: { $0.notes }, send: { AppAction.Editor.changed(.notes($0)) }),
@@ -66,22 +88,58 @@ struct EditorView: View {
             )
             .multilineTextAlignment(.trailing)
           }
-          HStack {
-            Picker(
-              selection: viewStore.binding(get: { $0.payment }, send: { AppAction.Editor.changed(.payment($0)) }),
-              label: Text("Payment")
-            ) {
-              ForEach(0..<viewStore.payments.count) { payment in
-                HStack(alignment: .center, spacing: 2) {
-                  Text(viewStore.payments[payment].fullname)
-                  //Text(" - \(payment.kind.fullname)")
-                }
-              }
+        }
+
+        Section {
+          Field("Payee") {
+            InputTextField(
+              "McDonalds",
+              text: viewStore.binding(get: { $0.payee ?? "" }, send: { AppAction.Editor.changed(.payee($0)) }),
+              isFirstResponder: .constant(false)
+            )
+            .multilineTextAlignment(.trailing)
+          }
+          Field("Number") {
+            InputTextField(
+              "20200202",
+              text: viewStore.binding(get: { $0.number ?? "" }, send: { AppAction.Editor.changed(.number($0)) }),
+              isFirstResponder: .constant(false)
+            )
+            .multilineTextAlignment(.trailing)
+          }
+          Picker(selection: viewStore.binding(get: { $0.repeated }, send: { AppAction.Editor.changed(.repeated($0)) }), label: Text("Repeat")) {
+            ForEach(Repeat.allCases, id: \.self) {
+              Text($0.name).tag($0)
+            }
+          }
+          Field("Cleared") {
+            Toggle(isOn: viewStore.binding(get: { $0.cleared }, send: { AppAction.Editor.changed(.cleared($0)) })) {
             }
           }
         }
       }
       .listStyle(InsetGroupedListStyle())
+      .onAppear {
+        viewStore.send(.loadAccounts)
+      }
+    }
+  }
+
+  struct Field<Content: View>: View {
+    let name: String
+    let content: Content
+
+    init(_ name: String, @ViewBuilder content: () -> Content) {
+      self.name = name
+      self.content = content()
+    }
+
+    var body: some View {
+      HStack {
+        Text(name)
+          .foregroundColor(.primary)
+        content
+      }
     }
   }
 }

@@ -29,7 +29,33 @@ extension AppEffects {
           try persistence.save()
           promise(.success(true))
         } catch {
-          print("Update account failed: \(error)")
+          print("Create transaction failed: \(error)")
+          promise(.failure(error as NSError))
+        }
+      }
+      .eraseToEffect()
+    }
+
+    static func update(transaction: Alfheim.Transaction.Snapshot, context: NSManagedObjectContext?) -> Effect<Bool, NSError> {
+      // TBD:
+      // Effect.fireAndForget { }
+      guard let context = context else {
+        return Effect.none
+      }
+
+      let persistence = Persistences.Transaction(context: context)
+      if let object = persistence.transaction(withID: transaction.id) {
+        object.fill(transaction)
+      } else {
+        fatalError("Should not be here!")
+      }
+
+      return Future { promise in
+        do {
+          try persistence.save()
+          promise(.success(true))
+        } catch {
+          print("Update transaction failed: \(error)")
           promise(.failure(error as NSError))
         }
       }

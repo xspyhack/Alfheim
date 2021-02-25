@@ -16,5 +16,4 @@ struct EditorViewModel {
   var catemoji = Catemoji(uncleared: .uncleared)
   var notes: String = ""
   var currency: Currency = .cny
-  var payment: Payment?
 }

@@ -13,6 +13,20 @@ import CoreData
 
 extension AppEffects {
   enum Editor {
+    static func loadAccounts(environment: AppEnvironment.Editor) -> Effect<AppAction.Editor, Never> {
+      guard let context = environment.context else {
+        return Effect.none
+      }
+
+      return Persistences.Account(context: context)
+        .fetchAllPublisher()
+        .replaceError(with: [])
+        .map {
+          .loadedAccounts($0)
+        }
+        .eraseToEffect()
+    }
+
     static func delete(accounts: [Alfheim.Account], environment: AppEnvironment) -> Effect<Bool, NSError> {
       guard let context = environment.context else {
         return Effect.none

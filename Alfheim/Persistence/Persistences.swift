@@ -25,6 +25,7 @@ extension Persistences {
       expenses.group = "expenses"
       expenses.currency = Int16(0)
       expenses.tag = "#FF2600"
+      expenses.emoji = "💸"
 
       let income = Alfheim.Account(context: context)
       income.id = UUID()
@@ -32,6 +33,7 @@ extension Persistences {
       income.introduction = "Income account are where you get money from (e.g. salary)."
       income.group = "income"
       income.currency = Int16(0)
+      income.emoji = "💰"
       income.tag = "#FF2600"
 
       let assets = Alfheim.Account(context: context)
@@ -40,6 +42,7 @@ extension Persistences {
       assets.introduction = "Assets represent the money you have (e.g. crash)."
       assets.group = "assets"
       assets.currency = Int16(0)
+      assets.emoji = "💵"
       assets.tag = "#FF2600"
 
       let liabilities = Alfheim.Account(context: context)
@@ -48,6 +51,7 @@ extension Persistences {
       liabilities.introduction = "Liabilities is what you owe somebody (e.g. credit card)."
       liabilities.group = "liabilities"
       liabilities.currency = Int16(0)
+      liabilities.emoji = "💳"
       liabilities.tag = "#FF2600"
 
       let equity = Alfheim.Account(context: context)
@@ -56,16 +60,8 @@ extension Persistences {
       equity.introduction = "Equity represents the value of something (e.g. existing assets)."
       equity.group = "equity"
       equity.currency = Int16(0)
+      equity.emoji = "📈"
       equity.tag = "#FF2600"
-
-      // Payment
-      let payment = Alfheim.Payment(context: context)
-      payment.id = UUID()
-      payment.kind = Int16(Alne.Payment.uncleared.kind.rawValue)
-      payment.name = Alne.Payment.uncleared.name
-      payment.introduction = "Buid In"
-
-      UserDefaults.standard.set(payment.id.uuidString, forKey: "com.alfheim.payment.build-in")
 
       // Catemoji
       buildinCatemojis().forEach {
@@ -78,16 +74,6 @@ extension Persistences {
     }
 
     func migrate() {
-      // Payment
-      let payment = Alfheim.Payment(context: context)
-      payment.id = UUID()
-      payment.kind = Int16(Alne.Payment.uncleared.kind.rawValue)
-      payment.name = Alne.Payment.uncleared.name
-      payment.introduction = "Buid In"
-
-      UserDefaults.standard.set(payment.id.uuidString, forKey: "com.alfheim.payment.build-in")
-
-      try? context.save()
     }
   }
 }

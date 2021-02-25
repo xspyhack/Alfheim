@@ -10,7 +10,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ComposerView: View {
-//  // alternative dismiss
+  // alternative dismiss
   @Environment(\.presentationMode) var presentationMode
   let store: Store<AppState.Editor, AppAction.Editor>
 

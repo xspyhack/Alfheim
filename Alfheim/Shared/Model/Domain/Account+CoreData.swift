@@ -24,11 +24,21 @@ final class Account: NSManagedObject, Identifiable {
   // relationship
   @NSManaged var targets: NSSet?
   @NSManaged var sources: NSSet?
+  @NSManaged var children: NSSet?
+  @NSManaged var parent: Account?
 }
 
 extension Account {
   var transactions: [Transaction] {
-    return [] //targets + sources
+    if let s = sources {
+      return s.allObjects as! [Transaction]
+    } else {
+      return []
+    }
+  }
+
+  var root: Bool {
+    return parent == nil
   }
 }
 
